@@ -14,36 +14,36 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Contact", localize "STR_A3AU_rifles"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(sgun_HunterShotgun_01_F, 2150, RIFLE_STOCK);
-			ITEM(sgun_HunterShotgun_01_sawedoff_F, 2250, RIFLE_STOCK);
+			ITEM(sgun_HunterShotgun_01_F, 300, RIFLE_STOCK);
+			ITEM(sgun_HunterShotgun_01_sawedoff_F, 300, RIFLE_STOCK);
 
-			ITEM(arifle_MSBS65_F, 2150, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_UBS_F, 2250, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_GL_F, 2350, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_UBS_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_GL_F, MODGL65, RIFLE_STOCK);
 
-			ITEM(arifle_MSBS65_black_F, 1200, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_UBS_black_F, 1400, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_GL_black_F, 1500, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_black_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_UBS_black_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_GL_black_F, MODGL65, RIFLE_STOCK);
 
-			ITEM(arifle_MSBS65_camo_F, 1200, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_UBS_camo_F, 1400, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_GL_camo_F, 1500, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_camo_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_UBS_camo_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_GL_camo_F, MODGL65, RIFLE_STOCK);
 
-			ITEM(arifle_MSBS65_sand_F, 1200, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_UBS_sand_F, 1400, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_GL_sand_F, 1500, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_sand_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_UBS_sand_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_GL_sand_F, MODGL65, RIFLE_STOCK);
 
-			ITEM(arifle_AK12U_F, 2300, RIFLE_STOCK);
-			ITEM(arifle_AK12_F, 2400, RIFLE_STOCK);
-			ITEM(arifle_AK12_GL_F, 2550, RIFLE_STOCK);
+			ITEM(arifle_AK12U_F, MOD762, RIFLE_STOCK);
+			ITEM(arifle_AK12_F, MOD762, RIFLE_STOCK);
+			ITEM(arifle_AK12_GL_F, MODGL762, RIFLE_STOCK);
 
-			ITEM(arifle_AK12U_arid_F, 2300, RIFLE_STOCK);
-			ITEM(arifle_AK12_arid_F, 2400, RIFLE_STOCK);
-			ITEM(arifle_AK12_GL_arid_F, 2550, RIFLE_STOCK);
+			ITEM(arifle_AK12U_arid_F, MOD762, RIFLE_STOCK);
+			ITEM(arifle_AK12_arid_F, MOD762, RIFLE_STOCK);
+			ITEM(arifle_AK12_GL_arid_F, MODGL762, RIFLE_STOCK);
 
-			ITEM(arifle_AK12U_lush_F, 2300, RIFLE_STOCK);
-			ITEM(arifle_AK12_lush_F, 2400, RIFLE_STOCK);
-			ITEM(arifle_AK12_GL_lush_F, 2550, RIFLE_STOCK);
+			ITEM(arifle_AK12U_lush_F, MOD762, RIFLE_STOCK);
+			ITEM(arifle_AK12_lush_F, MOD762, RIFLE_STOCK);
+			ITEM(arifle_AK12_GL_lush_F, MODGL762, RIFLE_STOCK);
 
 		};
 
@@ -52,12 +52,12 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Contact", localize "STR_A3AU_sniperRifles"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(arifle_MSBS65_Mark_F, 1500, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_Mark_black_F, 1500, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_Mark_camo_F, 1500, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_Mark_sand_F, 1500, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_Mark_F, MOD65 * 2, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_Mark_black_F, MOD65 * 2, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_Mark_camo_F, MOD65 * 2, RIFLE_STOCK);
+			ITEM(arifle_MSBS65_Mark_sand_F, MOD65 * 2, RIFLE_STOCK);
 
-			ITEM(srifle_DMR_06_hunter_F, 1300, RIFLE_STOCK);
+			ITEM(srifle_DMR_06_hunter_F, OLD762 * 2, RIFLE_STOCK);
 
 		};
 
@@ -66,11 +66,11 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Contact", localize "STR_A3AU_mgs"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(LMG_Mk200_black_F, 1850, RIFLE_STOCK);
+			ITEM(LMG_Mk200_black_F, MOD65 * 1.5, RIFLE_STOCK);
 
-			ITEM(arifle_RPK12_F, 2500, RIFLE_STOCK);
-			ITEM(arifle_RPK12_arid_F, 2500, RIFLE_STOCK);
-			ITEM(arifle_RPK12_lush_F, 2500, RIFLE_STOCK);
+			ITEM(arifle_RPK12_F, MOD762 * 1.5, RIFLE_STOCK);
+			ITEM(arifle_RPK12_arid_F, MOD762 * 1.5, RIFLE_STOCK);
+			ITEM(arifle_RPK12_lush_F, MOD762 * 1.5, RIFLE_STOCK);
 
 		};
 
@@ -79,10 +79,10 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Contact", localize "STR_A3AU_launchers"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\secondaryWeapon_ca.paa";
 
-			ITEM(launch_RPG32_green_F, 1200, LAUNCHER_STOCK);
+			ITEM(launch_RPG32_green_F, RPG_RELOADABLE, LAUNCHER_STOCK);
 
-			ITEM(launch_I_Titan_eaf_F, 3500, 3);
-			ITEM(launch_B_Titan_olive_F, 3500, 3);
+			ITEM(launch_I_Titan_eaf_F, RELOADABLE_AA_LAUNCHER, 3);
+			ITEM(launch_B_Titan_olive_F, RELOADABLE_AA_LAUNCHER, 3);
 
 		};
 
@@ -186,114 +186,45 @@
 			// RIFLES
 			///////////////////////////////////////////////////////
 
-			class 30rnd_762x39_AK12_Lush_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30rnd_762x39_AK12_Lush_Mag_Tracer_F {
-				price = 145;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Lush_Mag_F {
-				price = 500;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Lush_Mag_Tracer_F {
-				price = 525;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30rnd_762x39_AK12_Lush_Mag_F, 20 + BULPRICE * 30, 100);
+			ITEM(30rnd_762x39_AK12_Lush_Mag_Tracer_F, 20 + BULPRICE * 30, 100);
+			ITEM(75rnd_762x39_AK12_Lush_Mag_F, 20 + BULPRICE * 75, 100);
+			ITEM(75rnd_762x39_AK12_Lush_Mag_Tracer_F, 20 + BULPRICE * 75, 100);
 
-			class 30rnd_762x39_AK12_Arid_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30rnd_762x39_AK12_Arid_Mag_Tracer_F {
-				price = 145;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Arid_Mag_F {
-				price = 500;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Arid_Mag_Tracer_F {
-				price = 525;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30rnd_762x39_AK12_Arid_Mag_F, 20 + BULPRICE * 30, 100);
+			ITEM(30rnd_762x39_AK12_Arid_Mag_Tracer_F, 20 + BULPRICE * 30, 100);
+			ITEM(75rnd_762x39_AK12_Arid_Mag_F, 20 + BULPRICE * 75, 100);
+			ITEM(75rnd_762x39_AK12_Arid_Mag_Tracer_F, 20 + BULPRICE * 75, 100);
 
-			class 30Rnd_762x39_AK12_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_AK12_Mag_Tracer_F {
-				price = 145;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Mag_F {
-				price = 500;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Mag_Tracer_F {
-				price = 525;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_762x39_AK12_Mag_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_762x39_AK12_Mag_Tracer_F, 20 + BULPRICE * 30, 100);
+			ITEM(75rnd_762x39_AK12_Mag_F, 20 + BULPRICE * 75, 100);
+			ITEM(75rnd_762x39_AK12_Mag_Tracer_F, 20 + BULPRICE * 75, 100);
 
-			class 30Rnd_65x39_caseless_msbs_mag {
-				price = 115;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_msbs_mag_Tracer {
-				price = 140;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_65x39_caseless_msbs_mag, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_65x39_caseless_msbs_mag_Tracer, 20 + BULPRICE * 30, 100);
 
-			class 6Rnd_12Gauge_Pellets {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 6Rnd_12Gauge_Slug {
-				price = 35;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(6Rnd_12Gauge_Pellets, 20 + BULPRICE * 6, 100);
+			ITEM(6Rnd_12Gauge_Slug, 20 + BULPRICE * 6, 100);
 
-			class 2Rnd_12Gauge_Pellets {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 2Rnd_12Gauge_Slug {
-				price = 35;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(2Rnd_12Gauge_Pellets, 20 + BULPRICE * 2, 100);
+			ITEM(2Rnd_12Gauge_Slug, 20 + BULPRICE * 2, 100);
 
 			///////////////////////////////////////////////////////
 			// DMRs, Sniper Rifles
 			///////////////////////////////////////////////////////
 
-			class 10Rnd_Mk14_762x51_Mag {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(10Rnd_Mk14_762x51_Mag, 20 + BULPRICE * 10, 100);
 
 			
 			///////////////////////////////////////////////////////
 			// MGs
 			///////////////////////////////////////////////////////
 
-			class 200Rnd_65x39_cased_Box {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Tracer {
-				price = 375;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Red {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Tracer_Red {
-				price = 375;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(200Rnd_65x39_cased_Box, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_65x39_cased_Box_Tracer, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_65x39_cased_Box_Red, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_65x39_cased_Box_Tracer_Red, 20 + BULPRICE * 200, 100);
 		};
 		
 		class miscContact 

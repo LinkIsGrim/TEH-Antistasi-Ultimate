@@ -1,27 +1,18 @@
 #include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
-params [
-	"_crate",
-	["_crateWepTypeMax", crateWepTypeMax], "_crateWepNum",
-	["_crateItemTypeMax", crateItemTypeMax], "_crateItemNum",
-	["_crateAmmoTypeMax", crateAmmoTypeMax], "_crateAmmoNum",
-	["_crateExplosiveTypeMax", crateExplosiveTypeMax], "_crateExplosiveNum",
-	["_crateAttachmentTypeMax", crateAttachmentTypeMax], "_crateAttachmentNum",
-	["_crateBackpackTypeMax", crateBackpackTypeMax], "_crateBackpackNum",
-	["_crateHelmetTypeMax", crateHelmetTypeMax], "_crateHelmetNum",
-	["_crateVestTypeMax", crateVestTypeMax], "_crateVestNum",
-	["_crateDeviceTypeMax", crateDeviceTypeMax], "_crateDeviceNum"
+params ["_crate",
+["_crateWepTypeMax", crateWepTypeMax], "_crateWepNum",
+["_crateItemTypeMax", crateItemTypeMax], "_crateItemNum",
+["_crateAmmoTypeMax", crateAmmoTypeMax], "_crateAmmoNum",
+["_crateExplosiveTypeMax", crateExplosiveTypeMax], "_crateExplosiveNum",
+["_crateAttachmentTypeMax", crateAttachmentTypeMax], "_crateAttachmentNum",
+["_crateBackpackTypeMax", crateBackpackTypeMax], "_crateBackpackNum",
+["_crateHelmetTypeMax", crateHelmetTypeMax], "_crateHelmetNum",
+["_crateVestTypeMax", crateVestTypeMax], "_crateVestNum",
+["_crateDeviceTypeMax", crateDeviceTypeMax], "_crateDeviceNum"
 ];
 
-if (!isServer && hasInterface) exitWith {
-	["fillLootCrate was not called on the server? Recalling on server", _fnc_scriptName] call A3U_fnc_log;
-	_this remoteExec ["A3A_fnc_fillLootCrate", 2];
-};
-
-if (isNil "A3U_forbiddenItems") then {
-	["A3U_forbiddenItems is nil, attempting to recreate the value", _fnc_scriptName] call A3U_fnc_log;
-	call A3U_fnc_grabForbiddenItems;
-};
+Debug("Lootcrate called");
 
 private _unlocks = (unlockedHeadgear + unlockedVests + unlockedNVGs + unlockedOptics + unlockedItems + unlockedWeapons + unlockedBackpacks + unlockedMagazines);
 private _available = objNull;
@@ -32,19 +23,19 @@ clearWeaponCargoGlobal _crate;
 clearItemCargoGlobal _crate;
 clearBackpackCargoGlobal _crate;
 //Double max types if the crate is an ammo truck
-if (typeOf _crate in FactionGet(all,"vehiclesAmmoTrucks")) then {
-    Verbose("Ammo Truck Detected: Doubling Types");
+if (typeOf _crate in FactionGet(all,"vehiclesAmmoTrucks") || _crate isKindOf "ReammoBox_F" ) then {
+    Verbose("Big Weapon Crate: Doubling Types");
 	_crateWepTypeMax = _crateWepTypeMax * 2;
 	_crateItemTypeMax = _crateItemTypeMax * 2;
 	_crateAmmoTypeMax = _crateAmmoTypeMax * 2;
 	_crateExplosiveTypeMax = _crateExplosiveTypeMax * 2;
 	_crateAttachmentTypeMax = _crateAttachmentTypeMax * 2;
-	_crateBackpackTypeMax = _crateBackpackTypeMax * 2;
-	_crateHelmetTypeMax = _crateHelmetTypeMax * 2;
-	_crateVestTypeMax = _crateVestTypeMax * 2;
 	_crateDeviceTypeMax = _crateDeviceTypeMax * 2;
 };
-
+	_crateBackpackTypeMax = 0;
+	_crateHelmetTypeMax = 0;
+	_crateVestTypeMax = 0;
+	
 private _quantityScalingFactor = if (minWeaps < 0) then {1} else {
 	private _playerCount = if(!isNil "spoofedPlayerCount") then {spoofedPlayerCount} else {A3A_activePlayerCount};
 	//Scale it down to a 50% loot rate at 20 players.
@@ -180,24 +171,25 @@ if (_crateWepTypeMax != 0) then {
 		}
 		else
 		{
-			_amount = if (isNil "_crateWepNum") then {crateWepNumMax call _fnc_pickAmount;} else {_crateWepNum};
-			_crate addWeaponWithAttachmentsCargoGlobal [[ _loot, "", "", "", [], [], ""], _amount];
-            Verbose_2("Adding %1 weapons of type %2", _amount, _loot);
+			_amount = 5;
+			
+            Debug(_loot);
 
 			private _magazines = [_loot, A3U_forbiddenItems] call A3A_fnc_compatibleMagazinesWithExceptions;
 			if (count _magazines < 1) exitWith {};
 			if (_loot in allShotguns) then { _magazines = [_magazines select 0] };		// prevent doomsday
 
-			for "_i" from 0 to _amount do {
-				_magazine = selectRandom _magazines;
-				_magAmount = if ((getText (configFile >> "CfgMagazines" >> _magazine >> "ammo") isKindOf "MissileBase")) then {
-					floor random 3;
-				} else {
-					floor random [1,6,1]
-				};
-                Verbose_3("Spawning %1 magazines of %2 for %3", _magAmount, _magazine, _loot);
-				_crate addMagazineCargoGlobal [_magazine, _magAmount];
+
+			_magazine = selectRandom _magazines;
+			_magAmount = if ((getText (configFile >> "CfgMagazines" >> _magazine >> "ammo") isKindOf "MissileBase")) then {
+				(_amount * 3);
+			} else {
+				(_amount * 10);
 			};
+			Debug(_magazine);
+			
+			_crate addMagazineCargoGlobal [_magazine, _magAmount];
+			_crate addWeaponCargoGlobal [_loot, _amount];
 		};
 	};
 };
@@ -227,6 +219,7 @@ if (_crateItemTypeMax != 0) then {
 		Verbose_2("Spawning %1 of %2", _amount,_loot);
 	};
 };
+
 //Ammo Loot
 if (_crateAmmoTypeMax != 0) then {
 	for "_i" from 0 to floor random _crateAmmoTypeMax do {
@@ -237,7 +230,7 @@ if (_crateAmmoTypeMax != 0) then {
             Debug("No Ammo Left in Loot List");
 		}
 		else {
-			_amount = if (isNil "_crateAmmoNum") then {crateAmmoNumMax call _fnc_pickAmount;} else {_crateAmmoNum};
+			_amount = 100;
 			_crate addMagazineCargoGlobal [_loot,_amount];
             Verbose_2("Spawning %1 of %2", _amount,_loot);
 		};
@@ -269,7 +262,7 @@ if (_crateAttachmentTypeMax != 0) then {
             Debug("No Attachment Left in Loot List");
 		}
 		else {
-			_amount = if (isNil "_crateAttachmentNum") then { crateAttachmentNumMax  call _fnc_pickAmount;} else {_crateAttachmentNum};
+			_amount = 5;
 			_crate addItemCargoGlobal [_loot,_amount];
             Verbose_2("Spawning %1 of %2", _amount,_loot);
 		};
@@ -299,7 +292,7 @@ if (_crateHelmetTypeMax != 0) then {
             Debug("No Helmets Left in Loot List");
 		}
 		else {
-			_amount = if (isNil "_crateHelmetNum") then { round random crateHelmetNumMax;} else {_crateHelmetNum};
+			_amount = 10;
 			_crate addItemCargoGlobal [_loot,_amount];
             Verbose_2("Spawning %1 of %2", _amount,_loot);
 		};
@@ -314,7 +307,7 @@ if (_crateVestTypeMax != 0) then {
             Debug("No Vests Left in Loot List");
 		}
 		else {
-			_amount = if (isNil "_crateVestNum") then { round random crateVestNumMax;} else {_crateVestNum};
+			_amount = 10;
 			_crate addItemCargoGlobal [_loot,_amount];
             Verbose_2("Spawning %1 of %2", _amount,_loot);
 		};
@@ -329,7 +322,7 @@ if (_crateDeviceTypeMax != 0) then {
             Debug("No Device Bags Left in Loot List");
 		}
 		else {
-			_amount = if (isNil "_crateDeviceNum") then { round random crateDeviceNumMax;} else {_crateDeviceNum};
+			_amount = 5;
 			_crate addBackpackCargoGlobal [_loot,_amount];
             Verbose_2("Spawning %1 of %2", _amount,_loot);
 		};

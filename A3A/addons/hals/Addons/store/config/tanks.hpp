@@ -3,15 +3,15 @@ class launchersTanks
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Tanks", localize "STR_A3AU_launchers"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\secondaryWeapon_ca.paa";
 
-			ITEM(launch_MRAWS_olive_F, 1400, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_olive_rail_F, 1300, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_green_F, 1400, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_green_rail_F, 1300, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_sand_F, 1400, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_sand_rail_F, 1300, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_olive_F, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_olive_rail_F, RPG_RELOADABLE * RAIL, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_green_F, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_green_rail_F,  RPG_RELOADABLE * RAIL, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_sand_F, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_sand_rail_F,  RPG_RELOADABLE * RAIL, LAUNCHER_STOCK);
 
-			ITEM(launch_O_Vorona_brown_F, 2500, 10);
-			ITEM(launch_O_Vorona_green_F, 2500, 10);
+			ITEM(launch_O_Vorona_brown_F, WIRE_AT_LAUNCHER, 10);
+			ITEM(launch_O_Vorona_green_F, WIRE_AT_LAUNCHER, 10);
 		};
 
 		class launcherMagazinesTanks 
@@ -20,23 +20,23 @@ class launchersTanks
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\cargoMag_ca.paa";
 		
 			class Vorona_HE {
-				price = 75;
+				price = WIRE_AT_MISSILE;
 				stock = 50;
 			};
 			class Vorona_HEAT {
-				price = 100;
+				price = WIRE_AT_MISSILE;
 				stock = 50;
 			};
 			class MRAWS_HEAT55_F {
-				price = 250;
+				price = RPG_AT_ROUND;
 				stock = 50;
 			};
 			class MRAWS_HE_F {
-				price = 150;
+				price = RPG_HE_ROUND;
 				stock = 50;
 			};
 			class MRAWS_HEAT_F {
-				price = 300;
+				price = RPG_THERM_ROUND;
 				stock = 50;
 			};
 		};

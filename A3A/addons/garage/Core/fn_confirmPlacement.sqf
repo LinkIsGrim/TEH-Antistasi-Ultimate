@@ -300,6 +300,145 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
         };
         _veh spawn {sleep 0.5;_this allowDamage true;_this enableSimulation true; { _x allowDamage true; } forEach (attachedObjects _this); };
         ([_veh] + HR_GRG_CP_callBackArgs) call HR_GRG_CP_callBackPlace;
+		
+		_primarymag = (primaryWeaponMagazine player) select 0;
+		
+
+		if (_primarymag != "") then {
+			_bullets = 600;
+			_magcount = floor (_bullets / getNumber (configfile >> "CfgMagazines" >> _primarymag >> "count"));
+			_magIdc = jna_dataList # 26 findIf { _x # 0 isEqualTo _primarymag };
+			if (_magIdc >= 0) then {
+				_available = jna_dataList # 26 # _magIdc # 1;
+				if (_available > _bullets) then {
+					jna_dataList # 26 # _magIdc set [1, _available - _bullets];
+					_veh addMagazineCargoGlobal [_primarymag, _magcount];
+				};
+				if (_available < 0) then {
+					_veh addMagazineCargoGlobal [_primarymag, _magcount];
+				};
+			};
+		};
+		
+		private _launcherLimit = 3;
+		
+		//Find AA launcher
+		{
+			_weap = _x;
+			_magIdc = jna_dataList # 1 findIf { _x # 0 isEqualTo _weap };
+			if (_magIdc >= 0) then {
+				_available = jna_dataList # 1 # _magIdc # 1;
+				if (_available > _launcherLimit) then {
+					jna_dataList # 1 # _magIdc set [1, _available - _launcherLimit];
+					_veh addWeaponCargoGlobal [_weap, _launcherLimit];
+					break;
+				};
+				if (_available < 0) then {
+					_veh addWeaponCargoGlobal [_weap, _launcherLimit];
+					break;
+				};
+			};
+		} forEach ["CUP_launch_FIM92Stinger", "CUP_launch_Igla", "CUP_launch_9K32Strela"];
+		
+		//Find AT launcher
+		{
+			_weap = _x;
+			_magIdc = jna_dataList # 1 findIf { _x # 0 isEqualTo _weap };
+			if (_magIdc >= 0) then {
+				_available = jna_dataList # 1 # _magIdc # 1;
+				if (_available > _launcherLimit) then {
+					jna_dataList # 1 # _magIdc set [1, _available - _launcherLimit];
+					_veh addWeaponCargoGlobal [_weap, _launcherLimit];
+					break;
+				};
+				if (_available < 0) then {
+					_veh addWeaponCargoGlobal [_weap, _launcherLimit];
+					break;
+				};
+			};
+		} forEach ["CUP_launch_PzF3", "CUP_launch_HCPF3", "CUP_launch_APILAS", "CUP_launch_M136"];
+		
+/*		_weap = secondaryWeapon player;
+		_equipBase = (_weap call BIS_fnc_baseWeapon);
+		_launchermag = secondaryWeaponMagazine player select 0;
+		
+		if (_weap isEqualTo _equipBase && _launchermag isNotEqualTo "") then {
+			_magIdc = jna_dataList # 26 findIf { _x # 0 isEqualTo _launchermag };
+			if (_magIdc >= 0) then {
+				_available = jna_dataList # 26 # _magIdc # 1;
+				if (_available > 3) then {
+					jna_dataList # 26 # _magIdc set [1, _available - 3];
+					_veh addMagazineCargoGlobal [_launchermag, 3];
+				};
+				if (_available < 0) then {
+					_veh addMagazineCargoGlobal [_launchermag, 3];
+				};
+			};
+		};
+	*/	
+		
+		
+		
+		_veh addItemCargoGlobal ["Toolkit", 1];
+		_veh addItemCargoGlobal ["MiniGrenade", 10];
+		_veh addItemCargoGlobal ["SmokeShell", 10];
+		if (A3A_hasACEMedical) then {
+			_veh addItemCargoGlobal ["ACE_fieldDressing",30],
+
+			_veh addItemCargoGlobal ["ACE_morphine",10],
+			_veh addItemCargoGlobal ["ACE_epinephrine",10],
+			_veh addItemCargoGlobal ["ACE_adenosine",5],
+
+			_veh addItemCargoGlobal ["ACE_plasmaIV_500",5],
+			_veh addItemCargoGlobal ["ACE_salineIV_500",5],
+			_veh addItemCargoGlobal ["ACE_bloodIV_500",5],
+
+			_veh addItemCargoGlobal ["ACE_tourniquet",5],
+			_veh addItemCargoGlobal ["ACE_splint",5]
+		} else {
+			private _mediKits = _factionData get "mediKits";
+			private _firstAidKits = _factionData get "firstAidKits";
+			
+			_veh addItemCargoGlobal [_mediKits#0, 1],
+			_veh addItemCargoGlobal [_firstAidKits#0,10]
+		};
+		
+		_veh setPlateNumber (name player);
+		
+		if ((_veh isKindOf "Tank") || (_veh isKindOf "Wheeled_APC_F")) then {
+
+			_veh addEventHandler ["HandleDamage", {
+				params ["_veh", "_selection", "_damage", "_source", "_projectile", "_hitIndex"];
+
+				if (_damage isEqualTo 0) exitWith { 0 };
+				_dmg = damage _veh;
+				if (_dmg < 0.51) exitWith { _damage };
+				if (_dmg >= 1) then {
+					if ((random 1) < 0.5) exitWith { _damage };
+				};
+
+				waitUntil { _veh getVariable["canDamage",true]; }; 
+
+				private _hpData = getAllHitPointsDamage _veh; 
+				private _hpNames = _hpData select 1;
+				private _hpValues = []+(_hpData select 2); 
+
+				_veh setVariable ["canDamage", false]; 
+				_veh setDamage 0.51; 
+
+				{ 
+					private _val = _x; 
+					_veh setHit [_hpNames select _forEachIndex, _val]; 
+				} forEach _hpValues; 
+				
+				_veh setVariable["canDamage", true]; 
+
+				//continue damage le component.
+				_damage;
+			}];
+
+			systemChat "Tankiness is over 9000";
+		};
     };
 
     //block key press if valid key

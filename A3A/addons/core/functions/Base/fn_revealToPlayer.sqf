@@ -1,33 +1,44 @@
-if (isDedicated) exitWith {};
-private ["_LeaderX"];
-if (count _this == 0) then
+private _allMarkers = [];
+while { revealX } do {
 	{
-	while {revealX} do
-		{
-		if (player == leader group player) then
-			{
-			if ([player] call A3A_fnc_hasRadio) then
-				{
-				{
-				_LeaderX = leader _x;
-				if (((side _LeaderX == Invaders) or (side _LeaderX == Occupants)) and (vehicle _LeaderX != _LeaderX) and (player knowsAbout _LeaderX < 1.5)) then
-					{
-					player reveal [_LeaderX,4];
-					sleep 1;
-					};
-				} forEach allGroups;
-				};
+		if ((side _x == Invaders) || (side _x == Occupants)) then {
+			private _lead = leader _x;
+			private _veh = vehicle _lead;
+			private _pos = getPosATL _lead;
+
+			private _typeX = switch (true) do {
+				case (_veh isKindOf "Truck" || _veh isKindOf "Car"): { "motor_inf" };
+				case (_veh isKindOf "Wheeled_APC_F"): { "mech_inf" };
+				case (_veh isKindOf "Tank"): { "armor" };
+				case (_veh isKindOf "Plane_Base_F"): { "plane" };
+				case (_veh isKindOf "UAV_02_base_F"): { "uav" };
+				case (_veh isKindOf "Helicopter"): { "air" };
+				case (_veh isKindOf "Boat_F"): { "naval" };
+				case (_veh isKindOf "StaticWeapon"): { "antiair" };
+				case (_veh isKindOf "Man"): { "inf" };
+				default { "unknown" };
 			};
-		sleep 10;
+
+			private _formatX = if (side _x == Occupants) then {"b"} else {"o"};
+			private _color = if (side _x == Occupants) then { colorOccupants } else { colorInvaders };
+
+			private _mrkName = format ["reveal-%1", _x];
+			_allMarkers pushBack _mrkName;
+
+			private _mrk = createMarkerLocal [_mrkName, _pos];
+			_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];
+			_mrk setMarkerColorLocal _color;
+			_mrk setMarkerTextLocal ((str _x) select [2]);
+			_mrk setMarkerAlphaLocal 0.66;
+			if (_pos isNotEqualTo [0,0,0]) then {
+				_mrk setMarkerPosLocal _pos;
+			} else {
+				deleteMarker _mrkName;
+			};
 		};
-	}
-else
-	{
-	private ["_groupX"];
-	if (player == leader group player) then
-		{
-		_groupX = _this select 0;
-		_LeaderX = leader _groupX;
-		player reveal [_LeaderX,4];
-		};
-	};
+	} forEach allGroups;
+
+	sleep 15;
+
+	{ deleteMarker _x } forEach _allMarkers;
+};

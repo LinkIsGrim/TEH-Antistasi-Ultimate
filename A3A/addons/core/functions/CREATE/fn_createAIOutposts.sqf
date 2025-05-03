@@ -37,13 +37,13 @@ if (_sideX == Occupants && {_markerX in outposts}) then {
 };
 
 private _mrk = createMarkerLocal [format ["%1patrolarea", random 100], _positionX];
-_mrk setMarkerShapeLocal "RECTANGLE";
-_mrk setMarkerSizeLocal [(distanceSPWN/2),(distanceSPWN/2)];
+_mrk setMarkerShapeLocal "ELLIPSE";
+_mrk setMarkerSizeLocal [(distanceSPWN),(distanceSPWN)];
 _mrk setMarkerTypeLocal "hd_warning";
-_mrk setMarkerColorLocal "ColorRed";
-_mrk setMarkerBrushLocal "DiagGrid";
-_mrk setMarkerDirLocal (markerDir _markerX);
-if (!debug) then {_mrk setMarkerAlphaLocal 0};
+_mrk setMarkerColorLocal "ColorBlue";
+_mrk setMarkerBrushLocal "Border";
+_mrk setMarkerDir (markerDir _markerX);
+//if (!debug) then {_mrk setMarkerAlphaLocal 0};
 
 private _patrolVehicleData = [_sideX, _positionX, _size] call SCRT_fnc_garrison_rollOversizeVehicle;
 if (_patrolVehicleData isNotEqualTo []) then {
@@ -231,26 +231,29 @@ if (_markerX in seaports) then {
 
 _spawnParameter = [_markerX, "Vehicle"] call A3A_fnc_findSpawnPosition;
 private _veh = nil;
-
+private _op = false;
 if (_spawnParameter isEqualType []) then {
 	_spawnsUsed pushBack _spawnParameter#2;
 	private _typeVehX = call {
-		if (FactionGet(civ,"vehiclesCivRepair") isEqualTo [] and random 1 < 0.1) exitWith { selectRandom (_faction get "vehiclesRepairTrucks") };
-		if (FactionGet(civ,"vehiclesCivFuel") isEqualTo [] and random 1 < 0.1) exitWith { selectRandom (_faction get "vehiclesFuelTrucks") };
-		private _types = if (!_isFIA) then {
+		private _types = if (random 1 < 0.33) then {
+			_op = true;
+			(_faction get "vehiclesLightAPCs") + 
+			(_faction get "vehiclesAPCs") + 
+			(_faction get "vehiclesIFVs") + 
+			(_faction get "vehiclesAA") +
+			(_faction get "vehiclesLightArmed") +
+			(_faction get "vehiclesLightTanks") +
+			(_faction get "vehiclesAirborne");
+		} else {
 			(_faction get "vehiclesTrucks") + 
 			(_faction get "vehiclesCargoTrucks") + 
-			(_faction get "vehiclesMedical") + 
 			(_faction get "vehiclesLightUnarmed") + 
-			(_faction get "vehiclesLightArmed")
-		} else {
-			(_faction get "vehiclesMilitiaTrucks") +
-			(_faction get "vehiclesMilitiaLightArmed") +
-			(_faction get "vehiclesMilitiaCars")+
-			(_faction get "vehiclesBasic") //we should use them somewhere at least
+			(_faction get "vehiclesRepairTrucks") +
+			(_faction get "vehiclesAmmoTrucks") +
+			(_faction get "vehiclesFuelTrucks");
 		};
 		// _types = _types select { _x in FactionGet(all,"vehiclesCargoTrucks") };
-		if (count _types == 0) then { (_faction get "vehiclesCargoTrucks") } else { _types };
+		//if (count _types == 0) then { (_faction get "vehiclesCargoTrucks") } else { _types };
 		selectRandom _types;
 	};
 	isNil {
@@ -259,6 +262,16 @@ if (_spawnParameter isEqualType []) then {
 	};
 	_vehiclesX pushBack _veh;
 	[_veh, _sideX] call A3A_fnc_AIVEHinit;
+
+	if (_op) then {
+		_veh setHitPointDamage ["hitEngine",1];
+		_veh setHitPointDamage ["hitTurret",1];
+		_veh setHitPointDamage ["hitGun",1];
+		_veh setHitPointDamage ["hitHull", random 1];
+	} else {
+		_lootList = [_veh, 3, 5, 0, 0, 1, 100, 0, 0, 1, 5, 0, 0, 1, 1, 1, 1, 0, 0];
+		_lootList call A3A_fnc_fillLootCrate;
+	};
 	sleep 1;
 };
 
@@ -343,11 +356,6 @@ for "_i" from 0 to (count _array - 1) do {
 };
 ["locationSpawned", [_markerX, "Outpost", true]] call EFUNC(Events,triggerEvent);
 
-{
-  if (_x isKindOf "Static" || _x isKindOf "StaticWeapon") then {continue};
-  [_x, true] call A3U_fnc_setLock;
-} forEach _vehiclesX;
-
 waitUntil {sleep 1; (spawner getVariable _markerX == 2)};
 
 deleteMarker _mrk;
@@ -356,6 +364,7 @@ deleteMarker _mrk;
 { deleteVehicle _x } forEach _dogs;
 { deleteGroup _x } forEach _groups;
 
+_sideX = sidesX getVariable [_markerX,sideUnknown]; //captured maybe?
 {
 	// delete all vehicles that haven't been stolen
 	if (_x getVariable ["ownerSide", _sideX] == _sideX) then {
@@ -368,10 +377,14 @@ _spawnsUsed call A3A_fnc_freeSpawnPositions;
 
 
 // If loot crate was stolen, set the cooldown
-if (!isNil "_ammoBox") then {
+if (!isNil "_ammoBox" && _sideX != teamPlayer) then {
 	if ((alive _ammoBox) and (_ammoBox distance2d _positionX < 100)) exitWith { deleteVehicle _ammoBox };
 	if (alive _ammoBox) then { [_ammoBox] spawn A3A_fnc_VEHdespawner };
-	private _lootCD = 120*16 / ([_markerX] call A3A_fnc_garrisonSize);
+};
+
+if (!isNil "_ammoBox") then {
+	private _lootCD = 60;
 	garrison setVariable [_markerX + "_lootCD", _lootCD, true];
 };
+
 ["locationSpawned", [_markerX, "Outpost", false]] call EFUNC(Events,triggerEvent);

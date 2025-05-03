@@ -15,41 +15,44 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Apex", localize "STR_A3AU_rifles"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(arifle_AKS_F, 350, RIFLE_STOCK);
+			ITEM(arifle_AKS_F, OLD545, RIFLE_STOCK);
 
-			ITEM(arifle_AKM_F, 500, RIFLE_STOCK);
+			ITEM(arifle_AKM_F, OLD762, RIFLE_STOCK);
 
-			ITEM(arifle_CTAR_blk_F, 800, RIFLE_STOCK);
-			ITEM(arifle_CTAR_GL_blk_F, 950, RIFLE_STOCK);
+			ITEM(arifle_CTAR_blk_F, MOD556, RIFLE_STOCK);
+			ITEM(arifle_CTAR_GL_blk_F, MODGL556, RIFLE_STOCK);
 
-			ITEM(arifle_CTAR_ghex_F, 800, RIFLE_STOCK);
-			ITEM(arifle_CTAR_GL_ghex_F, 950, RIFLE_STOCK);
+			ITEM(arifle_CTAR_ghex_F, MOD556, RIFLE_STOCK);
+			ITEM(arifle_CTAR_GL_ghex_F, MODGL556, RIFLE_STOCK);
 
-			ITEM(arifle_CTAR_hex_F, 800, RIFLE_STOCK);
-			ITEM(arifle_CTAR_GL_hex_F, 950, RIFLE_STOCK);
+			ITEM(arifle_CTAR_hex_F, MOD556, RIFLE_STOCK);
+			ITEM(arifle_CTAR_GL_hex_F, MODGL556, RIFLE_STOCK);
 
-			ITEM(arifle_MX_khk_F, 1250, RIFLE_STOCK);
-			ITEM(arifle_MXC_khk_F, 1200, RIFLE_STOCK);
-			ITEM(arifle_MX_GL_khk_F, 1400, RIFLE_STOCK);
+			ITEM(arifle_MX_khk_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MXC_khk_F, MOD65, RIFLE_STOCK);
+			ITEM(arifle_MX_GL_khk_F, MODGL65, RIFLE_STOCK);
 
-			ITEM(arifle_SPAR_01_blk_F, 1500, RIFLE_STOCK);
-			ITEM(arifle_SPAR_01_GL_blk_F, 1650, RIFLE_STOCK);
+			ITEM(arifle_SPAR_01_blk_F, MOD556, RIFLE_STOCK);
+			ITEM(arifle_SPAR_01_khk_F, MOD556, RIFLE_STOCK);
+			ITEM(arifle_SPAR_01_snd_F, MOD556, RIFLE_STOCK);
+			
+			ITEM(arifle_SPAR_01_GL_blk_F, MODGL556, RIFLE_STOCK);
+			ITEM(arifle_SPAR_01_GL_khk_F, MODGL556, RIFLE_STOCK);
+			ITEM(arifle_SPAR_01_GL_snd_F, MODGL556, RIFLE_STOCK);
+			
+			ITEM(arifle_SPAR_02_blk_F, MOD556, RIFLE_STOCK);
+			ITEM(arifle_SPAR_02_khk_F, MOD556, RIFLE_STOCK);
+			ITEM(arifle_SPAR_02_snd_F, MOD556, RIFLE_STOCK);
+			
+			ITEM(arifle_AK12_F, MOD762, RIFLE_STOCK);
+			ITEM(arifle_AK12_GL_F, MODGL762, RIFLE_STOCK);
 
-			ITEM(arifle_SPAR_01_khk_F, 1500, RIFLE_STOCK);
-			ITEM(arifle_SPAR_01_GL_khk_F, 1650, RIFLE_STOCK);
+			ITEM(arifle_AK12_arid_F, MOD762, RIFLE_STOCK);
+			ITEM(arifle_AK12_GL_arid_F, MODGL762, RIFLE_STOCK);
 
-			ITEM(arifle_SPAR_01_snd_F, 1500, RIFLE_STOCK);
-			ITEM(arifle_SPAR_01_GL_snd_F, 1650, RIFLE_STOCK);
-
-			ITEM(arifle_AK12_F, 2400, RIFLE_STOCK);
-			ITEM(arifle_AK12_GL_F, 2550, RIFLE_STOCK);
-
-			ITEM(arifle_AK12_arid_F, 2400, RIFLE_STOCK);
-			ITEM(arifle_AK12_GL_arid_F, 2550, RIFLE_STOCK);
-
-			ITEM(arifle_ARX_blk_F, 4000, RIFLE_STOCK);
-			ITEM(arifle_ARX_ghex_F, 4000, RIFLE_STOCK);
-			ITEM(arifle_ARX_hex_F, 4000, RIFLE_STOCK);
+			ITEM(arifle_ARX_blk_F, MOD65 * 2, RIFLE_STOCK);
+			ITEM(arifle_ARX_ghex_F, MOD65 * 2, RIFLE_STOCK);
+			ITEM(arifle_ARX_hex_F, MOD65 * 2, RIFLE_STOCK);
 
 		};
 
@@ -58,19 +61,19 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Apex", localize "STR_A3AU_sniperRifles"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(srifle_DMR_07_blk_F, 1450, RIFLE_STOCK);
-			ITEM(srifle_DMR_07_ghex_F, 1450, RIFLE_STOCK);
-			ITEM(srifle_DMR_07_hex_F, 1450, RIFLE_STOCK);
+			ITEM(srifle_DMR_07_blk_F, MOD65 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_07_ghex_F, MOD65 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_07_hex_F, MOD65 * 2, RIFLE_STOCK);
 
-			ITEM(arifle_MXM_khk_F, 1500, RIFLE_STOCK);
+			ITEM(arifle_MXM_khk_F, MOD65 * 2, RIFLE_STOCK);
 
-			ITEM(arifle_SPAR_03_blk_F, 1800, RIFLE_STOCK);
-			ITEM(arifle_SPAR_03_khk_F, 1800, RIFLE_STOCK);
-			ITEM(arifle_SPAR_03_snd_F, 1800, RIFLE_STOCK);
+			ITEM(arifle_SPAR_03_blk_F, MOD556 * 2, RIFLE_STOCK);
+			ITEM(arifle_SPAR_03_khk_F, MOD556 * 2, RIFLE_STOCK);
+			ITEM(arifle_SPAR_03_snd_F, MOD556 * 2, RIFLE_STOCK);
 
-			ITEM(srifle_LRR_tna_F, 4000, 10);
+			ITEM(srifle_LRR_tna_F, SNIP127 * 2, 10);
 
-			ITEM(srifle_GM6_ghex_F, 4500, 10);
+			ITEM(srifle_GM6_ghex_F, SNIP127 * 2, 10);
 
 		};
 
@@ -79,17 +82,13 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Apex", localize "STR_A3AU_mgs"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(arifle_CTARS_blk_F, 1500, RIFLE_STOCK);
-			ITEM(arifle_CTARS_ghex_F, 1500, RIFLE_STOCK);
-			ITEM(arifle_CTARS_hex_F, 1500, RIFLE_STOCK);
+			ITEM(arifle_CTARS_blk_F, MOD556 * 1.5, RIFLE_STOCK);
+			ITEM(arifle_CTARS_ghex_F, MOD556 * 1.5, RIFLE_STOCK);
+			ITEM(arifle_CTARS_hex_F, MOD556 * 1.5, RIFLE_STOCK);
 
-			ITEM(arifle_MX_SW_khk_F, 1600, RIFLE_STOCK);
+			ITEM(arifle_MX_SW_khk_F, MOD65 * 1.5, RIFLE_STOCK);
 
-			ITEM(arifle_SPAR_02_blk_F, 1600, RIFLE_STOCK);
-			ITEM(arifle_SPAR_02_khk_F, 1600, RIFLE_STOCK);
-			ITEM(arifle_SPAR_02_snd_F, 1600, RIFLE_STOCK);
-
-			ITEM(LMG_03_F, 1250, RIFLE_STOCK);
+			ITEM(LMG_03_F, MOD556 * 1.5, RIFLE_STOCK);
 		
 		};
 
@@ -106,15 +105,15 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Apex", localize "STR_A3AU_launchers"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\secondaryWeapon_ca.paa";
 
-			ITEM(launch_RPG7_F, 1000, LAUNCHER_STOCK);
+			ITEM(launch_RPG7_F, RPG_RELOADABLE, LAUNCHER_STOCK);
 
-			ITEM(launch_RPG32_ghex_F, 1200, LAUNCHER_STOCK);
+			ITEM(launch_RPG32_ghex_F, RPG_RELOADABLE, LAUNCHER_STOCK);
 
-			ITEM(launch_O_Titan_ghex_F, 3500, 3);
-			ITEM(launch_B_Titan_tna_F, 3500, 3);
+			ITEM(launch_O_Titan_ghex_F, RELOADABLE_AA_LAUNCHER, 3);
+			ITEM(launch_B_Titan_tna_F, RELOADABLE_AA_LAUNCHER, 3);
 			
-			ITEM(launch_O_Titan_short_ghex_F, 3500, 3);
-			ITEM(launch_B_Titan_short_tna_F, 3500, 3);
+			ITEM(launch_O_Titan_short_ghex_F, FAF_AT_LAUNCHER, 3);
+			ITEM(launch_B_Titan_short_tna_F, FAF_AT_LAUNCHER, 3);
 
 		};
 
@@ -124,7 +123,7 @@
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\cargoMag_ca.paa";
 		
 			class RPG7_F {
-				price = 200;
+				price = RPG_AT_ROUND;
 				stock = 50;
 			};
 		};
@@ -271,284 +270,97 @@
 			// Underbarrel
 			///////////////////////////////////////////////////////
 			
-			class 10Rnd_50BW_Mag_F {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
+			ITEM(10Rnd_50BW_Mag_F, 20 + LARGBULPRICE * 10, 100);
 
 			///////////////////////////////////////////////////////
 			// Pistols, SMGs
 			///////////////////////////////////////////////////////
 
-			class 30Rnd_9x21_Mag_SMG_02 {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Mag_SMG_02_Tracer_Red {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Mag_SMG_02_Tracer_Yellow {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Mag_SMG_02_Tracer_Green {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_9x21_Mag_SMG_02, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_9x21_Mag_SMG_02_Tracer_Red, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_9x21_Mag_SMG_02_Tracer_Yellow, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_9x21_Mag_SMG_02_Tracer_Green, 20 + BULPRICE * 30, 100);
 
-			class 10Rnd_9x21_Mag {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(10Rnd_9x21_Mag, 20 + BULPRICE * 10, 100);
 
-			class 16Rnd_9x21_Mag {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 16Rnd_9x21_red_Mag {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 16Rnd_9x21_green_Mag {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 16Rnd_9x21_yellow_Mag {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(16Rnd_9x21_Mag, 20 + BULPRICE * 16, 100);
+			ITEM(16Rnd_9x21_red_Mag, 20 + BULPRICE * 16, 100);
+			ITEM(16Rnd_9x21_green_Mag, 20 + BULPRICE * 16, 100);
+			ITEM(16Rnd_9x21_yellow_Mag, 20 + BULPRICE * 16, 100);
 
-			class 30Rnd_9x21_Mag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Red_Mag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Yellow_Mag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Green_Mag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_9x21_Mag, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_9x21_Red_Mag, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_9x21_Yellow_Mag, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_9x21_Green_Mag, 20 + BULPRICE * 30, 100);
 
 			///////////////////////////////////////////////////////
 			// RIFLES
 			///////////////////////////////////////////////////////
 
-			class 30Rnd_556x45_Stanag {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Tracer_Red {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Tracer_Green {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Tracer_Yellow {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_red {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_green {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Sand_red {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Sand_Tracer_Red {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Sand_Tracer_Green {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Sand_Tracer_Yellow {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_556x45_Stanag, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_Tracer_Red, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_Tracer_Green, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_Tracer_Yellow, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_red, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_green, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_Sand_red, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_Sand_Tracer_Red, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_Sand_Tracer_Green, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_556x45_Stanag_Sand_Tracer_Yellow, 20 + BULPRICE * 30, 100);
 			
-			class 150Rnd_556x45_Drum_Mag_Tracer_F {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_556x45_Drum_Sand_Mag_F {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_556x45_Drum_Green_Mag_F {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_556x45_Drum_Sand_Mag_Tracer_F {
-				price = 265;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_556x45_Drum_Green_Mag_Tracer_F {
-				price = 265;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(150Rnd_556x45_Drum_Mag_Tracer_F, 20 + BULPRICE * 150, 100);
+			ITEM(150Rnd_556x45_Drum_Sand_Mag_F, 20 + BULPRICE * 150, 100);
+			ITEM(150Rnd_556x45_Drum_Green_Mag_F, 20 + BULPRICE * 150, 100);
+			ITEM(150Rnd_556x45_Drum_Sand_Mag_Tracer_F, 20 + BULPRICE * 150, 100);
+			ITEM(150Rnd_556x45_Drum_Green_Mag_Tracer_F, 20 + BULPRICE * 150, 100);
 
-			class 30Rnd_65x39_caseless_khaki_mag {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_khaki_mag_Tracer {
-				price = 110;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_65x39_caseless_khaki_mag {
-				price = 400;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_65x39_caseless_khaki_mag_tracer {
-				price = 425;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_65x39_caseless_khaki_mag, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_65x39_caseless_khaki_mag_Tracer, 20 + BULPRICE * 30, 100);
+			ITEM(100Rnd_65x39_caseless_khaki_mag, 20 + BULPRICE * 100, 100);
+			ITEM(100Rnd_65x39_caseless_khaki_mag_tracer, 20 + BULPRICE * 100, 100);
 
-			class 30Rnd_580x42_Mag_F {
-				price = 80;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_580x42_Mag_Tracer_F {
-				price = 90;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_Mag_F {
-				price = 80;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_Mag_Tracer_F {
-				price = 90;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_hex_Mag_F {
-				price = 80;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_hex_Mag_Tracer_F {
-				price = 90;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_ghex_Mag_F {
-				price = 80;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_ghex_Mag_Tracer_F {
-				price = 90;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_580x42_Mag_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_580x42_Mag_Tracer_F, 20 + BULPRICE * 30, 100);
+			ITEM(100Rnd_580x42_Mag_F, 20 + BULPRICE * 100, 100);
+			ITEM(100Rnd_580x42_Mag_Tracer_F, 20 + BULPRICE * 100, 100);
+			ITEM(100Rnd_580x42_hex_Mag_F, 20 + BULPRICE * 100, 100);
+			ITEM(100Rnd_580x42_hex_Mag_Tracer_F, 20 + BULPRICE * 100, 100);
+			ITEM(100Rnd_580x42_ghex_Mag_F, 20 + BULPRICE * 100, 100);
+			ITEM(100Rnd_580x42_ghex_Mag_Tracer_F, 20 + BULPRICE * 100, 100);
 
-			class 30Rnd_545x39_Mag_F {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_545x39_Mag_Green_F {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_545x39_Mag_Tracer_F {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_545x39_Mag_Tracer_Green_F {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_545x39_Mag_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_545x39_Mag_Green_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_545x39_Mag_Tracer_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_545x39_Mag_Tracer_Green_F, 20 + BULPRICE * 30, 100);
 
-			class 30Rnd_762x39_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_Mag_Green_F {
-				price = 145;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_Mag_Tracer_F {
-				price = 145;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_Mag_Tracer_Green_F {
-				price = 145;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_762x39_Mag_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_762x39_Mag_Green_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_762x39_Mag_Tracer_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_762x39_Mag_Tracer_Green_F, 20 + BULPRICE * 30, 100);
 
-			class 75Rnd_762x39_Mag_F {
-				price = 500;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75Rnd_762x39_Mag_Tracer_F {
-				price = 525;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(75Rnd_762x39_Mag_F, 20 + BULPRICE * 75, 100);
+			ITEM(75Rnd_762x39_Mag_Tracer_F, 20 + BULPRICE * 75, 100);
 
-			class 30Rnd_762x39_AK12_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_AK12_Mag_Tracer_F {
-				price = 145;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_762x39_AK12_Mag_F, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_762x39_AK12_Mag_Tracer_F, 20 + BULPRICE * 30, 100);
 
-			class 75rnd_762x39_AK12_Mag_F {
-				price = 500;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Mag_Tracer_F {
-				price = 525;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(75rnd_762x39_AK12_Mag_F, 20 + BULPRICE * 75, 100);
+			ITEM(75rnd_762x39_AK12_Mag_Tracer_F, 20 + BULPRICE * 75, 100);
 
-			class 30Rnd_65x39_caseless_green {
-				price = 500;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_green_mag_Tracer {
-				price = 525;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(30Rnd_65x39_caseless_green, 20 + BULPRICE * 30, 100);
+			ITEM(30Rnd_65x39_caseless_green_mag_Tracer, 20 + BULPRICE * 30, 100);
 			///////////////////////////////////////////////////////
 			// DMRs, Sniper Rifles
 			///////////////////////////////////////////////////////
 
-			class 5Rnd_127x108_Mag {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-			class 5Rnd_127x108_APDS_Mag {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(5Rnd_127x108_Mag, 20 + LARGBULPRICE * 5, 100);
+			ITEM(5Rnd_127x108_APDS_Mag, 20 + LARGBULPRICE * 5, 100);
 
-			class 7Rnd_408_Mag {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(7Rnd_408_Mag, 20 + LARGBULPRICE * 7, 100);
 
-			class 20Rnd_762x51_Mag {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(20Rnd_762x51_Mag, 20 + BULPRICE * 20, 100);
 
-			class 20Rnd_650x39_Cased_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(20Rnd_650x39_Cased_Mag_F, 20 + BULPRICE * 20, 100);
 
 
 			
@@ -556,48 +368,18 @@
 			// MGs
 			///////////////////////////////////////////////////////
 
-			class 200Rnd_556x45_Box_F {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_556x45_Box_Red_F {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_556x45_Box_Tracer_F {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_556x45_Box_Tracer_Red_F {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(200Rnd_556x45_Box_F, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_556x45_Box_Red_F, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_556x45_Box_Tracer_F, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_556x45_Box_Tracer_Red_F, 20 + BULPRICE * 200, 100);
 
-			class 200Rnd_65x39_cased_Box {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Tracer {
-				price = 375;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Red {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Tracer_Red {
-				price = 375;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(200Rnd_65x39_cased_Box, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_65x39_cased_Box_Tracer, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_65x39_cased_Box_Red, 20 + BULPRICE * 200, 100);
+			ITEM(200Rnd_65x39_cased_Box_Tracer_Red, 20 + BULPRICE * 200, 100);
 
-			class 150Rnd_762x54_Box {
-				price = 450;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_762x54_Box_Tracer {
-				price = 460;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(150Rnd_762x54_Box, 20 + BULPRICE * 150, 100);
+			ITEM(150Rnd_762x54_Box_Tracer, 20 + BULPRICE * 150, 100);
 
 		};
 

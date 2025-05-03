@@ -3,25 +3,25 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Marksmen", localize "STR_A3AU_sniperRifles"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(srifle_DMR_04_F, 1800, RIFLE_STOCK);
-			ITEM(srifle_DMR_04_Tan_F, 1800, RIFLE_STOCK);
+			ITEM(srifle_DMR_04_F, SNIP127 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_04_Tan_F, SNIP127 * 2, RIFLE_STOCK);
 
-			ITEM(srifle_DMR_05_blk_F, 1600, RIFLE_STOCK);
-			ITEM(srifle_DMR_05_hex_F, 1600, RIFLE_STOCK);
-			ITEM(srifle_DMR_05_tan_f, 1600, RIFLE_STOCK);
+			ITEM(srifle_DMR_05_blk_F, SNIP127 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_05_hex_F, SNIP127 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_05_tan_f, SNIP127 * 2, RIFLE_STOCK);
 
-			ITEM(srifle_DMR_02_F, 1750, RIFLE_STOCK);
-			ITEM(srifle_DMR_02_camo_F, 1750, RIFLE_STOCK);
-			ITEM(srifle_DMR_02_sniper_F, 1750, RIFLE_STOCK);
+			ITEM(srifle_DMR_02_F, MOD556 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_02_camo_F, MOD556 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_02_sniper_F, MOD556 * 2, RIFLE_STOCK);
 
-			ITEM(srifle_DMR_03_F, 1500, RIFLE_STOCK);
-			ITEM(srifle_DMR_03_multicam_F, 1500, RIFLE_STOCK);
-			ITEM(srifle_DMR_03_khaki_F, 1500, RIFLE_STOCK);
-			ITEM(srifle_DMR_03_tan_F, 1500, RIFLE_STOCK);
-			ITEM(srifle_DMR_03_woodland_F, 1500, RIFLE_STOCK);
+			ITEM(srifle_DMR_03_F, MOD762 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_03_multicam_F, MOD762 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_03_khaki_F, MOD762 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_03_tan_F, MOD762 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_03_woodland_F, MOD762 * 2, RIFLE_STOCK);
 
-			ITEM(srifle_DMR_06_camo_F, 1300, RIFLE_STOCK);
-			ITEM(srifle_DMR_06_olive_F, 1300, RIFLE_STOCK);
+			ITEM(srifle_DMR_06_camo_F, OLD762 * 2, RIFLE_STOCK);
+			ITEM(srifle_DMR_06_olive_F, OLD762 * 2, RIFLE_STOCK);
 
 		};
 
@@ -30,12 +30,12 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_Marksmen", localize "STR_A3AU_mgs"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(MMG_01_hex_F, 1800, RIFLE_STOCK);
-			ITEM(MMG_01_tan_F, 1800, RIFLE_STOCK);
+			ITEM(MMG_01_hex_F, MOD762 * 1.5, RIFLE_STOCK);
+			ITEM(MMG_01_tan_F, MOD762 * 1.5, RIFLE_STOCK);
 
-			ITEM(MMG_02_black_F, 2000, RIFLE_STOCK);
-			ITEM(MMG_02_camo_F, 2000, RIFLE_STOCK);
-			ITEM(MMG_02_sand_F, 2000, RIFLE_STOCK);
+			ITEM(MMG_02_black_F, MOD762 * 1.5, RIFLE_STOCK);
+			ITEM(MMG_02_camo_F, MOD762 * 1.5, RIFLE_STOCK);
+			ITEM(MMG_02_sand_F, MOD762 * 1.5, RIFLE_STOCK);
 
 		};
 
@@ -126,40 +126,19 @@
 			// DMRs, Sniper Rifles
 			///////////////////////////////////////////////////////
 
-			class 10Rnd_127x54_Mag {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(10Rnd_127x54_Mag, 20 + LARGBULPRICE * 10, 100);
 
-			class 10Rnd_93x64_DMR_05_Mag {
-				price = 385;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(10Rnd_93x64_DMR_05_Mag, 20 + LARGBULPRICE * 10, 100);
 
-			class 10Rnd_338_Mag {
-				price = 400;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(10Rnd_338_Mag, 20 + BULPRICE * 10, 100);
 
-			class 20Rnd_762x51_Mag {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 10Rnd_Mk14_762x51_Mag {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(20Rnd_762x51_Mag, 20 + BULPRICE * 20, 100);
+			ITEM(10Rnd_Mk14_762x51_Mag, 20 + BULPRICE * 10, 100);
 
 			///////////////////////////////////////////////////////
 			// MGs
 			///////////////////////////////////////////////////////
-			class 150Rnd_93x64_Mag {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class 130Rnd_338_Mag {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM(150Rnd_93x64_Mag, 20 + LARGBULPRICE * 150, 100);
+			ITEM(130Rnd_338_Mag, 20 + BULPRICE * 130, 100);
 
 		};

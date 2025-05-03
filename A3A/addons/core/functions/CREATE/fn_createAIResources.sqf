@@ -7,7 +7,7 @@ params ["_markerX"];
 //Not sure if that ever happens, but it reduces redundance
 if(spawner getVariable _markerX == 2) exitWith {};
 
-ServerInfo_1("Spawning Airbase %1", _markerX);
+ServerInfo_1("Spawning Resources %1", _markerX);
 
 private _civs = [];
 private _soldiers = [];
@@ -74,13 +74,13 @@ if (_frontierX) then {
 };
 
 private _mrk = createMarkerLocal [format ["%1patrolarea", random 100], _positionX];
-_mrk setMarkerShapeLocal "RECTANGLE";
-_mrk setMarkerSizeLocal [(distanceSPWN/2),(distanceSPWN/2)];
+_mrk setMarkerShapeLocal "ELLIPSE";
+_mrk setMarkerSizeLocal [(distanceSPWN),(distanceSPWN)];
 _mrk setMarkerTypeLocal "hd_warning";
-_mrk setMarkerColorLocal "ColorRed";
-_mrk setMarkerBrushLocal "DiagGrid";
-_mrk setMarkerDirLocal (markerDir _markerX);
-if (!debug) then {_mrk setMarkerAlphaLocal 0};
+_mrk setMarkerColorLocal "ColorBlue";
+_mrk setMarkerBrushLocal "Border";
+_mrk setMarkerDir (markerDir _markerX);
+//if (!debug) then {_mrk setMarkerAlphaLocal 0};
 
 //maybe it's no longer needed after all..?
 private _additionalGarrison = [_sideX, _markerX] call SCRT_fnc_garrison_rollOversizeGarrison;
@@ -138,11 +138,12 @@ if (_spawnParameter isEqualType []) then {
 	private _typeVehX = call {
 		if (FactionGet(civ,"vehiclesCivRepair") isEqualTo [] and random 1 < 0.1) exitWith { selectRandom (_faction get "vehiclesRepairTrucks") };
 		if (FactionGet(civ,"vehiclesCivFuel") isEqualTo [] and random 1 < 0.1) exitWith { selectRandom (_faction get "vehiclesFuelTrucks") };
-		private _types = if (!_isFIA) then {
-			(_faction get "vehiclesTrucks") + (_faction get "vehiclesCargoTrucks")
-		} else {
-			_faction get "vehiclesMilitiaTrucks"
-		};
+		private _types = 	(_faction get "vehiclesTrucks") + 
+							(_faction get "vehiclesCargoTrucks") + 
+							(_faction get "vehiclesLightUnarmed") + 
+							(_faction get "vehiclesRepairTrucks") +
+							(_faction get "vehiclesFuelTrucks");
+
 		_types = _types select { _x in FactionGet(all,"vehiclesCargoTrucks") };
 		if (count _types == 0) then { _types = (_faction get "vehiclesCargoTrucks") } else { _types }; // failsafe didn't work?
 		selectRandom _types;
@@ -150,6 +151,9 @@ if (_spawnParameter isEqualType []) then {
 	isNil {
 		_veh = createVehicle [_typeVehX, (_spawnParameter select 0), [], 0, "NONE"];
 		_veh setDir (_spawnParameter select 1);
+		
+		_lootList = [_veh, 3, 5, 1, 1, 0, 0, 0, 0, 1, 5, 0, 0, 1, 1, 1, 1, 0, 0];
+		_lootList call A3A_fnc_fillLootCrate;
 	};
 	_vehiclesX pushBack _veh;
 	[_veh, _sideX] call A3A_fnc_AIVEHinit;
@@ -203,6 +207,8 @@ deleteMarker _mrk;
 { deleteVehicle _x } forEach _civs;
 { deleteVehicle _x } forEach _dogs;
 { deleteGroup _x } forEach _groups;
+
+_sideX = sidesX getVariable [_markerX,sideUnknown]; //captured maybe?
 
 {
 	// delete all vehicles that haven't been captured

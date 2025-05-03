@@ -39,6 +39,10 @@
 			ITEM(CUP_hgun_MP7, 800, PISTOL_STOCK);
 			ITEM(CUP_hgun_MP7_desert, 800, PISTOL_STOCK);
 			ITEM(CUP_hgun_MP7_woodland, 800, PISTOL_STOCK);
+
+			ITEM(CUP_hgun_BallisticShield_Armed, 666, 100);
+			ITEM(CUP_hgun_BallisticShield_Armed_M9, 666, 100);
+			ITEM(CUP_hgun_BallisticShield_PMM, 666, 100);
 		};
 
 		class smgCup 
@@ -46,58 +50,67 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_cup", localize "STR_A3AU_smgs"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(CUP_smg_PS90_olive, 350, PISTOL_STOCK);
+			ITEM(CUP_bizon, MOD556 * 0.6, 100);
+			ITEM(CUP_bizon_silenced, MOD556 * 0.6, 100);
 
-			ITEM(CUP_smg_bizon, 700, RIFLE_STOCK);
+			ITEM(CUP_Evo_ACR, MOD556 * 0.6, 100);
+			ITEM(CUP_Evo_mrad_ACR, MOD556 * 0.6, 100);
+			ITEM(CUP_Evo_sd_ACR, MOD556 * 0.6, 100);
 
-			ITEM(CUP_smg_vityaz, 300, RIFLE_STOCK);
-			ITEM(CUP_smg_vityaz_vfg_front_rail, 350, RIFLE_STOCK);
-			ITEM(CUP_smg_vityaz_vfg, 365, RIFLE_STOCK);
-			ITEM(CUP_smg_vityaz_vfg_top_rail, 365, RIFLE_STOCK);
-			ITEM(CUP_smg_vityaz_top_rail, 325, RIFLE_STOCK);
+			ITEM(CUP_MP5A5, MOD556 * 0.6, 100);
+			ITEM(CUP_MP5SD, MOD556 * 0.6, 100);
 
-			ITEM(SMG_03C_TR_black, 450, RIFLE_STOCK);
-			ITEM(SMG_03C_TR_camo, 450, RIFLE_STOCK);
-			ITEM(SMG_03C_TR_hex, 450, RIFLE_STOCK);
-			ITEM(SMG_03C_TR_khaki, 450, RIFLE_STOCK);
-
-			ITEM(SMG_03C_black, 550, RIFLE_STOCK);
-			ITEM(SMG_03C_camo, 550, RIFLE_STOCK);
-			ITEM(SMG_03C_hex, 550, RIFLE_STOCK);
-			ITEM(SMG_03C_khaki, 550, RIFLE_STOCK);
-
-			ITEM(SMG_03_TR_black, 425, RIFLE_STOCK);
-			ITEM(SMG_03_TR_camo, 425, RIFLE_STOCK);
-			ITEM(SMG_03_TR_hex, 425, RIFLE_STOCK);
-			ITEM(SMG_03_TR_khaki, 425, RIFLE_STOCK);
-			
-			ITEM(SMG_03_black, 525, RIFLE_STOCK);
-			ITEM(SMG_03_camo, 525, RIFLE_STOCK);
-			ITEM(SMG_03_hex, 525, RIFLE_STOCK);
-			ITEM(SMG_03_khaki, 525, RIFLE_STOCK);
-
-			ITEM(SMG_01_F, 400, RIFLE_STOCK);
-			ITEM(SMG_02_F, 400, RIFLE_STOCK);
-
-			ITEM(CUP_smg_MP5A5, 350, RIFLE_STOCK);
-			ITEM(CUP_smg_MP5A5_flashlight, 365, RIFLE_STOCK);
-			ITEM(CUP_smg_MP5SD6, 425, RIFLE_STOCK);
-
-			ITEM(CUP_smg_MP7, 800, PISTOL_STOCK);
-			ITEM(CUP_smg_MP7_desert, 800, PISTOL_STOCK);
-			ITEM(CUP_smg_MP7_woodland, 800, PISTOL_STOCK);
-
-			ITEM(CUP_arifle_SR3M_Vikhr, 500, RIFLE_STOCK);
-			ITEM(CUP_arifle_SR3M_Vikhr_VFG, 550, RIFLE_STOCK);
-			ITEM(CUP_arifle_SR3M_Vikhr_top_rail, 575, RIFLE_STOCK);
-			ITEM(CUP_arifle_SR3M_Vikhr_VFG_top_rail, 600, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_AS_VAL, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_AS_VAL_flash, 1075, RIFLE_STOCK);
-			ITEM(CUP_arifle_AS_VAL_VFG, 1065, RIFLE_STOCK);
-			ITEM(CUP_arifle_AS_VAL_top_rail, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_AS_VAL_flash_top, 1175, RIFLE_STOCK);
-			ITEM(CUP_arifle_AS_VAL_VFG_top_rail, 1165, RIFLE_STOCK);
+			ITEM(CUP_smg_BallisticShield_MP7, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_BallisticShield_PP19, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_BallisticShield_Sa61, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_bizon, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_EVO, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_M3A1, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_M3A1_blk, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_M3A1_blk_SD, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_M3A1_grn, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_M3A1_grn_SD, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_M3A1_SD, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_Mac10, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_Mac10_rail, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP5A5, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP5A5_Rail, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP5A5_Rail_AFG, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP5A5_Rail_VFG, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP5SD6, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP7, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP7_desert, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP7_desert_zeiss, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP7_woodland, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_MP7_zeiss, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_p90_black, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_p90_olive, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_PS90_olive, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_SA61, OLD556 * 0.6, 100);
+			ITEM(CUP_smg_SA61_RIS, OLD556 * RAIL * 0.6, 100);
+			ITEM(CUP_smg_saiga9, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_UZI, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_vityaz, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_vityaz_top_rail, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_vityaz_vfg, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_vityaz_vfg_front_rail, MOD556 * 0.6, 100);
+			ITEM(CUP_smg_vityaz_vfg_top_rail, MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact, MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_FG, MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_FG_Green, MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_FG_OD, MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_FG_Rail, RAIL * MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_FG_Rail_Green, RAIL * MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_FG_Rail_OD, RAIL * MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_FG_Rail_Tan, RAIL * MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_FG_Tan, MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_Green, MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_OD, MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_Rail, RAIL * MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_Rail_Green, RAIL * MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_Rail_OD, RAIL * MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_Rail_Tan, RAIL * MOD556 * 0.6, 100);
+			ITEM(CUP_arifle_XM8_Compact_Tan, MOD556 * 0.6, 100);
 		};
 
 		class launchersCup 
@@ -105,47 +118,48 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_cup", localize "STR_A3AU_launchers"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\secondaryWeapon_ca.paa";
 
-			ITEM(CUP_launch_RShG2, 250, 50);
-			ITEM(CUP_launch_RPG26, 250, 50);
+			ITEM(CUP_launch_RShG2, DISPOSABLE_AP, 50);
+			ITEM(CUP_launch_RPG26, DISPOSABLE_AT, 50);
 
-			ITEM(CUP_launch_M72A6, 350, 50);
+			ITEM(CUP_launch_M72A6, DISPOSABLE_AT, 50);
 
-			ITEM(CUP_launch_BF3, 400, 50);
-			ITEM(CUP_launch_HCPF3, 500, 50);
-			ITEM(CUP_launch_PzF3, 450, 50);
+			ITEM(CUP_launch_BF3, DISPOSABLE_AT * 1.5, 50);
+			ITEM(CUP_launch_HCPF3, DISPOSABLE_AT * 1.5, 50);
+			ITEM(CUP_launch_PzF3, DISPOSABLE_AT * 1.5, 50);
 
-			ITEM(CUP_launch_NLAW, 1100, 10);
+			ITEM(CUP_launch_NLAW, DISPOSABLE_AT * 2, 10);
 
-			ITEM(CUP_launch_RPG7V, 650, 50);
+			ITEM(CUP_launch_RPG7V, RPG_RELOADABLE, 50);
 
-			ITEM(launch_RPG32_F, 1400, LAUNCHER_STOCK);
-			ITEM(launch_RPG32_green_F, 1400, LAUNCHER_STOCK);
-			ITEM(launch_RPG32_ghex_F, 1400, LAUNCHER_STOCK);
+			ITEM(launch_RPG32_F, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(launch_RPG32_green_F, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(launch_RPG32_ghex_F, RPG_RELOADABLE, LAUNCHER_STOCK);
 
-			ITEM(launch_MRAWS_olive_F, 1600, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_olive_rail_F, 1250, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_green_F, 1600, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_green_rail_F, 1250, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_sand_F, 1600, LAUNCHER_STOCK);
-			ITEM(launch_MRAWS_sand_rail_F, 1250, LAUNCHER_STOCK);
-			ITEM(CUP_launch_MAAWS, 1250, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_olive_F, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_olive_rail_F, RPG_RELOADABLE * RAIL, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_green_F, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_green_rail_F, RPG_RELOADABLE * RAIL, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_sand_F, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(launch_MRAWS_sand_rail_F, RPG_RELOADABLE * RAIL, LAUNCHER_STOCK);
+			ITEM(CUP_launch_MAAWS, RPG_RELOADABLE, LAUNCHER_STOCK);
 
-			ITEM(CUP_launch_Mk153Mod0, 1650, LAUNCHER_STOCK);
-			ITEM(CUP_launch_Mk153Mod0_blk, 1650, LAUNCHER_STOCK);
+			ITEM(CUP_launch_Mk153Mod0, RPG_RELOADABLE, LAUNCHER_STOCK);
+			ITEM(CUP_launch_Mk153Mod0_blk, RPG_RELOADABLE, LAUNCHER_STOCK);
 
-			ITEM(launch_O_Vorona_brown_F, 3000, 4);
-			ITEM(launch_O_Vorona_green_F, 3000, 4);
+			ITEM(launch_O_Vorona_brown_F, WIRE_AT_LAUNCHER, 4);
+			ITEM(launch_O_Vorona_green_F, WIRE_AT_LAUNCHER, 4);
 
-			ITEM(CUP_launch_M136, 500, 50);
-			ITEM(CUP_launch_RPG18, 150, 50);
+			ITEM(CUP_launch_M136, DISPOSABLE_AT * 1.25, 50);
+			ITEM(CUP_launch_RPG18, DISPOSABLE_AT, 50);
 
-			ITEM(CUP_launch_APILAS, 1250, 50);
+			ITEM(CUP_launch_APILAS, DISPOSABLE_AP, 50);
 
-			ITEM(CUP_launch_Igla, 1300, 50);
-			ITEM(CUP_launch_FIM92Stinger, 1600, 50);
-			ITEM(CUP_launch_9K32Strela, 1900, 50);
-			ITEM(CUP_launch_M47, 3400, 8);
-			ITEM(CUP_launch_Javelin, 6500, 3);
+			ITEM(CUP_launch_FIM92Stinger, DISPOSABLE_AA_SET, 50);
+			ITEM(CUP_launch_Igla, DISPOSABLE_AA_SET - 200, 50);
+			ITEM(CUP_launch_9K32Strela, DISPOSABLE_AA_SET / 2, 50);
+			
+			ITEM(CUP_launch_M47, WIRE_AT_LAUNCHER, 8);
+			ITEM(CUP_launch_Javelin, FAF_AT_LAUNCHER, 3);
 		};
 
 		class launcherMagazinesCup 
@@ -158,91 +172,96 @@
 				stock = 50;
 			};
 			class CUP_SMAW_HEDP_M {
-				price = 300;
+				price = RPG_AT_ROUND;
 				stock = 50;
 			};
 			class CUP_SMAW_HEAA_M {
-				price = 250;
+				price = RPG_THERM_ROUND;
 				stock = 50;
 			};
 			class CUP_SMAW_NE_M {
-				price = 500;
+				price = RPG_THERM_ROUND;
 				stock = 50;
 			};
 
 			class CUP_PG7V_M {
-				price = 75;
+				price = RPG_HE_ROUND;
 				stock = 50;
 			};
 			class CUP_PG7VL_M {
-				price = 150;
+				price = RPG_AT_ROUND;
 				stock = 50;
 			};
 			class CUP_OG7_M {
-				price = 100;
+				price = RPG_HE_ROUND;
 				stock = 50;
 			};
 			class CUP_PG7VR_M {
-				price = 300;
+				price = RPG_THERM_ROUND;
 				stock = 50;
 			};
 			class CUP_TBG7V_M {
-				price = 450;
+				price = RPG_THERM_ROUND;
 				stock = 50;
 			};
 
 			class RPG7_F {
-				price = 125;
+				price = RPG_HE_ROUND;
 				stock = 50;
 			};
 			class NLAW_F {
-				price = 500;
+				price = 300;
 				stock = 30;
 			};
 			class MRAWS_HEAT_F {
-				price = 250;
+				price = RPG_THERM_ROUND;
 				stock = 50;
 			};
 			class CUP_MAAWS_HEAT_M {
-				price = 250;
+				price = RPG_THERM_ROUND;
 				stock = 50;
 			};
 			class MRAWS_HEAT55_F {
-				price = 150;
+				price = RPG_AT_ROUND;
 				stock = 50;
 			};
 			class CUP_MAAWS_HEDP_M {
-				price = 350;
+				price = RPG_THERM_ROUND;
 				stock = 50;
 			};
 			class MRAWS_HE_F {
-				price = 200;
+				price = RPG_HE_ROUND;
 				stock = 50;
 			};
 			class RPG32_HE_F {
-				price = 200;
+				price = RPG_HE_ROUND;
 				stock = 50;
 			};
 			class RPG32_F {
-				price = 250;
+				price = RPG_AT_ROUND;
 				stock = 50;
 			};
 			class Vorona_HE {
-				price = 500;
+				price = WIRE_AT_MISSILE;
 				stock = 15;
 			};
 			class Vorona_HEAT {
-				price = 650;
+				price = WIRE_AT_MISSILE;
+				stock = 15;
+			};
+			
+			class CUP_AT13_M {
+				price = WIRE_AT_MISSILE;
 				stock = 15;
 			};
 
 			class CUP_Javelin_M {
-				price = 1500;
+				price = FAF_AT_MISSILE;
 				stock = 50;
 			};
 
 			class CUP_Dragon_EP1_M {
-				price = 600;
+				price = WIRE_AT_MISSILE;
 				stock = 15;
 			};
 		};
@@ -254,19 +273,42 @@
 
 			ITEM(CUP_hgun_BallisticShield_Armed, 300, RIFLE_STOCK);
 
-			ITEM(CUP_glaunch_M79, 350, RIFLE_STOCK);
-			ITEM(CUP_glaunch_Mk13, 500, RIFLE_STOCK);
-
-			ITEM(CUP_glaunch_6G30, 800, RIFLE_STOCK);
-			ITEM(CUP_glaunch_M32, 950, RIFLE_STOCK);
+			ITEM(CUP_glaunch_6G30, 1200, 100);
+			ITEM(CUP_glaunch_M32, 1200, 100);
+			ITEM(CUP_glaunch_M79, 1200, 100);
+			ITEM(CUP_glaunch_Mk13, 1200, 100);
+			ITEM(CUP_M79_EP1, 1200, 100);
 
 			ITEM(CUP_sgun_AA12, 1000, RIFLE_STOCK);
-			ITEM(CUP_sgun_M1014_Entry, 200, RIFLE_STOCK);
-			ITEM(CUP_sgun_M1014_Entry_vfg, 200, RIFLE_STOCK);
-			ITEM(CUP_sgun_M1014, 300, RIFLE_STOCK);
-			ITEM(CUP_sgun_M1014_vfg, 350, RIFLE_STOCK);
-			ITEM(CUP_sgun_M1014_solidstock, 400, RIFLE_STOCK);
-			ITEM(CUP_sgun_Saiga12K, 300, RIFLE_STOCK);
+			ITEM(CUP_sgun_SPAS12, 1000, 100);
+
+			ITEM(CUP_AA12_PMC, 1000, 100);
+			ITEM(CUP_PMC_AS50_scoped, 2000, 100);
+			
+
+			ITEM(CUP_arifle_AFU_ACR_blk_556_rd_snds, 1750, 100);
+			ITEM(CUP_arifle_AFU_ACRC_wdl_556_flash_specter_laser, 1700, 100);
+			ITEM(CUP_arifle_AFU_AK12_AFG_lush_1P87_snds, MOD545, 100);
+			ITEM(CUP_arifle_AFU_AK74M_camo_ekp_flash_snds, OLD545, 100);
+			ITEM(CUP_arifle_AFU_AK74M_GL_camo_kobra_snds, OLDGL545, 100);
+			ITEM(CUP_arifle_AFU_G36C_hex_llm_micro, MOD556, 100);
+			ITEM(CUP_arifle_AFU_G3A3_modern_ris_pvs10_bipod, OLD762, 100);
+			ITEM(CUP_arifle_AFU_M4A1_MOE_short_wdl_AIM, OLD556, 100);
+			ITEM(CUP_arifle_AFU_Mk16_STD_EGLM_rd_flash_snds, MODGL556, 100);
+
+			ITEM(CUP_BAF_L110A1_Aim, 1500, 100);
+			ITEM(CUP_BAF_L7A2_GPMG, 1500, 100);
+			ITEM(CUP_BAF_NLAW_Launcher, 1100, 100);
+			ITEM(CUP_BAF_AS50_scoped, 2000, 100);
+			ITEM(CUP_BAF_LRR_scoped, 1500, 100);
+			ITEM(CUP_BAF_LRR_scoped_W, 1500, 100);
+			ITEM(CUP_BAF_L85A2_RIS_ACOG, MOD556, 100);
+			ITEM(CUP_BAF_L85A2_RIS_CWS, MOD556, 100);
+			ITEM(CUP_BAF_L85A2_RIS_SUSAT, MOD556, 100);
+			ITEM(CUP_BAF_L85A2_UGL_ACOG, MOD556, 100);
+			ITEM(CUP_BAF_L85A2_UGL_SUSAT, MOD556, 100);
+			ITEM(CUP_BAF_L86A2_ACOG, MOD556, 100);
+
 		};
 
 		class sniperRiflesCup 
@@ -274,142 +316,121 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_cup", localize "STR_A3AU_sniperRifles"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(CUP_SKS, 350, RIFLE_STOCK);
-			ITEM(CUP_srifle_CZ550, 700, RIFLE_STOCK);
+ITEM(CUP_srifle_AS50, SNIP127 * 2, 100);
+ITEM(CUP_srifle_AWM_blk, MOD762 * 2, 100);
+ITEM(CUP_srifle_AWM_des, MOD762 * 2, 100);
+ITEM(CUP_srifle_AWM_wdl, MOD762 * 2, 100);
+ITEM(CUP_srifle_CZ550, OLD762 * 2, 100);
+ITEM(CUP_srifle_CZ550_rail, OLD762 * RAIL * 2, 100);
+ITEM(CUP_srifle_CZ750, MOD762 * 2, 100);
+ITEM(CUP_CZ_750_S1_ACR, MOD762 * 2, 100);
+ITEM(CUP_srifle_G22_blk, MOD762 * 2, 100);
+ITEM(CUP_srifle_G22_des, MOD762 * 2, 100);
+ITEM(CUP_srifle_G22_wdl, MOD762 * 2, 100);
+ITEM(CUP_srifle_ksvk, SNIP127 * 2, 100);
+ITEM(CUP_srifle_L129A1, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_ctrg, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_ctrgt, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_d, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_HG, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_HG_ctrg, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_HG_ctrgt, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_HG_d, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_HG_w, MOD762 * 2, 100);
+ITEM(CUP_srifle_L129A1_w, MOD762 * 2, 100);
+ITEM(CUP_srifle_LeeEnfield, OLD762 * 2, 100);
+ITEM(CUP_srifle_LeeEnfield_rail, OLD762 * RAIL * 2, 100);
+ITEM(CUP_srifle_LeeEnfield_T, OLD762 * 2, 100);
+ITEM(CUP_srifle_M107_Desert, SNIP127 * 2, 100);
+ITEM(CUP_srifle_M107_Pristine, SNIP127 * 2, 100);
+ITEM(CUP_srifle_M107_Snow, SNIP127 * 2, 100);
+ITEM(CUP_srifle_M107_Woodland, SNIP127 * 2, 100);
+ITEM(CUP_srifle_M110, MOD762 * 2, 100);
+ITEM(CUP_srifle_M110_black, MOD762 * 2, 100);
+ITEM(CUP_srifle_m110_kac, MOD762 * 2, 100);
+ITEM(CUP_srifle_m110_kac_black, MOD762 * 2, 100);
+ITEM(CUP_srifle_m110_kac_woodland, MOD762 * 2, 100);
+ITEM(CUP_srifle_M110_woodland, MOD762 * 2, 100);
+ITEM(CUP_srifle_M14, OLD762 * 2, 100);
+ITEM(CUP_srifle_M14_DMR, OLD762 * 2, 100);
+ITEM(CUP_srifle_M2010_blk, MOD762 * 2, 100);
+ITEM(CUP_srifle_M2010_ctrg, MOD762 * 2, 100);
+ITEM(CUP_srifle_M2010_ctrgt, MOD762 * 2, 100);
+ITEM(CUP_srifle_M2010_dsrt, MOD762 * 2, 100);
+ITEM(CUP_srifle_M2010_hex, MOD762 * 2, 100);
+ITEM(CUP_srifle_M2010_wdl, MOD762 * 2, 100);
+ITEM(CUP_srifle_M2010_winter, MOD762 * 2, 100);
+ITEM(CUP_srifle_M21, OLD762 * 2, 100);
+ITEM(CUP_srifle_M21_artel, OLD762 * 2, 100);
+ITEM(CUP_srifle_M21_ris, OLD762 * RAIL * 2, 100);
+ITEM(CUP_srifle_M24_blk, OLD762 * 2, 100);
+ITEM(CUP_srifle_M24_des, OLD762 * 2, 100);
+ITEM(CUP_srifle_M24_ghillie, OLD762 * 2, 100);
+ITEM(CUP_srifle_M24_wdl, OLD762 * 2, 100);
+ITEM(CUP_srifle_M40A3, OLD762 * 2, 100);
+ITEM(CUP_srifle_Mk12SPR, OLD556 * 2, 100);
+ITEM(CUP_srifle_Mk18_blk, MOD762 * 2, 100);
+ITEM(CUP_srifle_Mk18_des, MOD762 * 2, 100);
+ITEM(CUP_srifle_Mk18_wdl, MOD762 * 2, 100);
+ITEM(CUP_srifle_Mosin_Nagant, OLD762 * 2, 100);
+ITEM(CUP_srifle_Remington700, OLD762 * 2, 100);
+ITEM(CUP_srifle_RSASS_Black, MOD762 * 2, 100);
+ITEM(CUP_srifle_RSASS_Dazzle, MOD762 * 2, 100);
+ITEM(CUP_srifle_RSASS_Jungle, MOD762 * 2, 100);
+ITEM(CUP_srifle_RSASS_Sand, MOD762 * 2, 100);
+ITEM(CUP_srifle_RSASS_WDL, MOD762 * 2, 100);
+ITEM(CUP_srifle_RSASS_WDLNet, MOD762 * 2, 100);
+ITEM(CUP_srifle_RSASS_Winter, MOD762 * 2, 100);
+ITEM(CUP_srifle_SVD, OLD762 * 2, 100);
+ITEM(CUP_srifle_SVD_des, OLD762 * 2, 100);
+ITEM(CUP_srifle_SVD_des_top_rail, OLD762 * RAIL * 2, 100);
+ITEM(CUP_srifle_SVD_top_rail, OLD762 * RAIL * 2, 100);
+ITEM(CUP_srifle_SVD_wdl, OLD762 * 2, 100);
+ITEM(CUP_srifle_SVD_wdl_ghillie, OLD762 * 2, 100);
+ITEM(CUP_srifle_SVD_wdl_top_rail, OLD762 * RAIL * 2, 100);
+ITEM(CUP_srifle_VSSVintorez, MOD762 * 2, 100);
+ITEM(CUP_srifle_VSSVintorez_top_rail, MOD762 * 2, 100);
+ITEM(CUP_srifle_VSSVintorez_VFG, MOD762 * 2, 100);
+ITEM(CUP_srifle_VSSVintorez_VFG_top_rail, MOD762 * 2, 100);
+ITEM(CUP_VSS_vintorez, MOD762 * 2, 100);
 
-			ITEM(CUP_srifle_Mosin_Nagant, 450, RIFLE_STOCK);
-			ITEM(CUP_srifle_LeeEnfield, 500, RIFLE_STOCK);
-			ITEM(CUP_srifle_LeeEnfield_rail, 900, RIFLE_STOCK);
+ITEM(CUP_SVD, OLD762 * 2, 100);
+ITEM(CUP_SVD_CAMO, OLD762 * 2, 100);
+ITEM(CUP_SVD_camo_d, OLD762 * 2, 100);
+ITEM(CUP_SVD_camo_d_half, OLD762 * 2, 100);
+ITEM(CUP_SVD_camo_g, OLD762 * 2, 100);
+ITEM(CUP_SVD_camo_g_half, OLD762 * 2, 100);
 
-			ITEM(CUP_arifle_IMI_Romat, 1200, RIFLE_STOCK);
-			ITEM(CUP_arifle_IMI_Romat_railed, 1600, RIFLE_STOCK);
+ITEM(CUP_m8_sharpshooter, MOD556 * 2, 100);
 
-			ITEM(CUP_arifle_FNFAL5061_wooden, 1400, RIFLE_STOCK);
-			ITEM(CUP_arifle_FNFAL5061_wooden_railed, 1700, RIFLE_STOCK);
-			ITEM(CUP_arifle_Gewehr1, 1400, RIFLE_STOCK);
-			ITEM(CUP_arifle_Gewehr1_railed, 1700, RIFLE_STOCK);
+ITEM(CUP_M24, OLD762 * 2, 100);
+ITEM(CUP_M40A3, OLD762 * 2, 100);
+ITEM(CUP_M107, SNIP127 * 2, 100);
 
-			ITEM(CUP_arifle_FNFAL, 1500, RIFLE_STOCK);
-			ITEM(CUP_arifle_FNFAL_desert, 1500, RIFLE_STOCK);
-			ITEM(CUP_arifle_FNFAL_sand, 1500, RIFLE_STOCK);
-			ITEM(CUP_arifle_FNFAL_woodland, 1500, RIFLE_STOCK);
+ITEM(CUP_DMR, OLD762 * 2, 100);
 
-			ITEM(CUP_arifle_FNFAL5061, 1600, RIFLE_STOCK);
-			ITEM(CUP_arifle_FNFAL5061_railed, 1700, RIFLE_STOCK);
+ITEM(CUP_arifle_XM8_Sharpshooter, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_Green, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_OD, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_Rail, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_Rail_Green, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_Rail_OD, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_Rail_Shark, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_Rail_Tan, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_Shark, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_FG_Tan, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_Green, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_OD, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_Rail, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_Rail_Green, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_Rail_OD, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_Rail_Shark, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_Rail_Tan, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_Shark, MOD556 * 2, 100);
+ITEM(CUP_arifle_XM8_Sharpshooter_Tan, MOD556 * 2, 100);
 
-			ITEM(CUP_arifle_xm8_sharpshooter, 1100, RIFLE_STOCK);
 
-			ITEM(CUP_srifle_VSSVintorez, 1300, 15);
-			ITEM(CUP_srifle_VSSVintorez_flash, 1325, 15);
-			ITEM(CUP_srifle_VSSVintorez_VFG, 1350, 15);
-			ITEM(CUP_srifle_VSSVintorez_top_rail, 1400, 15);
-			ITEM(CUP_srifle_VSSVintorez_flash_top, 1425, 15);
-			ITEM(CUP_srifle_VSSVintorez_VFG_top_rail, 1450, 15);
-
-			ITEM(CUP_arifle_G3A3_ris, 1500, RIFLE_STOCK);
-			ITEM(CUP_arifle_G3A3_ris_vfg_black, 1600, RIFLE_STOCK);
-			ITEM(CUP_arifle_G3A3_modern_ris, 1500, RIFLE_STOCK);
-			ITEM(CUP_arifle_G3A3_modern_ris_black, 1800, RIFLE_STOCK);
-
-			ITEM(CUP_srifle_M24_wdl, 1200, RIFLE_STOCK);
-			ITEM(CUP_srifle_M24_blk, 1200, RIFLE_STOCK);
-			ITEM(CUP_srifle_M24_des, 1200, RIFLE_STOCK);
-
-			ITEM(CUP_srifle_M40A3, 1350, RIFLE_STOCK);
-
-			ITEM(CUP_srifle_AWM_wdl, 1700, RIFLE_STOCK);
-			ITEM(CUP_srifle_AWM_blk, 1700, RIFLE_STOCK);
-			ITEM(CUP_srifle_AWM_des, 1700, RIFLE_STOCK);
-
-			ITEM(CUP_srifle_SVD, 1500, RIFLE_STOCK);
-			ITEM(CUP_srifle_SVD_des, 1500, RIFLE_STOCK);
-			ITEM(CUP_srifle_SVD_wdl, 1500, RIFLE_STOCK);
-
-			ITEM(arifle_MSBS65_Mark_F, 1650, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_Mark_black_F, 1650, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_Mark_camo_F, 1650, RIFLE_STOCK);
-			ITEM(arifle_MSBS65_Mark_sand_F, 1650, RIFLE_STOCK);
-
-			ITEM(CUP_srifle_RSASS_Black, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_RSASS_Dazzle, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_RSASS_Jungle, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_RSASS_Sand, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_RSASS_Winter, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_RSASS_WDLNet, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_RSASS_WDL, 2100, RIFLE_STOCK);
-
-			ITEM(CUP_srifle_m110_kac_black, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_M110_black, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_M110, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_M110_woodland, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_m110_kac, 2100, RIFLE_STOCK);
-			ITEM(CUP_srifle_m110_kac_woodland, 2100, RIFLE_STOCK);
-
-			ITEM(srifle_DMR_01_F, 2350, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_DSA_SA58_OSW_M203, 2500, RIFLE_STOCK);
-			ITEM(CUP_arifle_DSA_SA58_DMR, 2000, RIFLE_STOCK);
-			ITEM(CUP_arifle_DSA_SA58_OSW, 1800, RIFLE_STOCK);
-			ITEM(CUP_arifle_DSA_SA58_OSW_VFG, 1850, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_DSA_SA58_OSW_VFG_Desert, 1850, RIFLE_STOCK);
-			ITEM(CUP_arifle_DSA_SA58_OSW_Desert, 1800, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_DSA_SA58_OSW_VFG_Sand, 1850, RIFLE_STOCK);
-			ITEM(CUP_arifle_DSA_SA58_OSW_Sand, 1800, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_DSA_SA58_OSW_VFG_Woodland, 1850, RIFLE_STOCK);
-			ITEM(CUP_arifle_DSA_SA58_OSW_Woodland, 1800, RIFLE_STOCK);
-
-			ITEM(CUP_srifle_M21, 1900, RIFLE_STOCK);
-			ITEM(CUP_srifle_M14, 1800, RIFLE_STOCK);
-			ITEM(CUP_srifle_M14_DMR, 2200, RIFLE_STOCK);
-			ITEM(CUP_srifle_M21_ris, 2350, RIFLE_STOCK);
-
-			ITEM(srifle_DMR_03_F, 2200, RIFLE_STOCK);
-			ITEM(srifle_DMR_03_multicam_F, 2200, RIFLE_STOCK);
-			ITEM(srifle_DMR_03_khaki_F, 2200, RIFLE_STOCK);
-			ITEM(srifle_DMR_03_tan_F, 2200, RIFLE_STOCK);
-			ITEM(srifle_DMR_03_woodland_F, 2200, RIFLE_STOCK);
-
-			ITEM(srifle_EBR_F, 2500, RIFLE_STOCK);
-			ITEM(CUP_srifle_Mk18_blk, 2500, RIFLE_STOCK);
-			ITEM(CUP_srifle_Mk18_des, 2500, RIFLE_STOCK);
-			ITEM(CUP_srifle_Mk18_wdl, 2500, RIFLE_STOCK);
-
-			ITEM(arifle_SPAR_03_blk_F, 2700, RIFLE_STOCK);
-			ITEM(arifle_SPAR_03_khk_F, 2700, RIFLE_STOCK);
-			ITEM(arifle_SPAR_03_snd_F, 2700, RIFLE_STOCK);
-
-			ITEM(srifle_DMR_02_F, 3500, 10);
-			ITEM(srifle_DMR_02_camo_F, 3500, 10);
-			ITEM(srifle_DMR_02_sniper_F, 3500, 10);
-
-			ITEM(srifle_DMR_05_blk_F, 3300, 10);
-			ITEM(srifle_DMR_05_hex_F, 3300, 10);
-			ITEM(srifle_DMR_05_tan_f, 3300, 10);
-
-			ITEM(CUP_arifle_Mk20, 3750, 15);
-			ITEM(CUP_arifle_Mk20_black, 3750, 15);
-			ITEM(CUP_arifle_Mk20_woodland, 3750, 15);
-
-			ITEM(srifle_DMR_04_F, 3500, 10);
-
-			ITEM(srifle_LRR_F, 3100, 5);
-			ITEM(srifle_LRR_tna_F, 3100, 5);
-			ITEM(srifle_LRR_camo_F, 3100, 5);
-
-			ITEM(srifle_GM6_F, 2999, 5);
-			ITEM(srifle_GM6_camo_F, 2999, 5);
-			ITEM(srifle_GM6_ghex_F, 2999, 5);
-
-			ITEM(CUP_srifle_M107_Base, 3400, 5);
-			ITEM(CUP_srifle_M107_Pristine, 3400, 5);
-			ITEM(CUP_srifle_M107_Desert, 3400, 5);
-			ITEM(CUP_srifle_M107_Snow, 3400, 5);
-			ITEM(CUP_srifle_M107_Woodland, 3400, 5);
-
-			ITEM(CUP_srifle_ksvk, 2800, 5);
 		};
 
 		class mgCup 
@@ -417,89 +438,113 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_cup", localize "STR_A3AU_mgs"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(CUP_lmg_UK59, 1100, RIFLE_STOCK);
+ITEM(CUP_arifle_MG36, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_MG36_camo, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_MG36_hex, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_MG36_wdl, MOD556 * 1.5, 100);
 
-			ITEM(CUP_lmg_PKM, 1700, RIFLE_STOCK);
-			ITEM(CUP_lmg_PKMN, 1850, RIFLE_STOCK);
-			ITEM(CUP_lmg_PKM_B50_vfg, 1750, RIFLE_STOCK);
-			ITEM(CUP_lmg_PKM_front_rail_B50_vfg, 2050, RIFLE_STOCK);
-			ITEM(CUP_lmg_PKM_top_rail, 2000, RIFLE_STOCK);
-			ITEM(CUP_lmg_PKM_top_rail_B50_vfg, 2050, RIFLE_STOCK);
+ITEM(CUP_arifle_RPK74, OLD545 * 1.5, 100);
+ITEM(CUP_arifle_RPK74_45, OLD545 * 1.5, 100);
+ITEM(CUP_arifle_RPK74_45_top_rail, OLD545 * RAIL * 1.5, 100);
+ITEM(CUP_arifle_RPK74_top_rail, OLD545 * RAIL * 1.5, 100);
+ITEM(CUP_arifle_RPK74M, OLD545 * 1.5, 100);
+ITEM(CUP_arifle_RPK74M_railed, OLD545 * RAIL * 1.5, 100);
+ITEM(CUP_arifle_RPK74M_top_rail, OLD545 * RAIL * 1.5, 100);
 
-			ITEM(CUP_lmg_M60, 1700, RIFLE_STOCK);
+ITEM(CUP_arifle_XM8_SAW, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_Green, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_OD, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_Rail, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_Rail_Green, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_Rail_OD, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_Rail_Shark, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_Rail_Tan, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_Shark, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_FG_Tan, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_Green, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_OD, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_Rail, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_Rail_Green, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_Rail_OD, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_Rail_Shark, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_Rail_Tan, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_Shark, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_XM8_SAW_Tan, MOD556 * 1.5, 100);
+ITEM(CUP_arifle_L86A2, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_FNMAG, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_FNMAG_RIS, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_FNMAG_RIS_modern, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_L7A2, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_L7A2_Flat, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_M240, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_M240_B, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_M240_norail, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_M249, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_M249_E1, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_M249_E2, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_m249_para, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_m249_para_gl, MODGL556 * 1.5, 100);
+ITEM(CUP_lmg_m249_pip1, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_m249_pip2, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_m249_pip3, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_m249_pip4, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_m249_SQuantoon, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_M60, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_M60E4, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_M60E4_desert, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_M60E4_jungle, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_M60E4_norail, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_M60E4_norail_desert, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_M60E4_norail_jungle, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_M60E4_norail_wood, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_M60E4_wood, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_MG3, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_MG3_M145, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_MG3_rail, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_minimi, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_minimi_railed, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_minimipara, MOD556 * 1.5, 100);
+ITEM(CUP_lmg_Mk48, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_des, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_nohg, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_nohg_des, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_nohg_od, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_nohg_tan, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_nohg_wdl, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_od, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_tan, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Mk48_wdl, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Pecheneg, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Pecheneg_B50_vfg, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Pecheneg_desert, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Pecheneg_top_rail, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Pecheneg_top_rail_B50_vfg, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_Pecheneg_woodland, MOD762 * 1.5, 100);
+ITEM(CUP_lmg_PKM, OLD762 * 1.5, 100);
+ITEM(CUP_lmg_PKM_B50_vfg, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_PKM_front_rail_B50_vfg, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_PKM_top_rail, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_PKM_top_rail_B50_vfg, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_PKMN, OLD762 * RAIL * 1.5, 100);
+ITEM(CUP_lmg_UK59, MOD762 * 1.5, 100);
+ITEM(CUP_M240, MOD762 * 1.5, 100);
+ITEM(CUP_M249, MOD556 * 1.5, 100);
 
-			ITEM(CUP_lmg_MG3, 2300, RIFLE_STOCK);
-			ITEM(CUP_lmg_MG3_rail, 2350, RIFLE_STOCK);
 
-			ITEM(CUP_arifle_MG36, 1200, RIFLE_STOCK);
-			ITEM(CUP_arifle_MG36_camo, 1200, RIFLE_STOCK);
-			ITEM(CUP_arifle_MG36_hex, 1200, RIFLE_STOCK);
-			ITEM(CUP_arifle_MG36_wdl, 1200, RIFLE_STOCK);
-			ITEM(CUP_arifle_xm8_SAW, 1250, RIFLE_STOCK);
-			
-			ITEM(CUP_lmg_M60E4_norail, 1800, RIFLE_STOCK);
-			ITEM(CUP_lmg_M60E4_norail_desert, 1700, RIFLE_STOCK);
-			ITEM(CUP_lmg_M60E4_norail_jungle, 1700, RIFLE_STOCK);
-			ITEM(CUP_lmg_M60E4_jungle, 1700, RIFLE_STOCK);
-			ITEM(CUP_lmg_M60E4, 2000, RIFLE_STOCK);
-			ITEM(CUP_lmg_M60E4_desert, 2000, RIFLE_STOCK);
-			ITEM(CUP_lmg_M60E4_wood, 2000, RIFLE_STOCK);
-			ITEM(CUP_lmg_M60E4_norail_wood, 2000, RIFLE_STOCK);
+ITEM(CUP_m8_SAW, MOD556 * 1.5, 100);
 
-			ITEM(CUP_arifle_Galil_556_black, 900, RIFLE_STOCK);
-			ITEM(CUP_arifle_Galil_SAR_black, 1050, RIFLE_STOCK);
+ITEM(CUP_MG36, MOD556 * 1.5, 100);
+ITEM(CUP_MG36_camo, MOD556 * 1.5, 100);
 
-			ITEM(CUP_arifle_Galil_black, 1200, RIFLE_STOCK);
+ITEM(CUP_Mk_48, MOD762 * 1.5, 100);
 
-			ITEM(CUP_arifle_RPK74, 700, RIFLE_STOCK);
+ITEM(CUP_Pecheneg, MOD762 * 1.5, 100);
+ITEM(CUP_PK, OLD762 * 1.5, 100);
 
-			ITEM(CUP_arifle_L86A2, 900, RIFLE_STOCK);
+ITEM(CUP_UK59_ACR, MOD762 * 1.5, 100);
 
-			ITEM(CUP_lmg_M249_E1, 1300, RIFLE_STOCK);
-			ITEM(CUP_lmg_M249_E2, 1350, RIFLE_STOCK);
-			ITEM(CUP_lmg_m249_pip1, 1400, RIFLE_STOCK);
-			ITEM(CUP_lmg_m249_pip3, 1425, RIFLE_STOCK);
-			ITEM(CUP_lmg_m249_pip4, 1450, RIFLE_STOCK);
-
-			ITEM(CUP_lmg_m249_para_gl, 2500, RIFLE_STOCK);
-
-			ITEM(CUP_lmg_FNMAG, 1900, RIFLE_STOCK);
-			ITEM(CUP_lmg_FNMAG_RIS, 1950, RIFLE_STOCK);
-			ITEM(CUP_lmg_FNMAG_RIS_modern, 2100, RIFLE_STOCK);
-
-			ITEM(CUP_lmg_M240_norail, 2000, RIFLE_STOCK);
-			ITEM(CUP_lmg_M240_B, 2100, RIFLE_STOCK);
-			ITEM(CUP_lmg_M240, 2100, RIFLE_STOCK);
-
-			ITEM(CUP_lmg_Pecheneg, 1950, RIFLE_STOCK);
-			ITEM(CUP_lmg_Pecheneg_desert, 1950, RIFLE_STOCK);
-			ITEM(CUP_lmg_Pecheneg_woodland, 1950, RIFLE_STOCK);
-
-			ITEM(arifle_SPAR_02_blk_F, 1800, RIFLE_STOCK);
-			ITEM(arifle_SPAR_02_khk_F, 1800, RIFLE_STOCK);
-			ITEM(LMG_03_F, 1500, RIFLE_STOCK);
-			
-			ITEM(LMG_Mk200_F, 1800, RIFLE_STOCK);
-			ITEM(LMG_Mk200_black_F, 1800, RIFLE_STOCK);
-
-			ITEM(CUP_lmg_Mk48, 2400, RIFLE_STOCK);
-			ITEM(CUP_lmg_Mk48_des, 2400, RIFLE_STOCK);
-			ITEM(CUP_lmg_Mk48_od, 2400, RIFLE_STOCK);
-			ITEM(CUP_lmg_Mk48_tan, 2400, RIFLE_STOCK);
-			ITEM(CUP_lmg_Mk48_wdl, 2400, RIFLE_STOCK);
-
-			ITEM(arifle_RPK12_F, 2000, RIFLE_STOCK);
-			ITEM(arifle_RPK12_arid_F, 2000, RIFLE_STOCK);
-			ITEM(arifle_RPK12_lush_F, 2000, RIFLE_STOCK);
-
-			ITEM(LMG_Zafir_F, 2700, RIFLE_STOCK);
-
-			ITEM(MMG_01_hex_F, 4000, 10);
-			ITEM(MMG_01_tan_F, 4000, 10);
-
-			ITEM(MMG_02_black_F, 3500, 10);
-			ITEM(MMG_02_camo_F, 3500, 10);
-			ITEM(MMG_02_sand_F, 3500, 10);
+ITEM(CUP_RPK_74, OLD545 * 1.5, 100);
 		};
 
 		class riflesCup 
@@ -507,218 +552,851 @@
 			displayName = __EVAL(formatText ["%1 %2", localize "STR_A3AU_cup", localize "STR_A3AU_rifles"]);
 			picture = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryWeapon_ca.paa";
 
-			ITEM(arifle_AKS_F, 200, RIFLE_STOCK);
+ITEM(CUP_AK_107, MOD545, 100);
+ITEM(CUP_AK_47_M, OLD762, 100);
+ITEM(CUP_AK_47_S, OLD762, 100);
+ITEM(CUP_AK_74, OLD545, 100);
+ITEM(CUP_AK_74_GL, OLD5GL545, 100);
+ITEM(CUP_AKS_74, OLD762, 100);
+ITEM(CUP_AKS_74_U, OLD545, 100);
+ITEM(CUP_AKS_GOLD, 9999, 100);
 
-			ITEM(CUP_arifle_SAIGA_MK03, 200, RIFLE_STOCK);
-			ITEM(CUP_arifle_SAIGA_MK03_Wood, 200, RIFLE_STOCK);
+ITEM(CUP_arfile_Sa58_Carbine_RIS_AFG_desert, OLD762 * RAIL, 100);
+ITEM(CUP_arfile_Sa58_Carbine_RIS_AFG_woodland, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_ACR_blk_556, MOD556, 100);
+ITEM(CUP_arifle_ACR_blk_68, MOD65, 100);
+ITEM(CUP_arifle_ACR_DMR_blk_556, MOD556, 100);
+ITEM(CUP_arifle_ACR_DMR_blk_68, MOD65, 100);
+ITEM(CUP_arifle_ACR_DMR_snw_556, MOD556, 100);
+ITEM(CUP_arifle_ACR_DMR_snw_68, MOD65, 100);
+ITEM(CUP_arifle_ACR_DMR_tan_556, MOD556, 100);
+ITEM(CUP_arifle_ACR_DMR_tan_68, MOD65, 100);
+ITEM(CUP_arifle_ACR_DMR_wdl_556, MOD556, 100);
+ITEM(CUP_arifle_ACR_DMR_wdl_68, MOD65, 100);
+ITEM(CUP_arifle_ACR_EGLM_blk_556, MODGL556, 100);
+ITEM(CUP_arifle_ACR_EGLM_blk_68, MODGL65, 100);
+ITEM(CUP_arifle_ACR_EGLM_snw_556, MODGL556, 100);
+ITEM(CUP_arifle_ACR_EGLM_snw_68, MODGL65, 100);
+ITEM(CUP_arifle_ACR_EGLM_tan_556, MODGL556, 100);
+ITEM(CUP_arifle_ACR_EGLM_tan_68, MODGL65, 100);
+ITEM(CUP_arifle_ACR_EGLM_wdl_556, MODGL556, 100);
+ITEM(CUP_arifle_ACR_EGLM_wdl_68, MODGL65, 100);
+ITEM(CUP_arifle_ACR_snw_556, MOD556, 100);
+ITEM(CUP_arifle_ACR_snw_68, MOD65, 100);
+ITEM(CUP_arifle_ACR_tan_556, MOD556, 100);
+ITEM(CUP_arifle_ACR_tan_68, MOD65, 100);
+ITEM(CUP_arifle_ACR_wdl_556, MOD556, 100);
+ITEM(CUP_arifle_ACR_wdl_68, MOD65, 100);
+ITEM(CUP_arifle_ACRC_blk_556, MOD556, 100);
+ITEM(CUP_arifle_ACRC_blk_68, MOD65, 100);
+ITEM(CUP_arifle_ACRC_EGLM_blk_556, MODGL556, 100);
+ITEM(CUP_arifle_ACRC_EGLM_blk_68, MODGL65, 100);
+ITEM(CUP_arifle_ACRC_EGLM_snw_556, MODGL556, 100);
+ITEM(CUP_arifle_ACRC_EGLM_snw_68, MODGL65, 100);
+ITEM(CUP_arifle_ACRC_EGLM_tan_556, MODGL556, 100);
+ITEM(CUP_arifle_ACRC_EGLM_tan_68, MODGL65, 100);
+ITEM(CUP_arifle_ACRC_EGLM_wdl_556, MODGL556, 100);
+ITEM(CUP_arifle_ACRC_EGLM_wdl_68, MODGL65, 100);
+ITEM(CUP_arifle_ACRC_snw_556, MOD556, 100);
+ITEM(CUP_arifle_ACRC_snw_68, MOD65, 100);
+ITEM(CUP_arifle_ACRC_tan_556, MOD556, 100);
+ITEM(CUP_arifle_ACRC_tan_68, MOD65, 100);
+ITEM(CUP_arifle_ACRC_wdl_556, MOD556, 100);
+ITEM(CUP_arifle_ACRC_wdl_68, MOD65, 100);
 
-			ITEM(CUP_arifle_Fort224, 550, RIFLE_STOCK);
+ITEM(CUP_arifle_AG36, MODGL556, 100);
+ITEM(CUP_arifle_AG36_camo, MODGL556, 100);
+ITEM(CUP_arifle_AG36_wdl, MODGL556, 100);
+ITEM(CUP_arifle_AK101, MOD556, 100);
+ITEM(CUP_arifle_AK101_GL, MODGL556, 100);
+ITEM(CUP_arifle_AK101_GL_railed, MODGL556, 100);
+ITEM(CUP_arifle_AK101_GL_top_rail, MODGL556, 100);
+ITEM(CUP_arifle_AK101_railed, MOD556, 100);
+ITEM(CUP_arifle_AK101_top_rail, MOD556, 100);
+ITEM(CUP_arifle_AK102, MOD556, 100);
+ITEM(CUP_arifle_AK102_railed, MOD556, 100);
+ITEM(CUP_arifle_AK102_top_rail, MOD556, 100);
+ITEM(CUP_arifle_AK103, MOD762, 100);
+ITEM(CUP_arifle_AK103_GL, MODGL762, 100);
+ITEM(CUP_arifle_AK103_GL_railed, MODGL762, 100);
+ITEM(CUP_arifle_AK103_GL_top_rail, MODGL762, 100);
+ITEM(CUP_arifle_AK103_railed, MOD762, 100);
+ITEM(CUP_arifle_AK103_top_rail, MOD762, 100);
+ITEM(CUP_arifle_AK104, MOD762, 100);
+ITEM(CUP_arifle_AK104_railed, MOD762, 100);
+ITEM(CUP_arifle_AK104_top_rail, MOD762, 100);
+ITEM(CUP_arifle_AK105, MOD545, 100);
+ITEM(CUP_arifle_AK105_railed, MOD545, 100);
+ITEM(CUP_arifle_AK105_top_rail, MOD545, 100);
+ITEM(CUP_arifle_AK107, MOD545, 100);
+ITEM(CUP_arifle_AK107_GL, MODGL545, 100);
+ITEM(CUP_arifle_AK107_GL_railed, MODGL545, 100);
+ITEM(CUP_arifle_AK107_GL_top_rail, MODGL545, 100);
+ITEM(CUP_arifle_AK107_railed, MOD545, 100);
+ITEM(CUP_arifle_AK107_top_rail, MOD545, 100);
+ITEM(CUP_arifle_AK108, MOD556, 100);
+ITEM(CUP_arifle_AK108_GL, MODGL556, 100);
+ITEM(CUP_arifle_AK108_GL_railed, MODGL556, 100);
+ITEM(CUP_arifle_AK108_GL_top_rail, MODGL556, 100);
+ITEM(CUP_arifle_AK108_railed, MOD556, 100);
+ITEM(CUP_arifle_AK108_top_rail, MOD556, 100);
+ITEM(CUP_arifle_AK109, MOD762, 100);
+ITEM(CUP_arifle_AK109_GL, MODGL762, 100);
+ITEM(CUP_arifle_AK109_GL_railed, MODGL762, 100);
+ITEM(CUP_arifle_AK109_GL_top_rail, MODGL762, 100);
+ITEM(CUP_arifle_AK109_railed, MOD762, 100);
+ITEM(CUP_arifle_AK109_top_rail, MOD762, 100);
+ITEM(CUP_arifle_AK12_AFG_arid, MOD545, 100);
+ITEM(CUP_arifle_AK12_AFG_bicolor, MOD545, 100);
+ITEM(CUP_arifle_AK12_AFG_black, MOD545, 100);
+ITEM(CUP_arifle_AK12_AFG_lush, MOD545, 100);
+ITEM(CUP_arifle_AK12_AFG_snowtiger, MOD545, 100);
+ITEM(CUP_arifle_AK12_AFG_tan, MOD545, 100);
+ITEM(CUP_arifle_AK12_AFG_tiger, MOD545, 100);
+ITEM(CUP_arifle_AK12_AFG_winter, MOD545, 100);
+ITEM(CUP_arifle_AK12_AFG_wood, MOD545, 100);
+ITEM(CUP_arifle_AK12_arid, MOD545, 100);
+ITEM(CUP_arifle_AK12_bicolor, MOD545, 100);
+ITEM(CUP_arifle_AK12_black, MOD545, 100);
+ITEM(CUP_arifle_AK12_GP34_arid, MODGL545, 100);
+ITEM(CUP_arifle_AK12_GP34_bicolor, MODGL545, 100);
+ITEM(CUP_arifle_AK12_GP34_black, MODGL545, 100);
+ITEM(CUP_arifle_AK12_GP34_lush, MODGL545, 100);
+ITEM(CUP_arifle_AK12_GP34_snowtiger, MODGL545, 100);
+ITEM(CUP_arifle_AK12_GP34_tan, MODGL545, 100);
+ITEM(CUP_arifle_AK12_GP34_tiger, MODGL545, 100);
+ITEM(CUP_arifle_AK12_GP34_winter, MODGL545, 100);
+ITEM(CUP_arifle_AK12_GP34_wood, MODGL545, 100);
+ITEM(CUP_arifle_AK12_lush, MOD545, 100);
+ITEM(CUP_arifle_AK12_snowtiger, MOD545, 100);
+ITEM(CUP_arifle_AK12_tan, MOD545, 100);
+ITEM(CUP_arifle_AK12_tiger, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_arid, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_bicolor, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_black, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_lush, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_snowtiger, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_tan, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_tiger, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_winter, MOD545, 100);
+ITEM(CUP_arifle_AK12_VG_wood, MOD545, 100);
+ITEM(CUP_arifle_AK12_winter, MOD545, 100);
+ITEM(CUP_arifle_AK12_wood, MOD545, 100);
+ITEM(CUP_arifle_AK15_AFG_arid, MOD762, 100);
+ITEM(CUP_arifle_AK15_AFG_bicolor, MOD762, 100);
+ITEM(CUP_arifle_AK15_AFG_black, MOD762, 100);
+ITEM(CUP_arifle_AK15_AFG_lush, MOD762, 100);
+ITEM(CUP_arifle_AK15_AFG_snowtiger, MOD762, 100);
+ITEM(CUP_arifle_AK15_AFG_tan, MOD762, 100);
+ITEM(CUP_arifle_AK15_AFG_tiger, MOD762, 100);
+ITEM(CUP_arifle_AK15_AFG_winter, MOD762, 100);
+ITEM(CUP_arifle_AK15_AFG_wood, MOD762, 100);
+ITEM(CUP_arifle_AK15_arid, MOD762, 100);
+ITEM(CUP_arifle_AK15_bicolor, MOD762, 100);
+ITEM(CUP_arifle_AK15_black, MOD762, 100);
+ITEM(CUP_arifle_AK15_GP34_arid, MODGL762, 100);
+ITEM(CUP_arifle_AK15_GP34_bicolor, MODGL762, 100);
+ITEM(CUP_arifle_AK15_GP34_black, MODGL762, 100);
+ITEM(CUP_arifle_AK15_GP34_lush, MODGL762, 100);
+ITEM(CUP_arifle_AK15_GP34_snowtiger, MODGL762, 100);
+ITEM(CUP_arifle_AK15_GP34_tan, MODGL762, 100);
+ITEM(CUP_arifle_AK15_GP34_tiger, MODGL762, 100);
+ITEM(CUP_arifle_AK15_GP34_winter, MODGL762, 100);
+ITEM(CUP_arifle_AK15_GP34_wood, MODGL762, 100);
+ITEM(CUP_arifle_AK15_lush, MOD762, 100);
+ITEM(CUP_arifle_AK15_snowtiger, MOD762, 100);
+ITEM(CUP_arifle_AK15_tan, MOD762, 100);
+ITEM(CUP_arifle_AK15_tiger, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_arid, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_bicolor, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_black, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_lush, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_snowtiger, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_tan, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_tiger, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_winter, MOD762, 100);
+ITEM(CUP_arifle_AK15_VG_wood, MOD762, 100);
+ITEM(CUP_arifle_AK15_winter, MOD762, 100);
+ITEM(CUP_arifle_AK15_wood, MOD762, 100);
+ITEM(CUP_arifle_AK19_AFG_arid, MOD556, 100);
+ITEM(CUP_arifle_AK19_AFG_bicolor, MOD556, 100);
+ITEM(CUP_arifle_AK19_AFG_black, MOD556, 100);
+ITEM(CUP_arifle_AK19_AFG_lush, MOD556, 100);
+ITEM(CUP_arifle_AK19_AFG_snowtiger, MOD556, 100);
+ITEM(CUP_arifle_AK19_AFG_tan, MOD556, 100);
+ITEM(CUP_arifle_AK19_AFG_tiger, MOD556, 100);
+ITEM(CUP_arifle_AK19_AFG_winter, MOD556, 100);
+ITEM(CUP_arifle_AK19_AFG_wood, MOD556, 100);
+ITEM(CUP_arifle_AK19_arid, MOD556, 100);
+ITEM(CUP_arifle_AK19_bicolor, MOD556, 100);
+ITEM(CUP_arifle_AK19_black, MOD556, 100);
+ITEM(CUP_arifle_AK19_GP34_arid, MODGL556, 100);
+ITEM(CUP_arifle_AK19_GP34_bicolor, MODGL556, 100);
+ITEM(CUP_arifle_AK19_GP34_black, MODGL556, 100);
+ITEM(CUP_arifle_AK19_GP34_lush, MODGL556, 100);
+ITEM(CUP_arifle_AK19_GP34_snowtiger, MODGL556, 100);
+ITEM(CUP_arifle_AK19_GP34_tan, MODGL556, 100);
+ITEM(CUP_arifle_AK19_GP34_tiger, MODGL556, 100);
+ITEM(CUP_arifle_AK19_GP34_winter, MODGL556, 100);
+ITEM(CUP_arifle_AK19_GP34_wood, MODGL556, 100);
+ITEM(CUP_arifle_AK19_lush, MOD556, 100);
+ITEM(CUP_arifle_AK19_snowtiger, MOD556, 100);
+ITEM(CUP_arifle_AK19_tan, MOD556, 100);
+ITEM(CUP_arifle_AK19_tiger, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_arid, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_bicolor, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_black, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_lush, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_snowtiger, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_tan, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_tiger, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_winter, MOD556, 100);
+ITEM(CUP_arifle_AK19_VG_wood, MOD556, 100);
+ITEM(CUP_arifle_AK19_winter, MOD556, 100);
+ITEM(CUP_arifle_AK19_wood, MOD556, 100);
+ITEM(CUP_arifle_AK47, OLD762, 100);
+ITEM(CUP_arifle_AK47_Early, OLD762, 100);
+ITEM(CUP_arifle_AK47_GL, OLDGL762, 100);
+ITEM(CUP_arifle_AK47_GL_Early, OLDGL762, 100);
+ITEM(CUP_arifle_AK47_GL_top_rail, OLDGL762, 100);
+ITEM(CUP_arifle_AK47_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AK74, OLD545, 100);
+ITEM(CUP_arifle_AK74_Early, OLD545, 100);
+ITEM(CUP_arifle_AK74_GL, OLDGL545, 100);
+ITEM(CUP_arifle_AK74_GL_Early, OLDGL545, 100);
+ITEM(CUP_arifle_AK74_GL_top_rail, OLDGL545, 100);
+ITEM(CUP_arifle_AK74_top_rail, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M, OLD545, 100);
+ITEM(CUP_arifle_AK74M_camo, OLD545, 100);
+ITEM(CUP_arifle_AK74M_desert, OLD545, 100);
+ITEM(CUP_arifle_AK74M_GL, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_GL_camo, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_GL_desert, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_GL_railed, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_GL_railed_camo, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_GL_railed_desert, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_GL_top_rail, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_GL_top_rail_camo, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_GL_top_rail_desert, OLDGL545, 100);
+ITEM(CUP_arifle_AK74M_railed, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M_railed_afg, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M_railed_afg_camo, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M_railed_afg_desert, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M_railed_camo, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M_railed_desert, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M_top_rail, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M_top_rail_camo, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AK74M_top_rail_desert, OLD545 * RAIL, 100);
+ITEM(CUP_arifle_AKM, OLD762, 100);
+ITEM(CUP_arifle_AKM_Early, OLD762, 100);
+ITEM(CUP_arifle_AKM_GL, OLDGL762, 100);
+ITEM(CUP_arifle_AKM_GL_Early, OLDGL762, 100);
+ITEM(CUP_arifle_AKM_GL_top_rail, OLDGL762, 100);
+ITEM(CUP_arifle_AKM_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKMN_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKMN_railed_afg, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKMN_railed_afg_desert, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKMN_railed_desert, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKMS, OLD762, 100);
+ITEM(CUP_arifle_AKMS_Early, OLD762, 100);
+ITEM(CUP_arifle_AKMS_GL, OLDGL762, 100);
+ITEM(CUP_arifle_AKMS_GL_Early, OLDGL762, 100);
+ITEM(CUP_arifle_AKMS_GL_top_rail, OLDGL762, 100);
+ITEM(CUP_arifle_AKMS_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKS, OLD762, 100);
+ITEM(CUP_arifle_AKS74, OLD762, 100);
+ITEM(CUP_arifle_AKS74_Early, OLD762, 100);
+ITEM(CUP_arifle_AKS74_GL, OLDGL762, 100);
+ITEM(CUP_arifle_AKS74_GL_Early, OLDGL762, 100);
+ITEM(CUP_arifle_AKS74_GL_top_rail, OLDGL762, 100);
+ITEM(CUP_arifle_AKS74_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKS74U, OLD762, 100);
+ITEM(CUP_arifle_AKS74U_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKS74U_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AKS_Gold, 9999, 100);
+ITEM(CUP_arifle_AKS_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_AS_VAL, 1200, 100);
+ITEM(CUP_arifle_AS_VAL_top_rail, 1200, 100);
+ITEM(CUP_arifle_AS_VAL_VFG, 1200, 100);
+ITEM(CUP_arifle_AS_VAL_VFG_top_rail, 1200, 100);
+ITEM(CUP_arifle_CZ805_A1, MOD556, 100);
+ITEM(CUP_arifle_CZ805_A1_blk, MOD556, 100);
+ITEM(CUP_arifle_CZ805_A1_coyote, MOD556, 100);
+ITEM(CUP_arifle_CZ805_A2, MOD556, 100);
+ITEM(CUP_arifle_CZ805_A2_blk, MOD556, 100);
+ITEM(CUP_arifle_CZ805_A2_coyote, MOD556, 100);
+ITEM(CUP_arifle_CZ805_B, MOD556, 100);
+ITEM(CUP_arifle_CZ805_B_GL, MODGL556, 100);
+ITEM(CUP_arifle_CZ805_GL, MODGL556, 100);
+ITEM(CUP_arifle_CZ805_GL_blk, MODGL556, 100);
+ITEM(CUP_arifle_CZ805_GL_coyote, MODGL556, 100);
+ITEM(CUP_arifle_DSA_SA58, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_DMR, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW_Desert, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW_M203, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW_Sand, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW_VFG, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW_VFG_Desert, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW_VFG_Sand, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW_VFG_Woodland, MOD762, 100);
+ITEM(CUP_arifle_DSA_SA58_OSW_Woodland, MOD762, 100);
+ITEM(CUP_arifle_FNFAL, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5060, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5060_desert, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5060_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL5060_railed_desert, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL5060_railed_sand, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL5060_railed_woodland, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL5060_rhodesian, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5060_sand, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5060_woodland, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5061, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5061_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL5061_rhodesian, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5061_wooden, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5061_wooden_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL5062, OLD762, 100);
+ITEM(CUP_arifle_FNFAL5062_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL_desert, OLD762, 100);
+ITEM(CUP_arifle_FNFAL_OSW, OLD762, 100);
+ITEM(CUP_arifle_FNFAL_OSW_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL_railed_desert, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL_railed_sand, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL_railed_woodland, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_FNFAL_sand, OLD762, 100);
+ITEM(CUP_arifle_FNFAL_woodland, OLD762, 100);
+ITEM(CUP_arifle_Fort221, MOD545, 100);
+ITEM(CUP_arifle_Fort222, MOD545, 100);
+ITEM(CUP_arifle_Fort224, MOD545, 100);
+ITEM(CUP_arifle_Fort224_Grippod, MOD545, 100);
+ITEM(CUP_arifle_G36A, MOD556, 100);
+ITEM(CUP_arifle_G36A3, MOD556, 100);
+ITEM(CUP_arifle_G36A3_AG36, MODGL556, 100);
+ITEM(CUP_arifle_G36A3_AG36_camo, MODGL556, 100);
+ITEM(CUP_arifle_G36A3_AG36_hex, MODGL556, 100);
+ITEM(CUP_arifle_G36A3_AG36_wdl, MODGL556, 100);
+ITEM(CUP_arifle_G36A3_camo, MOD556, 100);
+ITEM(CUP_arifle_G36A3_grip, MOD556, 100);
+ITEM(CUP_arifle_G36A3_grip_camo, MOD556, 100);
+ITEM(CUP_arifle_G36A3_grip_hex, MOD556, 100);
+ITEM(CUP_arifle_G36A3_grip_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36A3_hex, MOD556, 100);
+ITEM(CUP_arifle_G36A3_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36A_AG36_RIS, MODGL556, 100);
+ITEM(CUP_arifle_G36A_AG36_RIS_camo, MODGL556, 100);
+ITEM(CUP_arifle_G36A_AG36_RIS_wdl, MODGL556, 100);
+ITEM(CUP_arifle_G36A_camo, MOD556, 100);
+ITEM(CUP_arifle_G36A_RIS, MOD556, 100);
+ITEM(CUP_arifle_G36A_RIS_camo, MOD556, 100);
+ITEM(CUP_arifle_G36A_RIS_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36A_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36C, MOD556, 100);
+ITEM(CUP_arifle_G36C_camo, MOD556, 100);
+ITEM(CUP_arifle_G36C_hex, MOD556, 100);
+ITEM(CUP_arifle_G36C_VFG, MOD556, 100);
+ITEM(CUP_arifle_G36C_VFG_camo, MOD556, 100);
+ITEM(CUP_arifle_G36C_VFG_Carry, MOD556, 100);
+ITEM(CUP_arifle_G36C_VFG_hex, MOD556, 100);
+ITEM(CUP_arifle_G36C_VFG_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36C_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36CA3, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_afg, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_afg_camo, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_afg_hex, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_afg_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_camo, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_grip, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_grip_camo, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_grip_hex, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_grip_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_hex, MOD556, 100);
+ITEM(CUP_arifle_G36CA3_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36E, MOD556, 100);
+ITEM(CUP_arifle_G36E_camo, MOD556, 100);
+ITEM(CUP_arifle_G36E_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36K, MOD556, 100);
+ITEM(CUP_arifle_G36K_AG36, MODGL556, 100);
+ITEM(CUP_arifle_G36K_AG36_camo, MODGL556, 100);
+ITEM(CUP_arifle_G36K_AG36_wdl, MODGL556, 100);
+ITEM(CUP_arifle_G36K_camo, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_AFG, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_AFG_camo, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_AFG_hex, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_camo, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_des_ZO_las, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_hex, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_hex_ZO_las, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_VFG, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_VFG_camo, MOD556, 100);
+ITEM(CUP_arifle_G36K_KSK_VFG_hex, MOD556, 100);
+ITEM(CUP_arifle_G36K_RIS, MOD556, 100);
+ITEM(CUP_arifle_G36K_RIS_AG36, MODGL556, 100);
+ITEM(CUP_arifle_G36K_RIS_AG36_camo, MODGL556, 100);
+ITEM(CUP_arifle_G36K_RIS_AG36_hex, MODGL556, 100);
+ITEM(CUP_arifle_G36K_RIS_AG36_wdl, MODGL556, 100);
+ITEM(CUP_arifle_G36K_RIS_camo, MOD556, 100);
+ITEM(CUP_arifle_G36K_RIS_hex, MOD556, 100);
+ITEM(CUP_arifle_G36K_RIS_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36K_VFG, MOD556, 100);
+ITEM(CUP_arifle_G36K_VFG_camo, MOD556, 100);
+ITEM(CUP_arifle_G36K_VFG_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36K_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36KA3, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_afg, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_afg_camo, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_afg_hex, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_afg_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_camo, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_grip, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_grip_camo, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_grip_hex, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_grip_wdl, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_hex, MOD556, 100);
+ITEM(CUP_arifle_G36KA3_wdl, MOD556, 100);
+ITEM(CUP_arifle_G3A3_modern_ris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_G3A3_modern_ris_black, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_G3A3_ris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_G3A3_ris_black, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_G3A3_ris_vfg, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_G3A3_ris_vfg_black, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Galil_556_black, OLD556, 100);
+ITEM(CUP_arifle_Galil_black, OLD762, 100);
+ITEM(CUP_arifle_Galil_SAR_black, OLD556, 100);
+ITEM(CUP_arifle_Gewehr1, OLD762, 100);
+ITEM(CUP_arifle_Gewehr1_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_HK416_AGL_Black, MOD556, 100);
+ITEM(CUP_arifle_HK416_AGL_Desert, MOD556, 100);
+ITEM(CUP_arifle_HK416_AGL_Wood, MOD556, 100);
+ITEM(CUP_arifle_HK416_Black, MOD556, 100);
+ITEM(CUP_arifle_HK416_CQB_AG36, MODGL556, 100);
+ITEM(CUP_arifle_HK416_CQB_AG36_Desert, MODGL556, 100);
+ITEM(CUP_arifle_HK416_CQB_AG36_Wood, MODGL556, 100);
+ITEM(CUP_arifle_HK416_CQB_Black, MOD556, 100);
+ITEM(CUP_arifle_HK416_CQB_Desert, MOD556, 100);
+ITEM(CUP_arifle_HK416_CQB_M203_Black, MODGL556, 100);
+ITEM(CUP_arifle_HK416_CQB_M203_Desert, MODGL556, 100);
+ITEM(CUP_arifle_HK416_CQB_M203_Wood, MODGL556, 100);
+ITEM(CUP_arifle_HK416_CQB_Wood, MOD556, 100);
+ITEM(CUP_arifle_HK416_Desert, MOD556, 100);
+ITEM(CUP_arifle_HK416_M203_Black, MODGL556, 100);
+ITEM(CUP_arifle_HK416_M203_Desert, MODGL556, 100);
+ITEM(CUP_arifle_HK416_M203_Wood, MODGL556, 100);
+ITEM(CUP_arifle_HK416_Wood, MOD556, 100);
+ITEM(CUP_arifle_HK417_12, MOD762, 100);
+ITEM(CUP_arifle_HK417_12_AG36, MODGL762, 100);
+ITEM(CUP_arifle_HK417_12_AG36_Desert, MODGL762, 100);
+ITEM(CUP_arifle_HK417_12_AG36_Wood, MODGL762, 100);
+ITEM(CUP_arifle_HK417_12_Desert, MOD762, 100);
+ITEM(CUP_arifle_HK417_12_M203, MODGL762, 100);
+ITEM(CUP_arifle_HK417_12_M203_Desert, MODGL762, 100);
+ITEM(CUP_arifle_HK417_12_M203_Wood, MODGL762, 100);
+ITEM(CUP_arifle_HK417_12_Wood, MOD762, 100);
+ITEM(CUP_arifle_HK417_20, MOD762, 100);
+ITEM(CUP_arifle_HK417_20_Desert, MOD762, 100);
+ITEM(CUP_arifle_HK417_20_Wood, MOD762, 100);
+ITEM(CUP_arifle_HK_M27, MOD556, 100);
+ITEM(CUP_arifle_HK_M27_AG36, MODGL556, 100);
+ITEM(CUP_arifle_HK_M27_VFG, MOD556, 100);
+ITEM(CUP_arifle_IMI_Romat, OLD762, 100);
+ITEM(CUP_arifle_IMI_Romat_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_L85A2, MOD556, 100);
+ITEM(CUP_arifle_L85A2_G, MOD556, 100);
+ITEM(CUP_arifle_L85A2_GL, MODGL556, 100);
+ITEM(CUP_arifle_L85A2_NG, MOD556, 100);
+ITEM(CUP_arifle_M16A1, OLD556, 100);
+ITEM(CUP_arifle_M16A1E1, OLD556, 100);
+ITEM(CUP_arifle_M16A1E1GL, OLD556, 100);
+ITEM(CUP_arifle_M16A1GL, OLD556, 100);
+ITEM(CUP_arifle_M16A1GL_FS, OLD556, 100);
+ITEM(CUP_arifle_M16A1GL_USA, OLD556, 100);
+ITEM(CUP_arifle_M16A2, OLD556, 100);
+ITEM(CUP_arifle_M16A2_GL, OLDGL556, 100);
+ITEM(CUP_arifle_M16A4_GL, OLDGL556, 100);
+ITEM(CUP_arifle_M16A4_Grip, OLD556 * RAIL, 100);
+ITEM(CUP_arifle_M27_ACOG, MOD556, 100);
+ITEM(CUP_arifle_m29_caseless_arid, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_blk, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_ctrg, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_hexa, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_hexg, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_hexu, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_lush, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_olive, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_splinter, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_stiger, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_tan, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_tctrg, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_tiger, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_uctrg, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_winter, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_caseless_woodland, RAIL * MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_arid, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_blk, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_ctrg, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_hexa, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_hexg, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_hexu, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_lush, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_olive, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_splinter, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_stiger, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_tan, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_tctrg, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_tiger, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_uctrg, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_winter, MOD65, 100);
+ITEM(CUP_arifle_m29_ke_caseless_woodland, MOD65, 100);
+ITEM(CUP_arifle_M4_MOE_BW, OLD556, 100);
+ITEM(CUP_arifle_M4A1, OLD556, 100);
+ITEM(CUP_arifle_M4A1_Aim, OLD556, 100);
+ITEM(CUP_arifle_M4A1_black, OLD556, 100);
+ITEM(CUP_arifle_M4A1_BUIS_camo_GL, OLDGL556, 100);
+ITEM(CUP_arifle_M4A1_BUIS_desert_GL, OLDGL556, 100);
+ITEM(CUP_arifle_M4A1_BUIS_GL, OLDGL556, 100);
+ITEM(CUP_arifle_M4A1_camo, OLD556, 100);
+ITEM(CUP_arifle_M4A1_camo_Aim, OLD556, 100);
+ITEM(CUP_arifle_M4A1_camo_carryhandle, OLD556, 100);
+ITEM(CUP_arifle_M4A1_desert, OLD556, 100);
+ITEM(CUP_arifle_M4A1_desert_carryhandle, OLD556, 100);
+ITEM(CUP_arifle_M4A1_GL_carryhandle, OLDGL556, 100);
+ITEM(CUP_arifle_M4A1_GL_carryhandle_camo, OLDGL556, 100);
+ITEM(CUP_arifle_M4A1_GL_carryhandle_desert, OLDGL556, 100);
+ITEM(CUP_arifle_M4A1_MOE_black, OLD556, 100);
+ITEM(CUP_arifle_M4A1_MOE_desert, OLD556, 100);
+ITEM(CUP_arifle_M4A1_MOE_short_black, OLD556, 100);
+ITEM(CUP_arifle_M4A1_MOE_short_desert, OLD556, 100);
+ITEM(CUP_arifle_M4A1_MOE_short_wdl, OLD556, 100);
+ITEM(CUP_arifle_M4A1_MOE_short_winter, OLD556, 100);
+ITEM(CUP_arifle_M4A1_MOE_wdl, OLD556, 100);
+ITEM(CUP_arifle_M4A1_MOE_winter, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_black, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_ctrg, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_ctrgt, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_green, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_Grip_black, OLD556 * RAIL, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_Grip_ctrg, OLD556 * RAIL, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_Grip_ctrgt, OLD556 * RAIL, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_Grip_green, OLD556 * RAIL, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_Grip_hex, OLD556 * RAIL, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_Grip_snow, OLD556 * RAIL, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_Grip_tan, OLD556 * RAIL, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_hex, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_RD_black, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_RD_green, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_snow, OLD556, 100);
+ITEM(CUP_arifle_M4A1_SOMMOD_tan, OLD556, 100);
+ITEM(CUP_arifle_M4A1_standard_black, OLD556, 100);
+ITEM(CUP_arifle_M4A1_standard_dsrt, OLD556, 100);
+ITEM(CUP_arifle_M4A1_standard_short_black, OLD556, 100);
+ITEM(CUP_arifle_M4A1_standard_short_dsrt, OLD556, 100);
+ITEM(CUP_arifle_M4A1_standard_short_wdl, OLD556, 100);
+ITEM(CUP_arifle_M4A1_standard_short_winter, OLD556, 100);
+ITEM(CUP_arifle_M4A1_standard_wdl, OLD556, 100);
+ITEM(CUP_arifle_M4A1_standard_winter, OLD556, 100);
+ITEM(CUP_arifle_M4A3_black, OLD556, 100);
+ITEM(CUP_arifle_M4A3_camo, OLD556, 100);
+ITEM(CUP_arifle_M4A3_desert, OLD556, 100);
 
-			ITEM(CUP_arifle_M16A2, 500, RIFLE_STOCK);
-			ITEM(CUP_arifle_M16A2_GL, 650, RIFLE_STOCK);
+ITEM(CUP_arifle_Mk16_CQC, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_AFG, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_AFG_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_AFG_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_EGLM, MODGL556, 100);
+ITEM(CUP_arifle_Mk16_CQC_EGLM_black, MODGL556, 100);
+ITEM(CUP_arifle_Mk16_CQC_EGLM_woodland, MODGL556, 100);
+ITEM(CUP_arifle_Mk16_CQC_FG, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_FG_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_FG_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_SFG, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_SFG_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_SFG_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk16_CQC_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_AFG, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_AFG_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_AFG_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_EGLM, MODGL556, 100);
+ITEM(CUP_arifle_Mk16_STD_EGLM_black, MODGL556, 100);
+ITEM(CUP_arifle_Mk16_STD_EGLM_Specter, MODGL556, 100);
+ITEM(CUP_arifle_Mk16_STD_EGLM_woodland, MODGL556, 100);
+ITEM(CUP_arifle_Mk16_STD_FG, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_FG_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_FG_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_SFG, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_SFG_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_SFG_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk16_STD_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk16_SV, MOD556, 100);
+ITEM(CUP_arifle_Mk16_SV_black, MOD556, 100);
+ITEM(CUP_arifle_Mk16_SV_woodland, MOD556, 100);
+ITEM(CUP_arifle_Mk17_CQC, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_AFG, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_AFG_black, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_AFG_woodland, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_Black, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_EGLM, MODGL762, 100);
+ITEM(CUP_arifle_Mk17_CQC_EGLM_black, MODGL762, 100);
+ITEM(CUP_arifle_Mk17_CQC_EGLM_woodland, MODGL762, 100);
+ITEM(CUP_arifle_Mk17_CQC_FG, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_FG_black, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_FG_woodland, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_SFG, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_SFG_Aim_mfsup, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_SFG_black, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_SFG_woodland, MOD762, 100);
+ITEM(CUP_arifle_Mk17_CQC_woodland, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_AFG, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_AFG_black, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_AFG_woodland, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_black, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_EGLM, MODGL762, 100);
+ITEM(CUP_arifle_Mk17_STD_EGLM_black, MODGL762, 100);
+ITEM(CUP_arifle_Mk17_STD_EGLM_woodland, MODGL762, 100);
+ITEM(CUP_arifle_Mk17_STD_FG, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_FG_black, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_FG_woodland, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_SFG, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_SFG_black, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_SFG_woodland, MOD762, 100);
+ITEM(CUP_arifle_Mk17_STD_woodland, MOD762, 100);
+ITEM(CUP_arifle_mk18_black, MOD556, 100);
+ITEM(CUP_arifle_mk18_m203_black, MODGL556, 100);
+ITEM(CUP_arifle_Mk20, MOD556, 100);
+ITEM(CUP_arifle_Mk20_black, MOD556, 100);
+ITEM(CUP_arifle_Mk20_woodland, MOD556, 100);
+ITEM(CUP_arifle_OTS14_GROZA, MOD762, 100);
+ITEM(CUP_arifle_OTS14_GROZA_762, MOD762, 100);
+ITEM(CUP_arifle_OTS14_GROZA_762_GL, MODGL762, 100);
+ITEM(CUP_arifle_OTS14_GROZA_762_Grip, MOD762, 100);
+ITEM(CUP_arifle_OTS14_GROZA_GL, MODGL762, 100);
+ITEM(CUP_arifle_OTS14_GROZA_Grip, MOD762, 100);
 
-			ITEM(CUP_arifle_M4A1, 650, RIFLE_STOCK);
+ITEM(CUP_arifle_Sa58_Carbine_RIS_AFG, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58_Carbine_RIS_VFG, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58_Carbine_RIS_VFG_desert, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58_Carbine_RIS_VFG_woodland, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58_Klec, OLD762, 100);
+ITEM(CUP_arifle_Sa58_Klec_frontris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58_Klec_rearris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58_Klec_ris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58_sporter_compact, OLD762, 100);
+ITEM(CUP_arifle_Sa58_sporter_compact_rearris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58P, OLD762, 100);
+ITEM(CUP_arifle_Sa58P_des, OLD762, 100);
+ITEM(CUP_arifle_Sa58P_frontris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58P_frontris_desert, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58P_frontris_woodland, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58P_rearris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58P_RIS1, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58P_v2, OLD762, 100);
+ITEM(CUP_arifle_Sa58P_wood, OLD762, 100);
+ITEM(CUP_arifle_Sa58P_woodland, OLD762, 100);
+ITEM(CUP_arifle_Sa58Pi, OLD762, 100);
+ITEM(CUP_arifle_Sa58RIS1, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58RIS1_des, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58RIS1_woodland, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58RIS2, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58RIS2_camo, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58RIS2_gl, OLDGL762, 100);
+ITEM(CUP_arifle_Sa58RIS2_gl_desert, OLDGL762, 100);
+ITEM(CUP_arifle_Sa58RIS2_gl_woodland, OLDGL762, 100);
+ITEM(CUP_arifle_Sa58RIS2_woodland, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58s, OLD762, 100);
+ITEM(CUP_arifle_Sa58s_rearris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58V, OLD762, 100);
+ITEM(CUP_arifle_Sa58V_camo, OLD762, 100);
+ITEM(CUP_arifle_Sa58V_frontris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58V_rearris, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_Sa58V_wood, OLD762, 100);
+ITEM(CUP_arifle_Sa58V_woodland, OLD762, 100);
+ITEM(CUP_arifle_SAIGA_MK03, OLD762, 100);
+ITEM(CUP_arifle_SAIGA_MK03_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_SAIGA_MK03_Wood, OLD762, 100);
+ITEM(CUP_arifle_SIAGE_MK03_Wood_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_SBR_black, MOD556, 100);
+ITEM(CUP_arifle_SBR_od, MOD556, 100);
 
-			ITEM(CUP_arifle_M16A4_Base, 550, RIFLE_STOCK);
-			ITEM(CUP_arifle_M16A4_GL, 700, RIFLE_STOCK);
-			
-			ITEM(arifle_TRG21_F, 700, RIFLE_STOCK);
-			ITEM(arifle_TRG20_F, 650, RIFLE_STOCK);
-			ITEM(arifle_TRG21_GL_F, 850, RIFLE_STOCK);
+ITEM(CUP_arifle_SR3M_Vikhr, 700, 100);
+ITEM(CUP_arifle_SR3M_Vikhr_top_rail, 700, 100);
+ITEM(CUP_arifle_SR3M_Vikhr_VFG, 700, 100);
+ITEM(CUP_arifle_SR3M_Vikhr_VFG_top_rail, 700, 100);
+ITEM(CUP_arifle_Steyr_Stg58, OLD762, 100);
+ITEM(CUP_arifle_Steyr_Stg58_railed, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_TYPE_56_2, OLD762, 100);
+ITEM(CUP_arifle_TYPE_56_2_Early, OLD762, 100);
+ITEM(CUP_arifle_TYPE_56_2_top_rail, OLD762 * RAIL, 100);
+ITEM(CUP_arifle_X95, MOD556, 100);
+ITEM(CUP_arifle_X95_Grippod, MOD556, 100);
+ITEM(CUP_arifle_XM16E1, OLD556, 100);
+ITEM(CUP_arifle_xm29_arid, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_blk, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_ctrg, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_hexa, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_hexg, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_hexu, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_arid, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_blk, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_ctrg, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_hexa, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_hexg, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_hexu, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_lush, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_olive, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_arid, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_blk, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_ctrg, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_hexa, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_hexg, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_hexu, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_lush, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_olive, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_splinter, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_stiger, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_tan, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_tctrg, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_tiger, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_uctrg, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_winter, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_rail_woodland, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_splinter, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_stiger, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_tan, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_tctrg, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_tiger, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_uctrg, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_winter, MOD556, 100);
+ITEM(CUP_arifle_xm29_ke_woodland, MOD556, 100);
+ITEM(CUP_arifle_xm29_lush, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_olive, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_splinter, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_stiger, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_tan, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_tctrg, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_tiger, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_uctrg, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_winter, RAIL * MOD556, 100);
+ITEM(CUP_arifle_xm29_woodland, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_Fish, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_Green, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_OD, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_Rail, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_Rail_Fish, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_Rail_Green, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_Rail_OD, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_Rail_Tan, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_FG_Tan, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_Fish, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_GL, MODGL556, 100);
+ITEM(CUP_arifle_XM8_Carbine_GL_Green, MODGL556, 100);
+ITEM(CUP_arifle_XM8_Carbine_GL_OD, MODGL556, 100);
+ITEM(CUP_arifle_XM8_Carbine_GL_Rail, RAIL * MODGL556, 100);
+ITEM(CUP_arifle_XM8_Carbine_GL_Rail_Green, RAIL * MODGL556, 100);
+ITEM(CUP_arifle_XM8_Carbine_GL_Rail_OD, RAIL * MODGL556, 100);
+ITEM(CUP_arifle_XM8_Carbine_GL_Rail_Tan, RAIL * MODGL556, 100);
+ITEM(CUP_arifle_XM8_Carbine_GL_Tan, MODGL556, 100);
+ITEM(CUP_arifle_XM8_Carbine_Green, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_OD, MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_Rail_Fish, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_Rail_Green, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_Rail_OD, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_Rail_Tan, RAIL * MOD556, 100);
+ITEM(CUP_arifle_XM8_Carbine_Tan, MOD556, 100);
+ITEM(CUP_arifle_XM8_Railed, RAIL * MOD556, 100);
 
-			ITEM(arifle_Mk20_plain_F, 800, RIFLE_STOCK);
-			ITEM(arifle_Mk20C_plain_F, 750, RIFLE_STOCK);
-			ITEM(arifle_Mk20_GL_plain_F, 950, RIFLE_STOCK);
+ITEM(CUP_l85a2, MOD556, 100);
+ITEM(CUP_l85a2_ris, MOD556, 100);
+ITEM(CUP_l85a2_ris_ng, MOD556, 100);
+ITEM(CUP_l85a2_ugl, MOD556, 100);
 
-			ITEM(CUP_arifle_OTS14_GROZA, 700, RIFLE_STOCK);
-			ITEM(CUP_arifle_OTS14_GROZA_GL, 950, RIFLE_STOCK);
+ITEM(CUP_CZ805_A1_ACR, MOD556, 100);
+ITEM(CUP_CZ805_A1_GL_ACR, MODGL556, 100);
+ITEM(CUP_CZ805_A2_ACR, MOD556, 100);
+ITEM(CUP_CZ805_A2_SD_ACR, MOD556, 100);
+ITEM(CUP_CZ805_B_GL_ACR, MODGL556, 100);
 
-			ITEM(CUP_arifle_AK74M, 500, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_camo, 7500, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_top_rail, 550, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_top_rail_camo, 550, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_railed_afg, 600, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_railed_afg_camo, 600, RIFLE_STOCK);
+ITEM(CUP_CZ_BREN2_556_11, MOD556, 100);
+ITEM(CUP_CZ_BREN2_556_11_GL, MODGL556, 100);
+ITEM(CUP_CZ_BREN2_556_11_GL_Grn, MODGL556, 100);
+ITEM(CUP_CZ_BREN2_556_11_GL_Tan, MODGL556, 100);
+ITEM(CUP_CZ_BREN2_556_11_Grn, MOD556, 100);
+ITEM(CUP_CZ_BREN2_556_11_Tan, MOD556, 100);
+ITEM(CUP_CZ_BREN2_556_14, MOD556, 100);
+ITEM(CUP_CZ_BREN2_556_14_GL, MODGL556, 100);
+ITEM(CUP_CZ_BREN2_556_14_GL_Grn, MODGL556, 100);
+ITEM(CUP_CZ_BREN2_556_14_GL_Tan, MODGL556, 100);
+ITEM(CUP_CZ_BREN2_556_14_Grn, MOD556, 100);
+ITEM(CUP_CZ_BREN2_556_14_Tan, MOD556, 100);
+ITEM(CUP_CZ_BREN2_556_8, MOD556, 100);
+ITEM(CUP_CZ_BREN2_556_8_Grn, MOD556, 100);
+ITEM(CUP_CZ_BREN2_556_8_Tan, MOD556, 100);
+ITEM(CUP_CZ_BREN2_762_14, MOD762, 100);
+ITEM(CUP_CZ_BREN2_762_14_GL, MODGL762, 100);
+ITEM(CUP_CZ_BREN2_762_14_GL_Grn, MODGL762, 100);
+ITEM(CUP_CZ_BREN2_762_14_GL_Tan, MODGL762, 100);
+ITEM(CUP_CZ_BREN2_762_14_Grn, MOD762, 100);
+ITEM(CUP_CZ_BREN2_762_14_Tan, MOD762, 100);
+ITEM(CUP_CZ_BREN2_762_8, MOD762, 100);
+ITEM(CUP_CZ_BREN2_762_8_Grn, MOD762, 100);
+ITEM(CUP_CZ_BREN2_762_8_Tan, MOD762, 100);
 
-			ITEM(CUP_arifle_AK74M_GL, 650, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_GL_top_rail, 750, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_GL_camo, 650, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_GL_top_rail_camo, 750, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_GL_railed, 700, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK74M_GL_railed_camo, 700, RIFLE_STOCK);
+ITEM(CUP_M16A2, OLD556, 100);
+ITEM(CUP_M16A2GL, OLD556, 100);
+ITEM(CUP_M16A4, OLD556, 100);
+ITEM(CUP_m16a4_acg, OLD556, 100);
+ITEM(CUP_M16A4_ACG_GL, OLDGL556, 100);
+ITEM(CUP_M16A4_GL, OLDGL556, 100);
 
-			ITEM(arifle_AKM_F, 800, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK47_Early, 750, RIFLE_STOCK);
-			ITEM(CUP_arifle_TYPE_56_2_Early, 700, RIFLE_STOCK);
+ITEM(CUP_M4A1, OLD556, 100);
+ITEM(CUP_M4A1_Aim, OLD556, 100);
+ITEM(CUP_M4A1_Aim_camo, OLD556, 100);
+ITEM(CUP_M4A1_AIM_SD_camo, OLD556, 100);
+ITEM(CUP_M4A1_camo, OLD556, 100);
+ITEM(CUP_M4A1_HWS_GL, OLDGL556, 100);
+ITEM(CUP_M4A1_HWS_GL_camo, OLDGL556, 100);
+ITEM(CUP_M4A1_HWS_GL_SD_Camo, OLDGL556, 100);
+ITEM(CUP_M4A1_RCO_GL, OLDGL556, 100);
+ITEM(CUP_M4SPR, OLD556, 100);
 
-			
-			ITEM(CUP_arifle_Sa58V, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58V_camo, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58RIS1_des, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58V_rearris, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58V_frontris, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58RIS1, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58V_wood, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58V_woodland, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58RIS1_woodland, 1050, RIFLE_STOCK);
+ITEM(CUP_m8_carbine, MOD556, 100);
+ITEM(CUP_m8_carbine_pmc, MOD556, 100);
+ITEM(CUP_m8_carbineGL, MOD556, 100);
+ITEM(CUP_m8_compact, MOD556, 100);
+ITEM(CUP_m8_compact_pmc, MOD556, 100);
 
-			ITEM(CUP_arifle_Sa58P_woodland, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58P_wood, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58P, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58P_rearris, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58P_frontris, 1050, RIFLE_STOCK);
 
-			ITEM(CUP_arifle_Sa58P_des, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58P_frontris_woodland, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58P_frontris_desert, 1050, RIFLE_STOCK);
+ITEM(CUP_SCAR_H_LNG_Sniper, MOD762, 100);
+ITEM(CUP_SCAR_H_LNG_Sniper_SD, MOD762, 100);
+ITEM(CUP_SCAR_H_STD_EGLM_Spect, MODGL762, 100);
+ITEM(CUP_SCAR_L_CQC, MOD556, 100);
+ITEM(CUP_SCAR_L_STD_EGLM_RCO, MODGL556, 100);
+ITEM(CUP_SCAR_L_STD_Mk4CQT, MOD556, 100);
 
-			ITEM(CUP_arifle_Sa58P_RIS1, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58RIS2, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58RIS2_camo, 1050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58RIS2_woodland, 1050, RIFLE_STOCK);
+ITEM(CUP_Famas_F1, MOD556, 100);
+ITEM(CUP_Famas_F1_Arid, MOD556, 100);
+ITEM(CUP_Famas_F1_Rail, MOD556, 100);
+ITEM(CUP_Famas_F1_Rail_Arid, MOD556, 100);
+ITEM(CUP_Famas_F1_Rail_Wood, MOD556, 100);
+ITEM(CUP_Famas_F1_Wood, MOD556, 100);
+ITEM(CUP_FN_FAL, OLD762, 100);
+ITEM(CUP_G36_C_SD_camo, MOD556, 100);
+ITEM(CUP_G36_C_SD_eotech, MOD556, 100);
+ITEM(CUP_G36a, MOD556, 100);
+ITEM(CUP_G36A_camo, MOD556, 100);
+ITEM(CUP_G36C, MOD556, 100);
+ITEM(CUP_G36C_camo, MOD556, 100);
+ITEM(CUP_G36K, MOD556, 100);
+ITEM(CUP_G36K_camo, MOD556, 100);
 
-			ITEM(CUP_arifle_Sa58RIS2_gl, 1300, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58RIS2_gl_desert, 1300, RIFLE_STOCK);
-			ITEM(CUP_arifle_Sa58RIS2_gl_woodland, 1300, RIFLE_STOCK);
 
-			ITEM(CUP_arifle_AUG_A1, 900, RIFLE_STOCK);
 
-			ITEM(CUP_arifle_XM8_Compact, 1100, RIFLE_STOCK);
-			ITEM(CUP_arifle_XM8_Compact_Rail, 1150, RIFLE_STOCK);
-			ITEM(CUP_arifle_XM8_Carbine_GL, 1300, RIFLE_STOCK);
-			ITEM(CUP_arifle_XM8_Railed, 1250, RIFLE_STOCK);
-			ITEM(CUP_arifle_XM8_Carbine_FG, 1250, RIFLE_STOCK);
-			ITEM(CUP_arifle_XM8_Carbine, 1200, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_AK102, 800, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK102_top_rail, 850, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK102_railed, 875, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_AK101, 800, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK101_top_rail, 850, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK101_railed, 875, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_AK101_GL, 1000, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK101_GL_top_rail, 1150, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK101_GL_railed, 1175, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_AK108, 1100, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK108_top_rail, 1150, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK108_railed, 1175, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_AK108_GL, 1300, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK108_GL_top_rail, 1350, RIFLE_STOCK);
-			ITEM(CUP_arifle_AK108_GL_railed, 1375, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_ACRC_blk_68,1750,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACRC_snw_68,1750,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACRC_tan_68,1750,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACRC_wdl_68,1750,RIFLE_STOCK);
-
-			ITEM(CUP_arifle_ACRC_EGLM_blk_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACRC_EGLM_snw_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACRC_EGLM_tan_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACRC_EGLM_wdl_68,1900,RIFLE_STOCK);
-
-			ITEM(CUP_arifle_ACR_blk_68,1750,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_snw_68,1750,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_tan_68,1750,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_wdl_68,1750,RIFLE_STOCK);
-
-			ITEM(CUP_arifle_ACR_DMR_blk_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_DMR_snw_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_DMR_tan_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_DMR_wdl_68,1900,RIFLE_STOCK);
-
-			ITEM(CUP_arifle_ACR_EGLM_blk_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_EGLM_snw_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_EGLM_tan_68,1900,RIFLE_STOCK);
-			ITEM(CUP_arifle_ACR_EGLM_wdl_68,1900,RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk16_CQC, 2000, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_AFG, 2050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_AFG_black, 2050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_AFG_woodland, 2050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_FG, 2050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_FG_black, 2050, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_FG_woodland, 2050, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk16_CQC_SFG, 2025, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_SFG_black, 2025, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_SFG_woodland, 2025, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk16_CQC_EGLM, 2250, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_EGLM_black, 2250, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_CQC_EGLM_woodland, 2250, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk16_STD, 2100, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_STD_AFG, 2150, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_STD_AFG_black, 2150, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_STD_AFG_woodland, 2150, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_STD_black, 2150, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_STD_FG, 2150, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_STD_FG_black, 2150, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_STD_FG_woodland, 2150, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_STD_SFG, 2175, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk16_SV, 2250, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk16_SV_black, 2250, RIFLE_STOCK); 
-			ITEM(CUP_arifle_Mk16_SV_woodland, 2250, RIFLE_STOCK);
-
-			ITEM(arifle_SPAR_01_blk_F, 1700, RIFLE_STOCK);
-			ITEM(arifle_SPAR_01_GL_blk_F, 1850, RIFLE_STOCK);
-
-			ITEM(arifle_SPAR_01_khk_F, 1700, RIFLE_STOCK);
-			ITEM(arifle_SPAR_01_GL_khk_F, 1850, RIFLE_STOCK);
-
-			ITEM(arifle_AK12U_F, 1950, RIFLE_STOCK);
-			ITEM(arifle_AK12_F, 2000, RIFLE_STOCK);
-			ITEM(arifle_AK12_GL_F, 2150, RIFLE_STOCK);
-
-			ITEM(arifle_AK12U_arid_F, 1950, RIFLE_STOCK);
-			ITEM(arifle_AK12_arid_F, 2000, RIFLE_STOCK);
-			ITEM(arifle_AK12_GL_arid_F, 2150, RIFLE_STOCK);
-
-			ITEM(arifle_AK12U_lush_F, 1950, RIFLE_STOCK);
-			ITEM(arifle_AK12_lush_F, 2000, RIFLE_STOCK);
-			ITEM(arifle_AK12_GL_lush_F, 2150, RIFLE_STOCK);
-
-			ITEM(CUP_CZ_BREN2_762_8, 4050, RIFLE_STOCK);
-			ITEM(CUP_CZ_BREN2_762_14, 4250, RIFLE_STOCK);
-			ITEM(CUP_CZ_BREN2_762_14_GL, 4500, RIFLE_STOCK);
-
-			ITEM(arifle_ARX_blk_F, 3000, RIFLE_STOCK);
-			ITEM(arifle_ARX_ghex_F, 3000, RIFLE_STOCK);
-			ITEM(arifle_ARX_hex_F, 3000, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk17_CQC, 2500, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_AFG, 2550, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_AFG_black, 2550, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_AFG_woodland, 2550, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk17_CQC_Black, 2500, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_FG, 2550, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_FG_black, 2550, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_FG_woodland, 2550, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk17_CQC_woodland, 2500, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_EGLM, 2750, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_EGLM_black, 2750, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_CQC_EGLM_woodland, 2750, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk17_STD, 2700, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_STD_AFG, 2750, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_STD_AFG_black, 2750, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_STD_woodland, 2750, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk17_STD_black, 2700, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_STD_FG, 2750, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_STD_FG_black, 2750, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_STD_FG_woodland, 2750, RIFLE_STOCK);
-
-			ITEM(CUP_arifle_Mk17_STD_EGLM, 2900, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_STD_EGLM_black, 2900, RIFLE_STOCK);
-			ITEM(CUP_arifle_Mk17_STD_EGLM_woodland, 2900, RIFLE_STOCK);
 		};
 
 		class magazinesCup 
@@ -731,1744 +1409,621 @@
 				stock = MAGAZINE_STOCK;
 			};
 
-			class CUP_30Rnd_Sa58_M {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_Sa58_M_TracerG {
-				price = 140;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_Sa58_M_TracerR {
-				price = 140;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_Sa58_M_TracerY {
-				price = 140;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_50Rnd_UK59_762x54R_Tracer {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-
-			//m1014
-			class CUP_8Rnd_12Gauge_Slug {
-				price = 35;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_12Gauge_Pellets_No00_Buck {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_12Gauge_Pellets_No0_Buck {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_12Gauge_Pellets_No1_Buck {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_12Gauge_Pellets_No2_Buck {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_12Gauge_Pellets_No3_Buck {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_12Gauge_Pellets_No4_Buck {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_12Gauge_Pellets_No4_Bird {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_12Gauge_HE {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_6Rnd_12Gauge_Slug {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_12Gauge_Pellets_No00_Buck {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_12Gauge_Pellets_No0_Buck {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_12Gauge_Pellets_No1_Buck {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_12Gauge_Pellets_No2_Buck {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_12Gauge_Pellets_No3_Buck {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_12Gauge_Pellets_No4_Buck {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_12Gauge_Pellets_No4_Bird {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_12Gauge_HE {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-
-			///////////////////////////////////////////////////////
-			// Underbarrel
-			///////////////////////////////////////////////////////
-			class 1Rnd_HE_Grenade_shell {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class UGL_FlareWhite_F {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class UGL_FlareGreen_F {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class UGL_FlareRed_F {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class UGL_FlareYellow_F {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class UGL_FlareCIR_F {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 1Rnd_Smoke_Grenade_shell {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 1Rnd_SmokeRed_Grenade_shell {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 1Rnd_SmokeGreen_Grenade_shell {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 1Rnd_SmokeYellow_Grenade_shell {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 1Rnd_SmokePurple_Grenade_shell {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 1Rnd_SmokeBlue_Grenade_shell {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 1Rnd_SmokeOrange_Grenade_shell {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_1Rnd_HE_GP25_M {
-				price = 35;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_IlumFlareGreen_GP25_M {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_IlumFlareWhite_GP25_M {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_IlumFlareRed_GP25_M {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_FlareWhite_GP25_M {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_FlareGreen_GP25_M {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_FlareRed_GP25_M {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_FlareYellow_GP25_M {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_SMOKE_GP25_M {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_SmokeRed_GP25_M {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_SmokeGreen_GP25_M {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_SmokeYellow_GP25_M {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 3Rnd_HE_Grenade_shell {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_UGL_FlareWhite_F {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_UGL_FlareGreen_F {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_UGL_FlareRed_F {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_UGL_FlareYellow_F {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_UGL_FlareCIR_F {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_Smoke_Grenade_shell {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_SmokeRed_Grenade_shell {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_SmokeGreen_Grenade_shell {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_SmokeYellow_Grenade_shell {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_SmokePurple_Grenade_shell {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_SmokeBlue_Grenade_shell {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class 3Rnd_SmokeOrange_Grenade_shell {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_6Rnd_HE_GP25_M {
-				price = 500;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_6Rnd_FlareWhite_GP25_M {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_FlareGreen_GP25_M {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_FlareRed_GP25_M {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_FlareYellow_GP25_M {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_Smoke_GP25 {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_SmokeRed_GP25 {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_SmokeGreen_GP25 {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_SmokeYellow_GP25 {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_6Rnd_HE_M203 {
-				price = 500;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_6Rnd_FlareWhite_M203 {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_FlareGreen_M203 {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_FlareRed_M203 {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_FlareYellow_M203 {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_Smoke_M203 {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_SmokeRed_M203 {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_SmokeGreen_M203 {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_SmokeYellow_M203 {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_1Rnd_HE_M203 {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_HEDP_M203 {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_StarCluster_Red_M203 {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_StarCluster_Green_M203 {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_StarFlare_Red_M203 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_StarFlare_Green_M203 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_FlareWhite_M203 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_FlareGreen_M203 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_FlareRed_M203 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_FlareYellow_M203 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_Smoke_M203 {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_SmokeRed_M203 {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_SmokeGreen_M203 {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_SmokeYellow_M203 {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_1Rnd_StarFlare_White_M203 {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-
-			///////////////////////////////////////////////////////
-			// Pistols, SMGs
-			///////////////////////////////////////////////////////
-			class CUP_30Rnd_9x19_MP5 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_10Rnd_9x39_SP5_VSS_M {
-				price = 45;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_9x39_SP5_VSS_M {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_9x39_SP5_VIKHR_M {
-				price = 85;
-				stock = MAGAZINE_STOCK;
-			};
-
-
-			class CUP_30Rnd_9x19AP_Vityaz {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_9x19_Vityaz {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_64Rnd_9x19_Bizon_M {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_64Rnd_Green_Tracer_9x19_Bizon_M {
-				price = 115;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_64Rnd_Red_Tracer_9x19_Bizon_M {
-				price = 115;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_64Rnd_White_Tracer_9x19_Bizon_M {
-				price = 115;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_64Rnd_Yellow_Tracer_9x19_Bizon_M {
-				price = 115;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_12Rnd_45ACP_mk23 {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_15Rnd_9x19_M9 {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_13Rnd_9x19_Browning_HP {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_10Rnd_9x19_Compact {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_17Rnd_9x19_glock17 {
-				price = 35;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_18Rnd_9x19_Phantom {
-				price = 38;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_7Rnd_50AE_Deagle {
-				price = 80;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_45ACP_MAC10_M {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_45ACP_Yellow_Tracer_MAC10_M {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_45ACP_Green_Tracer_MAC10_M {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_9x18_Makarov_M {
-				price = 5;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_9x18_MakarovSD_M {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_12Rnd_9x18_PMM_M {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_45ACP_M {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_32Rnd_9x19_TEC9 {
-				price = 45;
-				stock = MAGAZINE_STOCK;
-			};
-			
-
-			class 9Rnd_45ACP_Mag {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class 6Rnd_45ACP_Cylinder {
-				price = 5;
-				stock = MAGAZINE_STOCK;
-			};
-			class 11Rnd_45ACP_Mag {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
-			class 16Rnd_9x21_Mag {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 16Rnd_9x21_red_Mag {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 16Rnd_9x21_green_Mag {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 16Rnd_9x21_yellow_Mag {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Mag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Red_Mag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Yellow_Mag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Green_Mag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 10Rnd_9x21_Mag {
-				price = 15;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_20Rnd_46x30_MP7 {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_40Rnd_46x30_MP7 {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_40Rnd_46x30_MP7_Red_Tracer {
-				price = 70;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_40Rnd_46x30_MP7_Green_Tracer {
-				price = 70;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_40Rnd_46x30_MP7_Yellow_Tracer {
-				price = 70;
-				stock = MAGAZINE_STOCK;
-			};
-
-			///////////////////////////////////////////////////////
-			// RIFLES
-			///////////////////////////////////////////////////////
-			class CUP_30Rnd_556x45_XM8 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_556x45_XM8 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_556x45_XM8 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_556x45_XM8 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			
-			class CUP_30Rnd_556x45_G36 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_556x45_G36 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_556x45_G36 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_556x45_G36_camo {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_556x45_G36_camo {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_556x45_G36_camo {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36_camo {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_556x45_G36_wdl {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_556x45_G36_wdl {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_556x45_G36_wdl {
-				price = 115;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36_wdl {
-				price = 115;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_556x45_G36_hex {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_556x45_G36_hex {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_556x45_G36_hex {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36_hex {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_556x45_CZ805 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_556x45_CZ805 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_556x45_CZ805 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_556x45_CZ805 {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_10Rnd_762x39_SaigaMk03_M {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_20Rnd_9x39_SP5_GROZA_M {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-			
-			class CUP_30Rnd_545x39_Fort224_M {
-				price = 35;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_545x39_Fort224_M {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_545x39_Fort224_M {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_White_Tracer_545x39_Fort224_M {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_545x39_Fort224_M {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_Subsonic_545x39_Fort224_M {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_65x39_caseless_green {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_green_mag_Tracer {
-				price = 110;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_556x45_Stanag {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Tracer_Red {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Tracer_Green {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Tracer_Yellow {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_red {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_green {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Sand_red {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Sand_Tracer_Red {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Sand_Tracer_Green {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_556x45_Stanag_Sand_Tracer_Yellow {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			
-			class 150Rnd_556x45_Drum_Mag_Tracer_F {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_556x45_Drum_Sand_Mag_F {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_556x45_Drum_Green_Mag_F {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_556x45_Drum_Sand_Mag_Tracer_F {
-				price = 265;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_556x45_Drum_Green_Mag_Tracer_F {
-				price = 265;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_65x39_caseless_mag {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_khaki_mag {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_black_mag {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_mag_Tracer {
-				price = 110;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_khaki_mag_Tracer {
-				price = 110;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_black_mag_Tracer {
-				price = 110;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_65x39_caseless_mag {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_65x39_caseless_khaki_mag {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_65x39_caseless_black_mag {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_65x39_caseless_mag_Tracer {
-				price = 375;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_65x39_caseless_khaki_mag_tracer {
-				price = 375;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_65x39_caseless_black_mag_tracer {
-				price = 375;
-				stock = MAGAZINE_STOCK;
-			};
-			
-			class 30Rnd_580x42_Mag_F {
-				price = 80;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_580x42_Mag_Tracer_F {
-				price = 95;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_Mag_F {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_Mag_Tracer_F {
-				price = 315;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_hex_Mag_F {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_hex_Mag_Tracer_F {
-				price = 315;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_ghex_Mag_F {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class 100Rnd_580x42_ghex_Mag_Tracer_F {
-				price = 315;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_545x39_Mag_F {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_545x39_Mag_Green_F {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_545x39_Mag_Tracer_F {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_545x39_Mag_Tracer_Green_F {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_762x39_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_Mag_Green_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_Mag_Tracer_F {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_Mag_Tracer_Green_F {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_762x39_AK12_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_762x39_AK12_Mag_Tracer_F {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75Rnd_762x39_Mag_F {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75Rnd_762x39_Mag_Tracer_F {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30rnd_762x39_AK12_Lush_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30rnd_762x39_AK12_Lush_Mag_Tracer_F {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Lush_Mag_F {
-				price = 400;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Lush_Mag_Tracer_F {
-				price = 425;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30rnd_762x39_AK12_Arid_Mag_F {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30rnd_762x39_AK12_Arid_Mag_Tracer_F {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Arid_Mag_F {
-				price = 400;
-				stock = MAGAZINE_STOCK;
-			};
-			class 75rnd_762x39_AK12_Arid_Mag_Tracer_F {
-				price = 425;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_65x39_caseless_msbs_mag {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_65x39_caseless_msbs_mag_Tracer {
-				price = 115;
-				stock = MAGAZINE_STOCK;
-			};
-			class 6Rnd_12Gauge_Pellets {
-				price = 10;
-				stock = MAGAZINE_STOCK;
-			};
-			class 6Rnd_12Gauge_Slug {
-				price = 20;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 10Rnd_50BW_Mag_F {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_680x43_Stanag {
-				price = 110;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_680x43_Stanag_Tracer_Red {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_680x43_Stanag_Tracer_Green {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_680x43_Stanag_Tracer_Yellow {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_545x39_AK74M_M {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_White_Tracer_545x39_AK74M_M {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_545x39_AK74M_M {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_45Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_45Rnd_TE4_LRT4_Green_Tracer_545x39_RPK74M_M {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_60Rnd_545x39_AK74M_M {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_60Rnd_TE1_Green_Tracer_545x39_AK74M_M {
-				price = 135;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_60Rnd_TE1_White_Tracer_545x39_AK74M_M {
-				price = 135;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_60Rnd_TE1_Red_Tracer_545x39_AK74M_M {
-				price = 135;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_60Rnd_TE1_Yellow_Tracer_545x39_AK74M_M {
-				price = 135;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_556x45_AK {
-				price = 40;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_556x45_AK {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_556x45_AK {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_556x45_AK {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_556x45_AUG {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_556x45_AUG {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_556x45_AUG {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_556x45_AUG {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_762x39_CZ807 {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_762x39_CZ807 {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_762x39_CZ807 {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_762x39_CZ807 {
-				price = 150;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_20Rnd_762x51_B_SCAR {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_SCAR {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_SCAR {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_White_Tracer_762x51_SCAR {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			
-			class CUP_20Rnd_762x51_B_SCAR_bkl {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_SCAR_bkl {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_SCAR_bkl {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR_bkl {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_White_Tracer_762x51_SCAR_bkl {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_20Rnd_762x51_B_SCAR_wdl {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_SCAR_wdl {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_SCAR_wdl {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR_wdl {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_White_Tracer_762x51_SCAR_wdl {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_762x51_1_B_SCAR {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_762x51_1_SCAR {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_762x51_1_SCAR {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_762x51_1_SCAR {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_White_Tracer_762x51_1_SCAR {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_30Rnd_762x51_2_B_SCAR {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_762x51_2_SCAR {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_762x51_2_SCAR {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_762x51_2_SCAR {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_White_Tracer_762x51_2_SCAR {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_50Rnd_762x51_B_SCAR {
-				price = 400;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_50Rnd_TE1_Yellow_Tracer_762x51_SCAR {
-				price = 425;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_50Rnd_TE1_Red_Tracer_762x51_SCAR {
-				price = 425;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_50Rnd_TE1_Green_Tracer_762x51_SCAR {
-				price = 425;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_50Rnd_TE1_White_Tracer_762x51_SCAR {
-				price = 425;
-				stock = MAGAZINE_STOCK;
-			};
-
-			///////////////////////////////////////////////////////
-			// DMRs, Sniper Rifles
-			///////////////////////////////////////////////////////
-			class CUP_10Rnd_762x39_SKS_M {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_20Rnd_762x51_DMR {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_DMR {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_DMR {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_DMR {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_White_Tracer_762x51_DMR {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_5Rnd_762x51_M24 {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_5Rnd_762x54_Mosin_M {
-				price = 65;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_5Rnd_86x70_L115A1 {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_20Rnd_762x51_G3 {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_G3 {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_G3 {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_G3 {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
-
-			class CUP_20Rnd_762x51_B_M110 {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_White_Tracer_762x51_M110 {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_M110 {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_M110 {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_M110 {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_20Rnd_762x51_FNFAL_M {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_FNFAL_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_FNFAL_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_FNFAL_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_762x51_FNFAL_Desert_M {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_FNFAL_Desert_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_FNFAL_Desert_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_FNFAL_Desert_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_762x51_FNFAL_Woodland_M {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Yellow_Tracer_762x51_FNFAL_Woodland_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Red_Tracer_762x51_FNFAL_Woodland_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_TE1_Green_Tracer_762x51_FNFAL_Woodland_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_762x51_FNFAL_M {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Yellow_Tracer_762x51_FNFAL_M {
-				price = 275;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Red_Tracer_762x51_FNFAL_M {
-				price = 275;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_30Rnd_TE1_Green_Tracer_762x51_FNFAL_M {
-				price = 275;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_5x_22_LR_17_HMR_M {
-				price = 25;
-				stock = MAGAZINE_STOCK;
-			};
-			class 5Rnd_127x108_Mag {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class 5Rnd_127x108_APDS_Mag {
-				price = 400;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 7Rnd_408_Mag {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 20Rnd_762x51_Mag {
-				price = 175;
-				stock = MAGAZINE_STOCK;
-			};
-			class 10Rnd_Mk14_762x51_Mag {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 10Rnd_762x54_Mag {
-				price = 125;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 10Rnd_127x54_Mag {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 10Rnd_93x64_DMR_05_Mag {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 10Rnd_338_Mag {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_10Rnd_127x99_M107 {
-				price = 400;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_5Rnd_127x108_KSVK_M {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-
-			
-			///////////////////////////////////////////////////////
-			// MGs
-			///////////////////////////////////////////////////////
-			class CUP_100Rnd_556x45_BetaCMag {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_556x45_BetaCMag_camo {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_556x45_BetaCMag_wdl {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_556x45_BetaCMag_hex {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag_camo {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag_camo {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag_camo {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag_wdl {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag_wdl {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag_wdl {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag_hex {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag_hex {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag_hex {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_200Rnd_TE4_Red_Tracer_556x45_M249 {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_200Rnd_TE4_Yellow_Tracer_556x45_M249 {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_200Rnd_TE4_Green_Tracer_556x45_M249 {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_200Rnd_TE1_Red_Tracer_556x45_M249 {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_200Rnd_TE4_Green_Tracer_556x45_M249_Pouch {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_200Rnd_TE4_Red_Tracer_556x45_M249_Pouch {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_200Rnd_TE4_Yellow_Tracer_556x45_M249_Pouch {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_200Rnd_TE1_Red_Tracer_556x45_M249_Pouch {
-				price = 225;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_35Rnd_556x45_Galil_Mag {
-				price = 60;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_35Rnd_556x45_Red_Tracer_Galil_Mag {
-				price = 85;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_35Rnd_556x45_Green_Tracer_Galil_Mag {
-				price = 85;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_50Rnd_556x45_Galil_Mag {
-				price = 100;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_50Rnd_556x45_Red_Tracer_Galil_Mag {
-				price = 110;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_50Rnd_556x45_Green_Tracer_Galil_Mag {
-				price = 110;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_25Rnd_762x51_Green_Tracers_Galil_Mag {
-				price = 195;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_25Rnd_762x51_Red_Tracers_Galil_Mag {
-				price = 195;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_25Rnd_762x51_Galil_Mag {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Red_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-
-
-			class CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_100Rnd_TE4_LRT4_Yellow_Tracer_762x51_Belt_M {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 200Rnd_556x45_Box_F {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_556x45_Box_Red_F {
-				price = 275;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_556x45_Box_Tracer_F {
-				price = 275;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_556x45_Box_Tracer_Red_F {
-				price = 275;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 200Rnd_65x39_cased_Box {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Tracer {
-				price = 260;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Red {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 200Rnd_65x39_cased_Box_Tracer_Red {
-				price = 260;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 150Rnd_762x54_Box {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class 150Rnd_762x54_Box_Tracer {
-				price = 300;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 130Rnd_338_Mag {
-				price = 450;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 150Rnd_93x64_Mag {
-				price = 600;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_120Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_120Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_120Rnd_TE4_LRT4_Yellow_Tracer_762x51_Belt_M {
-				price = 325;
-				stock = MAGAZINE_STOCK;
-			};
-
-			///////////////////////////////////////////////////////
-			// SMGs
-			///////////////////////////////////////////////////////
-			class 50Rnd_570x28_SMG_03 {
-				price = 75;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_9x21_Mag_SMG_02 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Mag_SMG_02_Tracer_Red {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Mag_SMG_02_Tracer_Yellow {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_9x21_Mag_SMG_02_Tracer_Green {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class 30Rnd_45ACP_Mag_SMG_01 {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_45ACP_Mag_SMG_01_Tracer_Green {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_45ACP_Mag_SMG_01_Tracer_Red {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-			class 30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow {
-				price = 50;
-				stock = MAGAZINE_STOCK;
-			};
-
-			///////////////////////////////////////////////////////
-			// Special Weapons
-			///////////////////////////////////////////////////////
-			class CUP_20Rnd_B_AA12_Pellets {
-				price = 200;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_B_AA12_74Slug {
-				price = 250;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_B_AA12_HE {
-				price = 350;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_B_Beneli_74Pellets {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_6Rnd_B_Benelli_74Slug {
-				price = 45;
-				stock = MAGAZINE_STOCK;
-			};
-
-			class CUP_20Rnd_B_Saiga12_74Slug_M {
-				price = 30;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_B_Saiga12_74Pellets_M {
-				price = 20;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_8Rnd_B_Saiga12_74Slug_M {
-				price = 20;
-				stock = MAGAZINE_STOCK;
-			};
-			class CUP_20Rnd_B_Saiga12_74Pellets_M {
-				price = 35;
-				stock = MAGAZINE_STOCK;
-			};
+			ITEM( CUP_100Rnd_556x45_BetaCMag, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_556x45_BetaCMag_ar15, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_556x45_BetaCMag_camo, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_556x45_BetaCMag_hex, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_556x45_BetaCMag_wdl, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag_ar15, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag_camo, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag_hex, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag_wdl, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag_ar15, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag_camo, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag_hex, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Red_Tracer_556x45_BetaCMag_wdl, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag_ar15, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag_camo, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag_hex, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE1_Yellow_Tracer_556x45_BetaCMag_wdl, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_Green_Tracer_556x45_M249, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Red_M, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_LRT4_Yellow_Tracer_762x51_Belt_M, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_Red_Tracer_556x45_M249, 20 + BULPRICE*100, 100);
+			ITEM( CUP_100Rnd_TE4_Yellow_Tracer_556x45_M249, 20 + BULPRICE*100, 100);
+			ITEM( CUP_10Rnd_127x99_M107, 20 + LARGBULPRICE*10, 100);
+			ITEM( CUP_10Rnd_50BW_Mag_M4_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_762x39_SaigaMk03_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_762x39_SKS_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_762x51_CZ750, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_762x51_CZ750_Tracer, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_762x51_FNFAL_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_762x54_SVD_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_9x19_Compact, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_9x19_Saiga9, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_9x39_SP5_VSS_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_B_765x17_Ball_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_TE1_Green_Tracer_762x51_FNFAL_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_TE1_Red_Tracer_762x51_FNFAL_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_10Rnd_TE1_Yellow_Tracer_762x51_FNFAL_M, 20 + BULPRICE*10, 100);
+			ITEM( CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M, 20 + BULPRICE*120, 100);
+			ITEM( CUP_120Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M, 20 + BULPRICE*120, 100);
+			ITEM( CUP_120Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M, 20 + BULPRICE*120, 100);
+			ITEM( CUP_120Rnd_TE4_LRT4_Yellow_Tracer_762x51_Belt_M, 20 + BULPRICE*120, 100);
+			ITEM( CUP_12Rnd_45ACP_mk23, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_9x18_PMM_M, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_Bird_4, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_Buck_0, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_Buck_00, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_Buck_1, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_Buck_2, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_Buck_3, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_Buck_4, 20 + BULPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_HE, 20 + GRENPRICE*12, 100);
+			ITEM( CUP_12Rnd_B_Saiga12_Slug, 20 + BULPRICE*12, 100);
+			ITEM( CUP_13Rnd_9x19_Browning_HP, 20 + BULPRICE*13, 100);
+			ITEM( CUP_15Rnd_9x19_M9, 20 + BULPRICE*15, 100);
+			ITEM( CUP_15Rnd_Sa58_M, 20 + BULPRICE*15, 100);
+			ITEM( CUP_15Rnd_Sa58_M_TracerG, 20 + BULPRICE*15, 100);
+			ITEM( CUP_15Rnd_Sa58_M_TracerR, 20 + BULPRICE*15, 100);
+			ITEM( CUP_15Rnd_Sa58_M_TracerY, 20 + BULPRICE*15, 100);
+			ITEM( CUP_16Rnd_9x19_cz75, 20 + BULPRICE*16, 100);
+			ITEM( CUP_17Rnd_9x19_glock17, 20 + BULPRICE*17, 100);
+			ITEM( CUP_17Rnd_9x19_M17_Black, 20 + BULPRICE*17, 100);
+			ITEM( CUP_17Rnd_9x19_M17_Coyote, 20 + BULPRICE*17, 100);
+			ITEM( CUP_17Rnd_9x19_M17_Green, 20 + BULPRICE*17, 100);
+			ITEM( CUP_17Rnd_9x19_P30L, 20 + BULPRICE*17, 100);
+			ITEM( CUP_18Rnd_9x19_Phantom, 20 + BULPRICE*18, 100);
+			ITEM( CUP_1Rnd_12Gauge_HE, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_12Gauge_Pellets_No00_Buck, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_12Gauge_Pellets_No0_Buck, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_12Gauge_Pellets_No1_Buck, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_12Gauge_Pellets_No2_Buck, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_12Gauge_Pellets_No3_Buck, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_12Gauge_Pellets_No4_Bird, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_12Gauge_Pellets_No4_Buck, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_12Gauge_Slug, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_762x51_CZ584, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_B_CZ584_74Pellets, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_B_CZ584_74Slug, 20 + BULPRICE*1, 100);
+			ITEM( CUP_1Rnd_HE_GP25_M, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_HE_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_HEDP_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_SMOKE_GP25_M, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_Smoke_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_SmokeGreen_GP25_M, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_SmokeGreen_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_SmokeRed_GP25_M, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_SmokeRed_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_SmokeYellow_GP25_M, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_SmokeYellow_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_StarCluster_Green_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_StarCluster_Red_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_StarCluster_White_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_StarFlare_Green_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_StarFlare_Red_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_1Rnd_StarFlare_White_M203, 20 + GRENPRICE*1, 100);
+			ITEM( CUP_200Rnd_TE1_LRT4_Red_Tracer_762x51_Belt_M, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE1_Red_Tracer_556x45_M249, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE1_Red_Tracer_556x45_M249_Pouch, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Green_Tracer_556x45_L110A1, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Green_Tracer_556x45_M249, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Green_Tracer_556x45_M249_Pouch, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Red_Tracer_556x45_L110A1, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Red_Tracer_556x45_M249, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Red_Tracer_556x45_M249_Pouch, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Yellow_Tracer_556x45_L110A1, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Yellow_Tracer_556x45_M249, 20 + BULPRICE*200, 100);
+			ITEM( CUP_200Rnd_TE4_Yellow_Tracer_556x45_M249_Pouch, 20 + BULPRICE*200, 100);
+			ITEM( CUP_20Rnd_46x30_MP7, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_545x39_AKSU_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_556x45_Stanag, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_556x45_Stanag_Tracer_Green, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_556x45_Stanag_Tracer_Red, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_556x45_Stanag_Tracer_Yellow, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x39_AMD63_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_B_M110, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_B_SCAR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_B_SCAR_bkl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_B_SCAR_wdl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_CZ805B, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_DMR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_FNFAL_Desert_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_FNFAL_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_FNFAL_Woodland_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_G3, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_HK417, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_HK417_Camo_Desert, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_HK417_Camo_Wood, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_762x51_L129_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_9x39_SP5_GROZA_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_9x39_SP5_VSS_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_765x17_Ball_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_74Slug, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Bird_4, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Buck_0, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Buck_00, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Buck_1, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Buck_2, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Buck_3, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Buck_4, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_HE, 20 + GRENPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Pellets, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_AA12_Slug, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_Saiga12_74Pellets_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_B_Saiga12_74Slug_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_Sa58_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_Sa58_M_TracerG, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_Sa58_M_TracerR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_Sa58_M_TracerY, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_Subsonic_545x39_AKSU_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_Subsonic_762x39_AMD63_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_CZ805B, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_DMR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_FNFAL_Desert_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_FNFAL_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_FNFAL_Woodland_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_G3, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_HK417, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_M110, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR_bkl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR_wdl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_CZ805B, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_DMR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_FNFAL_Desert_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_FNFAL_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_FNFAL_Woodland_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_G3, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_HK417, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_M110, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_SCAR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_SCAR_bkl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Red_Tracer_762x51_SCAR_wdl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_White_Tracer_762x51_CZ805B, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_White_Tracer_762x51_DMR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_White_Tracer_762x51_M110, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_White_Tracer_762x51_SCAR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_White_Tracer_762x51_SCAR_bkl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_White_Tracer_762x51_SCAR_wdl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_CZ805B, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_DMR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_FNFAL_Desert_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_FNFAL_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_FNFAL_Woodland_M, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_G3, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_HK417, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_M110, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_SCAR, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_SCAR_bkl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_20Rnd_TE1_Yellow_Tracer_762x51_SCAR_wdl, 20 + BULPRICE*20, 100);
+			ITEM( CUP_21Rnd_9x19_M17_Black, 20 + BULPRICE*21, 100);
+			ITEM( CUP_21Rnd_9x19_M17_Coyote, 20 + BULPRICE*21, 100);
+			ITEM( CUP_21Rnd_9x19_M17_Green, 20 + BULPRICE*21, 100);
+			ITEM( CUP_25Rnd_556x45_Famas, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Arid, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Arid_Tracer_Green, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Arid_Tracer_Red, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Arid_Tracer_Yellow, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Tracer_Green, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Tracer_Red, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Tracer_Yellow, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Wood, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Wood_Tracer_Green, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Wood_Tracer_Red, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_556x45_Famas_Wood_Tracer_Yellow, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_762x51_Galil_Mag, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_762x51_Green_Tracers_Galil_Mag, 20 + BULPRICE*25, 100);
+			ITEM( CUP_25Rnd_762x51_Red_Tracers_Galil_Mag, 20 + BULPRICE*25, 100);
+			ITEM( CUP_2Rnd_12Gauge_HE, 20 + GRENPRICE*2, 100);
+			ITEM( CUP_2Rnd_12Gauge_Pellets_No00_Buck, 20 + BULPRICE*2, 100);
+			ITEM( CUP_2Rnd_12Gauge_Pellets_No0_Buck, 20 + BULPRICE*2, 100);
+			ITEM( CUP_2Rnd_12Gauge_Pellets_No1_Buck, 20 + BULPRICE*2, 100);
+			ITEM( CUP_2Rnd_12Gauge_Pellets_No2_Buck, 20 + BULPRICE*2, 100);
+			ITEM( CUP_2Rnd_12Gauge_Pellets_No3_Buck, 20 + BULPRICE*2, 100);
+			ITEM( CUP_2Rnd_12Gauge_Pellets_No4_Bird, 20 + BULPRICE*2, 100);
+			ITEM( CUP_2Rnd_12Gauge_Pellets_No4_Buck, 20 + BULPRICE*2, 100);
+			ITEM( CUP_2Rnd_12Gauge_Slug, 20 + BULPRICE*2, 100);
+			ITEM( CUP_30Rnd_45ACP_Green_Tracer_M3A1_BLK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Green_Tracer_M3A1_GRN_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Green_Tracer_M3A1_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Green_Tracer_M3A1_SND_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Green_Tracer_MAC10_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_M3A1_BLK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_M3A1_GRN_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_M3A1_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_M3A1_SND_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_MAC10_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Red_Tracer_M3A1_BLK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Red_Tracer_M3A1_GRN_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Red_Tracer_M3A1_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Red_Tracer_M3A1_SND_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Yellow_Tracer_M3A1_BLK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Yellow_Tracer_M3A1_GRN_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Yellow_Tracer_M3A1_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Yellow_Tracer_M3A1_SND_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_45ACP_Yellow_Tracer_MAC10_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK12_Green_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK12_Grey_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK12_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK12_Tan_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK74_plum_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK74M_camo_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK74M_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK74M_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_AK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_545x39_Fort224_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_AK, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_AK19_Green_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_AK19_Grey_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_AK19_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_AK19_Tan_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_AUG, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_CZ805, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Emag, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_EMAG_Olive, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_EMAG_Tan, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Emag_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Emag_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Emag_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_G36, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_G36_camo, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_G36_hex, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_G36_wdl, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_PULL, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_PULL_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_PULL_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_PULL_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_RPL, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_RPL_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_RPL_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_RPL_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_BLACK_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_PULL, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_PULL_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_PULL_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_PULL_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_RPL, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_RPL_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_RPL_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_RPL_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_COYOTE_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_PULL, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_PULL_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_PULL_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_PULL_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_RPL, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_RPL_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_RPL_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_RPL_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_OD_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_QP, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_QP_Olive, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_QP_Tan, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_QP_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_QP_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_PMAG_QP_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_L85, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_L85_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_L85_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_L85_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_black, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_black_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_black_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_black_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_woodland, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_woodland_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_woodland_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Mk16_woodland_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Stanag_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_TE1_Tracer_Green_AK19_Green_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_TE1_Tracer_Green_AK19_Grey_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_TE1_Tracer_Green_AK19_Tan_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_Tracer_Red_AK19_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_X95, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_X95_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_X95_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_X95_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_556x45_XM8, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_680x43_Stanag, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_680x43_Stanag_Tracer_Green, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_680x43_Stanag_Tracer_Red, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_680x43_Stanag_Tracer_Yellow, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AK103_bakelite_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AK15_Desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AK15_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AK15_OD_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AK15_Tan_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AK47_bakelite_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AK47_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AK47_TK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_AKM_bakelite_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x39_CZ807, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x51_1_B_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x51_2_B_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_762x51_FNFAL_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_9x19_EVO, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_9x19_MP5, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_9x19_UZI, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_9x19_Vityaz, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_9x19AP_Vityaz, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_9x39_SP5_VIKHR_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Green_Tracer_9x19_MP5, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Red_Tracer_9x19_MP5, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_desert_M_TracerG, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_desert_M_TracerR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_desert_M_TracerY, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_M_TracerG, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_M_TracerR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_M_TracerY, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_woodland_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_woodland_M_TracerG, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_woodland_M_TracerR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Sa58_woodland_M_TracerY, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_545x39_AK74_plum_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_545x39_AK74M_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_545x39_AK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_545x39_Fort224_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_762x39_AK103_bakelite_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_762x39_AK47_bakelite_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_762x39_AK47_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_762x39_AKM_bakelite_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Subsonic_9x19_MP5, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK12_Green_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK12_Grey_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK12_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK12_Tan_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK74_plum_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK74M_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK_camo_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_AK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_545x39_Fort224_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_556x45_AK, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_556x45_AUG, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_556x45_CZ805, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_556x45_G36, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_556x45_G36_camo, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_556x45_G36_hex, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_556x45_G36_wdl, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_556x45_XM8, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_AK103_bakelite_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_AK15_Desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_AK15_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_AK15_OD_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_AK15_Tan_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_AK47_bakelite_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_AK47_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_AKM_bakelite_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x39_CZ807, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x51_1_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x51_2_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Green_Tracer_762x51_FNFAL_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_545x39_AK74_plum_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_545x39_AK74M_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_545x39_AK_camo_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_545x39_AK_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_545x39_AK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_545x39_Fort224_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_556x45_AK, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_556x45_AUG, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_556x45_CZ805, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_556x45_G36, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_556x45_G36_camo, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_556x45_G36_hex, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_556x45_G36_wdl, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_556x45_XM8, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_762x39_AK103_bakelite_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_762x39_AK47_bakelite_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_762x39_AK47_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_762x39_AKM_bakelite_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_762x39_CZ807, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_762x51_1_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_762x51_2_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Red_Tracer_762x51_FNFAL_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_White_Tracer_545x39_AK74_plum_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_White_Tracer_545x39_AK74M_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_White_Tracer_545x39_AK_camo_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_White_Tracer_545x39_AK_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_White_Tracer_545x39_AK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_White_Tracer_545x39_Fort224_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_White_Tracer_762x51_1_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_White_Tracer_762x51_2_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_545x39_AK74_plum_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_545x39_AK74M_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_545x39_AK_camo_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_545x39_AK_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_545x39_AK_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_545x39_Fort224_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_556x45_AK, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_556x45_AUG, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_556x45_CZ805, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36_camo, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36_hex, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36_wdl, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_556x45_XM8, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_762x39_AK47_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_762x39_AKM_bakelite_desert_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_762x39_bakelite_AK103_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_762x39_bakelite_AK47_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_762x39_CZ807, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_762x51_1_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_762x51_2_SCAR, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_TE1_Yellow_Tracer_762x51_FNFAL_M, 20 + BULPRICE*30, 100);
+			ITEM( CUP_30Rnd_Yellow_Tracer_9x19_MP5, 20 + BULPRICE*30, 100);
+			ITEM( CUP_32Rnd_9x19_TEC9, 20 + BULPRICE*32, 100);
+			ITEM( CUP_32Rnd_9x19_UZI_M, 20 + BULPRICE*32, 100);
+			ITEM( CUP_35Rnd_556x45_Galil_Mag, 20 + BULPRICE*35, 100);
+			ITEM( CUP_35Rnd_556x45_Green_Tracer_Galil_Mag, 20 + BULPRICE*35, 100);
+			ITEM( CUP_35Rnd_556x45_Red_Tracer_Galil_Mag, 20 + BULPRICE*35, 100);
+			ITEM( CUP_40Rnd_46x30_MP7, 20 + BULPRICE*40, 100);
+			ITEM( CUP_40Rnd_46x30_MP7_Green_Tracer, 20 + BULPRICE*40, 100);
+			ITEM( CUP_40Rnd_46x30_MP7_Red_Tracer, 20 + BULPRICE*40, 100);
+			ITEM( CUP_40Rnd_46x30_MP7_Yellow_Tracer, 20 + BULPRICE*40, 100);
+			ITEM( CUP_40Rnd_TE4_LRT4_Green_Tracer_762x39_RPK_M, 20 + BULPRICE*40, 100);
+			ITEM( CUP_45Rnd_Sa58_M, 20 + BULPRICE*45, 100);
+			ITEM( CUP_45Rnd_Sa58_M_TracerG, 20 + BULPRICE*45, 100);
+			ITEM( CUP_45Rnd_Sa58_M_TracerR, 20 + BULPRICE*45, 100);
+			ITEM( CUP_45Rnd_Sa58_M_TracerY, 20 + BULPRICE*45, 100);
+			ITEM( CUP_45Rnd_TE4_LRT4_Green_Tracer_545x39_RPK74M_M, 20 + BULPRICE*45, 100);
+			ITEM( CUP_45Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M, 20 + BULPRICE*45, 100);
+			ITEM( CUP_50Rnd_556x45_Galil_Mag, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_556x45_Green_Tracer_Galil_Mag, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_556x45_Red_Tracer_Galil_Mag, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_570x28_Green_Tracer_P90_M, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_570x28_Red_Tracer_P90_M, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_570x28_Yellow_Tracer_P90_M, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_762x51_B_SCAR, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_B_765x17_Ball_M, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_TE1_Green_Tracer_762x51_SCAR, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_TE1_Red_Tracer_762x51_SCAR, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_TE1_White_Tracer_762x51_SCAR, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_TE1_Yellow_Tracer_762x51_SCAR, 20 + BULPRICE*50, 100);
+			ITEM( CUP_50Rnd_UK59_762x54R_Tracer, 20 + BULPRICE*50, 100);
+			ITEM( CUP_5Rnd_127x108_KSVK_M, 20 + LARGBULPRICE*5, 100);
+			ITEM( CUP_5Rnd_127x99_as50_M, 20 + LARGBULPRICE*5, 100);
+			ITEM( CUP_5Rnd_762x51_M24, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_762x54_Mosin_M, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_762x67_G22, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_762x67_M2010_M, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_Bird_4, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_Buck_0, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_Buck_00, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_Buck_1, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_Buck_2, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_Buck_3, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_Buck_4, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_HE, 20 + GRENPRICE*5, 100);
+			ITEM( CUP_5Rnd_B_Saiga12_Slug, 20 + BULPRICE*5, 100);
+			ITEM( CUP_5Rnd_TE1_Red_Tracer_762x67_M2010_M, 20 + BULPRICE*5, 100);
+			ITEM( CUP_60Rnd_545x39_AK74M_M, 20 + BULPRICE*60, 100);
+			ITEM( CUP_60Rnd_556x45_SureFire, 20 + BULPRICE*60, 100);
+			ITEM( CUP_60Rnd_556x45_SureFire_Tracer_Green, 20 + BULPRICE*60, 100);
+			ITEM( CUP_60Rnd_556x45_SureFire_Tracer_Red, 20 + BULPRICE*60, 100);
+			ITEM( CUP_60Rnd_556x45_SureFire_Tracer_Yellow, 20 + BULPRICE*60, 100);
+			ITEM( CUP_60Rnd_TE1_Green_Tracer_545x39_AK74M_M, 20 + BULPRICE*60, 100);
+			ITEM( CUP_60Rnd_TE1_Red_Tracer_545x39_AK74M_M, 20 + BULPRICE*60, 100);
+			ITEM( CUP_60Rnd_TE1_White_Tracer_545x39_AK74M_M, 20 + BULPRICE*60, 100);
+			ITEM( CUP_60Rnd_TE1_Yellow_Tracer_545x39_AK74M_M, 20 + BULPRICE*60, 100);
+			ITEM( CUP_64Rnd_9x19_Bizon_M, 20 + BULPRICE*64, 100);
+			ITEM( CUP_64Rnd_Green_Tracer_9x19_Bizon_M, 20 + BULPRICE*64, 100);
+			ITEM( CUP_64Rnd_Red_Tracer_9x19_Bizon_M, 20 + BULPRICE*64, 100);
+			ITEM( CUP_64Rnd_White_Tracer_9x19_Bizon_M, 20 + BULPRICE*64, 100);
+			ITEM( CUP_64Rnd_Yellow_Tracer_9x19_Bizon_M, 20 + BULPRICE*64, 100);
+			ITEM( CUP_6Rnd_12Gauge_HE, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_12Gauge_Pellets_No00_Buck, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_12Gauge_Pellets_No0_Buck, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_12Gauge_Pellets_No1_Buck, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_12Gauge_Pellets_No2_Buck, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_12Gauge_Pellets_No3_Buck, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_12Gauge_Pellets_No4_Bird, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_12Gauge_Pellets_No4_Buck, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_12Gauge_Slug, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_45ACP_M, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_762x51_R700, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_B_Beneli_74Pellets, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_B_Benelli_74Slug, 20 + BULPRICE*6, 100);
+			ITEM( CUP_6Rnd_FlareGreen_GP25_M, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_FlareGreen_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_FlareRed_GP25_M, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_FlareRed_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_FlareWhite_GP25_M, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_FlareWhite_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_FlareYellow_GP25_M, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_FlareYellow_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_HE_GP25_M, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_HE_Grenade_M, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_HE_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_HE_M203_heli, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_Smoke_GP25, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_Smoke_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_SmokeGreen_GP25, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_SmokeGreen_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_SmokeRed_GP25, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_SmokeRed_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_SmokeYellow_GP25, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_6Rnd_SmokeYellow_M203, 20 + GRENPRICE*6, 100);
+			ITEM( CUP_72Rnd_9x19_UZI_M, 20 + BULPRICE*72, 100);
+			ITEM( CUP_75Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M, 20 + BULPRICE*75, 100);
+			ITEM( CUP_75Rnd_TE4_LRT4_Green_Tracer_762x39_RPK_M, 20 + BULPRICE*75, 100);
+			ITEM( CUP_7Rnd_45ACP_1911, 20 + BULPRICE*7, 100);
+			ITEM( CUP_7Rnd_50AE_Deagle, 20 + LARGBULPRICE*7, 100);
+			ITEM( CUP_7Rnd_B_CZ584_OFP, 20 + BULPRICE*7, 100);
+			ITEM( CUP_8Rnd_12Gauge_HE, 20 + GRENPRICE*8, 100);
+			ITEM( CUP_8Rnd_12Gauge_Pellets_No00_Buck, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_12Gauge_Pellets_No0_Buck, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_12Gauge_Pellets_No1_Buck, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_12Gauge_Pellets_No2_Buck, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_12Gauge_Pellets_No3_Buck, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_12Gauge_Pellets_No4_Bird, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_12Gauge_Pellets_No4_Buck, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_12Gauge_Slug, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_357SW_M, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_762x25_TT, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_9x18_Makarov_M, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_9x18_MakarovSD_M, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_B_Beneli_74Pellets, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_B_Beneli_74Slug, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_B_Saiga12_74Pellets_M, 20 + BULPRICE*8, 100);
+			ITEM( CUP_8Rnd_B_Saiga12_74Slug_M, 20 + BULPRICE*8, 100);
+
+			ITEM(CUP_FlareGreen_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareGreen_GP25_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareGreen_M203, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareRed_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareRed_GP25_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareRed_M203, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareWhite_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareWhite_GP25_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareWhite_M203, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareYellow_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareYellow_GP25_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_FlareYellow_M203, 20 + GRENPRICE, 100);
+			ITEM(CUP_HandGrenade_L109A1_HE, 20 + GRENPRICE, 100);
+			ITEM(CUP_HandGrenade_L109A2_HE, 20 + GRENPRICE, 100);
+			ITEM(CUP_HandGrenade_M67, 20 + GRENPRICE, 100);
+			ITEM(CUP_HandGrenade_RGD5, 20 + GRENPRICE, 100);
+			ITEM(CUP_HandGrenade_RGO, 20 + GRENPRICE, 100);
+			ITEM(CUP_IllumFlareGreen_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_IllumFlareRed_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_IllumFlareWhite_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_IllumFlareYellow_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_IlumFlareGreen_GP25_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_IlumFlareRed_GP25_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_IlumFlareWhite_GP25_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_StarClusterGreen_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_StarClusterRed_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_StarClusterWhite_265_M, 20 + GRENPRICE, 100);
+			ITEM(CUP_StarClusterYellow_265_M, 20 + GRENPRICE, 100);
 		};
 
 		class underbarrelCup 
@@ -3298,4 +2853,168 @@
 			ITEM(I_UavTerminal, 800, MISC_STOCK);
 			ITEM(O_UavTerminal, 800, MISC_STOCK);
 			ITEM(B_UavTerminal, 800, MISC_STOCK);
+			
+			ITEM(CUP_H_RUS_K6_3_Shield_Down, 5000, MISC_STOCK);
+			ITEM(CUP_H_RUS_K6_3_Shield_Down_black, 5000, MISC_STOCK);
+			ITEM(CUP_H_RUS_K6_3_Shield_Down_khaki, 5000, MISC_STOCK);
+			
+			ITEM(CUP_H_RUS_Altyn_Shield_Down, 5000, MISC_STOCK);
+			ITEM(CUP_H_RUS_Altyn_Shield_Down_black, 5000, MISC_STOCK);
+			ITEM(CUP_H_RUS_Altyn_Shield_Down_khaki, 5000, MISC_STOCK);
+			
+			ITEM(CUP_V_B_Ciras_Black, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Black2, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Black3, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Black4, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Coyote, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Coyote2, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Coyote3, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Coyote4, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Coyote_USSF, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Khaki, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Khaki2, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Khaki3, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Khaki4, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_MCam, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_MCam2, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Mcam3, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Mcam4, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Olive, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Olive2, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Olive3, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Olive4, 1500, MISC_STOCK);
+			ITEM(CUP_V_B_Ciras_Olive_USSF, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_co_black, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_co_des, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_co_vz95, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_des, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_light_vz95, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_nk_black, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_nk_des, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_nk_vz95, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_ok_black, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_ok_des, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_ok_vz95, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_vz95, 1500, MISC_STOCK);
+			ITEM(CUP_V_CZ_NPP2006_vz95_black, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_AK_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_AK_Med_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_AK_Med_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_AK_Med_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_AK_Med_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_AK_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_AK_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_AK_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_PKP_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_PKP_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_PKP_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_PKP_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_AK_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_AK_Med_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_AK_Med_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_AK_Med_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_AK_Med_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_AK_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_AK_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_AK_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_PKP_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_PKP_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_PKP_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_PKP_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_SVD_1_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_SVD_1_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_SVD_2_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_SVD_2_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Med_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Med_Radio_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Med_Radio_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Med_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Radio_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Radio_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SPP_VOG_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SVD_1_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SVD_1_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SVD_2_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_SVD_2_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Med_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Med_Radio_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Med_Radio_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Med_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Radio_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Radio_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_6Sh117_VOG_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Med_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Med_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Med_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Med_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Med_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Med_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_AK_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_PKP_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_PKP_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Med_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Med_Light_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Med_Light_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Med_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Med_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Med_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_AK_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_PKP_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_PKP_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_SVD_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_SVD_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_VOG_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_VOG_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_VOG_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SPP_VOG_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SVD_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_SVD_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_VOG_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_VOG_Radio_Desert, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_VOG_Radio_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_O_RUS_6B45_1_VOG_Summer, 1500, MISC_STOCK);
+			ITEM(CUP_V_PlateCarrier2_MM14, 1500, MISC_STOCK);
+			ITEM(CUP_V_PlateCarrierIAGL_MM14, 2500, MISC_STOCK);
+			ITEM(CUP_V_PlateCarrierSpec_MM14, 5000, MISC_STOCK);
+			ITEM(V_PlateCarrier1_blk, 900, MISC_STOCK);
+			ITEM(V_PlateCarrier1_rgr, 900, MISC_STOCK);
+			ITEM(V_PlateCarrier1_rgr_noflag_F, 900, MISC_STOCK);
+			ITEM(V_PlateCarrier1_tna_F, 900, MISC_STOCK);
+			ITEM(V_PlateCarrier1_wdl, 900, MISC_STOCK);
+			ITEM(V_PlateCarrier2_blk, 1500, MISC_STOCK);
+			ITEM(V_PlateCarrier2_rgr, 1500, MISC_STOCK);
+			ITEM(V_PlateCarrier2_rgr_noflag_F, 1500, MISC_STOCK);
+			ITEM(V_PlateCarrier2_tna_F, 1500, MISC_STOCK);
+			ITEM(V_PlateCarrier2_wdl, 1500, MISC_STOCK);
+			ITEM(V_PlateCarrier3_rgr, 1500, MISC_STOCK);
+			ITEM(V_PlateCarrierGL_blk, 2500, MISC_STOCK);
+			ITEM(V_PlateCarrierGL_mtp, 2500, MISC_STOCK);
+			ITEM(V_PlateCarrierGL_rgr, 2500, MISC_STOCK);
+			ITEM(V_PlateCarrierGL_tna_F, 2500, MISC_STOCK);
+			ITEM(V_PlateCarrierGL_wdl, 2500, MISC_STOCK);
+			ITEM(V_PlateCarrierSpec_blk, 5000, MISC_STOCK);
+			ITEM(V_PlateCarrierSpec_mtp, 5000, MISC_STOCK);
+			ITEM(V_PlateCarrierSpec_rgr, 5000, MISC_STOCK);
+			ITEM(V_PlateCarrierSpec_tna_F, 5000, MISC_STOCK);
+			ITEM(V_PlateCarrierSpec_wdl, 5000, MISC_STOCK);
 		};
