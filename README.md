@@ -14,17 +14,18 @@
 </div>
 
 ## TEH Changes
-- Extensive remake of trader inventory, prices and availability + compatible items fix + item details + item hashing fix (original caused collisions too often).
-- Persistent corpses (no loot is lost)
-- Jeroen Arsenal QoL: detailed tooltips, better sorting, unrestricted vehicle loading and unit load weight (only volume).
-- Ungaraging vehicles with a start kit, including primary ammo and AT/AA launchers (takes properly out of the arsenal)
-- Experimental improved survival fix for players APC/Tanks (still can be exploded but small shells will mostly only damage outer components).
-- Lootbox generation revamped to a better consistency
-- Enemy bases have better choice of cars/broken armor to loot
-- Fast trave allows free location pick in 500m radius of friendly markers
-- CAS support tuned down to not be called on infantry
-- [WIP] FIAradio changed from reveal (which doesn't work) to markers 
-- [WIP] Smaller drones (require separate mods at the moment - "GX-Drones" and "Multiple Drones in Inventory")
+- **Extensive remake of trader inventory**: Prices, availability, and compatibility fixes for items. Also includes an **item details** overhaul and a fix for item hashing (the original caused frequent collisions).
+- **Persistent corpses**: Corpses remain in the world, ensuring no loot is lost.
+- **Jeroen Arsenal QoL improvements**: Added detailed tooltips, improved sorting, unrestricted vehicle loading, and lifted (pun intended) unit load weight limit (you can now pack a full backpack without external shenanigans).
+- **Vehicles from the garage** now come with a starter kit, including medicine, primary ammo, and AT/AA launchers (arsenal numbers updated).
+- **Experimental survival fix for player APCs/Tanks**: Health pool resets to 51% damage if vehicle is not destroyed, while keeping components broken. Vehicle can be completely destroyed completely only with a high damaging round or explosion.
+- **Ammobox generation revamped**: Ensures better consistency with fixed amounts, while types are still governed by settings.
+- **Enemy bases** now feature a better selection of cars and broken armor to loot.
+- **Fast travel**: Allows free location selection within a 500m radius of friendly markers.
+- **CAS support** tuned down to avoid being called on infantry units.
+- **[WIP] Vehicle-based looting**: using ACE action on the vehicles to gather loot (complete overhaul of Loot to Vehicle Extended mod).
+- **[WIP] FIAradio**: Replaced reveal functionality (which doesn't work) with markers.
+- **[WIP] Smaller drones**: Requires separate mods for now, including **"GX-Drones"** and **"Multiple Drones in Inventory"**.
 
 ## [Features](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Features)
 
@@ -37,6 +38,7 @@
 - Discord Rich Presence by ConnorAU
 - Antistasi Plus (fork of Community) by Socrates
 - Antistasi Ultimate (fork of Plus) by the [Antistasi Ultimate Dev Team](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Developers)
+- [1Tac] Bear http://teamonetactical.com
 
 ## Additional Icons Credits
 <div>
