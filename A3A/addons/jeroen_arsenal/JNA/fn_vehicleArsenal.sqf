@@ -36,8 +36,8 @@
 		private _dlcName = _this call GETDLC;\
 		if (_dlcName != "") then {\
 			_ctrlList lbsetpictureright [_lbAdd,(modParams [_dlcName,["logo"]]) param [0,""]];\
-			_modID = MODLIST find _dlcName;\
-			if (_modID < 0) then {_modID = MODLIST pushback _dlcName;};\
+			_modID = _modList find _dlcName;\
+			if (_modID < 0) then {_modID = _modList pushback _dlcName;};\
 			_ctrlList lbsetvalue [_lbAdd,_modID];\
 		};\
 	};
@@ -356,6 +356,7 @@ switch _mode do {
 			{
 				private _weapons = jnva_loadout select _x;
 				{
+					_usableMagazines append (compatibleMagazines (_x select 0));
 					_usableMagazines append ((compatibleMagazines (_x select 0)) apply {toLower _x});
 				} forEach _weapons;
 			}forEach [
@@ -689,14 +690,12 @@ switch _mode do {
 
 				if(_count > 0)then{
 					_mass = jnva_loadout_mass + (["getMassItem",[_item,_count,_index]] call jn_fnc_vehicleArsenal);
-					if(_mass <= _max)then{
-						_ctrlList lnbsettext [[_lbcursel,2],str (_amountOld + _count)];
+					_ctrlList lnbsettext [[_lbcursel,2],str (_amountOld + _count)];
 
-						jnva_loadout set [_index,[jnva_loadout select _index,[_item,_count]] call jn_fnc_arsenal_addToArray];
-						jnva_loadout_mass = _mass;
-						//[_index, _item, _count] remoteExecCall ["jn_fnc_arsenal_removeItem"];
-						[_index, _item, _count] call jn_fnc_arsenal_removeItem; //Sparker: why execute it on all clients?
-					};
+					jnva_loadout set [_index,[jnva_loadout select _index,[_item,_count]] call jn_fnc_arsenal_addToArray];
+					jnva_loadout_mass = _mass;
+					//[_index, _item, _count] remoteExecCall ["jn_fnc_arsenal_removeItem"];
+					[_index, _item, _count] call jn_fnc_arsenal_removeItem; //Sparker: why execute it on all clients?
 				};
 
 			}else{

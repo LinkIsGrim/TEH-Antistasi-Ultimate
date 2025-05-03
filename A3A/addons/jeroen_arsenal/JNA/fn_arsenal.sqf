@@ -178,6 +178,57 @@ private _getUsableMagazines = {
 	_magazines;
 };
 
+private _filterAndSortArsenalItems = {
+	params ["_usableItems", "_index", "_isMagazines"];
+
+	private _itemList = if (_isMagazines) then {
+		jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL
+	} else {
+		jna_dataList select _index
+	};
+
+	private _result = [];
+	private _dataMap = createHashMap;
+	private _displayNames = [];
+
+	{
+		private _itemAvailable = _x select 0;
+		private _amountAvailable = _x select 1;
+
+		if (_isMagazines && !([_usableItems, _itemAvailable] call _arrayContains)) then {
+			continue;
+		};
+
+		// Create a sorting key
+		// CUPS Xmm -> X mm fix
+		private _displayName = (getText(configfile >> "CfgMagazines" >> _itemAvailable >> "displayName")) regexReplace ["([0-9])mm","$1 mm"];
+
+		_displayName = _displayName + _itemAvailable;
+
+		// Sort unlocked magazines at the top of the list
+		if (_isMagazines && {_amountAvailable < 0}) then {
+			_displayName = "!" + _displayName;
+		};
+		
+		if (_isMagazines && (_itemAvailable in primaryWeaponMagazine player)) then {
+			_displayName = "!" + _displayName;
+		};
+
+		_dataMap set [_displayName, [_itemAvailable, _amountAvailable]];
+		_displayNames pushBack _displayName;
+
+	} forEach _itemList;
+
+	_displayNames sort true;
+
+	for "_i" from 0 to (count _displayNames - 1) do {
+		private _key = _displayNames select _i;
+		_result set [count _result, _dataMap get _key];
+	};
+
+	_result
+};
+
 _mode = [_this,0,"Open",[displaynull,""]] call bis_fnc_param;
 _this = [_this,1,[]] call bis_fnc_param;
 
@@ -963,7 +1014,7 @@ switch _mode do {
 				} foreach (weapons player - ["Throw","Put"]);
 				_usableMagazines =_usableMagazines arrayIntersect _usableMagazines;
 
-				[_usableMagazines] call _getUsableMagazines;
+				[_usableMagazines, _index, true] call _filterAndSortArsenalItems;
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG: {
 				_ctrlListPrimaryWeapon = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON);
@@ -976,7 +1027,7 @@ switch _mode do {
 					case (ctrlenabled _ctrlListHandgun): {handgunWeapon player};
 				};
 
-				[compatibleMagazines [_weapon, "this"]] call _getUsableMagazines;
+				[compatibleMagazines [_weapon, "this"], _index, true] call _filterAndSortArsenalItems;
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG2: {
 				_ctrlListPrimaryWeapon = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON);
@@ -988,7 +1039,7 @@ switch _mode do {
 				private _config = configFile >> "CfgWeapons" >> _weapon;
 				private _glmuzzle = getArray (_config >> "muzzles") select 1;		// guaranteed by category
 				_glmuzzle = configName (_config >> _glmuzzle);                      // bad-case fix. compatibleMagazines is case-sensitive as of 2.12
-				[compatibleMagazines [_weapon, _glmuzzle]] call _getUsableMagazines;
+				[compatibleMagazines [_weapon, _glmuzzle], _index, true] call _filterAndSortArsenalItems;
 			};
 			default { (jna_datalist select _index) };
 		};
@@ -1630,6 +1681,7 @@ switch _mode do {
 		_dataStr = if _type then{_ctrlList lnbData [_l,0]}else{_ctrlList lbdata _l};
 		_data = call compile _dataStr;
 		_item = _data select 0;
+		_itemTypeName = _item call BIS_fnc_itemType select 1;
 		_amount = _data select 1;
 		_displayName = _data select 2;
 
@@ -1759,7 +1811,7 @@ switch _mode do {
 				} forEach (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL);
 
 				//change color;
-				_colorMult = switch (_item call BIS_fnc_itemType select 1) do{
+				_colorMult = switch (_itemTypeName) do{
 					case "AssaultRifle": {1500};
 					case "Handgun": {400};
 					case "MachineGun": {4000};
@@ -1775,51 +1827,130 @@ switch _mode do {
 				_green = 0.6*_colorMult+0.2;
 				_ctrlList lbSetPictureRightColorSelected [_l,[_red,_green,0.3,1]];
 				_ctrlList lbSetPictureRightColor [_l,[_red,_green,0.3,1]];
-
-				_strAmount = switch true do {
-					case (_amount == 0): {
-						localize "STR_A3AP_arsenal_scarcity_0"
-					};
-					case (_amount > 50): {
-						localize "STR_A3AP_arsenal_scarcity_1"
-					};
-					case (_amount > 10): {
-						localize "STR_A3AP_arsenal_scarcity_2"
-					};
-					case (_amount > 3): {
-						localize "STR_A3AP_arsenal_scarcity_3"
-					};
-					case (_amount > 1): {
-						localize "STR_A3AP_arsenal_scarcity_4"
-					};
-					case (_amount == 1): {
-						localize "STR_A3AP_arsenal_scarcity_5"
-					};
-					case (_amount == -1): {//TODO marker for changed entry
-						localize "STR_A3AP_arsenal_scarcity_1"
-					};
-					default{""};
-				};
-
-				_strAmmo = switch true do {
-					case (_colorMult == 0): {
-						localize "STR_A3AP_arsenal_scarcity_ammo_0"
-					};
-					case (_colorMult > 0.9): {
-						localize "STR_A3AP_arsenal_scarcity_ammo_1"
-					};
-					case (_colorMult > 0.2): {
-						localize "STR_A3AP_arsenal_scarcity_ammo_2"
-					};
-					case (_colorMult > 0): {
-						localize "STR_A3AP_arsenal_scarcity_ammo_3"
-					};
-					default{""};
-				};
-
-				_ctrlList lbsettooltip [_l, (_strAmount + _strAmmo)];
 			};
 		};
+		
+		//Tooltip
+		_text = "Item code: " + _item;
+		
+		switch (_itemTypeName) do {
+			case("AssaultRifle");
+			case("MachineGun");
+			case("SniperRifle");
+			case("Shotgun");
+			case("Rifle");
+			case("SubmachineGun"): {
+				_wpnbarrellenmm = getNumber (configfile >> "CfgWeapons" >> _item >> "ACE_barrelLength");
+				_wpnbarrellenin = _wpnbarrellenmm / 25.4;
+				_mag1 = getArray (configfile >> "CfgWeapons" >> _item >> "magazines") select 0;
+				_mag1name = getText (configfile >> "CfgMagazines" >> _mag1 >> "displayName");
+				_dex = (getNumber (configfile >> "CfgWeapons" >> _item >> "dexterity")) * 5;
+				_text = _text + "\nBarrel: " + str _wpnbarrellenmm + "mm / " + str ([_wpnbarrellenin, 1] call BIS_fnc_cutDecimals) + "in" +
+						"\nDefault ammo: " + _mag1name +
+						"\nHandling: " + str _dex + "/10";
+			};
+		
+			case("Launcher");
+			case("MissileLauncher");
+			case("RocketLauncher"): {
+				_magName = getarray(configFile >> "CfgWeapons" >> _item >> "magazines") select 0;
+				if (_magName == "CBA_FakeLauncherMagazine") then {
+					_text = "No data";
+				} else {
+					_ammoName = getText(configFile >> "CfgMagazines" >> _magName >> "ammo");
+					_ammoHit = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "hit");
+					_ammoCal = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "caliber");
+					_ammoSplash = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "indirectHit");
+					_ammoSplashRange = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "indirectHitRange");
+					_ammoMaxSpeed = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "maxSpeed");
+					_ammoSub = getText(configFile >> "CfgAmmo" >> _ammoName >> "submunitionAmmo");
+					_ammoSubHit = getNumber(configfile >> "CfgAmmo" >> _ammoSub >> "hit");
+					_ammoSubCal = getNumber(configfile >> "CfgAmmo" >> _ammoSub >> "caliber");
+					_text  = _text + "\nMain: " + str _ammoHit + "@" + str _ammoCal + "ap" +
+							"\nSubmunition: "+ str _ammoSubHit + "@" + str ([_ammoSubCal, 1] call BIS_fnc_cutDecimals) +"ap" +
+							"\nSplash: " + str _ammoSplash + "@" + str _ammoSplashRange + "m" +
+							"\nMax speed: "+ str _ammoMaxSpeed +"m/s";
+				};
+				
+				_lockTime = getNumber(configFile >> "CfgWeapons" >> _item >> "weaponLockDelay");
+				if (_lockTime > 0) then {
+					_text = _text + "\nLock time: " + str _lockTime + "s";
+				};
+			};
+		
+			case("Headgear");
+			case("Vest"): {
+				//_armNeck = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Neck" >> "armor");
+				_hitpoints = configProperties [configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "HitpointsProtectionInfo"];
+				{
+					_part = configName _x;
+					_armor = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "HitpointsProtectionInfo" >> _part >> "armor");
+					_pt = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "HitpointsProtectionInfo" >> _part >> "passthrough");
+					_text  = _text + "\n" + _part + ": " + str _armor + " (" + str (100 - _pt*100) + "% eff.)";
+				} forEach (_hitpoints);
+			};
+			
+						
+			case("AccessoryMuzzle"): {
+				_silencerVF = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "visibleFire");
+				_silencerVFT = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "visibleFireTime");
+				_silencerAF = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "audibleFire");
+				_silencerAFT = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "audibleFireTime");
+				_silencerHit = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "hit");
+				_silencerAir = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "airFriction");
+				_text  = _text + "\nFlash/Time: " + str _silencerVF + "/" + str _silencerVFT +
+						"\nSound/Time: " + str _silencerAF + "/" + str _silencerAFT +
+						"\nPerformance: " + str _silencerHit + "/" + str _silencerAir;
+			};
+			case("AccessorySights"): {
+				_optics = configProperties [configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "OpticsModes"];
+				{
+					_mode = configName _x;
+					_zoom = 0.25 / getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "OpticsModes" >> _mode >> "opticsZoomMin");
+					_text  = _text + "\n" + _mode + ": x" + str ([_zoom, 1] call BIS_fnc_cutDecimals);
+				} forEach (_optics);
+			};
+			
+			case ("Bullet"): {
+				_magName = getText(configFile >> "CfgMagazines" >> _item >> "displayName");
+				_ammoName = getText(configFile >> "CfgMagazines" >> _item >> "ammo");
+				_ammoHit = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "hit");
+				_ammoCal = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "caliber");
+				_ammoSpeed = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "typicalSpeed");
+				_ammoMass = getNumber(configFile >> "CfgMagazines" >> _item >> "mass") * 50;
+				_bulletMass = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "ACE_bulletMass");
+				_text = _magName + 
+						"\nBullet code: " + _ammoName +
+						"\nDamage: " + str ([_ammoHit, 1] call BIS_fnc_cutDecimals) + "@" + str ([_ammoCal, 2] call BIS_fnc_cutDecimals) + "ap" +
+						"\nRef. muzzle speed: "+ str _ammoSpeed + "m/s" +
+						"\nRef. muzzle energy: " + str floor ((_bulletMass * _ammoSpeed * _ammoSpeed) / 2000) + "J" +
+						"\nWeight: " + str _ammoMass + "g";
+			};
+			
+			case ("Rocket");
+			case ("Missile");
+			case ("Shell");
+			case ("Grenade"): {
+				_ammoName = getText(configFile >> "CfgMagazines" >> _item >> "ammo");
+				_ammoHit = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "hit");
+				_ammoCal = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "caliber");
+				_ammoSplash = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "indirectHit");
+				_ammoSplashRange = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "indirectHitRange");
+				_ammoMaxSpeed = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "maxSpeed");
+				_ammoSub = getText(configFile >> "CfgAmmo" >> _ammoName >> "submunitionAmmo");
+				_ammoSubHit = getNumber(configfile >> "CfgAmmo" >> _ammoSub >> "hit");
+				_ammoSubCal = getNumber(configfile >> "CfgAmmo" >> _ammoSub >> "caliber");
+				_text = "Main: " + str _ammoHit + "@" + str _ammoCal + "ap" +
+						"\nSubmunition: "+ str _ammoSubHit + "@" + str ([_ammoSubCal, 1] call BIS_fnc_cutDecimals) +"ap" +
+						"\nSplash: " + str _ammoSplash + "@" + str _ammoSplashRange + "m" +
+						"\nMax speed: "+ str _ammoMaxSpeed +"m/s";
+			};
+			default {
+				_text = "Code: " + _item;
+			};
+		};
+		
+		_ctrlList lbsettooltip [_l, _text];
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////
@@ -1978,9 +2109,9 @@ switch _mode do {
 					};
 					{
 						_canAdd = switch _index do{
-							case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM:{player canAddItemToUniform _x;};
-							case IDC_RSCDISPLAYARSENAL_TAB_VEST:{player canAddItemToVest _x;};
-							case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK:{player canAddItemToBackpack _x;};
+							case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM:{(player canAddItemToUniform [_x, 1, true]);};
+							case IDC_RSCDISPLAYARSENAL_TAB_VEST:{(player canAddItemToVest [_x, 1, true]);};
+							case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK:{(player canAddItemToBackpack [_x, 1, true]);};
 						};
 						if(_canAdd)then{
 							switch _index do{
@@ -2008,9 +2139,9 @@ switch _mode do {
 						_count = _x select 1;
 
 						_canAdd = switch _index do{
-							case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM:{player canAddItemToUniform _magazine;};
-							case IDC_RSCDISPLAYARSENAL_TAB_VEST:{player canAddItemToVest _magazine;};
-							case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK:{player canAddItemToBackpack _magazine;};
+							case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM:{(player canAddItemToUniform [_magazine, 1, true]);};
+							case IDC_RSCDISPLAYARSENAL_TAB_VEST:{(player canAddItemToVest [_magazine, 1, true]);};
+							case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK:{(player canAddItemToBackpack [_magazine, 1, true]);};
 						};
 						if(_canAdd)then{
 							_container addMagazineAmmoCargo [_magazine,1,_count];
@@ -2070,7 +2201,7 @@ switch _mode do {
 						if (count _magazines > 0) then {
 							_mag = (_magazines select 0);
 							if([jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _mag] call jn_fnc_arsenal_itemCount > 0)then{
-								if((player canAddItemToUniform _mag)||(player canAddItemToVest _mag)||(player canAddItemToBackpack _mag))then{
+								if(((player canAddItemToUniform [_mag, 1, true]))||((player canAddItemToVest [_mag, 1, true]))||((player canAddItemToBackpack [_mag, 1, true])))then{
 									player addmagazine _mag;
 									[IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _mag]call jn_fnc_arsenal_removeItem;
 								}else{
@@ -2463,6 +2594,7 @@ switch _mode do {
 			_ctrlList lnbsetcolor [[_r,1],_color];
 			_ctrlList lnbsetcolor [[_r,2],_color];
 			_text = _ctrlList lnbtext [_r,1];
+
 			_ctrlList lbsettooltip [_r * _columns,[_text,_text + "\n(Not compatible with currently equipped weapons)"] select _isIncompatible];
 		};
 	};
@@ -2522,9 +2654,9 @@ switch _mode do {
 					};
 					_canAdd = false;
 					_container = switch _selected do{
-						case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {_canAdd = player canAddItemToUniform _item; uniformContainer player};
-						case IDC_RSCDISPLAYARSENAL_TAB_VEST: {_canAdd = player canAddItemToVest _item; vestContainer player;};
-						case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {_canAdd = player canAddItemToBackpack _item; backpackContainer player;};
+						case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {_canAdd = (player canAddItemToUniform [_item, 1, true]); uniformContainer player};
+						case IDC_RSCDISPLAYARSENAL_TAB_VEST: {_canAdd = (player canAddItemToVest [_item, 1, true]); vestContainer player;};
+						case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {_canAdd = (player canAddItemToBackpack [_item, 1, true]); backpackContainer player;};
 					};
 					if(_canAdd)then{
 						_container addMagazineAmmoCargo [_item,1,_count];
@@ -3068,7 +3200,7 @@ switch _mode do {
 			_item = _x select 0;
 			_amount = _x select 1;
 			_amountAdded = 0;
-			while {(_amountAdded < _amount) && (player canAddItemToUniform _x)}do{
+			while {(_amountAdded < _amount) && (player canAddItemToUniform [_x, 1, true])}do{
 				_amountAdded = _amountAdded + 1;
 				player addItemToUniform _item;
 			};
@@ -3131,7 +3263,7 @@ switch _mode do {
 			_item = _x select 0;
 			_amount = _x select 1;
 			_amountAdded = 0;
-			while {(_amountAdded < _amount) && (player canAddItemToBackpack _x)}do{
+			while {(_amountAdded < _amount) && (player canAddItemToBackpack [_x, 1, true])}do{
 				_amountAdded = _amountAdded + 1;
 				player addItemToBackpack _item;
 			};

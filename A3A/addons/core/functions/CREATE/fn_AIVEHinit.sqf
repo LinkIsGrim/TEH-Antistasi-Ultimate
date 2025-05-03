@@ -43,8 +43,6 @@ if (_side == teamPlayer) then {
 	clearWeaponCargoGlobal _veh;
 	clearItemCargoGlobal _veh;
 	clearBackpackCargoGlobal _veh;
-} else {
-	clearWeaponCargoGlobal _veh;
 };
 
 // Sync the vehicle textures if necessary
@@ -81,10 +79,6 @@ if (_veh isKindOf "Car" or{ _veh isKindOf "Tank"}) then {
 	};
 } else {
 	switch (true) do {
-		case (unitIsUAV _veh && {_side isEqualTo teamPlayer}): {
-			if (crew _veh isNotEqualTo []) then { deleteVehicleCrew _veh };
-			[_side, _veh] call A3A_fnc_createVehicleCrew;
-		};
 		case (_typeX in (FactionGet(all,"vehiclesFixedWing") + FactionGet(all,"vehiclesHelis"))): {
 			_veh addEventHandler ["GetIn", {
 				if (_this select 1 != "driver") exitWith {};

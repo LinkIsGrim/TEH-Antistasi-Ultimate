@@ -17,13 +17,7 @@ params [
 ];
 
 private _attachments = _classname call BIS_fnc_compatibleItems;
-private _config = configFile >> "CfgWeapons" >> _classname;
-_attachments append getArray (_config >> "magazines");
+_attachments append (compatibleMagazines  _classname);
 
-{
-	if !(_x isEqualTo "this") then {
-		_attachments append getArray (_config >> _x >> "magazines");
-	};
-} forEach getArray (_config >> "muzzles");
 
 _attachments

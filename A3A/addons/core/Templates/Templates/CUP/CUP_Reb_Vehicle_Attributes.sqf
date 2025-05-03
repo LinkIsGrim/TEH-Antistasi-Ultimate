@@ -2,6 +2,11 @@
     // light armed stuff
     ["CUP_I_Datsun_PK", ["rebCost", 600]],
 	
+
+	["CUP_O_BRDM2_CHDKZ", ["rebCost", 800]],
+	["CUP_O_BMP2_CHDKZ", ["rebCost", 5000]],
+	["CUP_O_ZSU23_ChDKZ", ["rebCost", 5000]],
+	["CUP_O_BTR80A_CHDKZ", ["rebCost", 3000]],
     // heavy armed stuff
     ["CUP_I_Hilux_UB32_NAPA", ["rebCost", 6000]],
     ["CUP_I_Hilux_MLRS_NAPA", ["rebCost", 12000]],

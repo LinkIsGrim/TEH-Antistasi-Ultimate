@@ -13,10 +13,10 @@ FIX_LINE_NUMBERS()
 
 params ["_target", "_side", "_maxSpend", "_availTypes"];
 
-if (_target isKindOf "Air") exitWith { 0 };         // can't hit air
-
-if (_target isKindOf "Man") exitWith { 0.001 };       // Don't spawn to attack meatsacks, but re-use active supports
-
+if (_target isKindOf "Wheeled_APC_F" || _target isKindOf "Tank" || _target isKindOf "CUP_Ural_BaseTurret") then {     // Don't spawn to attack meatsacks, but re-use active supports
 // Against vehicles and statics, use more frequently against more dangerous stuff
-private _threat = A3A_groundVehicleThreat getOrDefault [typeOf _target, 0];
-0.001 + _threat / 80;
+	private _threat = A3A_groundVehicleThreat getOrDefault [typeOf _target, 0];
+	0.001 + _threat / 80;
+} else {
+	0;
+};

@@ -22,6 +22,7 @@
     ["CUP_B_BMP2_CZ", ["cost", 120], ["threat", 150]],
     ["CUP_B_BMP2_CZ_Des", ["cost", 120], ["threat", 150]],
     ["CUP_B_BMP2_CDF", ["cost", 120], ["threat", 150]],
+	["CUP_O_BMP2_CHDKZ", ["cost", 120], ["threat", 150]],
 
     // This one is quite strong by light-armed standards
     ["CUP_O_GAZ_Vodnik_BPPU_RU", ["cost", 75], ["threat", 120]],

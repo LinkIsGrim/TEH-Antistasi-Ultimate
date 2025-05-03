@@ -2,7 +2,15 @@ respawn = "BASE";
 respawnDelay = 15;
 
 // Player corpses preserved for 15min minimum
-corpseRemovalMinTime = 900;
+corpseManagerMode=0;
+corpseLimit=5555;
+corpseRemovalMinTime=1;
+corpseRemovalMaxTime=10;
+wreckManagerMode=1;
+wreckLimit=50;
+wreckRemovalMinTime=1;
+wreckRemovalMaxTime=7200;
+minPlayerDistance=0;
 
 aiKills = 0;
 disabledAI = 1;
@@ -12,7 +20,7 @@ class Header
 {
 	gameType = ANTI;
 	minplayers = 1;
-	maxplayers = 35;
+	maxplayers = 29;
 };
 
 class CfgTaskEnhancements

@@ -216,13 +216,13 @@ if (_frontierX) then {
 
 
 private _mrk = createMarkerLocal [format ["%1patrolarea", random 100], _positionX];
-_mrk setMarkerShapeLocal "RECTANGLE";
-_mrk setMarkerSizeLocal [(distanceSPWN/2),(distanceSPWN/2)];
+_mrk setMarkerShapeLocal "ELLIPSE";
+_mrk setMarkerSizeLocal [(distanceSPWN),(distanceSPWN)];
 _mrk setMarkerTypeLocal "hd_warning";
-_mrk setMarkerColorLocal "ColorRed";
-_mrk setMarkerBrushLocal "DiagGrid";
-_mrk setMarkerDirLocal (markerDir _markerX);
-if (!debug) then {_mrk setMarkerAlphaLocal 0};
+_mrk setMarkerColorLocal "ColorBlue";
+_mrk setMarkerBrushLocal "Border";
+_mrk setMarkerDir (markerDir _markerX);
+//if (!debug) then {_mrk setMarkerAlphaLocal 0};
 
 //maybe it's no longer needed after all..?
 private _additionalGarrison = [_sideX, _markerX] call SCRT_fnc_garrison_rollOversizeGarrison;
@@ -333,8 +333,17 @@ if (garrison getVariable [_markerX + "_lootCD", 0] == 0) then {
 	_ammobox2 = call _fnc_createAmmobox;
 };
 
+private _heavyarmed = 	(_faction get "vehiclesLightAPCs") + 
+						(_faction get "vehiclesAPCs") + 
+						(_faction get "vehiclesIFVs") + 
+						(_faction get "vehiclesAA") +
+						(_faction get "vehiclesArtillery") +
+						(_faction get "vehiclesLightTanks") +
+						(_faction get "vehiclesTanks") +
+						(_faction get "vehiclesAirborne");
+
 if (!_busy) then {
-	private _vehTypesHeavy = (_faction get "vehiclesAPCs") + (_faction get "vehiclesLightAPCs") + (_faction get "vehiclesTanks") +(_faction get "vehiclesLightTanks");
+	private _vehTypesHeavy = _heavyarmed;
 	for "_i" from 1 to (round (random 2)) do {
 		_spawnParameter = [_markerX, "Vehicle"] call A3A_fnc_findSpawnPosition;
 		if (_spawnParameter isEqualType []) then
@@ -353,14 +362,7 @@ if (!_busy) then {
 	};
 };
 
-private _vehTypesLight = 
-	(_faction get "vehiclesLightArmed") + 
-	(_faction get "vehiclesLightUnarmed") + 
-	(_faction get "vehiclesTrucks") + 
-	(_faction get "vehiclesAmmoTrucks") + 
-	(_faction get "vehiclesRepairTrucks") + 
-	(_faction get "vehiclesFuelTrucks") + 
-	(_faction get "vehiclesMedical");
+private _vehTypesLight = _heavyarmed;
 _countX = 0;
 
 while {_countX < _nVeh && {_countX < 3}} do {
@@ -376,6 +378,10 @@ while {_countX < _nVeh && {_countX < 3}} do {
 		};
 		_vehiclesX pushBack _veh;
 		[_veh, _sideX] call A3A_fnc_AIVEHinit;
+		_veh setHitPointDamage ["hitEngine",1];
+		_veh setHitPointDamage ["hitTurret",1];
+		_veh setHitPointDamage ["hitGun",1];
+		_veh setHitPointDamage ["hitHull", random 1];
 		sleep 1;
 		_countX = _countX + 1;
 	}
@@ -419,7 +425,6 @@ for "_i" from 0 to (count _array - 1) do {
 
 ["locationSpawned", [_markerX, "Milbase", true]] call EFUNC(Events,triggerEvent);
 
-{ [_x, true] call A3U_fnc_setLock; } forEach _vehiclesX;
 
 waitUntil {sleep 1; (spawner getVariable _markerX == 2)};
 
@@ -431,6 +436,7 @@ deleteMarker _mrk;
 { deleteGroup _x } forEach _groups;
 { deleteVehicle _x } forEach _props;
 
+_sideX = sidesX getVariable [_markerX,sideUnknown]; //captured maybe?
 {
 	// delete all vehicles that haven't been stolen
 	if (_x getVariable ["ownerSide", _sideX] == _sideX) then {
@@ -442,16 +448,22 @@ deleteMarker _mrk;
 _spawnsUsed call A3A_fnc_freeSpawnPositions;
 
 // If loot crate was stolen, set the cooldown
-if (!isNil "_ammoBox1") then {
+if (!isNil "_ammoBox1" && _sideX != teamPlayer) then {
 	if ((alive _ammoBox1) and (_ammoBox1 distance2d _positionX < 100)) exitWith { deleteVehicle _ammoBox1 };
 	if (alive _ammoBox1) then { [_ammoBox1] spawn A3A_fnc_VEHdespawner };
-	private _lootCD = 120*16 / ([_markerX] call A3A_fnc_garrisonSize);
+};
+
+if (!isNil "_ammoBox1") then {
+	private _lootCD = 60;
 	garrison setVariable [_markerX + "_lootCD", _lootCD, true];
 };
-if (!isNil "_ammoBox2") then {
+if (!isNil "_ammoBox2" && _sideX != teamPlayer) then {
 	if ((alive _ammoBox2) and (_ammoBox2 distance2d _positionX < 100)) exitWith { deleteVehicle _ammoBox2 };
 	if (alive _ammoBox2) then { [_ammoBox2] spawn A3A_fnc_VEHdespawner };
-	private _lootCD = 120*16 / ([_markerX] call A3A_fnc_garrisonSize);
+};
+
+if (!isNil "_ammoBox2") then {
+	private _lootCD = 60;
 	garrison setVariable [_markerX + "_lootCD", _lootCD, true];
 };
 

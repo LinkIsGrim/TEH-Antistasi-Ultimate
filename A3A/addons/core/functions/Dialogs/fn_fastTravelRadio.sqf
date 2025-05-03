@@ -81,19 +81,15 @@ if (_earlyEscape) exitWith {};
 
 private _areEnemiesNearby = false;
 
-if (_esHC && {_units findIf {[getPosATL _x] call A3A_fnc_enemyNearCheck} != -1}) exitWith {
-	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_enemiesnear_group"] call SCRT_fnc_misc_deniedHint;
-};
-
-if (!_esHC && {!fastTravelEnemyCheck && {[getPosATL player] call A3A_fnc_enemyNearCheck}}) exitWith {
+if (!fastTravelEnemyCheck && {[getPosATL player] call A3A_fnc_enemyNearCheck}) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_enemiesnear_individual"] call SCRT_fnc_misc_deniedHint;
 };
 
-if (!_esHC && {fastTravelEnemyCheck && {_units findIf {[getPosATL _x] call A3A_fnc_enemyNearCheck} != -1}}) exitWith {
+if (fastTravelEnemyCheck && {_units findIf {[getPosATL _x] call A3A_fnc_enemyNearCheck} != -1}) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_enemiesnear_group"] call SCRT_fnc_misc_deniedHint;
 };
 
-if (!_esHC && {vehicle player != player && {driver vehicle player != player}}) exitWith {
+if (vehicle player != player && {driver vehicle player != player}) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_only_drivers"] call SCRT_fnc_misc_deniedHint;
 };
 
@@ -102,11 +98,6 @@ if (_positionTel isEqualTo []) exitWith {
 };
 
 private _base = [_markersX, _positionTel] call BIS_Fnc_nearestPosition;
-
-if (_base == traderMarker && {isTraderQuestAssigned || !isTraderQuestCompleted}) exitWith {
-	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_trader_locked"] call SCRT_fnc_misc_deniedHint;
-};
-
 private _rebelMarkers = if (!isNil "traderMarker") then {["Synd_HQ", traderMarker]} else {["Synd_HQ"]};
 private _isValidTargetLocation = (_base in (_rebelMarkers + airportsX + milbases));
 
@@ -119,7 +110,7 @@ if (limitedFT == 2) then {
 	private _rebelLocations = (_rebelMarkers + airportsX + milbases) select { sidesX getVariable _x == teamPlayer };
 	private _nearestPosition = [_rebelLocations, player] call BIS_Fnc_nearestPosition;
 	private _distanceToNearest = player distance getMarkerPos _nearestPosition;
-	_withinBoundaries = _distanceToNearest < 50;	
+	_withinBoundaries = _distanceToNearest < 500;	
 };
 if (_checkForPlayer && limitedFT == 2 && (!_isValidTargetLocation or !_withinBoundaries)) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_limited_to_between_destinations"] call SCRT_fnc_misc_deniedHint;
@@ -129,6 +120,8 @@ if ((sidesX getVariable [_base,sideUnknown]) in [Occupants, Invaders]) exitWith 
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_zone"] call SCRT_fnc_misc_deniedHint; 
 	openMap [false,false];
 };
+
+/*
 if (_base in forcedSpawn) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_attack"] call SCRT_fnc_misc_deniedHint; 
 	openMap [false,false];
@@ -138,9 +131,10 @@ if ([getMarkerPos _base] call A3A_fnc_enemyNearCheck) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_surrounding"] call A3A_fnc_customHint; 
 	openMap [false,false];
 };
+*/
 
-if (_positionTel distance getMarkerPos _base < 50) then {
-	private _positionX = [getMarkerPos _base, 10, random 360] call BIS_Fnc_relPos;
+if (_positionTel distance getMarkerPos _base < 500) then {
+	private _positionX = _positionTel;
 	private _distanceX = round (((position _boss) distance _positionX)/200);
 	private _forcedX = false;
 	
@@ -190,10 +184,7 @@ if (_positionTel distance getMarkerPos _base < 50) then {
 						_radiusX = _radiusX + 10;
 					};
 					_road = _roads select 0;
-					private _pos = position _road findEmptyPosition [(sizeOf typeOf vehicle _unit) / 2, 100, typeOf (vehicle _unit)];
-					if (_pos isEqualTo []) exitWith {
-						[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_empty_position"] call SCRT_fnc_misc_deniedHint
-					};
+					private _pos = position _road findEmptyPosition [10,100,typeOf (vehicle _unit)];
 					vehicle _unit setPos _pos;
 				};
 				if ((vehicle _unit isKindOf "StaticWeapon") and (!isPlayer (leader _unit))) then {

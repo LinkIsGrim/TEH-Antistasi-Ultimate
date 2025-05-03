@@ -1,4 +1,4 @@
-private _chance = tierWar*3;
+private _chance = 100;
 
 {
 	private _pos = getPos _x;

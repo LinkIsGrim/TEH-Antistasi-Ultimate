@@ -70,10 +70,14 @@ _mrkFinal setMarkerTypeLocal _typeX;
 _mrkFinal setMarkerColorLocal _color;
 _mrkFinal setMarkerTextLocal _text;
 
-while {(alive _veh) and {!(isNull _veh) and {(revealX or _convoy or (_veh getVariable ["revealed",false]))}}} do {
+while { 
+	!isNull _veh &&
+	alive _veh &&
+	( _convoy || ( _veh getVariable ["revealed", false] && !revealX ) )
+} do {
 	_pos = getPos _veh;
 	_mrkFinal setMarkerPosLocal _pos;
-	sleep 60;
+	sleep 15;
 };
 
 deleteMarkerLocal _mrkFinal;

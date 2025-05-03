@@ -21,6 +21,52 @@ __________________________________________________________________*/
 #define PN_STOCK 25
 #define MISC_STOCK 50
 
+#define RAIL 1.3
+
+#define MOD556 1200
+#define MODGL556 1400
+#define OLD556 600
+#define OLDGL556 800
+
+#define MOD762 1600
+#define MODGL762 1800
+#define OLD762 800
+#define OLDGL762 1000
+
+#define MOD545 1000
+#define MODGL545 1200
+#define OLD545 600
+#define OLDGL545 800
+
+#define MOD65 1400
+#define MODGL65 1600
+
+#define DMR 1500
+#define SNIP127 2000
+
+#define BULPRICE 2
+#define LARGBULPRICE 10
+#define GRENPRICE 80
+
+#define DISPOSABLE_AT           400
+#define DISPOSABLE_AP           600
+
+#define RPG_RELOADABLE      800
+#define RPG_AT_ROUND        150
+#define RPG_HE_ROUND        100
+#define RPG_THERM_ROUND     300
+
+#define WIRE_AT_LAUNCHER    1200
+#define WIRE_AT_MISSILE     1000
+
+#define FAF_AT_LAUNCHER     2500
+#define FAF_AT_MISSILE      2000
+
+#define RELOADABLE_AA_LAUNCHER  1000
+#define AA_MISSILE              1200
+
+#define DISPOSABLE_AA_SET       1600
+
 class cfgHALsStore 
 {
 	containerTypes[] = {"LandVehicle", "Air", "Ship", "ReammoBox_F"};
@@ -54,7 +100,6 @@ class cfgHALsStore
 		#include "config\sfp.hpp"
 		#include "config\sma.hpp"
 		#include "config\spearhead.hpp"
-		#include "config\spex.hpp"
 		#include "config\tow.hpp"
 		#include "config\unsung.hpp"
 		#include "config\vanilla.hpp"
@@ -68,7 +113,6 @@ class cfgHALsStore
 		#include "config\artofwar.hpp"
 		#include "config\kkiv2035.hpp"
 		#include "config\vn.hpp"
-		#include "config\nickelsteel.hpp"
 		#include "config\wrs.hpp"
 		#include "config\ws.hpp"
 		#include "config\braf.hpp"
@@ -81,7 +125,6 @@ class cfgHALsStore
 		#include "config\ylarms.hpp"
 		#include "config\ProjInfAD.hpp"
 		#include "config\JCAArsenal.hpp"
-		#include "config\hafm.hpp"
 	};
 
 	class stores 
@@ -218,9 +261,7 @@ class cfgHALsStore
 				"riflesRF", 
 				"sniperRiflesRF", 
 				"smgRF", 
-				"handgunsRF",
-				"launchersRF", 
-				"launcherMagazinesRF",
+				"handgunsRF", 
 				"magazinesRF", 
 				"navigationRF", 
 				"pointersRF", 
@@ -432,21 +473,6 @@ class cfgHALsStore
 				"untilityvn"
 			};
 		};
-
-		class nickelsteel
-		{
-			displayName = $STR_ARMS_DEALER_STORE;
-			categories[] = {
-				"handgunsnickelsteel",
-				"smgnickelsteel",
-				"mgnickelsteel",
-				"riflesnickelsteel",
-				"opticsnickelsteel",
-				"magazinesnickelsteel",
-				"helmetsnickelsteel",
-				"uniformsnickelsteel"
-			};
-		};
 		
 		class cup		
 		{
@@ -533,15 +559,6 @@ class cfgHALsStore
 				"backpacksspe",
 				"vestsspe",
 				"facewearspe"
-			};
-		};
-
-		class spex
-		{
-			displayName = $STR_ARMS_DEALER_STORE;
-			categories[] = {
-				"helmetsspex",
-				"launchersspex"
 			};
 		};
 		

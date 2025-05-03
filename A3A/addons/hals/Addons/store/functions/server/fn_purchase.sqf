@@ -93,7 +93,7 @@ try {
 	_total = _price * _sale * _amtAdded;
 
 	// Update unit's funds and trader's stock
-	[_trader, _classname, -_amtAdded] call HALs_store_fnc_updateStock;
+	//[_trader, _classname, -_amtAdded] call HALs_store_fnc_updateStock;
 	[_unit, -_total] call HALs_money_fnc_addFunds;
 
 	// Create message to display to _unit

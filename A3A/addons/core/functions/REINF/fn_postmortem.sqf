@@ -9,7 +9,7 @@
 params ["_victim"];
 #include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
-private _group = group _victim;
+/*private _group = group _victim;
 
 Debug("PostMortem Called");
 if (isnull _victim)exitwith{Error("Function failed called with null param.")};
@@ -45,4 +45,4 @@ if !(isnull _group) then
 {
     Debug_1("Cleanup complete for %1 group.", _group);
     deleteGroup _group;
-};
+};*/
