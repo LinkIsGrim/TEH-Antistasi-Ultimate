@@ -23,7 +23,7 @@
 - **Enemy bases** now feature a better selection of cars and broken armor to loot.
 - **Fast travel**: Allows free location selection within a 500m radius of friendly markers.
 - **CAS support** tuned down to avoid being called on infantry units.
-- **[WIP] Vehicle-based looting**: using ACE action on the vehicles to gather loot (complete overhaul of Loot to Vehicle Extended mod).
+- **Vehicle-based looting**: using ACE action on the vehicles to gather loot (complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod), requires **ACE3**
 - **[WIP] FIAradio**: Replaced reveal functionality (which doesn't work) with markers.
 - **[WIP] Smaller drones**: Requires separate mods for now, including **"GX-Drones"** and **"Multiple Drones in Inventory"**.
 
@@ -38,7 +38,7 @@
 - Discord Rich Presence by ConnorAU
 - Antistasi Plus (fork of Community) by Socrates
 - Antistasi Ultimate (fork of Plus) by the [Antistasi Ultimate Dev Team](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Developers)
-- [1Tac] Bear http://teamonetactical.com
+- Loot to vehicle for ACE & Antistasi by Bear and Extended by dawidseksi
 
 ## Additional Icons Credits
 <div>
