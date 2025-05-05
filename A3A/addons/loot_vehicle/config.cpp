@@ -18,7 +18,7 @@ class CfgFunctions
 {
     class loot_vehicle
     {
-        class Core
+        class Loot_Transfer
         {
             file = QPATHTOFOLDER(functions);
             class transferToVehicle {};
