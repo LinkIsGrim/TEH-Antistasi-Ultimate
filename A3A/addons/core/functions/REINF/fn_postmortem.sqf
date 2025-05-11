@@ -9,7 +9,7 @@
 params ["_victim"];
 #include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
-/*private _group = group _victim;
+private _group = group _victim;
 
 Debug("PostMortem Called");
 if (isnull _victim)exitwith{Error("Function failed called with null param.")};
@@ -25,24 +25,7 @@ if (isNull _group) then
     };
 };
 
-Debug_3("Pausing for %1 minutes before cleaning victim: %2 and group: %3", round cleantime/60, _victim, _group);
-sleep cleantime;
-
-if (_victim getVariable ["stopPostmortem", false]) exitWith {};
-
-if !(isnull _victim) then
-{
-    Debug_1("Cleanup complete for %1 victim.", _victim);
-    if (_victim isKindOf "CAManBase" and !(isNull (objectParent _victim))) then {
-        // Otherwise vehicle seats may remain blocked
-        [objectParent _victim, _victim] remoteExec ["deleteVehicleCrew", _victim];
-    } else {
-        deleteVehicle _victim;
-    };
+private _veh = vehicle _victim;
+if (_veh isKindOf "StaticWeapon") then {
+	moveOut _victim;
 };
-
-if !(isnull _group) then
-{
-    Debug_1("Cleanup complete for %1 group.", _group);
-    deleteGroup _group;
-};*/
