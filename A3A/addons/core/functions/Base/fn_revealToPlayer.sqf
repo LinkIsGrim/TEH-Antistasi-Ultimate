@@ -1,8 +1,12 @@
 while { revealX } do {
+
+
 	private _allMarkers = [];
 	private _activeVehicles = [];
 
 	{
+		if (!([player] call A3A_fnc_hasRadio)) then { break; };
+		
 		if ((side _x == Invaders) || (side _x == Occupants)) then {
 			private _lead = leader _x;
 			private _pos = getPosATL _lead;

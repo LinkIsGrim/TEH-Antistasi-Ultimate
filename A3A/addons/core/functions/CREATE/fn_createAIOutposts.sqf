@@ -42,8 +42,12 @@ _mrk setMarkerSizeLocal [(distanceSPWN),(distanceSPWN)];
 _mrk setMarkerTypeLocal "hd_warning";
 _mrk setMarkerColorLocal "ColorBlue";
 _mrk setMarkerBrushLocal "Border";
-_mrk setMarkerDir (markerDir _markerX);
-//if (!debug) then {_mrk setMarkerAlphaLocal 0};
+if (hideEnemyMarkers) then {
+	_mrk setMarkerAlphaLocal 0;
+} else {
+	_mrk setMarkerAlpha 0.5;
+};
+
 
 private _patrolVehicleData = [_sideX, _positionX, _size] call SCRT_fnc_garrison_rollOversizeVehicle;
 if (_patrolVehicleData isNotEqualTo []) then {

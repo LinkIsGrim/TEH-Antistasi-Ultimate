@@ -201,8 +201,11 @@ _mrk setMarkerSizeLocal [(distanceSPWN),(distanceSPWN)];
 _mrk setMarkerTypeLocal "hd_warning";
 _mrk setMarkerColorLocal "ColorBlue";
 _mrk setMarkerBrushLocal "Border";
-_mrk setMarkerDir (markerDir _markerX);
-//if (!debug) then {_mrk setMarkerAlphaLocal 0};
+if (hideEnemyMarkers) then {
+	_mrk setMarkerAlphaLocal 0;
+} else {
+	_mrk setMarkerAlpha 0.5;
+};
 
 //maybe it's no longer needed after all..?
 private _additionalGarrison = [_sideX, _markerX] call SCRT_fnc_garrison_rollOversizeGarrison;
