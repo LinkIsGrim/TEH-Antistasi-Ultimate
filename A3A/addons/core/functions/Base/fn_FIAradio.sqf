@@ -3,7 +3,7 @@ private _chance = 100;
 {
 	private _pos = getPos _x;
 	private _markerX = [outposts,_pos] call BIS_fnc_nearestPosition;
-	if ((sidesX getVariable [_markerX,sideUnknown] == teamPlayer) and {alive _x}) then {_chance = _chance + 4};
+	if ((sidesX getVariable [_markerX,sideUnknown] == teamPlayer) and {alive _x}) then {_chance = _chance + 10};
 } forEach antennas;
 
 private _return = false;
