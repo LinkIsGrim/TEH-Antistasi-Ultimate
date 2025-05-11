@@ -7,13 +7,12 @@
 ["name", "LRI"] call _fnc_saveToTemplate;
 
 ["flag", "Flag_NATO_F"] call _fnc_saveToTemplate;
-//["flagTexture", QPATHTOFOLDER(Templates\Templates\CUP\flag_LRI_co.paa)] call _fnc_saveToTemplate;
 ["flagTexture", "\A3\Data_F_Exp\Flags\flag_VIPER_CO.paa"] call _fnc_saveToTemplate;
 
 ["flagMarkerType", "flag_Viper"] call _fnc_saveToTemplate;
 
 ["vehiclesBasic", ["C_Quadbike_01_F", "CUP_C_Golf4_black_Civ"]] call _fnc_saveToTemplate;
-["vehiclesLightUnarmed", ["CUP_O_Hilux_unarmed_CHDKZ"]] call _fnc_saveToTemplate;
+["vehiclesLightUnarmed", []] call _fnc_saveToTemplate;
 ["vehiclesLightArmed", ["CUP_O_BRDM2_CHDKZ", "CUP_O_BTR80A_CHDKZ"]] call _fnc_saveToTemplate;
 ["vehiclesTruck", ["a3u_cup_kamaz_open_olive"]] call _fnc_saveToTemplate;
 ["vehiclesAT", ["CUP_O_BMP2_CHDKZ"]] call _fnc_saveToTemplate;
@@ -24,7 +23,7 @@
 ["vehiclesCivPlane", ["CUP_C_AN2_CIV", "CUP_C_C47_CIV"]] call _fnc_saveToTemplate;
 ["vehiclesMedical", ["CUP_C_S1203_Ambulance_CIV"]] call _fnc_saveToTemplate;
 
-["vehiclesCivCar", ["C_Quadbike_01_F", "CUP_C_Golf4_black_Civ", "CUP_O_Hilux_unarmed_CR_CIV"]] call _fnc_saveToTemplate;
+["vehiclesCivCar", ["CUP_O_Hilux_unarmed_CHDKZ"]] call _fnc_saveToTemplate;
 ["vehiclesCivTruck", ["CUP_C_Ural_Civ_03"]] call _fnc_saveToTemplate;
 ["vehiclesCivHeli", ["CUP_C_412"]] call _fnc_saveToTemplate;
 ["vehiclesCivBoat", ["C_Rubberboat"]] call _fnc_saveToTemplate;
