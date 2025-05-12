@@ -58,7 +58,7 @@ if (isNull _veh) exitWith {
 };
 
 //private _nearestFriendlyAirfield = (airportsX select {sidesX getVariable _x == teamPlayer && {(getMarkerPos _x distance2D _veh) <= 50}});
-private _nearAirfields = airportsX select {
+/*private _nearAirfields = airportsX select {
     (sidesX getVariable [_x, sideUnknown] == teamPlayer) && 
     (getMarkerPos _x distance2D _veh <= 50)
 };
@@ -66,7 +66,8 @@ private _isHQ = _veh distance (getMarkerPos "Synd_HQ") <= 50;
 if (!_isHQ && _nearAirfields isEqualTo []) exitWith {
 
     [localize "STR_A3A_Base_sellVehicle_header", localize "STR_A3A_Base_sellVehicle_err0.1"] remoteExecCall ["SCRT_fnc_misc_deniedHint",_player];
-};
+};*/
+
 
 if ({isPlayer _x} count crew _veh > 0) exitWith {
     [localize "STR_A3A_Base_sellVehicle_header", localize "STR_A3A_Base_sellVehicle_err1"] remoteExecCall ["SCRT_fnc_misc_deniedHint",_player];
@@ -135,15 +136,28 @@ if (_costs == 0) exitWith {
     [localize "STR_A3A_Base_sellVehicle_header", localize "STR_A3A_Base_sellVehicle_err4"] remoteExecCall ["SCRT_fnc_misc_deniedHint",_player];
 };
 
-_costs = round (_costs * (1-damage _veh));
+//call the progress bar
+[5, [_veh], {		
+	}, {
+		_vehicle = _args select 0;
+		_vehicle setVariable ["A3A_sellVehicle_inProgress", false, false];
+	},
+	format ["Sending %1 to the dealer...", getText (configFile >> "CfgVehicles" >> typeOf _veh >> "displayName")]
+] call ace_common_fnc_progressBar;
 
-[0,_costs] remoteExec ["A3A_fnc_resourcesFIA",2];
+sleep 5;
 
-if (_veh in staticsToSave) then {staticsToSave = staticsToSave - [_veh]; publicVariable "staticsToSave"};
+if (_veh getVariable ["A3A_sellVehicle_inProgress",false]) then {
+	_costs = round (_costs * (1-damage _veh));
 
-[_veh,true] call A3A_fnc_empty;
+	[0,_costs] remoteExec ["A3A_fnc_resourcesFIA",2];
 
-if (_veh isKindOf "StaticWeapon") then {deleteVehicle _veh};
+	if (_veh in staticsToSave) then {staticsToSave = staticsToSave - [_veh]; publicVariable "staticsToSave"};
 
-[localize "STR_A3A_Base_sellVehicle_header", localize "STR_A3A_Base_sellVehicle_success"] remoteExecCall ["A3A_fnc_customHint",_player];
+	[_veh,true] call A3A_fnc_empty;
+
+	if (_veh isKindOf "StaticWeapon") then {deleteVehicle _veh};
+
+	[localize "STR_A3A_Base_sellVehicle_header", localize "STR_A3A_Base_sellVehicle_success"] remoteExecCall ["A3A_fnc_customHint",_player];
+};
 nil;

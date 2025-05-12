@@ -10,6 +10,20 @@ private _interrupted  = false;
 {
 	_current = _current + 1;
 	if (_interrupted || (isNull _targetVehicle)) then { break; };
+	
+	if (_x getVariable ["hasIntel", false]) then {
+		[_x] spawn {
+			params ["_intel"];
+			_mrk = createMarkerLocal [str (random 9999), getPosATL _intel];
+			_mrk setMarkerTypeLocal "hd_dot_noShadow";
+			_mrk setMarkerTextLocal "Intel";
+			_mrk setMarkerColor "ColorGreen";
+			sleep 60;
+			deleteMarkerLocal _mrk;
+		};
+		continue;
+	};
+	
 	if ((isNull _x) || (_x getVariable ["isLooted", false]) || (_x isEqualTo _targetVehicle) || (_x isKindOf "B_supplyCrate_F") || (_x isKindOf "IG_supplyCrate_F")) then { continue; };
 	
 	_x setVariable ["isLooted", true, true];
@@ -149,8 +163,15 @@ private _interrupted  = false;
 		// Unlock
 		_vehicle setVariable [_isBusy, false, true];
 
-		deleteVehicle _container;
-		 
+
+		if (_container isKindOf "ReammoBox_F" || _container isKindOf "CAManBase") then {
+			deleteVehicle _container;
+		} else { 
+			clearItemCargoGlobal _container;
+			clearMagazineCargoGlobal _container;
+			clearWeaponCargoGlobal _container;
+			clearBackpackCargoGlobal _container;
+		};
 	}, {
 		_container = _args select 1;
 		_container setVariable ["break",true];
