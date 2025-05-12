@@ -139,47 +139,21 @@ if (_text isEqualTo "") then {
         };
         case (_intelType isEqualTo "Small"): {
             _intelContent = [
-                selectRandomWeighted [TIME_LEFT, 0.2, REVEAL_ZONE_SMALL, 0.2, DEF_RESOURCES, 0.2, DECRYPTION_KEY, 0.2, CONVOY, 0.2, RIVALS, 0.1],
-                selectRandomWeighted [TIME_LEFT, 0.23, REVEAL_ZONE_SMALL, 0.2, DEF_RESOURCES, 0.23, DECRYPTION_KEY, 0.23, CONVOY, 0.21]
+                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5, REVEAL_ZONE_LARGE, 0.5, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, TRAITOR, 1, WEAPON, 1, MONEY, 2, RIVALS, 0.5],
+                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5, REVEAL_ZONE_LARGE, 0.5, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, TRAITOR, 1, WEAPON, 1, MONEY, 2]
             ] select (areRivalsEnabled && {areRivalsDiscovered && {!areRivalsDefeated}});
             
             switch (_intelContent) do
             {
-                case (TIME_LEFT):
-                {
-                    private _atkRes = [A3A_resourcesAttackOcc, A3A_resourcesAttackInv] select (_side == Invaders);
-                    private _atkResRate = A3A_balanceResourceRate * (A3A_enemyAttackMul / 10) / 10;           // per minute
-                    if (_side == Invaders) then { _atkResRate = _atkResRate * (A3A_invaderBalanceMul / 10) };
-
-                    private _nextAttack = (0.7 + random 0.6) * (-_atkRes / _atkResRate);
-                    if(_nextAttack < 5) then
-                    {
-                        _text = format [localize "STR_intel_imminent_attack", _sideName];
-                    }
-                    else
-                    {
-                        _text = format [localize "STR_intel_attack", _sideName, round (_nextAttack)];
-                    };
-                };
                 case (REVEAL_ZONE_SMALL):
                 {
                     _text = [random 2] call A3U_fnc_revealRandomZones;
                 };
-                case (DEF_RESOURCES):
+                case (REVEAL_ZONE_LARGE):
                 {
-                    private _defRes = [A3A_resourcesDefenceOcc, A3A_resourcesDefenceInv] select (_side == Invaders);
-                    private _defResCap = A3A_balanceResourceRate * 10 * ([1, A3A_invaderBalanceMul / 10] select (_side == Invaders));
-
-                    private _fraction = _defRes / _defResCap;
-                    private _fmt = call {
-                        if (_fraction > 0.75) exitWith { localize "STR_intel_def_resources_plenty" };
-                        if (_fraction > 0.50) exitWith { localize "STR_intel_def_resources_moderate" };
-                        if (_fraction > 0.25) exitWith { localize "STR_intel_def_resources_short" };
-                        if (_fraction > 0.00) exitWith { localize "STR_intel_def_resources_lack" };
-                        localize "STR_intel_def_resources_depleted";
-                    };
-                    _text = format [_fmt, _sideName];
+                    _text = [random 5] call A3U_fnc_revealRandomZones;
                 };
+
                 case (DECRYPTION_KEY):
                 {
                     if(_side == Occupants) then
@@ -192,28 +166,38 @@ if (_text isEqualTo "") then {
                     };
                     _text = format [localize "STR_intel_decryption_key", _sideName];
                 };
-                case (CONVOY):
+				case (KEY_PACK):
                 {
-                    // These aren't active at the moment
-                    private _convoyMarker = "";
-                    [] call A3A_fnc_cleanConvoyMarker;
+                    private _keyCount = round (3 + random 3);
                     if(_side == Occupants) then
                     {
-                        _convoyMarker = (server getVariable ["convoyMarker_Occupants", []]);
+                        occupantsRadioKeys = occupantsRadioKeys + _keyCount;
                     }
                     else
                     {
-                        _convoyMarker = (server getVariable ["convoyMarker_Invaders", []]);
+                        invaderRadioKeys = invaderRadioKeys + _keyCount;
                     };
-                    if(count _convoyMarker != 0) then
-                    {
-                        (selectRandom _convoyMarker) setMarkerAlpha 1;
-                        _text = format [localize "STR_intel_convoy_tracking_success", _sideName];
-                    }
-                    else
-                    {
-                        _text = format [localize "STR_intel_convoy_tracking_fail", _sideName];
-                    };
+                    _text = format [localize "STR_intel_key_pack", _sideName];
+                };
+			    case (TRAITOR):
+                {
+                    _text = "You found incriminating data on the traitor, we don't think he will cause any more trouble";
+                    traitorIntel = true; publicVariable "traitorIntel";
+                };
+                case (WEAPON):
+                {
+                    private _notYetUnlocked = allWeapons - unlockedWeapons;
+                    private _newWeapon = selectRandom _notYetUnlocked;
+                    [_newWeapon] remoteExec ["A3A_fnc_unlockEquipment", 2];
+
+                    private _weaponName = getText (configFile >> "CfgWeapons" >> _newWeapon >> "displayName");
+                    _text = format ["You found the supply data for the<br/> %1<br/> You have unlocked this weapon!", _weaponName];
+                };
+                case (MONEY):
+                {
+                    private _money = ((round (random 50)) + (10 * tierWar)) * 100;
+                    _text = format ["You found some confidential data, you sold it for %1 on the black market!", _money];
+                    [0, _money] remoteExec ["A3A_fnc_resourcesFIA",2];
                 };
                 case (RIVALS):
                 {

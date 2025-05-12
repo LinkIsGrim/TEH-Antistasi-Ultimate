@@ -105,6 +105,7 @@ if(_caller getVariable ["intelFound", false]) then {
     {
         [(localize "STR_intel_no_structtext_header"), (localize "STR_intel_search_failure_description")] call A3A_fnc_customHint;
     };
+	_squadLeader setVariable ["hasIntel", false, true]
 }
 else
 {

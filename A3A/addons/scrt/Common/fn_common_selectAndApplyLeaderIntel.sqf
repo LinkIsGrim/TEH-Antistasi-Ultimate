@@ -40,13 +40,14 @@ switch (true) do {
 	};
 
 	case (_type in FactionGet(all,"SquadLeaders")): {
-		private _hasIntel = ((random 100) < 80);
+		private _hasIntel = ((random 100) < 60);
 		_unit setVariable ["hasIntel", _hasIntel, true];
 		_unit setVariable ["side", _side, true];
 
 		if ((random 100) < 35) then {
 			_unit setVariable ["canBeInterrogated", true, true];
-		} else {
+		};
+		if (_hasIntel) then {
 			[_unit, "Intel_Small"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian], _unit];
 		};
 	};
