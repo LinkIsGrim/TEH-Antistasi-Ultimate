@@ -18,7 +18,7 @@
 ] call CBA_fnc_addSetting;
 
 private _transferBetweenAction = [
-    "LootVehicleTransferAction", "Transfer Cargo", "a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa",
+    "LootVehicleTransferAction", "Unload Cargo", "a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa",
     {
         params ["_target", "_player"];
         
@@ -44,13 +44,26 @@ private _transferBetweenAction = [
             [_vehicle,[_target],_player] call loot_vehicle_fnc_transferToVehicle;
         };
         
-        private _vehicles = (nearestObjects [_target, ["landVehicle","air","ship","ReammoBox_F"], LootVehicleDistance]) select {
+        private _vehicles = (nearestObjects [_target, ["landVehicle","air","ship"], LootVehicleDistance]) select {
             (_x != _target) && {([_target, _x] call ace_interaction_fnc_getInteractionDistance) < LootVehicleDistance} && (getNumber(configFile >> "CfgVehicles" >> typeOf _x >> "transportMaxBackpacks") + getNumber(configFile >> "CfgVehicles" >> typeOf _x >> "transportMaxMagazines") + getNumber(configFile >> "CfgVehicles" >> typeOf _x >> "transportMaxWeapons") != 0)
         };
 
         [_vehicles, _statement, _target] call ace_interact_menu_fnc_createVehiclesActions;
     }
 ] call ace_interact_menu_fnc_createAction;
+
+private _storeLootSellVehicle = [
+    "LootVehicleSellAction", "Sell Vehicle", "",
+    {
+        params ["_target", "_player"];
+        
+         [_player,_target] spawn A3A_fnc_sellVehicle;
+    },
+    {
+		params ["_target", "_player"];
+        count crew _target == 0;
+    },
+    {}] call ace_interact_menu_fnc_createAction;
 
 private _actionVehicle = [
     "LootVehicleGatherAllLoot", "Gather all loot", "a3\ui_f\data\IGUI\Cfg\Actions\loadVehicle_ca.paa",
@@ -71,6 +84,11 @@ private _actionVehicle = [
 {
     [_x, 0, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
     [_x, 1, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
+	[_x, 0, ["ACE_MainActions"], _storeLootSellVehicle, true] call ace_interact_menu_fnc_addActionToClass;
+    [_x, 1, ["ACE_MainActions"], _storeLootSellVehicle, true] call ace_interact_menu_fnc_addActionToClass;
     [_x, 0, ["ACE_MainActions"], _actionVehicle, true] call ace_interact_menu_fnc_addActionToClass;
     [_x, 1, ["ACE_MainActions"], _actionVehicle, true] call ace_interact_menu_fnc_addActionToClass;
-} forEach ["landVehicle","air","ship","ReammoBox_F"];
+} forEach ["landVehicle","air","ship"];
+
+["ReammoBox_F", 0, ["ACE_MainActions"], _actionVehicle, true] call ace_interact_menu_fnc_addActionToClass;
+["ReammoBox_F", 1, ["ACE_MainActions"], _actionVehicle, true] call ace_interact_menu_fnc_addActionToClass;
