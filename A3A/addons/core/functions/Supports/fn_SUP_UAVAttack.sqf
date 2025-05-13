@@ -43,4 +43,4 @@ A3A_activeSupports pushBack _suppData;
 
 [_reveal, _side, "UAVAttack", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
 
-(A3A_vehicleResourceCosts get _planeType) + 100;
+(A3A_vehicleResourceCosts getOrDefault [_planeType,150]) + 100;

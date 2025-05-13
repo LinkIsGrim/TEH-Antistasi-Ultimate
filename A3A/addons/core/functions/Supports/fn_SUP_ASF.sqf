@@ -45,4 +45,4 @@ A3A_activeSupports pushBack _suppData;
 [_reveal, _side, "ASF", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
 
 // Vehicle cost + extra support cost for balance
-(A3A_vehicleResourceCosts get _vehType) + 0;
+(A3A_vehicleResourceCosts getOrDefault [_vehType,250]) + 0;

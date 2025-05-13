@@ -17,7 +17,7 @@ params ["_target", "_side", "_maxSpend", "_availTypes"];
 
 if !(_target isKindOf "Air") exitWith { 0 };     // can't hit anything except air
 
-private _targThreat = A3A_vehicleResourceCosts getOrDefault [typeOf _target, 0];
+private _targThreat = A3A_vehicleResourceCosts getOrDefault [typeOf _target, 80];
 _targThreat = _targThreat + (_target getVariable ["A3A_airKills", 0]);
 
 private _lowAir = Faction(_side) getOrDefault ["attributeLowAir", false];

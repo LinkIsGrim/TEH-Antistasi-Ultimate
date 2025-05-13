@@ -66,4 +66,4 @@ A3A_activeSupports pushBack _suppData;
 [_reveal, _side, "HOWITZER", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
 
 // Mortar cost (might be free?) + extra support cost for balance
-(A3A_vehicleResourceCosts getOrDefault [_vehType, 0]) + 125;
+(A3A_vehicleResourceCosts getOrDefault [_vehType, 150]) + 125;
