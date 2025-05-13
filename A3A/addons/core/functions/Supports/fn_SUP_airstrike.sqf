@@ -46,4 +46,4 @@ A3A_supportStrikes pushBack [_side, "AREA", _targPos, time + 1200, 1200, 200];
 [_reveal, _side, "AIRSTRIKE", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
 
 // Return resource cost of support (planecost + 0)
-A3A_vehicleResourceCosts get _planeType;
+A3A_vehicleResourceCosts getOrDefault [_planeType, 250];

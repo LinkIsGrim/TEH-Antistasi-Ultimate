@@ -139,7 +139,7 @@ if (_side == Invaders || _side == Occupants) then {
 		if (_veh getVariable "ownerSide" != _veh getVariable "originalSide") exitWith { nil };
 
 		// Add 1/3 cost to recent casualties list on server
-		private _vehCost = A3A_vehicleResourceCosts getOrDefault [typeof _veh, 0];
+		private _vehCost = A3A_vehicleResourceCosts getOrDefault [typeof _veh, 100];
 		[_veh getVariable "ownerSide", getPos _veh, _vehCost/3, _source] remoteExec ["A3A_fnc_addRecentDamage", 2];
 
 		// Attempt to call for support if there's a crew. Assume local, should be true

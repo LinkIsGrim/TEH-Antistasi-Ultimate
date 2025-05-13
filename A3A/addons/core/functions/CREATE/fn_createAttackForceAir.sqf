@@ -67,7 +67,7 @@ for "_i" from 1 to _vehCount do {
             if !(isNull (_vehData#2)) then { _cargoGroups pushBack (_vehData#2) };
             _landPosBlacklist = (_vehData#3);
 
-            private _vehCost = A3A_vehicleResourceCosts getOrDefault [_transportPlaneType, 0];
+            private _vehCost = A3A_vehicleResourceCosts getOrDefault [_transportPlaneType, 130];
             private _crewCost = 10 * (count units (_vehData#1) + count units (_vehData#2));
             _resourcesSpent = _resourcesSpent + _vehCost + _crewCost;
             sleep 5;
@@ -87,7 +87,7 @@ for "_i" from 1 to _vehCount do {
             if !(isNull (_vehData#2)) then { _cargoGroups pushBack (_vehData#2) };
             _landPosBlacklist = (_vehData#3);
 
-            private _vehCost = A3A_vehicleResourceCosts getOrDefault [_vehType, 0];
+            private _vehCost = A3A_vehicleResourceCosts getOrDefault [_vehType, 200];
             private _crewCost = 10 * (count units (_vehData#1) + count units (_vehData#2));
             _resourcesSpent = _resourcesSpent + _vehCost + _crewCost;
             sleep 5;
