@@ -75,6 +75,7 @@ if (_target isEqualType objNull and {_target isKindOf "Air"}) exitWith
     _curResources min _maxSpendTarg min (_maxAASpend - _curAASpend);
 };
 
+if (_target distance2D _callPos > 2000) exitWith { _maxResources; };
 
 // For ground targets, spend limit depends on markers near caller
 private _maxSpendLoc = _maxResources;
