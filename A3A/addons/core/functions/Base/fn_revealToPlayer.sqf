@@ -1,5 +1,6 @@
-while { revealX } do {
+private _rebelBases = ["Synd_HQ"];
 
+while { revealX } do {
 
 	private _allMarkers = [];
 	private _activeVehicles = [];
@@ -12,7 +13,7 @@ while { revealX } do {
 			private _pos = getPosATL _lead;
 
 			if ((side _lead isNotEqualTo side _x) || (_pos isEqualTo [0,0,0])) then { continue; };
-
+			
 			private _veh = vehicle _lead;
 			
 			//if squad is sharing a ride, don't draw it.
@@ -31,7 +32,12 @@ while { revealX } do {
 				case (_veh isKindOf "Man"): { "inf" };
 				default { "unknown" };
 			};
-
+			
+			if (_typeX in ["antiair","inf"]) then {
+				_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
+				if (_pos distance2D getMarkerPos _loc > 1500) then { continue; };
+			};
+			
 			private _formatX = if (side _x == Occupants) then {"b"} else {"o"};
 			private _color = if (side _x == Occupants) then { colorOccupants } else { colorInvaders };
 
@@ -52,7 +58,10 @@ while { revealX } do {
 		};
 	} forEach allGroups;
 
+	_rebelBases =  markersX select { sidesX getVariable _x == teamPlayer };
+
 	sleep 15;
+
 
 	{ deleteMarkerLocal _x } forEach _allMarkers;
 };
