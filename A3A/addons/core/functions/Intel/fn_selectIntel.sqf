@@ -108,8 +108,8 @@ if (_text isEqualTo "") then {
         };
         case (_intelType isEqualTo "Small"): {
             _intelContent = [
-                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5, REVEAL_ZONE_LARGE, 0.5, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, TRAITOR, 1, WEAPON, 1, MONEY, 2, RIVALS, 0.5],
-                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5, REVEAL_ZONE_LARGE, 0.5, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, TRAITOR, 1, WEAPON, 1, MONEY, 2]
+                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5, REVEAL_ZONE_LARGE, 0.5, DECRYPTION_KEY, 3.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2],
+                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5, REVEAL_ZONE_LARGE, 0.5, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2, RIVALS, 1]
             ] select (areRivalsEnabled && {areRivalsDiscovered && {!areRivalsDefeated}});
             
             switch (_intelContent) do
