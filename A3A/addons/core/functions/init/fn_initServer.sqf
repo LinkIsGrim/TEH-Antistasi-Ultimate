@@ -323,7 +323,7 @@ addMissionEventHandler ["EntityKilled", {
 		} forEach nearestObjects [_origin, ["Man"], _radius];
 	};
 	
-	if ((_victim isKindOf "Air" || _victim isKindOf "StaticWeapon") && (_victim distance2D _killer > 2000) && (_victim getVariable ["ownerSide","Unknown"] in [Occupants, Invaders]) && (random 100 < 25)) then {
+	if ((_victim isKindOf "Air" || _victim isKindOf "StaticWeapon") && (_victim distance2D _killer > 2000) && (_victim getVariable ["ownerSide","Unknown"] in [Occupants, Invaders]) && ((random 100) < 33)) then {
 		[(_victim getVariable "ownerSide"), _killer, getPosATL _victim, 0, 1] remoteExec ["A3A_fnc_requestSupport", 2];
 	};
 }];

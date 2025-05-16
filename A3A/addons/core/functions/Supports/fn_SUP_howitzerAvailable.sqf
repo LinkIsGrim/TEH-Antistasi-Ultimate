@@ -21,5 +21,5 @@ if ({sidesX getVariable [_x, sideUnknown] == _side} count (airportsX + milbases)
 
 // balance this one against artillery
 if (tierWar < 4) exitWith { 0 };
-if (tierWar < 5 or !("ARTILLERY" in _availTypes)) exitWith { 1 };
+if (_target isKindOf "StaticWeapon") exitWith { 2 };
 1 - (tierWar - 4) / 8;       // // 87.5% at tier 5, 25% at tier 10
