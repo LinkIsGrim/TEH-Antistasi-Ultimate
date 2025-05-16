@@ -153,6 +153,11 @@
 				price = AA_MISSILE;
 				stock = 10;
 			};
+			
+			class ace_missile_manpad_stinger_man {
+				price = AA_MISSILE;
+				stock = 10;
+			};
 
 			class Titan_AT {
 				price = FAF_AT_MISSILE;
@@ -304,7 +309,12 @@
 				price = 100;
 				stock = 100;
 			};
-
+			
+			ITEM(ACE_optic_Arco_2D, 650, 100);
+			ITEM(ACE_optic_MRCO_2D, 500, 100);
+			ITEM(ACE_optic_Hamr_2D, 700, 100);
+			ITEM(ACE_optic_SOS_2D, 800, 100);
+			ITEM(ACE_optic_LRPS_2D, 1000, 100);
 		};
 
 		class magazinesVanilla 
