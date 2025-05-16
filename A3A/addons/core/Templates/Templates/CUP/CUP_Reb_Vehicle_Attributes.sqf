@@ -6,11 +6,7 @@
 	["CUP_O_BRDM2_CHDKZ", ["rebCost", 800]],
 	["CUP_O_BMP2_CHDKZ", ["rebCost", 5000]],
 	["CUP_O_ZSU23_ChDKZ", ["rebCost", 5000]],
-	["CUP_O_BTR80A_CHDKZ", ["rebCost", 3000]],
-	["I_E_Truck_01_radar_F",["rebCost", 3000]],
-	["I_E_Truck_01_defender_F",["rebCost", 5000]],
-	["I_Truck_03_SAM_F",["rebCost", 5000]],
-	["I_Truck_02_AA_F",["rebCost", 5000]],
+	["O_APC_Tracked_02_AA_F",["rebCost", 8000]],
 	["I_E_Truck_02_AA_F",["rebCost", 5000]],
     // heavy armed stuff
     ["CUP_I_Hilux_UB32_NAPA", ["rebCost", 6000]],
