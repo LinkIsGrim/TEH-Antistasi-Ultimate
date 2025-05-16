@@ -31,6 +31,4 @@ class TFAR_SCR536_1: TFAR_SCR536
     ace_arsenal_uniqueBase="TFAR_SCR536";
 };
 
-#include "radios.hpp"
-
 // TF_RADIO_IDS(TFAR_SCR536,SCR536)

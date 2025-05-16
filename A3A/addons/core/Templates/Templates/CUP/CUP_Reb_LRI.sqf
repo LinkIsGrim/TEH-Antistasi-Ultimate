@@ -11,12 +11,12 @@
 
 ["flagMarkerType", "flag_Viper"] call _fnc_saveToTemplate;
 
-["vehiclesBasic", ["C_Quadbike_01_F", "CUP_C_Golf4_black_Civ"]] call _fnc_saveToTemplate;
+["vehiclesBasic", ["C_Quadbike_01_F"]] call _fnc_saveToTemplate;
 ["vehiclesLightUnarmed", []] call _fnc_saveToTemplate;
 ["vehiclesLightArmed", ["CUP_O_BRDM2_CHDKZ", "CUP_O_BTR80A_CHDKZ"]] call _fnc_saveToTemplate;
 ["vehiclesTruck", ["a3u_cup_kamaz_open_olive"]] call _fnc_saveToTemplate;
 ["vehiclesAT", ["CUP_O_BMP2_CHDKZ"]] call _fnc_saveToTemplate;
-["vehiclesAA", ["CUP_O_ZSU23_ChDKZ", "I_E_Truck_01_defender_F","I_E_Truck_01_radar_F", "I_Truck_03_SAM_F"]] call _fnc_saveToTemplate;
+["vehiclesAA", ["CUP_O_ZSU23_ChDKZ", "I_E_Truck_01_radar_F", "I_E_Truck_01_defender_F", "I_Truck_03_SAM_F", "I_Truck_02_AA_F", "I_E_Truck_02_AA_F"]] call _fnc_saveToTemplate;
 ["vehiclesBoat", ["I_G_Boat_Transport_01_F"]] call _fnc_saveToTemplate;
 
 ["vehiclesPlane", ["CUP_C_DC3_CIV"]] call _fnc_saveToTemplate;
