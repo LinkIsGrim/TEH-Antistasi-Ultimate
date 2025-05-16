@@ -10,5 +10,5 @@ if ("lowTech" in A3A_factionEquipFlags) exitWith {-1}; //leave it like this unti
 
 if (_target isKindOf "Air") exitWith { 0 };     // can hit anything except air
 // Should limit to certain templates?
-
+if (_target isKindOf "StaticWeapon") exitWith { 2 };
 1;
