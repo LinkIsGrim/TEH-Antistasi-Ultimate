@@ -3,6 +3,8 @@ FIX_LINE_NUMBERS()
 
 params ["_typeX"];
 
+if (isNil "_typeX") exitWith { 0 };
+
 private _costs = server getVariable _typeX;
 
 private _defaultPrice = 1000;
