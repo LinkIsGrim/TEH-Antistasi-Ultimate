@@ -1,10 +1,12 @@
-private _rebelBases = ["Synd_HQ"];
+private _rebelBases = [];
+private _markerMap = createHashMap;
 
 while { revealX } do {
-
-	private _allMarkers = [];
 	private _activeVehicles = [];
-
+    
+	private _rebelBases = (airportsX + outposts + seaports + factories + resourcesX + milbases) select { sidesX getVariable _x == teamPlayer };
+	_rebelBases pushBack "Synd_HQ";
+	
 	{
 		if (!([player] call A3A_fnc_hasRadio)) then { break; };
 		
@@ -33,35 +35,70 @@ while { revealX } do {
 				default { "unknown" };
 			};
 			
-			if (_typeX in ["antiair","inf"]) then {
-				_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
-				if (_pos distance2D getMarkerPos _loc > 1500) then { continue; };
-			};
+
 			
 			private _formatX = if (side _x == Occupants) then {"b"} else {"o"};
 			private _color = if (side _x == Occupants) then { colorOccupants } else { colorInvaders };
 
 			private _mrkName = format ["reveal-%1", _x];
-			_allMarkers pushBack _mrkName;
+			private _mrk = _mrkName;
 
-			private _mrk = createMarkerLocal [_mrkName, _pos];
-			_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];
-			_mrk setMarkerColorLocal _color;
+			// -1 - not tracked, 0 - expired, 1 - active
+			private _status = _markerMap getOrDefault [_mrkName, -1]; 
+			
+			if (_status == -1) then {
+				_mrk = createMarkerLocal [_mrkName, _pos];
+				_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];
+				_mrk setMarkerColorLocal _color;
+				_mrk setMarkerTextLocal ((str _x) select [2]);
+				_markerMap set [_mrkName, 1];
+			} else {
+				_mrk setMarkerPosLocal _pos;
+				_markerMap set [_mrkName, 1];
+			};
+			
+			//squad getting out of the car should be resized
 			if (_typeX isNotEqualTo "inf") then {
 				_mrk setMarkerSizeLocal [1.2,1.2];
-				_mrk setMarkerAlphaLocal 1.0;
 			} else {
 				_mrk setMarkerSizeLocal [0.8,0.8];
-				_mrk setMarkerAlphaLocal 0.66;
 			};
-			_mrk setMarkerTextLocal ((str _x) select [2]);
+			
+			//hide the runners
+			private _outmarker = false;
+			if (_typeX in ["antiair","inf"]) then {
+				_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
+				_outmarker = _pos distance2D getMarkerPos _loc > 1500;
+			};
+			
+			if (_outmarker) then {
+				_mrk setMarkerAlphaLocal 0;
+			} else {
+				if (_typeX isNotEqualTo "inf") then {
+					_mrk setMarkerAlphaLocal 1;
+				} else {
+					_mrk setMarkerAlphaLocal 0.66;
+				};
+			};
 		};
 	} forEach allGroups;
 
-	_rebelBases =  markersX select { sidesX getVariable _x == teamPlayer };
+	// Garbage collection pass
+	{
+		private _mrk = _x;
+		private _status = _markerMap get _x;
+		if (_status == 1) then {
+			_markerMap set [_mrk, 0];  // Mark for next cycle
+		} else {
+			_mrk setMarkerAlphaLocal 0;  // Hide stale marker
+		};
+	} forEach _markerMap;
 
 	sleep 15;
-
-
-	{ deleteMarkerLocal _x } forEach _allMarkers;
 };
+
+// remove all
+{
+	private _mrk = _x;
+	deleteMarker _mrk;
+} forEach _markerMap;
