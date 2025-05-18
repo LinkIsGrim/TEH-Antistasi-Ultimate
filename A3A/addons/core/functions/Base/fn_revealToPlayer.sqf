@@ -13,15 +13,14 @@ while { revealX } do {
 		if ((side _x == Invaders) || (side _x == Occupants)) then {
 			private _lead = leader _x;
 			private _pos = getPosATL _lead;
-
-			if ((side _lead isNotEqualTo side _x) || (_pos isEqualTo [0,0,0])) then { continue; };
-			
 			private _veh = vehicle _lead;
 			
+			//Flag to hide an active group
+			//This particular case is about dead/surrendered group
+			private _hide = side _lead isNotEqualTo side _x;
+			
+			
 			//if squad is sharing a ride, don't draw it.
-			if (_veh in _activeVehicles) then { continue; };
-			_activeVehicles pushBack _veh;
-
 			private _typeX = switch (true) do {
 				case (_veh isKindOf "UAV_02_base_F" || _veh isKindOf "UAV"): { "uav" };
 				case (_veh isKindOf "Helicopter"): { "air" };
@@ -34,46 +33,55 @@ while { revealX } do {
 				case (_veh isKindOf "Man"): { "inf" };
 				default { "unknown" };
 			};
-			
 
-			
-			private _formatX = if (side _x == Occupants) then {"b"} else {"o"};
-			private _color = if (side _x == Occupants) then { colorOccupants } else { colorInvaders };
+			if (_veh in _activeVehicles) then {
+				_hide = true;
+			} else {
+				if (_typeX isNotEqualTo "inf") then {
+					_activeVehicles pushBack _veh;
+				};
+			};
 
+			//Get marker name (e.g. reveal-R Alpha 1-1)
 			private _mrkName = format ["reveal-%1", _x];
 			private _mrk = _mrkName;
+			
+			if (_typeX in ["antiair","inf"]) then {
+				_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
+				_hide = _hide || (_pos distance2D getMarkerPos _loc > 1500);
+			};
 
 			// -1 - not tracked, 0 - expired, 1 - active
 			private _status = _markerMap getOrDefault [_mrkName, -1]; 
-			
-			if (_status == -1) then {
-				_mrk = createMarkerLocal [_mrkName, _pos];
-				_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];
-				_mrk setMarkerColorLocal _color;
-				_mrk setMarkerTextLocal ((str _x) select [2]);
-				_markerMap set [_mrkName, 1];
-			} else {
-				_mrk setMarkerPosLocal _pos;
-				_markerMap set [_mrkName, 1];
-			};
-			
-			//squad getting out of the car should be resized
-			if (_typeX isNotEqualTo "inf") then {
-				_mrk setMarkerSizeLocal [1.2,1.2];
-			} else {
-				_mrk setMarkerSizeLocal [0.8,0.8];
-			};
-			
-			//hide the runners
-			private _outmarker = false;
-			if (_typeX in ["antiair","inf"]) then {
-				_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
-				_outmarker = _pos distance2D getMarkerPos _loc > 1500;
-			};
-			
-			if (_outmarker) then {
+
+			if (_hide) then {
 				_mrk setMarkerAlphaLocal 0;
 			} else {
+				private _formatX = if (side _x == Occupants) then {"b"} else {"o"};
+				private _color = if (side _x == Occupants) then { colorOccupants } else { colorInvaders };
+				
+				if (_status == -1) then {
+					_mrk = createMarkerLocal [_mrkName, _pos];
+					_mrk setMarkerColorLocal _color;
+					_mrk setMarkerTextLocal ((str _x) select [2]);
+					
+				} else {
+					_mrk setMarkerPosLocal _pos;
+				};
+				
+				//set marker as active
+				_markerMap set [_mrkName, 1];
+				
+				//if group is recreated or leaves vehicle
+				_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];			
+				
+				//squad getting out of the car should be resized
+				if (_typeX isNotEqualTo "inf") then {
+					_mrk setMarkerSizeLocal [1.2,1.2];
+				} else {
+					_mrk setMarkerSizeLocal [0.8,0.8];
+				};
+				
 				if (_typeX isNotEqualTo "inf") then {
 					_mrk setMarkerAlphaLocal 1;
 				} else {
