@@ -21,4 +21,18 @@ class CfgWeapons
             allowedSlots[] = {901};
         };
     };
+	
+	class UGL_F {
+		aiDispersionCoefX = 21;
+		aiDispersionCoefY = 21;
+		aiRateOfFire = 10;
+		aiRateOfFireDistance = 150;
+		minRange = 50;
+		minRangeProbab = 0.15;
+		midRange = 150;
+		midRangeProbab = 0.10;
+		maxRange = 300;
+		maxRangeProbab = 0.05;
+	};
+
 };
