@@ -59,9 +59,11 @@ while {true} do
     sleep 30;
 };
 
-{ [_x] spawn A3A_fnc_VEHDespawner } forEach _vehicles;
+
 { [_x] spawn A3A_fnc_enemyReturnToBase } forEach _crewGroups;
 {
     [_x, [nil, _mrkDest] select _victory] spawn A3A_fnc_enemyReturnToBase;
     sleep 10;
 } forEach _cargoGroups;
+
+{ [_x] spawn A3A_fnc_enemyReturnToBase } forEach _crewGroups;
