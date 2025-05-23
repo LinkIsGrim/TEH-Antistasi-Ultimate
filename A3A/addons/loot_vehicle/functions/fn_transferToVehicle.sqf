@@ -12,6 +12,7 @@ private _interrupted  = false;
 	if (_interrupted || (isNull _targetVehicle)) then { break; };
 	
 	if (_x getVariable ["hasIntel", false]) then {
+		systemChat "LootVehicle: Intel discovered!";
 		[_x] spawn {
 			params ["_intel"];
 			_mrk = createMarkerLocal [str (random 9999), getPosATL _intel];
@@ -166,6 +167,9 @@ private _interrupted  = false;
 
 		if (_container isKindOf "ReammoBox_F" || _container isKindOf "CAManBase") then {
 			deleteVehicle _container;
+			if (200 > random 20000) then {
+				[_player, _vehicle] spawn loot_vehicle_fnc_looterAmbush;
+			};
 		} else { 
 			clearItemCargoGlobal _container;
 			clearMagazineCargoGlobal _container;
