@@ -74,7 +74,7 @@ if ({isPlayer _x} count crew _veh > 0) exitWith {
 };
 
 _owner = _veh getVariable ["ownerX",""];
-if !(_owner isEqualTo "" || {getPlayerUID _player isEqualTo _owner}) exitWith {  // Vehicle cannot be sold if owned by another player.
+if !(_owner isEqualTo "" || {getPlayerUID _player isEqualTo _owner} || (damage _veh >= 1)) exitWith {  // Vehicle cannot be sold if owned by another player.
     [localize "STR_A3A_Base_sellVehicle_header", localize "STR_A3A_Base_sellVehicle_err2"] remoteExecCall ["SCRT_fnc_misc_deniedHint",_player];
 };
 
@@ -131,13 +131,10 @@ private _costs = call {
     0;
 };
 
-if (_costs == 0) exitWith {
-    _veh setVariable ["A3A_sellVehicle_inProgress",false,false];
-    [localize "STR_A3A_Base_sellVehicle_header", localize "STR_A3A_Base_sellVehicle_err4"] remoteExecCall ["SCRT_fnc_misc_deniedHint",_player];
-};
+private _duration = [5,15] select (damage _veh >= 1);
 
 //call the progress bar
-[5, [_veh], {		
+[_duration, [_veh], {		
 	}, {
 		_vehicle = _args select 0;
 		_vehicle setVariable ["A3A_sellVehicle_inProgress", false, false];
@@ -145,7 +142,7 @@ if (_costs == 0) exitWith {
 	format ["Sending %1 to the dealer...", getText (configFile >> "CfgVehicles" >> typeOf _veh >> "displayName")]
 ] call ace_common_fnc_progressBar;
 
-sleep 5;
+sleep _duration;
 
 if (_veh getVariable ["A3A_sellVehicle_inProgress",false]) then {
 	_costs = round (_costs * (1-damage _veh));
