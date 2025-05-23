@@ -91,7 +91,7 @@ while {true} do
 };
 
 
-{ [_x] spawn A3A_fnc_VEHDespawner } forEach _vehicles;
+
 { [_x] spawn A3A_fnc_enemyReturnToBase } forEach _crewGroups;
 {
     if (isNil "_nearMrk") then { [_x] spawn A3A_fnc_enemyReturnToBase; continue };

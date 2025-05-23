@@ -122,5 +122,4 @@ while {true} do
 
 _suppData set [4, 0];           // Set activesupport radius to 0, enables cleanup
 
-{ [_x] spawn A3A_fnc_VEHDespawner } forEach _vehicles;
 { [_x] spawn A3A_fnc_enemyReturnToBase } forEach (_crewGroups + _cargoGroups);

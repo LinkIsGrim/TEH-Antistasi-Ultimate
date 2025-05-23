@@ -41,7 +41,6 @@ while {count waypoints _group > 0} do { deleteWaypoint [_group, 0] };
 // Group in vehicle
 if (vehicle leader _group != leader _group) exitWith
 {
-	[_group] spawn A3A_fnc_groupDespawner;
     [vehicle leader _group] spawn A3A_fnc_vehDespawner;         // probably already done, but whatever
 
     // Ignore captured marker, find nearest suitable base to return to
