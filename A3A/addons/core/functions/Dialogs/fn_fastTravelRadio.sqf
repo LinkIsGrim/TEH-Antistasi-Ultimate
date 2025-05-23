@@ -13,6 +13,17 @@ if (!isNil "isRallyPointPlaced" && {isRallyPointPlaced}) then {
 	_markersX pushBack rallyPointMarker;
 };
 
+private _teleportZones = _markersX  select { sidesX getVariable _x == teamPlayer };
+{
+	_mrk = createMarkerLocal [format["teleport-%1",_x],getMarkerPos _x];
+	_mrk setMarkerShapeLocal "ELLIPSE";
+	_mrk setMarkerSizeLocal [500,500];
+	_mrk setMarkerColorLocal "ColorYellow";
+	_mrk setMarkerAlphaLocal 0.33;
+	_mrk setMarkerBrushLocal "Solid";
+
+} forEach _teleportZones;
+
 private _esHC = false;
 if (count hcSelected player > 1) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_error_only_one_hc"] call SCRT_fnc_misc_deniedHint
@@ -64,6 +75,10 @@ onMapSingleClick "positionTel = _pos; true";
 
 waitUntil {sleep 1; (count positionTel > 0) or {not visiblemap}};
 onMapSingleClick "";
+
+{
+	deleteMarkerLocal format["teleport-%1",_x];
+} forEach _teleportZones;
 
 private _positionTel = positionTel;
 private _earlyEscape = false;
