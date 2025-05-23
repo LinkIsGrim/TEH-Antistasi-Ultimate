@@ -46,9 +46,11 @@ while { revealX } do {
 			private _mrkName = format ["reveal-%1", _x];
 			private _mrk = _mrkName;
 			
-			if (_typeX in ["antiair","inf"]) then {
+			_hide = _hide || (_typeX isEqualTo "inf" && _x getVariable ["hiddenGroup", false]);
+			
+			if (_typeX in ["antiair","inf"] && !_hide) then {
 				_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
-				_hide = _hide || (_pos distance2D getMarkerPos _loc > 1500);
+				_hide = (_pos distance2D getMarkerPos _loc > 1500);
 			};
 
 			// -1 - not tracked, 0 - expired, 1 - active

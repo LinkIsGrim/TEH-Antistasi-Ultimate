@@ -17,6 +17,25 @@
     {} // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_fnc_addSetting;
 
+private _unloadToBox = [
+    "LootVehicleTransferAction", "Pack to the box", "a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa",
+    {
+        params ["_target", "_player"];
+        
+		private _pos = getPosATL _target;
+		private _box = createVehicle ["VirtualReammoBox_small_F", [_pos select 0, _pos select 1, (_pos select 2) + 1], [], 0, "CAN_COLLIDE"];
+		
+        [_box,[_target],_player] spawn loot_vehicle_fnc_transferToVehicle;
+    },
+    {
+        params ["_target", "_player"];
+		!alive _target;
+    },
+    {}
+] call ace_interact_menu_fnc_createAction;
+
+["CAManBase", 0, ["ACE_MainActions"], _unloadToBox, true] call ace_interact_menu_fnc_addActionToClass;
+
 private _transferBetweenAction = [
     "LootVehicleTransferAction", "Unload Cargo", "a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa",
     {
@@ -57,7 +76,7 @@ private _storeLootSellVehicle = [
     {
         params ["_target", "_player"];
         
-         [_player,_target] spawn A3A_fnc_sellVehicle;
+        [_player,_target] spawn A3A_fnc_sellVehicle;
     },
     {
 		params ["_target", "_player"];
@@ -69,10 +88,26 @@ private _actionVehicle = [
     "LootVehicleGatherAllLoot", "Gather all loot", "a3\ui_f\data\IGUI\Cfg\Actions\loadVehicle_ca.paa",
     {
         params ["_target", "_player"];
+		_dist = 10000;
+		_leads = [];
+		{
+			if ((side _x == Occupants || side _x == Invaders) && side leader _x == side _x) then {
+				_leads pushBack leader _x;
+			};
+		} forEach allGroups;
+		
+		if (count _leads > 0) then {
+			_toL = [_leads,_target] call BIS_fnc_nearestPosition;
+			_dist = floor (_target distance2D _toL) - 50;
+			_dist = _dist max 5;
+		};
+		
+		systemChat format["LootVehicle: Sending troops to gather loot in %1 m area",_dist];
+		
 		//first dropped weapons, as they are erased with the body otherwise
-        private _holders =  nearestObjects[_target,["WeaponHolderSimulated"],LootVehicleDistance];
+        private _holders =  nearestObjects[_target,["WeaponHolderSimulated"],_dist];
 		//then everything else
-		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder","ReammoBox_F"],LootVehicleDistance] select {!alive _x || !(_x isKindOf "CAManBase")});
+		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder","ReammoBox_F"],_dist] select {!alive _x || !(_x isKindOf "CAManBase")});
 		private _loots = _holders + _containerList;
         [_target,_loots,_player] spawn loot_vehicle_fnc_transferToVehicle;
     },

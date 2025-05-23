@@ -22,6 +22,7 @@ class CfgFunctions
         {
             file = QPATHTOFOLDER(functions);
             class transferToVehicle {};
+            class looterAmbush {};
         };
     };
 };
