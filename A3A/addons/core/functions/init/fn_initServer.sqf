@@ -326,6 +326,26 @@ addMissionEventHandler ["EntityKilled", {
 	if ((_victim isKindOf "Air" || _victim isKindOf "StaticWeapon") && (_victim distance2D _killer > 2000) && (_victim getVariable ["ownerSide","Unknown"] in [Occupants, Invaders]) && ((random 100) < 33)) then {
 		[(_victim getVariable "ownerSide"), _killer, getPosATL _victim, 0, 1] remoteExec ["A3A_fnc_requestSupport", 2];
 	};
+	
+	if (_victim isKindOf "Air" || (_victim isKindOf "Land" && !(_victim isKindOf "Man"))) then {
+		private _box = boundingBoxReal _victim;
+		private _size = (_box#1) vectorDiff (_box#0);  // [width, length, height]
+		private _range = (sqrt ((_size#0)^2 + (_size#1)^2)) / 2 + 1;  // Diagonal radius + buffer
+		[_victim, [
+			"Remove Wreck",                             // Action title
+			{
+				params ["_target", "_caller"];
+				[_caller,_target] spawn A3A_fnc_sellVehicle;
+			},
+			nil,                                        // Arguments
+			4,                                          // Priority
+			false,                                      // ShowWindow
+			true,                                       // HideOnUse
+			"",                                         // Shortcut
+			"(isPlayer _this) && (_this == vehicle _this)",  // on foot, player only
+			_range                                     // Distance to appear
+		]] remoteExec ["addAction", 0, _victim];
+	};
 }];
 
 serverInitDone = true; publicVariable "serverInitDone";
