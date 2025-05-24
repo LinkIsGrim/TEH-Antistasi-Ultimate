@@ -19,14 +19,14 @@ NB! These changes are tuned for and tested with a small amount of players (3-5).
 	- **GUI**: Added detailed tooltips, improved sorting
 	- unrestricted vehicle loading (ignores both weight and volume)
 	- unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
-- **Vehicles from the garage** now come with a starter kit, including medicine, primary ammo, and AT/AA launchers (arsenal numbers updated). Only loads **CUP** single use launchers.
+- **Vehicles Starter Kit** Vehicles from the garage now come with a starter kit, including medicine, 600 bullets of primary ammo (requires loaded mag), and AT/AA launchers (arsenal numbers updated). Only loads **CUP** single use launchers.
 - **Survival fix for player APCs/Tanks**: less chance for a vehicle explosion
 	- Health pool resets to 51% damage if vehicle is not destroyed, while keeping components broken.
 	- Vehicle can be completely destroyed completely only with a high damaging shell or explosion (i.e. covering 49% of a health pool in one shot).
 	- Only works on vehicles taken from the garage.
 - **Ammobox generation revamped**: Ensures better consistency with fixed amounts, while types are still governed by settings.
 - **Enemy bases**:
-	- Experimental: spawn distance markers
+	- Experimental: spawn distance markers (hidden when markers are hidden)
 	- Better selection of cars and broken armor to loot
 	- Spawned vehicles don't disappear if you captured the base
 - **Fast travel**:
@@ -52,7 +52,8 @@ NB! These changes are tuned for and tested with a small amount of players (3-5).
 	- Wrecks are configured to be managed by the mission garbage collector
 	- Wrecks can be removed from the action menu (very close range)
 	- Enemy vehicles required to return to base to despawn
-- **FIAradio && revealToPlayer**: On a resource tick there is a change to intercept enemy communications and show enemies on the map.
+	- [Experimental] Vehicles can be sold anywhere
+- **Squad Markers**: On a resource tick there is a change to intercept enemy communications and show enemies on the map.
 	- Original script was trying to show enemy squad leaders to the commander by using reveal command, but that only works for a fraction of a second.
 	- Currently if revealX is true (i.e. communications intercepted), enemy squad leaders are shown with markers on the map for each player (in 15 seconds updates).
 	- Markers also correctly apply marker type, depending on the vehicle.
@@ -60,7 +61,7 @@ NB! These changes are tuned for and tested with a small amount of players (3-5).
 	- Hides squads sharing the same vehicle.
 	- Hides SpecOps squads.
 	- Hides infantry and statics more than 1.5km away from rebel bases.
-- **[WIP] Smaller drones**: Requires separate mods for now, including **"GX-Drones"**.
+- **[WIP] Experimental mods**: Requires separate mods for now, including **"GX-Drones"** and **Extended Anti Air**.
 
 ## [Features](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Features)
 
