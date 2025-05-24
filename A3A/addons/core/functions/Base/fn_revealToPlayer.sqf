@@ -75,7 +75,7 @@ while { revealX } do {
 				_markerMap set [_mrkName, 1];
 				
 				//if group is recreated or leaves vehicle
-				_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];			
+				_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];
 				
 				//squad getting out of the car should be resized
 				if (_typeX isNotEqualTo "inf") then {
@@ -110,5 +110,5 @@ while { revealX } do {
 // remove all
 {
 	private _mrk = _x;
-	deleteMarker _mrk;
+	deleteMarkerLocal _mrk;
 } forEach _markerMap;
