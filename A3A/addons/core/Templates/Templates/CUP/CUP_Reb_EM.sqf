@@ -21,6 +21,7 @@
 ["vehiclesPlane", ["CUP_B_Su25_Dyn_CDF"]] call _fnc_saveToTemplate;       // replace from civ varient s
 ["vehiclesCivPlane", ["CUP_C_CESSNA_CIV"]] call _fnc_saveToTemplate;
 
+["vehiclesCivSupply", ["C_Van_01_box_F"]] call _fnc_saveToTemplate;
 ["vehiclesCivCar", ["CUP_C_Lada_CIV"]] call _fnc_saveToTemplate;
 ["vehiclesCivTruck", ["CUP_C_Ural_Open_Civ_03"]] call _fnc_saveToTemplate;
 ["vehiclesCivHeli", ["CUP_C_Mi17_Civilian_RU"]] call _fnc_saveToTemplate;

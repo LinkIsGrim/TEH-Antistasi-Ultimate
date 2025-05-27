@@ -23,6 +23,7 @@
 ["vehiclesCivPlane", ["CUP_C_AN2_CIV", "CUP_C_C47_CIV"]] call _fnc_saveToTemplate;
 ["vehiclesMedical", ["CUP_C_S1203_Ambulance_CIV"]] call _fnc_saveToTemplate;
 
+["vehiclesCivSupply", ["C_Van_01_box_F"]] call _fnc_saveToTemplate;
 ["vehiclesCivCar", ["CUP_O_Hilux_unarmed_CHDKZ"]] call _fnc_saveToTemplate;
 ["vehiclesCivTruck", ["CUP_C_Ural_Civ_03"]] call _fnc_saveToTemplate;
 ["vehiclesCivHeli", ["CUP_C_412"]] call _fnc_saveToTemplate;
