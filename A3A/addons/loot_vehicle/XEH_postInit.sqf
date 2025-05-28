@@ -30,7 +30,7 @@ private _unloadToBox = [
 		//first dropped weapons, as they are erased with the body otherwise
 		private _holders =  nearestObjects[_target,["WeaponHolderSimulated"], 5];
 		//then everything else
-		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder","ReammoBox_F"], 3] select {!alive _x || !(_x isKindOf "CAManBase")});
+		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder"], 3] select {!alive _x || !(_x isKindOf "CAManBase")});
 		private _loots = _holders + _containerList;
 		private _ignoreIntel = true;
 		[_box,_loots,_player, _ignoreIntel] spawn loot_vehicle_fnc_transferToVehicle;
@@ -115,9 +115,13 @@ private _actionVehicle = [
 		//first dropped weapons, as they are erased with the body otherwise
 		private _holders =  nearestObjects[_target,["WeaponHolderSimulated"],_dist];
 		//then everything else
-		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder","ReammoBox_F"],_dist] select {!alive _x || !(_x isKindOf "CAManBase")});
+		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder",(A3A_faction_occ get "surrenderCrate"),(A3A_faction_inv get "surrenderCrate"),(A3A_faction_riv get "surrenderCrate"),"VirtualReammoBox_small_F"],_dist] select {!alive _x || !(_x isKindOf "CAManBase")});
 		private _loots = _holders + _containerList;
-		[_target,_loots,_player, false] spawn loot_vehicle_fnc_transferToVehicle;
+		if (count _loots > 0) then {
+			[_target,_loots,_player, false] spawn loot_vehicle_fnc_transferToVehicle;
+		} else {
+			systemChat "LootVehicle: Nothing to gather.";
+		};
 	},
 	{
 		true;

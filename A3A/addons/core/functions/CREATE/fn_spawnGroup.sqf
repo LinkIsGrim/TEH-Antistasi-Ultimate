@@ -33,7 +33,7 @@ for "_i" from 0 to (_countX - 1) do {
 
 {_x allowDamage true} forEach units _groupX;
 
-private _hidden = (_typesX isEqualTo (Faction(_sideX) get "groupSpecOpsRandom"));
+private _hidden = (_typesX in (Faction(_sideX) get "groupSpecOpsRandom"));
 if (_hidden) then {
 	_groupX setVariable ["hiddenGroup", true, true];
 };

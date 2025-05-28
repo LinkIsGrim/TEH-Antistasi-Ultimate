@@ -19,7 +19,8 @@ while { revealX } do {
 			//This particular case is about dead/surrendered group
 			private _hide = side _lead isNotEqualTo side _x;
 			
-			
+			private _infantry = false;
+			private _statics = false;
 			//if squad is sharing a ride, don't draw it.
 			private _typeX = switch (true) do {
 				case (_veh isKindOf "UAV_02_base_F" || _veh isKindOf "UAV"): { "uav" };
@@ -29,15 +30,16 @@ while { revealX } do {
 				case (_veh isKindOf "Truck" || _veh isKindOf "Car"): { "motor_inf" };
 				case (_veh isKindOf "Plane_Base_F"): { "plane" };
 				case (_veh isKindOf "Boat_F"): { "naval" };
-				case (_veh isKindOf "StaticWeapon"): { "antiair" };
-				case (_veh isKindOf "Man"): { "inf" };
+				case (_veh isKindOf "StaticWeapon"): { _statics = true; "antiair" };
+				case (_veh isKindOf "Man"): { _infantry = true; "inf" };
 				default { "unknown" };
 			};
 
+			
 			if (_veh in _activeVehicles) then {
 				_hide = true;
 			} else {
-				if (_typeX isNotEqualTo "inf") then {
+				if (!_infantry) then {
 					_activeVehicles pushBack _veh;
 				};
 			};
@@ -46,9 +48,11 @@ while { revealX } do {
 			private _mrkName = format ["reveal-%1", _x];
 			private _mrk = _mrkName;
 			
-			_hide = _hide || (_typeX isEqualTo "inf" && _x getVariable ["hiddenGroup", false]);
+			if (_infantry && _x getVariable ["hiddenGroup", false]) then {
+				_hide = true;
+			};
 			
-			if (_typeX in ["antiair","inf"] && !_hide) then {
+			if ((_statics || _infantry) && !_hide) then {
 				_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
 				_hide = (_pos distance2D getMarkerPos _loc > 1500);
 			};
@@ -78,13 +82,13 @@ while { revealX } do {
 				_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];
 				
 				//squad getting out of the car should be resized
-				if (_typeX isNotEqualTo "inf") then {
+				if (!_infantry) then {
 					_mrk setMarkerSizeLocal [1.2,1.2];
 				} else {
 					_mrk setMarkerSizeLocal [0.8,0.8];
 				};
 				
-				if (_typeX isNotEqualTo "inf") then {
+				if (!_infantry) then {
 					_mrk setMarkerAlphaLocal 1;
 				} else {
 					_mrk setMarkerAlphaLocal 0.66;

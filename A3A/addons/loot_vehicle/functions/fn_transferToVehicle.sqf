@@ -9,7 +9,12 @@ private _interrupted  = false;
 // Get all items from each container
 {
 	_current = _current + 1;
-	if (_interrupted || (isNull _targetVehicle)) then { break; };
+	if (_interrupted || (isNull _targetVehicle)) then {
+		systemChat "LootVehicle: Gathering is interrupted";
+		break;
+	};
+	
+	if (isNull _x) then { continue; };
 	
 	if (_x getVariable ["hasIntel", false] && !_ignoreIntel) then {
 		if (!surfaceIsWater position _x) then {
@@ -27,10 +32,11 @@ private _interrupted  = false;
 		};
 	};
 	
-	if ((isNull _x) || (_x getVariable ["isLooted", false]) || (_x isEqualTo _targetVehicle) || (_x isKindOf "B_supplyCrate_F") || (_x isKindOf "IG_supplyCrate_F")) then { continue; };
+	if ((_x getVariable ["LV_isLooted", false]) || (_x isEqualTo _targetVehicle) || (_x isKindOf "B_supplyCrate_F") || (_x isKindOf "IG_supplyCrate_F")) then { continue; };
 	
-	_x setVariable ["isLooted", true, true];
-		
+	_x setVariable ["LV_isLooted", true, true];
+	_x setVariable ["LV_isInterrupted",false];
+	
 	//count weights	
 	private _weight = loadAbs _x; 
 	private _timer = ceil ((_weight * LootVehicleSpeed)/100);
@@ -143,7 +149,7 @@ private _interrupted  = false;
 
 		//is vehicle still alive?
 		if (isNull _vehicle) exitWith {
-			_container setVariable ["isLooted", false, true];
+			_container setVariable ["LV_isLooted", false, true];
 			systemChat "LootVehicle: RIP";
 		};
 		
@@ -168,10 +174,14 @@ private _interrupted  = false;
 
 
 		if (_container isKindOf "ReammoBox_F" || _container isKindOf "CAManBase") then {
-			deleteVehicle _container;
-			if (200 > random 20000) then {
-				[_player, _vehicle] spawn loot_vehicle_fnc_looterAmbush;
+			_cside = _container getVariable["originalside", ""];
+			
+			if (1000 > random 100000) then {
+				[_cside, _player, _vehicle] spawn loot_vehicle_fnc_looterAmbush;
 			};
+		
+			deleteVehicle _container;
+			
 		} else { 
 			clearItemCargoGlobal _container;
 			clearMagazineCargoGlobal _container;
@@ -180,20 +190,16 @@ private _interrupted  = false;
 		};
 	}, {
 		_container = _args select 1;
-		_container setVariable ["break",true];
+		_container setVariable ["LV_isInterrupted",true];
 	}, format[ "(%1/%2) Looting %3...", _current, _total, getText (configFile >> "CfgVehicles" >> typeOf _x >> "displayname")]] call ace_common_fnc_progressBar;
 
-	sleep (_timer + 0.1);
+	sleep (_timer + 0.10);
 	if (!isNull _x) then {
-		_interrupted = _x getVariable ["break",false];
-		_x setVariable ["break", false];
-		_x setVariable ["isLooted", false, true];
+		systemChat format["LootVehicle: [Debug] %1 did not disappear in time", getText (configFile >> "CfgVehicles" >> typeOf _x >> "displayname")];
+		_interrupted = _x getVariable ["LV_isInterrupted",false];
+		_x setVariable ["LV_isInterrupted", false];
+		_x setVariable ["LV_isLooted", false, true];
 	};
 } forEach _containerList;
 
-private _more = count (nearestObjects[_targetVehicle,["CAManBase","WeaponHolder","WeaponHolderSimulated","ReammoBox_F"],LootVehicleDistance] select {!alive _x || !((_x isKindOf "CAManBase")|| (_x isKindOf "B_supplyCrate_F") || (_x isKindOf "IG_supplyCrate_F"))});
-if (_more > 0) then {
-	systemChat format["LootVehicle: Not all done, %1 more to go", str _more];
-} else {
-	systemChat "LootVehicle: All done";
-};
+systemChat "LootVehicle: Done";

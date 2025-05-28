@@ -1,21 +1,17 @@
-params ["_target", "_vehicle"];
+params ["_sideX", "_target", "_vehicle"];
 
-// Settings
-private _spawnDistance = 150 + random 50; // 100 to 200 meters
+if !(_sideX == Occupants || _sideX == Invaders) exitWith {};
+
+private _faction = [A3A_faction_occ, A3A_faction_inv] select (_sideX == Invaders);
 
 // Direction and position
+private _spawnDistance = 150 + random 50; // 150 to 200 meters
 private _dirToPlayer = getDir _target;
 private _spawnDir = _dirToPlayer + 180 + (random 60 - 30); // +/- 30° cone behind
 private _spawnPos = _target getPos [_spawnDistance, _spawnDir];
 
 // Ensure position is safe
 _spawnPos = [_spawnPos, 0, 50, 5, 0, 20, 0] call BIS_fnc_findSafePos;
-
-// Determine faction
-//private _sideX = if (sidesX getVariable [_markerX, sideUnknown] == Occupants) then { Occupants } else { Invaders };
-private _sideX = Occupants;
-//private _faction = Faction(_sideX);
-private _faction = A3A_faction_occ;
 
 // Select and spawn group
 private _specOps = selectRandom (_faction get "groupSpecOpsRandom");
