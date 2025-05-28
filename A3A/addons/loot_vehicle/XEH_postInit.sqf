@@ -32,7 +32,8 @@ private _unloadToBox = [
 		//then everything else
 		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder","ReammoBox_F"], 3] select {!alive _x || !(_x isKindOf "CAManBase")});
 		private _loots = _holders + _containerList;
-		[_box,_loots,_player] spawn loot_vehicle_fnc_transferToVehicle;
+		private _ignoreIntel = true;
+		[_box,_loots,_player, _ignoreIntel] spawn loot_vehicle_fnc_transferToVehicle;
 	},
 	{
 		params ["_target", "_player"];
@@ -56,7 +57,7 @@ private _transferBetweenAction = [
 			systemChat "LootVehicle: Error: couldn't find any nearby vehicle";
 		} else {
 			systemChat "LootVehicle: Using nearest vehicle";
-			[_nearestVehicle,[_target],_player] call loot_vehicle_fnc_transferToVehicle;
+			[_nearestVehicle,[_target],_player, false] call loot_vehicle_fnc_transferToVehicle;
 		};
 	},
 	{
@@ -67,7 +68,7 @@ private _transferBetweenAction = [
 	{
 		private _statement = {
 			params ["_target", "_player", "_vehicle"];
-			[_vehicle,[_target],_player] call loot_vehicle_fnc_transferToVehicle;
+			[_vehicle,[_target],_player, false] call loot_vehicle_fnc_transferToVehicle;
 		};
 		
 		private _vehicles = (nearestObjects [_target, ["landVehicle","air","ship"], LootVehicleDistance]) select {
@@ -116,7 +117,7 @@ private _actionVehicle = [
 		//then everything else
 		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder","ReammoBox_F"],_dist] select {!alive _x || !(_x isKindOf "CAManBase")});
 		private _loots = _holders + _containerList;
-		[_target,_loots,_player] spawn loot_vehicle_fnc_transferToVehicle;
+		[_target,_loots,_player, false] spawn loot_vehicle_fnc_transferToVehicle;
 	},
 	{
 		true;
