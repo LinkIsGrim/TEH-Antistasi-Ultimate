@@ -60,10 +60,26 @@ garrison setVariable [format ["%1_requested", _markerX], [], true];
 
 if (_winner == teamPlayer) then
 {
-	// Old garrison surrender
-	private _oldGarrison = units _loser select { _x getVariable ["markerX", ""] == _markerX };
-	{ [_x] remoteExec ["A3A_fnc_surrenderAction", _x] } forEach _oldGarrison;
+	// Old garrison rushes to the flag
+	{
+		if ((side _x == Invaders) || (side _x == Occupants)) then {
+			private _lead = leader _x;
+			private _pos = getPosATL _lead;
 
+			if (side _lead isNotEqualTo side _x) then {continue;};
+			
+			if (_pos distance2D getMarkerPos _markerX < 500) then {
+				while {count waypoints _x > 0} do { deleteWaypoint [_x, 0] };
+				private _rush_B = _x addWaypoint [getMarkerPos _markerX, 25];
+				_rush_B setWaypointType "SAD";
+				_rush_B setWaypointBehaviour "AWARE";
+				_rush_B setWaypointSpeed "FULL";
+				_rush_B setWaypointCombatMode "RED";
+				_rush_B setWaypointFormation "LINE";
+			};
+		};
+	} forEach allGroups;
+	
 	// Cap to 0.6 max to reward captures without previous support calls
 	private _resources = [_loser, teamPlayer, _markerX, 0.6] call A3A_fnc_maxDefenceSpend;
 
