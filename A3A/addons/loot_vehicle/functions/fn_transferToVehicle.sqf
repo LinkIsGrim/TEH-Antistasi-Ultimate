@@ -1,4 +1,4 @@
-params ["_targetVehicle","_containerList", "_player"];
+params ["_targetVehicle","_containerList", "_player", "_ignoreIntel"];
 
 private _total = (count _containerList);
 private _current = 0;
@@ -11,18 +11,20 @@ private _interrupted  = false;
 	_current = _current + 1;
 	if (_interrupted || (isNull _targetVehicle)) then { break; };
 	
-	if (_x getVariable ["hasIntel", false]) then {
-		systemChat "LootVehicle: Intel discovered!";
-		[_x] spawn {
-			params ["_intel"];
-			_mrk = createMarkerLocal [str (random 9999), getPosATL _intel];
-			_mrk setMarkerTypeLocal "hd_dot_noShadow";
-			_mrk setMarkerTextLocal "Intel";
-			_mrk setMarkerColor "ColorGreen";
-			sleep 120;
-			deleteMarker _mrk;
+	if (_x getVariable ["hasIntel", false] && !_ignoreIntel) then {
+		if (!surfaceIsWater position _x) then {
+			systemChat "LootVehicle: Intel discovered!";
+			[_x] spawn {
+				params ["_intel"];
+				_mrk = createMarkerLocal [str (random 9999), getPosATL _intel];
+				_mrk setMarkerTypeLocal "hd_dot_noShadow";
+				_mrk setMarkerTextLocal "Intel";
+				_mrk setMarkerColor "ColorGreen";
+				sleep 120;
+				deleteMarker _mrk;
+			};
+			continue;
 		};
-		continue;
 	};
 	
 	if ((isNull _x) || (_x getVariable ["isLooted", false]) || (_x isEqualTo _targetVehicle) || (_x isKindOf "B_supplyCrate_F") || (_x isKindOf "IG_supplyCrate_F")) then { continue; };
