@@ -9,16 +9,20 @@ private _interrupted  = false;
 // Get all items from each container
 {
 	_current = _current + 1;
+
 	if (_interrupted || (isNull _targetVehicle)) then {
 		systemChat "LootVehicle: Gathering is interrupted";
 		break;
 	};
 	
 	if (isNull _x) then { continue; };
+	if ((_x getVariable ["LV_isLooted", false]) || (_x isEqualTo _targetVehicle)) then { continue; };
 	
 	if (_x getVariable ["hasIntel", false] && !_ignoreIntel) then {
-		if (!surfaceIsWater position _x) then {
-			systemChat "LootVehicle: Intel discovered!";
+		//Not in the water or below ground
+		_depth = floor((getPosATL _x) # 2 * 100) / 100;
+		if (!surfaceIsWater position _x && (_depth > -2)) then {
+			systemChat format["LootVehicle: Intel discovered! (%1m ATL)",_depth];
 			[_x] spawn {
 				params ["_intel"];
 				_mrk = createMarkerLocal [str (random 9999), getPosATL _intel];
@@ -32,16 +36,17 @@ private _interrupted  = false;
 		};
 	};
 	
-	if ((_x getVariable ["LV_isLooted", false]) || (_x isEqualTo _targetVehicle) || (_x isKindOf "B_supplyCrate_F") || (_x isKindOf "IG_supplyCrate_F")) then { continue; };
-	
 	_x setVariable ["LV_isLooted", true, true];
-	_x setVariable ["LV_isInterrupted",false];
+	_x setVariable ["LV_isInterrupted",false, true];
 	
 	//count weights	
 	private _weight = loadAbs _x; 
 	private _timer = ceil ((_weight * LootVehicleSpeed)/100);
+	private _cside = _x getVariable["originalside", sideUnknown];
+	private _ambush = false;
 	
 	//call the progress bar
+	_timestamp = time;
 	[_timer, [_targetVehicle, _x], {
 		_vehicle = _args select 0;
 		_container = _args select 1;
@@ -154,7 +159,7 @@ private _interrupted  = false;
 		};
 		
 		//LOOT TO TARGET
-		private _isBusy = "lootWrite";
+		private _isBusy = "LV_lootWrite";
 
 		waitUntil { !(_vehicle getVariable [_isBusy, false]) };
 
@@ -174,14 +179,10 @@ private _interrupted  = false;
 
 
 		if (_container isKindOf "ReammoBox_F" || _container isKindOf "CAManBase") then {
-			_cside = _container getVariable["originalside", ""];
-			
+			deleteVehicle _container;
 			if (1000 > random 100000) then {
 				[_cside, _player, _vehicle] spawn loot_vehicle_fnc_looterAmbush;
-			};
-		
-			deleteVehicle _container;
-			
+			};			
 		} else { 
 			clearItemCargoGlobal _container;
 			clearMagazineCargoGlobal _container;
@@ -191,13 +192,20 @@ private _interrupted  = false;
 	}, {
 		_container = _args select 1;
 		_container setVariable ["LV_isInterrupted",true];
+		systemChat format["LootVehicle: Gathering is interrupted at %1s. Error code: %2", _elapsedTime, _errorCode];
 	}, format[ "(%1/%2) Looting %3...", _current, _total, getText (configFile >> "CfgVehicles" >> typeOf _x >> "displayname")]] call ace_common_fnc_progressBar;
 
-	sleep (_timer + 0.10);
+
+	//Container is deleted, or fail clause executed, or waiting timed out
+	waitUntil { sleep 0.1; (isNull _x  || _x getVariable ["LV_isInterrupted", false] || {(time - _timestamp) > (_timer + 5)}); };
+	
+	if (_ambush) then {
+		
+	};
+	
 	if (!isNull _x) then {
-		systemChat format["LootVehicle: [Debug] %1 did not disappear in time", getText (configFile >> "CfgVehicles" >> typeOf _x >> "displayname")];
 		_interrupted = _x getVariable ["LV_isInterrupted",false];
-		_x setVariable ["LV_isInterrupted", false];
+		_x setVariable ["LV_isInterrupted", false, true];
 		_x setVariable ["LV_isLooted", false, true];
 	};
 } forEach _containerList;

@@ -96,7 +96,7 @@ private _actionVehicle = [
 	"LootVehicleGatherAllLoot", "Gather all loot", "a3\ui_f\data\IGUI\Cfg\Actions\loadVehicle_ca.paa",
 	{
 		params ["_target", "_player"];
-		_dist = 10000;
+		_dist = 5000;
 		_leads = [];
 		{
 			if ((side _x == Occupants || side _x == Invaders) && side leader _x == side _x) then {
@@ -106,16 +106,16 @@ private _actionVehicle = [
 		
 		if (count _leads > 0) then {
 			_toL = [_leads,_target] call BIS_fnc_nearestPosition;
-			_dist = floor (_target distance2D _toL) - 50;
-			_dist = _dist max 5;
+			_calc = floor (_target distance2D _toL) - 50;
+			_dist = _dist min (_calc max 5);
 		};
 		
 		systemChat format["LootVehicle: Sending troops to gather loot in %1 m area",_dist];
 		
 		//first dropped weapons, as they are erased with the body otherwise
-		private _holders =  nearestObjects[_target,["WeaponHolderSimulated"],_dist];
+		private _holders =  nearestObjects[_target,["WeaponHolderSimulated"],_dist, false];
 		//then everything else
-		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder",(A3A_faction_occ get "surrenderCrate"),(A3A_faction_inv get "surrenderCrate"),(A3A_faction_riv get "surrenderCrate"),"VirtualReammoBox_small_F"],_dist] select {!alive _x || !(_x isKindOf "CAManBase")});
+		private _containerList = (nearestObjects[_target,["CAManBase","WeaponHolder",(A3A_faction_occ get "surrenderCrate"),(A3A_faction_inv get "surrenderCrate"),(A3A_faction_riv get "surrenderCrate"),"VirtualReammoBox_small_F"],_dist, false] select {!alive _x || !(_x isKindOf "CAManBase")});
 		private _loots = _holders + _containerList;
 		if (count _loots > 0) then {
 			[_target,_loots,_player, false] spawn loot_vehicle_fnc_transferToVehicle;
