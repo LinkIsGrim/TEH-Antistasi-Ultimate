@@ -48,6 +48,7 @@ params [
     params ["_group","_patrolType", "_minDist", "_maxDist", "_dist", "_fromCenter", "_centerPos", "_searchBuildings"];
     
     // Exit if the group is Null, or Empty.
+	if (isNil "_group") exitWith {};
     if ((isNull _group) || (({alive _x} count units _group) < 1)) exitWith {};
 
     if (count _centerPos < 3) then {
