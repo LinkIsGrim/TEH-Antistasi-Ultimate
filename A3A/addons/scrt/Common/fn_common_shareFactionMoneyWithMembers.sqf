@@ -1,16 +1,7 @@
 #include "..\defines.inc"
 FIX_LINE_NUMBERS()
-
+params [["_amount",0]];
 private _resourcesFIA = server getVariable ["resourcesFIA", 0];
-
-if(_resourcesFIA < 10) exitWith {
-    Info("Not enough rebel resources to share.");
-    [
-        localize "STR_antistasi_actions_common_notifications_share_money_title", 
-        localize "STR_antistasi_actions_common_notifications_share_money_not_enough_text"
-    ] remoteExecCall ["A3A_fnc_customHint", theBoss];
-};
-
 
 private _affectedPlayers = call SCRT_fnc_misc_getRebelPlayers;
 
@@ -24,9 +15,17 @@ if (membershipEnabled) then {
 
 private _playersCount = count _affectedPlayers;
 
-if(_playersCount > 0) then {
-    private _sharePerPlayer = round(_resourcesFIA / _playersCount);
+if(_resourcesFIA < (_amount * _playersCount)) exitWith {
+    Info("Not enough rebel resources to share.");
+    [
+        localize "STR_antistasi_actions_common_notifications_share_money_title", 
+        localize "STR_antistasi_actions_common_notifications_share_money_not_enough_text"
+    ] remoteExecCall ["A3A_fnc_customHint", theBoss];
+};
 
+private _sharePerPlayer = if (_amount > 0) then { _amount; } else {floor(_resourcesFIA / _playersCount)};
+
+if(_playersCount > 0) then {
     Info_2("Share per player: %1, quantity of players: %2", str _sharePerPlayer, str _playersCount);
 
     { 
@@ -43,4 +42,4 @@ if(_playersCount > 0) then {
     } forEach _affectedPlayers;
 };
 
-server setVariable ["resourcesFIA", 0, true];
+server setVariable ["resourcesFIA", (_resourcesFIA - _sharePerPlayer * _playersCount), true];
