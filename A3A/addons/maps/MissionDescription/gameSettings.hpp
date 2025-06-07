@@ -7,9 +7,9 @@ corpseLimit=5555;
 corpseRemovalMinTime=1;
 corpseRemovalMaxTime=10;
 wreckManagerMode=1;
-wreckLimit=50;
+wreckLimit=20;
 wreckRemovalMinTime=1;
-wreckRemovalMaxTime=7200;
+wreckRemovalMaxTime=3600;
 minPlayerDistance=0;
 
 aiKills = 0;

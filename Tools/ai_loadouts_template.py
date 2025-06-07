@@ -38,7 +38,7 @@ backpacks = {
 }
 
 # Build output
-classes = []
+output = "";
 for classname in class_names:
     # Default backpack or special one
     backpack = backpacks.get(classname, [backpack_type, []])
@@ -55,7 +55,6 @@ for classname in class_names:
         binocular,
         standard_items
     ]
-    classes.append([classname, unit])
+    output = output + "rebelLoadouts set [\"" + classname + "\", " + json.dumps(unit, indent=None) +"];\n";
 
-output = "rebelLoadouts = " + json.dumps(classes, indent=None) + ";"
 print(output)
