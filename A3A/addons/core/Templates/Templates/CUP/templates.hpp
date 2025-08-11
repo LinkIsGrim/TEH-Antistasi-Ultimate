@@ -267,10 +267,10 @@
         name = "CUP LDF";
         file = "CUP_AI_LDF";
     };
+
     class HAFM_Base : CUP_Base
     {
-        requiredAddons[] = {"CUP_Creatures_People_Civil_Russia", "CUP_BaseConfigs", "CUP_AirVehicles_Core", "HAFM_Acc"};
-        priority = 61;
+        requiredAddons[] = {"CUP_Creatures_People_Civil_Russia", "CUP_BaseConfigs", "CUP_AirVehicles_Core", "HAFM_Acc"};        // units, weapons, vehicles
 	};
     //CUP NorAF
     class NorAF_Base : CUP_Base
