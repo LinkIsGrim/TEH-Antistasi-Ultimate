@@ -19,4 +19,5 @@ if (_target isKindOf "Air") exitWith { 0 };     // can't hit air
 
 // Weighted against mortars
 if(tierWar < 5) exitWith { 0 };
+if (_target isKindOf "StaticWeapon") exitWith { 2 };
 (tierWar - 4) / 12;          // ~8.3% at tier 5, 50% at tier 10 

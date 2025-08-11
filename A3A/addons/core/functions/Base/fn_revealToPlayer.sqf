@@ -30,6 +30,7 @@ while { revealX } do {
 				case (_veh isKindOf "Truck" || _veh isKindOf "Car"): { "motor_inf" };
 				case (_veh isKindOf "Plane_Base_F"): { "plane" };
 				case (_veh isKindOf "Boat_F"): { "naval" };
+				case (_veh isKindOf "StaticMortar" || _veh isKindOf "StaticCannon" || _veh isKindOf "B_Ship_MRLS_01_F"): {"mortar"};
 				case (_veh isKindOf "StaticWeapon"): { _statics = true; "antiair" };
 				case (_veh isKindOf "Man"): { _infantry = true; "inf" };
 				default { "unknown" };

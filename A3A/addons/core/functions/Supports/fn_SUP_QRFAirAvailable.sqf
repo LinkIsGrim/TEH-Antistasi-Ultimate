@@ -29,6 +29,6 @@ if (typeOf _target in _allAA) exitWith { 0 };
 // Could reduce chance for heli or non-infantry targets in general
 // It can technically hit air/tanks, it's just not great at it
 
-if (_target isKindOf "Air") exitWith { 0.2 };
+if (_target isKindOf "Air" || _target isKindOf "StaticWeapon") exitWith { 0 };
 if !(_target isKindOf "Man") exitWith { 0.5 };
 1;
