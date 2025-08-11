@@ -21,11 +21,57 @@ __________________________________________________________________*/
 #define PN_STOCK 25
 #define MISC_STOCK 50
 
+#define RAIL 1.3
+
+#define MOD556 1200
+#define MODGL556 1400
+#define OLD556 600
+#define OLDGL556 800
+
+#define MOD762 1600
+#define MODGL762 1800
+#define OLD762 800
+#define OLDGL762 1000
+
+#define MOD545 1000
+#define MODGL545 1200
+#define OLD545 600
+#define OLDGL545 800
+
+#define MOD65 1400
+#define MODGL65 1600
+
+#define DMR 1500
+#define SNIP127 2000
+
+#define BULPRICE 2
+#define LARGBULPRICE 10
+#define GRENPRICE 80
+
+#define DISPOSABLE_AT           400
+#define DISPOSABLE_AP           600
+
+#define RPG_RELOADABLE      800
+#define RPG_AT_ROUND        150
+#define RPG_HE_ROUND        100
+#define RPG_THERM_ROUND     300
+
+#define WIRE_AT_LAUNCHER    1200
+#define WIRE_AT_MISSILE     1000
+
+#define FAF_AT_LAUNCHER     2500
+#define FAF_AT_MISSILE      2000
+
+#define RELOADABLE_AA_LAUNCHER  1000
+#define AA_MISSILE              1200
+
+#define DISPOSABLE_AA_SET       1600
+
 class cfgHALsStore 
 {
 	containerTypes[] = {"LandVehicle", "Air", "Ship", "ReammoBox_F"};
 	containerRadius = 30;
-	sellFactor = 0.5;
+	sellFactor = 0.25;
 	debug = 0;
 
 	class categories 
