@@ -9,7 +9,7 @@
 </div>
 
 ## TEH Changes
-NB! These changes are tuned for and tested with a small amount of players (3-5).
+NB! These changes are tuned for and tested with a small amount of players (3-5) QoL: more battlefield mobility, more info on the enemies, new mass looting system, useful intel.
 
 - **Extensive remake of trader inventory**
 	- Prices, availability, and compatibility fixes for items.
@@ -47,12 +47,13 @@ NB! These changes are tuned for and tested with a small amount of players (3-5).
 	- Improved information on the progress
 	- Allows to pack a local lootbox from the corpse
 - **Persistent corpses and vehicles**:
-	- Corpses remain in the world, ensuring no loot is lost (removed automatically by the loot vehicle).
+	- Corpses remain in the world, ensuring no loot is lost (removed automatically by the loot vehicle)
 	- That also should improve performace by reducing amount of postmortem threads to 0.
 	- Wrecks are configured to be managed by the mission garbage collector
 	- Wrecks can be removed from the action menu (very close range)
 	- Enemy vehicles required to return to base to despawn
-	- [Experimental] Vehicles can be sold anywhere
+	- [Experimental] Vehicles and wrecks can be sold anywhere
+	- [Experimental] Spawn anchoring: players corpses and rebel vehicles now anchor enemy markers from despawning
 - **Squad Markers**: On a resource tick there is a change to intercept enemy communications and show enemies on the map.
 	- Original script was trying to show enemy squad leaders to the commander by using reveal command, but that only works for a fraction of a second.
 	- Currently if revealX is true (i.e. communications intercepted), enemy squad leaders are shown with markers on the map for each player (in 15 seconds updates).
@@ -61,6 +62,13 @@ NB! These changes are tuned for and tested with a small amount of players (3-5).
 	- Hides squads sharing the same vehicle.
 	- Hides SpecOps squads.
 	- Hides infantry and statics more than 1.5km away from rebel bases.
+- **[WIP] Anti-anti-air**:
+	- Enemies will attempt to destroy long range AA (e.g. radar + SAM site) if vehicle is sniped from 2 or more kilometers away.
+	- Support corridors (aka Carrier markers) are moved dynamically to allow less predictable attack vectors
+- **[WIP] Global Mobilization**:
+	- Epoch restricted CUP & Vanilla weapons list to appear in the loot
+	- German names for the NPC
+	- Deutsche Mark (DM) as currently on Weferlingen
 - **[WIP] Experimental mods**: Requires separate mods for now, including **"GX-Drones"** and **Extended Anti Air**.
 
 ## [Features](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Features)
