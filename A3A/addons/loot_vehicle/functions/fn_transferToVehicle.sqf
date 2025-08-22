@@ -39,11 +39,17 @@ private _interrupted  = false;
 	_x setVariable ["LV_isLooted", true, true];
 	_x setVariable ["LV_isInterrupted",false, true];
 	
-	//count weights	
-	private _weight = loadAbs _x; 
-	private _timer = ceil ((_weight * LootVehicleSpeed)/100);
-	private _cside = _x getVariable["originalside", sideUnknown];
-	private _ambush = false;
+	//count weights
+	
+	private _timer = if (_x isKindOf "ReammoBox_F") then { 1; } else {
+		_weight = loadAbs _x;
+		if (_weight == 0 && !(_x isKindOf "Car")) then {
+			deleteVehicle _x;
+			continue;
+		};
+		ceil ((_weight * LootVehicleSpeed)/100);
+		
+	};
 	
 	//call the progress bar
 	_timestamp = time;
@@ -179,10 +185,11 @@ private _interrupted  = false;
 
 
 		if (_container isKindOf "ReammoBox_F" || _container isKindOf "CAManBase") then {
-			deleteVehicle _container;
 			if (1000 > random 100000) then {
+				private _cside = _container getVariable["originalside", sideUnknown];
 				[_cside, _player, _vehicle] spawn loot_vehicle_fnc_looterAmbush;
-			};			
+			};
+			deleteVehicle _container;			
 		} else { 
 			clearItemCargoGlobal _container;
 			clearMagazineCargoGlobal _container;
@@ -198,10 +205,6 @@ private _interrupted  = false;
 
 	//Container is deleted, or fail clause executed, or waiting timed out
 	waitUntil { sleep 0.1; (isNull _x  || _x getVariable ["LV_isInterrupted", false] || {(time - _timestamp) > (_timer + 5)}); };
-	
-	if (_ambush) then {
-		
-	};
 	
 	if (!isNull _x) then {
 		_interrupted = _x getVariable ["LV_isInterrupted",false];
