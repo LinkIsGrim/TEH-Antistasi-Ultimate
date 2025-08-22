@@ -244,6 +244,7 @@ class CfgFunctions
             class cargoSeats {};
             class civVEHinit {};
             class cleanserVeh {};
+			class combatRecon {};
             class countFreeSpawnPositions {};
             class createAIAirplane {};
             class createAICities {};

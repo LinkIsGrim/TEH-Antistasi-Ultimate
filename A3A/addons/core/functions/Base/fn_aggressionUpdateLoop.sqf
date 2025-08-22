@@ -71,15 +71,23 @@ while {true} do
     A3A_resourcesDefenceOcc = (A3A_resourcesDefenceOcc + _resRateDef) min _maxDef;
     A3A_resourcesAttackOcc = A3A_resourcesAttackOcc + _resRateAtk;
 
-    if (A3A_resourcesAttackOcc > 0 && !bigAttackInProgress) then
-    {
-        private _success = [Occupants] call A3A_fnc_chooseAttack;
-        if (!_success) then {
-            // something went wrong, don't spam
-            A3A_resourcesAttackOcc = A3A_resourcesAttackOcc - _resRateAtk*10;
-        };
-    };
-
+	if (!bigAttackInProgress) then { 
+		if (A3A_resourcesAttackOcc > 0 ) then
+		{
+			private _success = [Occupants] call A3A_fnc_chooseAttack;
+			if (!_success) then {
+				// something went wrong, don't spam
+				A3A_resourcesAttackOcc = A3A_resourcesAttackOcc - _resRateAtk*10;
+			};
+		} else {
+			{
+				if ((sidesX getVariable _x) == teamPlayer && (random 10000 < 333)) then {
+					[_x, Occupants] spawn A3A_fnc_combatRecon;
+				};
+			} forEach (outposts + airportsX + milbases + resourcesX + factories + seaports);
+		};
+	};
+	
     if (gameMode != 3) then
     {
         private _aggroMul = [1.0 + aggressionInvaders/200, 0.5 + aggressionInvaders/200] select (gameMode != 1);

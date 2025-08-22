@@ -106,13 +106,6 @@ private _processMarker = {
             if (_anchored || {_marker in forcedSpawn}) exitWith {};
             // otherwise disable
             spawner setVariable [_marker, DISABLED, true];
-
-            // disable simulation for units tied to this marker
-            {
-                if ((_x getVariable ["markerX", ""] == _marker) && { vehicle _x == _x }) then {
-                    _x enableSimulationGlobal false;
-                };
-            } forEach allUnits;
         };
 
         case DISABLED: {
