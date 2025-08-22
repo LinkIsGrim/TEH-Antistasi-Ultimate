@@ -29,6 +29,8 @@ NB! These changes are tuned for and tested with a small amount of players (3-5) 
 	- Experimental: spawn distance markers (hidden when markers are hidden)
 	- Better selection of cars and broken armor to loot
 	- Spawned vehicles don't disappear if you captured the base
+	- Spawned vehicles variety (armed vehicles spawn damaged)
+	- Enemies do not get AI disabled during a pre-despawn state to avoid frozen enemies
 - **Fast travel**:
 	- Allows free location selection within a 500m radius of friendly markers (easier to click the marker)
 	- Vehicles will stick to the roads, infantry can teleport precisely to the cursor.
@@ -46,13 +48,14 @@ NB! These changes are tuned for and tested with a small amount of players (3-5) 
 	- Properly interrupts the gathering on Esc/Win
 	- Improved information on the progress
 	- Allows to pack a local lootbox from the corpse
+	- 1% chance of Jack-in-the-box
 - **Persistent corpses and vehicles**:
 	- Corpses remain in the world, ensuring no loot is lost (removed automatically by the loot vehicle)
 	- That also should improve performace by reducing amount of postmortem threads to 0.
 	- Wrecks are configured to be managed by the mission garbage collector
 	- Wrecks can be removed from the action menu (very close range)
 	- Enemy vehicles required to return to base to despawn
-	- [Experimental] Vehicles and wrecks can be sold anywhere
+	- [Experimental] Vehicles and wrecks can be sold anywhere (health affects payout)
 	- [Experimental] Spawn anchoring: players corpses and rebel vehicles now anchor enemy markers from despawning
 - **Squad Markers**: On a resource tick there is a change to intercept enemy communications and show enemies on the map.
 	- Original script was trying to show enemy squad leaders to the commander by using reveal command, but that only works for a fraction of a second.
@@ -62,9 +65,12 @@ NB! These changes are tuned for and tested with a small amount of players (3-5) 
 	- Hides squads sharing the same vehicle.
 	- Hides SpecOps squads.
 	- Hides infantry and statics more than 1.5km away from rebel bases.
-- **[WIP] Anti-anti-air**:
+- **Anti-anti-air**:
 	- Enemies will attempt to destroy long range AA (e.g. radar + SAM site) if vehicle is sniped from 2 or more kilometers away.
 	- Support corridors (aka Carrier markers) are moved dynamically to allow less predictable attack vectors
+- **[WIP] Combat Recons**:
+	- Enemies will send small infantry squads to rebel markers in order to recapture poorly defended points
+	- Rebel garrisons are now properly leaded (each SL makes own squad, or additional SL are promoted if squad is too large)
 - **[WIP] Global Mobilization**:
 	- Epoch restricted CUP & Vanilla weapons list to appear in the loot
 	- German names for the NPC
