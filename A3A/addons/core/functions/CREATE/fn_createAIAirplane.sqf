@@ -427,9 +427,12 @@ while {_countX < _nVeh && {_countX < 3}} do {
 		_vehiclesX pushBack _veh;
 		[_veh, _sideX] call A3A_fnc_AIVEHinit;
 		_veh setHitPointDamage ["hitEngine",1];
-		_veh setHitPointDamage ["hitTurret",1];
-		_veh setHitPointDamage ["hitGun",1];
-		_veh setHitPointDamage ["hitHull", random 1];
+		if (random 100 < 50) then {
+			_veh setHitPointDamage ["hitTurret",1];
+		} else {
+			_veh setHitPointDamage ["hitGun",1];
+		};
+		_veh setHitPointDamage ["hitHull", 0.51];
 		sleep 1;
 		_countX = _countX + 1;
 	}

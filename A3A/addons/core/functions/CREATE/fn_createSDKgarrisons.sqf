@@ -87,33 +87,59 @@ if (_typeCrew in _garrison) then {
 	};
 	[_unit,_markerX] call A3A_fnc_FIAinitBases;
 	_soldiers pushBack _unit;
-	_garrison deleteAT _index;
+	_garrison deleteAt _index;
 } forEach _staticsX;
 
 
-// Make 8-man groups out of the remainder of the garrison
+// Make max 8-man groups out of the remainder of the garrison
 _garrison = _garrison call A3A_fnc_garrisonReorg;
 
-private _totalUnits = count _garrison;
-private _countUnits = 0;
-private _countGroup = 8;
-private _groupX = grpNull;
+private _typeSL   = A3A_faction_reb get "unitSL";
+private _SLs      = _garrison select { _x isEqualTo _typeSL };
+private _enlisted = _garrison select { !(_x isEqualTo _typeSL) };
 
-while {(spawner getVariable _markerX != 2) and (_countUnits < _totalUnits)} do {
-	if (_countGroup == 8) then {
-		_groupX = createGroup teamPlayer;
-		_groups pushBack _groupX;
-		_countGroup = 0;
-	};
-	private _typeX = _garrison select _countUnits;
-	private _unit = [_groupX, _typeX, _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
-	if (_typeX isEqualTo FactionGet(reb,"unitSL")) then {_groupX selectLeader _unit};
-	[_unit,_markerX] call A3A_fnc_FIAinitBases;
-	_soldiers pushBack _unit;
-	_countUnits = _countUnits + 1;
-	_countGroup = _countGroup + 1;
-	sleep 0.5;
+private _totalUnits = count _garrison;
+private _totalSLs   = count _SLs;
+private _maxGroupSize = 8;
+
+private _groupSize = (ceil (_totalUnits / (_totalSLs max 1))) min _maxGroupSize;
+
+//check if we need to promote more squad leaders
+private _requiredSLs = ceil (_totalUnits / _groupSize);
+
+ _enlisted = _enlisted call BIS_fnc_arrayShuffle;
+
+while {count _SLs < _requiredSLs && {count _enlisted > 0}} do {
+	_enlisted deleteAt 0;         // remove one soldier from pool
+    _SLs pushBack _typeSL;        // "promote" to a SL
 };
+
+//==========================
+// start making groups
+private _groups = [];
+private _soldiers = [];
+
+{
+    private _groupX = createGroup teamPlayer;
+    _groups pushBack _groupX;
+
+    // SL first
+    private _slUnit = [_groupX, _x, _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
+    _groupX selectLeader _slUnit;
+    [_slUnit, _markerX] call A3A_fnc_FIAinitBases;
+    _soldiers pushBack _slUnit;
+
+    // fill with enlisted
+    for "_i" from 1 to (_groupSize - 1) do {
+        if (count _enlisted == 0) exitWith {};
+        private _typeX = _enlisted deleteAt 0;
+        private _unit = [_groupX, _typeX, _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
+        [_unit, _markerX] call A3A_fnc_FIAinitBases;
+        _soldiers pushBack _unit;
+        sleep 0.5;
+    };
+
+} forEach _SLs;
 
 for "_i" from 0 to (count _groups) - 1 do {
 	_groupX = _groups select _i;

@@ -52,7 +52,7 @@ private _text = "";
 private _sideName = _faction get "name";
 private _intelContent = -1;
 
-if (!isTraderQuestCompleted && !isTraderQuestAssigned) then {
+if (!isTraderQuestCompleted && !isTraderQuestAssigned && (tierWar > 3)) then {
     private _thresholds = createHashMapFromArray [
         ["Civilian", 20],
         ["Small", 20],
@@ -60,7 +60,7 @@ if (!isTraderQuestCompleted && !isTraderQuestAssigned) then {
         ["Large", 100]
     ];
 
-    if (random 100 < (_thresholds get _intelType)) then {
+    if (random 3 00 < (_thresholds get _intelType)) then {
         [] remoteExec ["SCRT_fnc_trader_prepareTraderQuest", 2];
         _text = format [localize "STR_trader_task_hint_description", ([] call SCRT_fnc_misc_getWorldName)];
         _intelContent = DEALER;

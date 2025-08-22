@@ -269,9 +269,12 @@ if (_spawnParameter isEqualType []) then {
 
 	if (_op) then {
 		_veh setHitPointDamage ["hitEngine",1];
-		_veh setHitPointDamage ["hitTurret",1];
-		_veh setHitPointDamage ["hitGun",1];
-		_veh setHitPointDamage ["hitHull", random 1];
+		if (random 100 < 50) then {
+			_veh setHitPointDamage ["hitTurret",1];
+		} else {
+			_veh setHitPointDamage ["hitGun",1];
+		};
+		_veh setHitPointDamage ["hitHull", 0.51];
 	} else {
 		_lootList = [_veh, 3, 5, 0, 0, 1, 100, 0, 0, 1, 5, 0, 0, 1, 1, 1, 1, 0, 0];
 		_lootList call A3A_fnc_fillLootCrate;
