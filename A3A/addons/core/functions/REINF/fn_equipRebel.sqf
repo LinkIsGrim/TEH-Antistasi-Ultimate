@@ -56,6 +56,24 @@ if (!isNil "_customLoadout") exitWith {
 	};
 };
 
+private _vest = selectRandomWeighted (A3A_rebelGear get "ArmoredVests");
+if (_vest == "") then { _vest = selectRandomWeighted (A3A_rebelGear get "CivilianVests") };
+_unit addVest _vest;
+
+{
+    for "_i" from 1 to (_x select 1) do {
+        _unit addItem (_x select 0);
+    };
+} forEach [
+    ["ACE_fieldDressing", 8],
+    ["ACE_morphine", 2],
+    ["ACE_epinephrine", 2],
+    ["ACE_plasmaIV_500", 1],
+    ["ACE_salineIV_500", 1],
+    ["ACE_bloodIV_500", 1],
+    ["ACE_splint", 2]
+];
+
 private _fnc_addSecondaryAndMags = {
     params ["_unit", "_weapon", "_totalMagWeight"];
 
@@ -96,10 +114,6 @@ if (!isNil "_radio") then {_unit linkItem _radio};
 private _helmet = selectRandomWeighted (A3A_rebelGear get "ArmoredHeadgear");
 if (_helmet == "") then { _helmet = selectRandom (A3A_faction_reb get "headgear") };
 _unit addHeadgear _helmet;
-
-private _vest = selectRandomWeighted (A3A_rebelGear get "ArmoredVests");
-if (_vest == "") then { _vest = selectRandomWeighted (A3A_rebelGear get "CivilianVests") };
-_unit addVest _vest;
 
 private _backpack = selectRandomWeighted (A3A_rebelGear get "BackpacksCargo");
 if !(isNil "_backpack") then { _unit addBackpack _backpack };

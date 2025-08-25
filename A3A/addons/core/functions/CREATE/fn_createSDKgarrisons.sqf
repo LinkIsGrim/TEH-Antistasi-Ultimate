@@ -102,7 +102,7 @@ private _totalUnits = count _garrison;
 private _totalSLs   = count _SLs;
 private _maxGroupSize = 8;
 
-private _groupSize = (ceil (_totalUnits / (_totalSLs max 1))) min _maxGroupSize;
+private _groupSize = (ceil ((_totalUnits max 1) / (_totalSLs max 1))) min _maxGroupSize;
 
 //check if we need to promote more squad leaders
 private _requiredSLs = ceil (_totalUnits / _groupSize);

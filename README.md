@@ -19,7 +19,9 @@ NB! These changes are tuned for and tested with a small amount of players (3-5) 
 	- **GUI**: Added detailed tooltips, improved sorting
 	- unrestricted vehicle loading (ignores both weight and volume)
 	- unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
-- **Vehicles Starter Kit** Vehicles from the garage now come with a starter kit, including medicine, 600 bullets of primary ammo (requires loaded mag), and AT/AA launchers (arsenal numbers updated). Only loads **CUP** single use launchers.
+- **Quick Equip**:
+	- Vehicles from the garage now come with a starter kit, including medicine, 600 bullets of primary ammo (requires loaded mag), and AT/AA launchers (arsenal numbers updated). Only loads **CUP** advanced single use launchers.
+	- Arsenal's Quick Equip option now also adds ACE medicine set to the player when using random loadout (i.e. respective rebel loadout is not specified by commander).
 - **Survival fix for player APCs/Tanks**: less chance for a vehicle explosion
 	- Health pool resets to 51% damage if vehicle is not destroyed, while keeping components broken.
 	- Vehicle can be completely destroyed completely only with a high damaging shell or explosion (i.e. covering 49% of a health pool in one shot).
@@ -36,6 +38,7 @@ NB! These changes are tuned for and tested with a small amount of players (3-5) 
 	- Vehicles will stick to the roads, infantry can teleport precisely to the cursor.
 	- Attacked but not captured markers can be freely teleported to.
 	- Teleportation range zones shown on the map
+	- Rally point cost is reduced to 25 per charge
 - **CAS support** tuned down to avoid being called on infantry units.
 - **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod, requires **ACE3**
 	- Uses ACE action on the vehicles to gather loot
