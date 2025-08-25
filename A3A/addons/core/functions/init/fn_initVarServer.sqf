@@ -634,7 +634,7 @@ Info("Creating pricelist");
 //black market costs
 {server setVariable [_x select 0, _x select 1, true]} forEach (FactionGet(reb,"blackMarketStock"));
 
-server setVariable [FactionGet(reb,"rallyPoint"), 100, true];
+server setVariable [FactionGet(reb,"rallyPoint"), 25, true];
 
 {
 	server setVariable [_x, _y, true];
