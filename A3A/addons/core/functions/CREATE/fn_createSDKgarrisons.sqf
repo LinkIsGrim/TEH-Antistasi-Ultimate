@@ -12,6 +12,18 @@ private _soldiers = [];
 private _civs = [];
 _positionX = getMarkerPos (_markerX);
 
+private _mrk = createMarkerLocal [format ["%1patrolarea", random 100], _positionX];
+_mrk setMarkerShapeLocal "ELLIPSE";
+_mrk setMarkerSizeLocal [(distanceSPWN),(distanceSPWN)];
+_mrk setMarkerTypeLocal "hd_warning";
+_mrk setMarkerColorLocal "ColorGreen";
+_mrk setMarkerBrushLocal "Border";
+if (hideEnemyMarkers) then {
+	_mrk setMarkerAlphaLocal 0;
+} else {
+	_mrk setMarkerAlpha 0.5;
+};
+
 private _civNonHuman = Faction(civilian) getOrDefault ["attributeCivNonHuman", false];
 
 if (_markerX != "Synd_HQ" && {!(_markerX in milAdministrationsX)}) then {
@@ -155,7 +167,17 @@ for "_i" from 0 to (count _groups) - 1 do {
 
 ["locationSpawned", [_markerX, "RebelOutpost", true]] call EFUNC(Events,triggerEvent);
 
-waitUntil {sleep 1; (spawner getVariable _markerX == 2)};
+waitUntil {
+	sleep 5;
+	
+	switch (sidesX getVariable [_markerX,sideUnknown]) do {
+		case Occupants: { _mrk setMarkerColor "ColorBlue" };
+		case Invaders: { _mrk setMarkerColor "ColorRed" };
+		case teamPlayer: { _mrk setMarkerColor "ColorGreen" };
+	};
+	(spawner getVariable _markerX == 2);
+};
+deleteMarker _mrk;
 
 { if (alive _x) then { deleteVehicle _x }; } forEach _soldiers;
 { deleteVehicle _x } forEach _civs;

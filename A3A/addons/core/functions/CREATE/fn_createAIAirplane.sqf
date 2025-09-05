@@ -478,7 +478,16 @@ for "_i" from 0 to (count _array - 1) do {
 
 { [_x, true] call A3U_fnc_setLock; } forEach _vehiclesX;
 
-waitUntil {sleep 1; (spawner getVariable _markerX == 2)};
+waitUntil {
+	sleep 5;
+	
+	switch (sidesX getVariable [_markerX,sideUnknown]) do {
+		case Occupants: { _mrk setMarkerColor "ColorBlue" };
+		case Invaders: { _mrk setMarkerColor "ColorRed" };
+		case teamPlayer: { _mrk setMarkerColor "ColorGreen" };
+	};
+	(spawner getVariable _markerX == 2);
+};
 
 deleteMarker _mrk;
 { if (alive _x) then { deleteVehicle _x } } forEach _soldiers;

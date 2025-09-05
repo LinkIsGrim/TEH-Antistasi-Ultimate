@@ -432,7 +432,16 @@ for "_i" from 0 to (count _array - 1) do {
 ["locationSpawned", [_markerX, "Milbase", true]] call EFUNC(Events,triggerEvent);
 
 
-waitUntil {sleep 1; (spawner getVariable _markerX == 2)};
+waitUntil {
+	sleep 5;
+	
+	switch (sidesX getVariable [_markerX,sideUnknown]) do {
+		case Occupants: { _mrk setMarkerColor "ColorBlue" };
+		case Invaders: { _mrk setMarkerColor "ColorRed" };
+		case teamPlayer: { _mrk setMarkerColor "ColorGreen" };
+	};
+	(spawner getVariable _markerX == 2);
+};
 
 _spawnsUsed call A3A_fnc_freeSpawnPositions;
 
