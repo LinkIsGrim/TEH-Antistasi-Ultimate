@@ -39,11 +39,11 @@ if (_vehicle isKindOf "Air" || typeOf _vehicle in (_faction get "vehiclesDropPod
     if (_vehType in FactionGet(all,"vehiclesHelisTransport") + FactionGet(all,"vehiclesHelisLight") || _vtol != "" || (typeOf _vehicle in (_faction get "vehiclesDropPod"))) exitWith
     {
         //Transport helicopter or VTOL
-        _landPos = [_posDestination, 200, 400, 10, 0, 0.12, 0, [], [[0,0,0],[0,0,0]]] call BIS_fnc_findSafePos;
+        _landPos = [_posDestination, 500, 800, 15, 0, 0.12, 0, [], [[0,0,0],[0,0,0]]] call BIS_fnc_findSafePos;
         private _posOrigin = getMarkerPos _markerOrigin;
         _posOrigin set [2, 50];
         
-        _landPosVTOL = [_posDestination, 300, 600, 10, 0, 0.12, 0, [], [[0,0,0],[0,0,0]]] call BIS_fnc_findSafePos;
+        _landPosVTOL = [_posDestination, 500, 800, 15, 0, 0.12, 0, [], [[0,0,0],[0,0,0]]] call BIS_fnc_findSafePos;
 
         {
             if(_x distance2D _landPos < 20) exitWith { _landPos = [0, 0, 0] };

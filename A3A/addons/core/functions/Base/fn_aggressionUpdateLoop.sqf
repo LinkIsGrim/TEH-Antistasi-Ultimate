@@ -81,7 +81,7 @@ while {true} do
 			};
 		} else {
 			{
-				if ((sidesX getVariable _x) == teamPlayer && (random 10000 < 333)) then {
+				if ((sidesX getVariable _x) == teamPlayer && (random 10000 < (25 * tierWar + 100))) then {
 					[_x, Occupants] spawn A3A_fnc_combatRecon;
 				};
 			} forEach (outposts + airportsX + milbases + resourcesX + factories + seaports);
