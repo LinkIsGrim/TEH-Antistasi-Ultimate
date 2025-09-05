@@ -53,9 +53,9 @@ private _rebelGear = createHashMapFromArray [
 
     ["Handguns", []],
 
-    ["ArmoredVests", ["", [1.5, 0.5] select (minWeaps < 0)]],
+    ["ArmoredVests", []],
     ["CivilianVests", []],
-    ["ArmoredHeadgear", ["", [1.5, 0.5] select (minWeaps < 0)]],
+    ["ArmoredHeadgear", []],
     ["BackpacksCargo", []],
 
     ["NVGs", ["", 0.5]],
