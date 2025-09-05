@@ -6,6 +6,9 @@
     <br/>
     <i>Experimental/QoL fork of Antistasi Ultimate which is a fork Antistasi Plus Version focused on expanding templates, maps and features.</i>
   </p>
+  <p>
+    Latest build in Steam Workshop https://steamcommunity.com/sharedfiles/filedetails/?id=3476520930
+  </p>
 </div>
 
 ## TEH Changes
@@ -43,7 +46,6 @@ NB! These changes are tuned for and tested with a small amount of players (3-5) 
 - **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod, requires **ACE3**
 	- Uses ACE action on the vehicles to gather loot
 	- Range depends on enemy proximity
-	- CBA Settings: Configure Addons -> Antistasi Ultimate
 	- Reworked to gather one container at the time
 	- Allows several players to loot the same location is a fraction of the time, and into the same vehicle without duping items
 	- Properly handles the dropped weapons

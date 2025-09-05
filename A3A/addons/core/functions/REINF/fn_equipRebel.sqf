@@ -56,8 +56,14 @@ if (!isNil "_customLoadout") exitWith {
 	};
 };
 
-private _vest = selectRandomWeighted (A3A_rebelGear get "ArmoredVests");
-if (_vest == "") then { _vest = selectRandomWeighted (A3A_rebelGear get "CivilianVests") };
+private _rebVests = A3A_rebelGear get "ArmoredVests";
+private _vest = "";
+if (count _rebVests > 0) then {
+    _vest = selectRandomWeighted (_rebVests);
+} else {
+    _vest = selectRandomWeighted (A3A_rebelGear get "CivilianVests");
+};
+
 _unit addVest _vest;
 
 {
@@ -111,8 +117,14 @@ private _fnc_addCharges = {
 private _radio = selectRandomWeighted (A3A_rebelGear get "Radios");
 if (!isNil "_radio") then {_unit linkItem _radio};
 
-private _helmet = selectRandomWeighted (A3A_rebelGear get "ArmoredHeadgear");
-if (_helmet == "") then { _helmet = selectRandom (A3A_faction_reb get "headgear") };
+private _rebHelmets = A3A_rebelGear get "ArmoredHeadgear";
+private _helmet = "";
+if (count _rebHelmets > 0) then {
+    _helmet = selectRandomWeighted (_rebHelmets);
+} else {
+    _helmet = selectRandomWeighted (A3A_rebelGear get "headgear");
+};
+
 _unit addHeadgear _helmet;
 
 private _backpack = selectRandomWeighted (A3A_rebelGear get "BackpacksCargo");
