@@ -7,7 +7,7 @@
     <i>Experimental/QoL fork of Antistasi Ultimate which is a fork Antistasi Plus Version focused on expanding templates, maps and features.</i>
   </p>
   <p>
-    Latest build in Steam Workshop https://steamcommunity.com/sharedfiles/filedetails/?id=3476520930
+    Latest build in <a target="_blank" href=https://steamcommunity.com/sharedfiles/filedetails/?id=3476520930>Steam Workshop</a>
   </p>
 </div>
 
@@ -75,7 +75,9 @@ NB! These changes are tuned for and tested with a small amount of players (3-5) 
 	- Support corridors (aka Carrier markers) are moved dynamically to allow less predictable attack vectors
 - **[WIP] Combat Recons**:
 	- Enemies will send small infantry squads to rebel markers in order to recapture poorly defended points
-	- Rebel garrisons are now properly leaded (each SL makes own squad, or additional SL are promoted if squad is too large)
+	- Rebel garrisons are now properly leaded (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
+	- New construction options: Scaffolds and Cargo Platforms. When deployed, use "Align Platforms" action on the scaffold to snap nearby towers to the scaffold. You can carry static defences up there. You can continue building on top of the platforms (toggle Alt and Shift in the Building planner), e.g. sandbags walls.
+	- When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost garrison).
 - **[WIP] Global Mobilization**:
 	- Epoch restricted CUP & Vanilla weapons list to appear in the loot
 	- German names for the NPC
