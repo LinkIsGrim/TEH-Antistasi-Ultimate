@@ -103,7 +103,7 @@ if (_typeCrew in _garrison) then {
 } forEach _staticsX;
 
 
-// Make max 8-man groups out of the remainder of the garrison
+// Make max A3A_rebelGarrisonGroupSize groups out of the remainder of the garrison
 _garrison = _garrison call A3A_fnc_garrisonReorg;
 
 private _typeSL   = A3A_faction_reb get "unitSL";
@@ -112,7 +112,7 @@ private _enlisted = _garrison select { !(_x isEqualTo _typeSL) };
 
 private _totalUnits = count _garrison;
 private _totalSLs   = count _SLs;
-private _maxGroupSize = 8;
+private _maxGroupSize = A3A_rebelGarrisonGroupSize;
 
 private _groupSize = (ceil ((_totalUnits max 1) / (_totalSLs max 1))) min _maxGroupSize;
 

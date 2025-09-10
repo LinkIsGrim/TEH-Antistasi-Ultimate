@@ -14,7 +14,7 @@ if (_typeX isEqualType "") then {
 		//select random available garrison group or create new if none available
 		_groups = allGroups select {
             (leader _x getVariable ["markerX",""] == _markerX)
-            and (count units _x < 8) and (vehicle (leader _x) == leader _x)
+            and (count units _x < A3A_rebelGarrisonGroupSize) and (vehicle (leader _x) == leader _x)
             and (side _x == teamPlayer)				// can happen with surrendered enemy garrison
         };
 		
