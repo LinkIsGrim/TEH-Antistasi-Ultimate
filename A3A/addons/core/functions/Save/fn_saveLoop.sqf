@@ -183,6 +183,10 @@ if (!isNil "isRallyPointPlaced" && {isRallyPointPlaced}) then {
 
 ["resourcesFIA", _resourcesBackground] call A3A_fnc_setStatVariable;
 ["hr", _hrBackground] call A3A_fnc_setStatVariable;
+
+["invaderRadioKeys", invaderRadioKeys] call A3A_fnc_setStatVariable;
+["occupantsRadioKeys", occupantsRadioKeys] call A3A_fnc_setStatVariable;
+
 ["HR_Garage", [] call HR_GRG_fnc_getSaveData] call A3A_fnc_setStatVariable;
 
 _arrayEst = [];

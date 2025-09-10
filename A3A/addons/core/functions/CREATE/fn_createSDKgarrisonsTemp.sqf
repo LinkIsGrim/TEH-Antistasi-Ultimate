@@ -5,19 +5,24 @@ params ["_markerX", "_typeX"];
 
 private _positionX = getMarkerPos _markerX;
 if (_typeX isEqualType "") then {
-	// Select a suitable group from the current garrison for this unit
-    private _groups = if (_typeX == FactionGet(reb,"unitCrew")) then {[]} else {
-        allGroups select {
+    private _groups = [];
+	
+	//If unit is a crewman or a squad leader -> create new group
+    private _groupX = if (_typeX == FactionGet(reb,"unitCrew") || _typeX == FactionGet(reb,"unitSL")) then {
+        createGroup teamPlayer;
+    } else {
+		//select random available garrison group or create new if none available
+		_groups = allGroups select {
             (leader _x getVariable ["markerX",""] == _markerX)
             and (count units _x < 8) and (vehicle (leader _x) == leader _x)
             and (side _x == teamPlayer)				// can happen with surrendered enemy garrison
         };
-    };
-
-    private _groupX = if (_groups isEqualTo []) then {
-        createGroup teamPlayer
-    } else {
-        _groups select 0;
+		
+		if (count _groups == 0) then {
+			createGroup teamPlayer;
+		} else {
+			selectRandom _groups;
+		};
     };
 
     private _unit = [_groupX, _typeX, _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
@@ -33,7 +38,8 @@ if (_typeX isEqualType "") then {
         [_veh, teamPlayer] call A3A_fnc_AIVEHinit;
     };
 
-    if (_groups isEqualTo []) then {
+	//empty _groups means that the new group was created, send them walking
+    if (count _groups == 0) then {
         [_groupX, "Patrol_Defend", 10, 150, -1, true, _positionX, true] call A3A_fnc_patrolLoop;
     };
 

@@ -20,6 +20,8 @@ private _processMarker = {
 	// resolve marker state
 	private _state = spawner getVariable [_marker, DESPAWN];
     
+	private _objs = nearestObjects [_position, [], distanceSPWN, false];
+	
 	/* ---------------------- city civ (timer) handling ---------------------- */
     // This preserves the original _processCityCivMarker behaviour, using nearestObjects
     if (_marker in citiesX) then {
@@ -27,18 +29,12 @@ private _processMarker = {
         private _timeKey  = _spawnKey + "_time";
 
         // Check for any (live) player or a player corpse (originalside == teamPlayer)
-        private _near = nearestObjects [_position, [], distanceSPWN, false];
+
         private _hasPlayer = false;
-        private _i = 0;
-        while { _i < count _near && {!_hasPlayer} } do {
-            private _o = _near select _i;
-
-            if (alive _o) then {
-                if ((side _o) == teamPlayer) then { _hasPlayer = true; };
-            };
-
-            _i = _i + 1;
-        };
+		{
+			private _ent = _x;
+			if (_ent in _players) exitWith { _hasPlayer = true };
+		} forEach _objs;
 
         switch (spawner getVariable [_spawnKey, DESPAWN]) do {
             case ENABLED: {
@@ -73,7 +69,7 @@ private _processMarker = {
 
     /* ---------------------- nearestObjects sequential scan ---------------------- */
     // get everything inside distanceSPWN (user requested "all" types for now)
-    private _objs = nearestObjects [_position, [], distanceSPWN, false];
+
 
     private _anchored = false;
     
