@@ -235,6 +235,8 @@ switch (true) do {
     case (_unitType isEqualTo FactionGet(reb,"unitSL")): {
         [_unit, "Rifles", 50] call A3A_fnc_randomRifle;
         if (_smokes isNotEqualTo []) then { _unit addMagazines [selectRandomWeighted _smokes, 2] };
+		
+		_unit addWeapon "Binocular";
     };
      case (_unitType isEqualTo FactionGet(reb,"unitCrew")): {
         [_unit, "Rifles", 50] call A3A_fnc_randomRifle;
