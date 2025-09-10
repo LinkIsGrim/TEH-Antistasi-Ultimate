@@ -22,6 +22,8 @@ if (isServer) then {
 removeAllActions _oldUnit;
 [_oldUnit] spawn A3A_fnc_postmortem;
 
+[_newUnit,"spotting"] call A3A_fnc_flagaction;
+
 _oldUnit setVariable ["incapacitated",false,true];
 _newUnit setVariable ["incapacitated",false,true];
 

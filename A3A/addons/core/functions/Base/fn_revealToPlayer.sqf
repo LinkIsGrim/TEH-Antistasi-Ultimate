@@ -2,14 +2,13 @@ private _rebelBases = [];
 private _markerMap = createHashMap;
 
 while { revealX } do {
+
+	if (!([player] call A3A_fnc_hasRadio)) then { break; };
 	private _activeVehicles = [];
     
 	private _rebelBases = (airportsX + outposts + seaports + factories + resourcesX + milbases) select { sidesX getVariable _x == teamPlayer };
 	_rebelBases pushBack "Synd_HQ";
-	
 	{
-		if (!([player] call A3A_fnc_hasRadio)) then { break; };
-		
 		if ((side _x == Invaders) || (side _x == Occupants)) then {
 			private _lead = leader _x;
 			private _pos = getPosATL _lead;

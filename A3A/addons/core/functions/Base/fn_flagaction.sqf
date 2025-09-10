@@ -314,6 +314,37 @@ switch _typeX do
             4
         ];
     };
+	
+	case "spotting":
+	{
+		_flag addAction [
+			"<t color='#ffaa00'>Reveal target</t>",
+			{
+				params ["_target", "_caller"];
+
+				private _contact = cursorObject;
+				if (isNull _contact) exitWith { systemChat "PMR: Nothing to see here."; };
+				if !(_contact isKindOf "AllVehicles") exitWith { systemChat "PMR: Nothing to see here."; };
+				private _cside = side _contact;
+				player reveal _contact;
+				if !(_cside == Occupants || _cside == Invaders) exitWith { player reveal _contact; systemChat format ["PMR: You're looking at %1 %2", side _contact, getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")]; };
+
+				{
+					_x reveal [_contact, 4];
+				} forEach ((getPos _caller) nearEntities ["Land", 500] select { side _x == side _caller });
+
+				systemChat format ["PMR: Spotted enemy %1!", getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")];
+			},
+			nil,
+			1.5,
+			true,
+			true,
+			"",  // no shortcut
+			"(currentWeapon player) isKindOf ['Binocular', configFile >> 'CfgWeapons']",
+			-1
+		];
+
+	}
 };
 
 _actionX
