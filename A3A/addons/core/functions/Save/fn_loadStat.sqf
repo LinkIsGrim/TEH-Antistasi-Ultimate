@@ -28,7 +28,7 @@ if (isNil "specialVarLoads") then {
     specialVarLoads = [
         "minesX","staticsX","antennas","mrkNATO","mrkSDK",
         "posHQ","hr","dateX","prestigeOPFOR",
-        "prestigeBLUFOR","resourcesFIA","skillFIA","destroyedSites",
+        "prestigeBLUFOR","resourcesFIA","skillFIA","destroyedSites", "occupantsRadioKeys", "invaderRadioKeys",
         "garrison","tasks","membersX","destroyedBuildings",
         "chopForest","weather","killZones","jna_dataList","controlsSDK","mrkCSAT","nextTick",
         "bombRuns","wurzelGarrison","aggressionOccupants", "aggressionInvaders", "enemyResources", "HQKnowledge",
@@ -155,6 +155,16 @@ if (_varName in specialVarLoads) then {
             server setVariable ["resourcesFIA",_varValue,true];
         };
 
+		case 'occupantsRadioKeys': {
+			occupantsRadioKeys = _varValue;
+			publicVariable "occupantsRadioKeys";
+		};
+		
+		case 'invaderRadioKeys': {
+			invaderRadioKeys = _varValue;
+			publicVariable "invaderRadioKeys";
+		};
+		
         case 'destroyedSites': {
             destroyedSites = +_varValue; publicVariable "destroyedSites"
         };
@@ -388,6 +398,32 @@ if (_varName in specialVarLoads) then {
                         if (typeOf _veh in ["A3AU_RebHelipad_Square_F","A3AU_RebHelipad_Circle_F"]) then {
                             [_veh] call A3A_fnc_terrainCleaner;
                         };
+						
+						if (_veh isKindOf "CargoPlatform_01_base_F") then {
+							_veh animateSource ["Panel_1_hide_source", 1];
+							_veh animateSource ["Panel_2_hide_source", 1];
+							_veh animateSource ["Panel_3_hide_source", 1];
+							_veh animateSource ["Panel_4_hide_source", 1];
+						};
+						
+						if (_veh isKindOf "Land_Scaffolding_New_F") then {
+							_scaffold = _veh;
+							[_scaffold, [
+								"Align Platforms",                             // Action title
+								{
+									params ["_target", "_caller"];
+									[_target] call A3A_fnc_alignPlatforms;
+								},
+								nil,                                        // Arguments
+								4,                                          // Priority
+								false,                                      // ShowWindow
+								true,                                       // HideOnUse
+								"",                                         // Shortcut
+								"(isPlayer _this) && (_this == vehicle _this)",  // on foot, player only
+								10                                    // Distance to appear
+							]] remoteExec ["addAction", 0, _scaffold];
+						};
+						
                         A3A_buildingsToSave pushBack _veh;
                     };
                 };
@@ -536,7 +572,7 @@ if (_varName in specialVarLoads) then {
 				_xVectorDir = _varvalue select _i select 3;
 				private _veh = createVehicle [_typeVehX,[0,0,1000],[],0,"CAN_COLLIDE"];
 				_veh setPosWorld _posVeh;
-				_veh setVectorDirAndUp [_xVectorDir,_xVectorUp];
+				_veh setVectorDirAndUp [_xVectorDir,_xVectorUp];				
 				constructionsToSave pushBack _veh;
 			};
 			publicVariable "constructionsToSave";

@@ -199,6 +199,8 @@ if (isNil "ace_noradio_enabled" or {!ace_noradio_enabled}) then {
 //Give the player the base loadout.
 [player] call A3A_fnc_dress;
 
+[player,"spotting"] call A3A_fnc_flagaction;
+
 player setvariable ["compromised",0];
 player addEventHandler ["FiredMan", {
     _player = _this select 0;
@@ -632,6 +634,23 @@ if (saveZeusBuildings) then {
 		_x addEventHandler ["CuratorObjectPlaced", {
 			params ["_curator", "_entity"];
 			if !(_entity isKindOf "Building") exitWith {};
+			if (_entity isKindOf "Land_Scaffolding_New_F") then {
+				_scaffold = _entity;
+				[_scaffold, [
+					"Align Platforms",                             // Action title
+					{
+						params ["_target", "_caller"];
+						[_target] call A3A_fnc_alignPlatforms;
+					},
+					nil,                                        // Arguments
+					4,                                          // Priority
+					false,                                      // ShowWindow
+					true,                                       // HideOnUse
+					"",                                         // Shortcut
+					"(isPlayer _this) && (_this == vehicle _this)",  // on foot, player only
+					10                                    // Distance to appear
+				]] remoteExec ["addAction", 0, _scaffold];
+			};
 			[_entity] remoteExecCall ["SCRT_fnc_build_saveConstruction", 2];
 		}];
 		_x addEventHandler ["CuratorObjectEdited", {

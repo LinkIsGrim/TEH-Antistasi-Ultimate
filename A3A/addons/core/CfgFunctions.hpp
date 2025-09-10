@@ -197,6 +197,7 @@ class CfgFunctions
         class Builder {
             file = QPATHTOFOLDER(functions\Builder);
             class addBuildingActions {};
+            class alignPlatforms {};
             class buildingComplete {};
             class buildingPlacer {};
             class buildingPlacerStart {};

@@ -34,6 +34,25 @@ _building setVectorDirAndUp (_target getVariable "A3A_build_dir");
 if (typeOf _building  in ["A3AU_RebHelipad_Square_F","A3AU_RebHelipad_Circle_F"]) then {
     [_building] call A3A_fnc_terrainCleaner;
 };
+
+if (_building isKindOf "Land_Scaffolding_New_F") then {
+	_scaffold = _building;
+	[_scaffold, [
+		"Align Platforms",                             // Action title
+		{
+			params ["_target", "_caller"];
+			[_target] call A3A_fnc_alignPlatforms;
+		},
+		nil,                                        // Arguments
+		4,                                          // Priority
+		false,                                      // ShowWindow
+		true,                                       // HideOnUse
+		"",                                         // Shortcut
+		"(isPlayer _this) && (_this == vehicle _this)",  // on foot, player only
+		10                                    // Distance to appear
+	]] remoteExec ["addAction", 0, _scaffold];
+};
+
 _building setVariable ["A3A_building", true, true];            // Used to identify removable buildings
 A3A_buildingsToSave pushBack _building; ///could move terrain smoothing here
 
