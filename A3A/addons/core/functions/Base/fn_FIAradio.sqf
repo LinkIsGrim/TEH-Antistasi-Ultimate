@@ -1,3 +1,10 @@
+//We don't need any checks, this should work all the time
+
+revealX = true;
+publicVariable "revealX";
+true;
+
+/*
 private _chance = 100;
 
 {
@@ -30,4 +37,4 @@ if (random 100 < _chance) then {
 		};
 	};
 };
-_return
+_return */

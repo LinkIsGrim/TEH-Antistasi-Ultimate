@@ -693,3 +693,5 @@ if (staminaEnabled isEqualTo false) then {
 
 private _newWeaponSway = swayEnabled / 100;
 player setCustomAimCoef _newWeaponSway;
+
+[] remoteExec ["A3A_fnc_revealToPlayer",teamPlayer];

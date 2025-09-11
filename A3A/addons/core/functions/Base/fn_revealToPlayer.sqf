@@ -1,7 +1,7 @@
 private _rebelBases = [];
 private _markerMap = createHashMap;
 
-while { revealX } do {
+while { true } do {
 
 	private _activeVehicles = [];
     
