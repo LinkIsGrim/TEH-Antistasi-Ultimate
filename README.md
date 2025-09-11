@@ -52,8 +52,11 @@ NB! These changes are tuned for and tested with a small amount of players (3-5) 
 	- Properly handles the surrender crates (and Reammo Boxes in general)
 	- Properly interrupts the gathering on Esc/Win
 	- Improved information on the progress
-	- Allows to pack a local lootbox from the corpse
 	- 1% chance of Jack-in-the-box
+- **Intel is useful**:
+	- rebalanced Intel distribution
+	- SL corpses create Intel marker on the map when using LootVehicle (use Pack action on the corpse to avoid stuck Intel)
+	- Enemy Radio Keys are saved and loaded properly between sessions
 - **Persistent corpses and vehicles**:
 	- Corpses remain in the world, ensuring no loot is lost (removed automatically by the loot vehicle)
 	- That also should improve performace by reducing amount of postmortem threads to 0.
