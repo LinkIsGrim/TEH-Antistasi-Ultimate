@@ -6,7 +6,7 @@ private _unit = _units select 0;
 
 if (_unit == Petros) exitWith {[localize "STR_control_unit_hint_header", localize "STR_control_unit_error_petros"] call A3A_fnc_customHint;};
 if (captive player) exitWith {[localize "STR_control_unit_hint_header", localize "STR_control_unit_error_undercover"] call A3A_fnc_customHint;};
-if (player != leader group player) exitWith {[localize "STR_control_unit_hint_header", localize "STR_control_unit_error_no_squad_leader"] call A3A_fnc_customHint;};
+//if (player != leader group player) exitWith {[localize "STR_control_unit_hint_header", localize "STR_control_unit_error_no_squad_leader"] call A3A_fnc_customHint;};
 if (isPlayer _unit) exitWith {[localize "STR_control_unit_hint_header", localize "STR_control_unit_error_no_player"] call A3A_fnc_customHint;};
 if (!(alive _unit) or (_unit getVariable ["incapacitated",false]))  exitWith {[localize "STR_control_unit_hint_header", localize "STR_control_unit_error_alive_only"] call A3A_fnc_customHint;};
 if (side _unit != teamPlayer) exitWith {[localize "STR_control_unit_hint_header", format [localize "STR_control_unit_error_rebel_only",A3A_faction_reb get "name"]] call A3A_fnc_customHint;};
@@ -23,32 +23,18 @@ if (_owner!=player) exitWith {[localize "STR_control_unit_hint_header", localize
 
 private _face = face _unit;
 private _speaker = speaker _unit;
+private _fname = (name _unit splitString " ") # 0;
+private _lname = (name _unit splitString " ") # 1;
 
 _unit setVariable ["owner",player,true];
-private _eh1 = player addEventHandler ["HandleDamage", {
-	params ["_unit"];
-	_unit removeEventHandler ["HandleDamage",_thisEventHandler];
-	//removeAllActions _unit;
-	selectPlayer _unit;
-	(units group player) joinsilent group player;
-	group player selectLeader player;
-	[localize "STR_control_unit_hint_header", localize "STR_control_unit_damage_control_return_player"] call A3A_fnc_customHint;
-	nil;
-}];
-private _eh2 = _unit addEventHandler ["HandleDamage", {
-	private _unit = _this select 0;
-	_unit removeEventHandler ["HandleDamage",_thisEventHandler];
-	removeAllActions _unit;
-	selectPlayer (_unit getVariable "owner");
-	(units group player) joinsilent group player;
-	group player selectLeader player;
-	[localize "STR_control_unit_hint_header",localize "STR_control_unit_damage_control_return_ai"] call A3A_fnc_customHint;
-	nil;
-}];
+
+private _originalBody = player;
+player allowDamage false;
 selectPlayer _unit;
 
+
 //otherwise unit will lose his identity
-[_unit, createHashMapFromArray [["face", _face], ["speaker", _speaker]]] call A3A_fnc_setIdentity;
+[_unit, createHashMapFromArray [["face", _face], ["speaker", _speaker], ["firstName", _fname], ["lastName", _lname]]] call A3A_fnc_setIdentity;
 
 if (fatigueEnabled isEqualTo false) then {
 	_unit enableFatigue false;
@@ -62,21 +48,19 @@ private _newWeaponSway = swayEnabled / 100;
 _unit setCustomAimCoef _newWeaponSway;
 
 private _timeX = aiControlTime;
-
-_unit addAction [(localize "STR_antistasi_actions_return_control_to_ai"),{selectPlayer leader (group (_this select 0))}];
+_unit setVariable ["returnControl",false];
+_unit addAction [(localize "STR_antistasi_actions_return_control_to_ai"),{player setVariable["returnControl",true];}];
 
 waitUntil {sleep 1; 
 	[localize "STR_control_unit_hint_header", format [localize "STR_control_unit_time_to_return_to_original_body", _timeX]] call A3A_fnc_customHint; 
-	_timeX = _timeX - 1; 
-
-	(_timeX == -1) or (isPlayer (leader group player))
+	_timeX = (_timeX - 1) max 0; 
+	(_timeX < 1 && !(_originalBody getVariable ["incapacitated",false])) or (player getVariable "returnControl") or (player getVariable ["incapacitated",false]) or (_originalBody getVariable ["ace_medical_bloodVolume",6] < 3.2);
 };
 
 removeAllActions _unit;
 selectPlayer (_unit getVariable ["owner",_unit]);
 (units group player) joinsilent group player;
 group player selectLeader player;
-_unit removeEventHandler ["HandleDamage",_eh2];
-player removeEventHandler ["HandleDamage",_eh1];
+player allowDamage true;
 [localize "STR_control_unit_hint_header", localize "STR_control_unit_return_to_original_body"] call A3A_fnc_customHint;
 playSound "A3AP_UiSuccess";

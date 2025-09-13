@@ -19,7 +19,7 @@ Info("initACEUnconsciousHandler started");
 	{
 		_unit setVariable ["incapacitated", true, true];	// for canFight tests
 
-	_groupLeader = leader (group _unit);
+		_groupLeader = leader (group _unit);
 
         // Pass group lead if unit is the leader
         if (_unit == leader (group _unit)) then
@@ -32,6 +32,19 @@ Info("initACEUnconsciousHandler started");
 
 		if (_realSide == Occupants || _realSide == Invaders) then {
 			[_unit, group _unit, _unit getVariable ["ace_medical_lastDamageSource", objNull]] spawn A3A_fnc_AIReactOnKill;
+		};
+		
+		//Pick nearby frend to attempt rescue. Normal posession timeout is postponed until player is awake, bled out, or AI is knocked down.
+		if (isPlayer _unit && unconsciousPossessAi) then {
+			private _units = nearestObjects [getPosATL _unit, ["Man"], 200] select {
+			!(isPlayer _x) && _x isNotEqualTo petros && {[_x] call A3A_fnc_canFight} && side _x == teamPlayer };
+
+			//preferably with medical education
+			[_units, [], { _x getUnitTrait "Medic" }, "DESCEND"] call BIS_fnc_sortBy;
+			
+			if (count _units > 0) then {
+				[_units] spawn A3A_fnc_controlunit;
+			};
 		};
 	};
 
