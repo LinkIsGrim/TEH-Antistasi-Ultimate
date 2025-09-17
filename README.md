@@ -12,82 +12,98 @@
 </div>
 
 ## TEH Changes
-NB! These changes are tuned for and tested with a small amount of players (3-5) QoL: more battlefield mobility, more info on the enemies, new mass looting system, useful intel.
+NB! These changes are tuned for and tested with a small amount of players (1-5) QoL: more battlefield mobility, more info on the enemies, new mass looting system, useful intel.
 
-- **Extensive remake of trader inventory**
-	- Prices, availability, and compatibility fixes for items.
+- **Changes to the trader**
+	- All Vanilla/CUP/NIArms primary weapon variants available for buying.
+	- Fixed prices (epoch + features + caliber), and compatibility fixes for items.
 	- Item details overhaul with more information from the config.
-	- reworked item hashing (the original algorithm caused frequent collisions).
+	- Reworked item hashing (the original algorithm caused frequent collisions).
+	- Sell prices for armor are calculated from the armor class
+	- Sell button now sells whole stack of items automatically, no need to punch the number
+	- Trader search mission appears closer to mid-game (about war level 4), not from the first ever Intel
+
 - **Jeroen Arsenal QoL improvements**:
 	- **GUI**: Added detailed tooltips, improved sorting
 	- unrestricted vehicle loading (ignores both weight and volume)
 	- unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
-- **Quick Equip**:
-	- Vehicles from the garage now come with a starter kit, including medicine, 600 bullets of primary ammo (requires loaded mag), and AT/AA launchers (arsenal numbers updated). Only loads **CUP** advanced single use launchers.
-	- Arsenal's Quick Equip option now also adds ACE medicine set to the player when using random loadout (i.e. respective rebel loadout is not specified by commander).
-- **Survival fix for player APCs/Tanks**: less chance for a vehicle explosion
-	- Health pool resets to 51% damage if vehicle is not destroyed, while keeping components broken.
+- **Starter Kits**:
+	- Vehicles from the garage now come with a starter kit, including medicine, 600 bullets of primary ammo (requires loaded mag), and AT/AA launchers (arsenal numbers updated). Only loads **CUP** advanced single use launchers. Ammo and launchers are subject to the availability in the Arsenal.
+	- Arsenal's Quick Equip option now also adds ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
+- **Survival fix for player APCs/Tanks**
+	- Health pool resets to 51% damage on hit if vehicle is not destroyed, while keeping components broken.
 	- Vehicle can be completely destroyed completely only with a high damaging shell or explosion (i.e. covering 49% of a health pool in one shot).
 	- Only works on vehicles taken from the garage.
-- **Ammobox generation revamped**: Ensures better consistency with fixed amounts, while types are still governed by settings.
+- **Second Chance**: when "Allow players to take control of AI units while unconscious" parameter (Experimental tab) is set to "Yes", on being shot down you automatically take control of nearby AI unit to save yourself (once per knockdown)
+	- Skipped if the wound is fatal
+	- Known issue: Original body is invulnerable  while controlling an AI (but still bleeds out and can drown, AI control ends shortly before death)
+	- Timeout is postponed until owner is no longer incapacitated.
+	- If AI is knocked down, control is lost, no additional attempts provided.
+	- AI doesn't have to be in your squad, nearby infantry can help too (200m)
+	- There is still a little chance for an AI medic to patch you even after that
 - **Enemy bases**:
-	- Experimental: spawn distance markers (hidden when markers are hidden)
-	- Better selection of cars and broken armor to loot
-	- Spawned vehicles don't disappear if you captured the base
+	- Spawn distance markers (hidden when markers are hidden)
+	- Spawned vehicles and ammo boxes don't disappear if you captured the base and left (even if marker undergoes despawn)
 	- Spawned vehicles variety (armed vehicles spawn damaged)
 	- Enemies do not get AI disabled during a pre-despawn state to avoid frozen enemies
+	- Enemies do not automatically surrender when the location is seized. Instead they'll rush back to the flag.
 - **Fast travel**:
-	- Allows free location selection within a 500m radius of friendly markers (easier to click the marker)
+	- Allows free location selection within a 500m radius of friendly markers (still, only works if the CLOSEST marker is friendly)
 	- Vehicles will stick to the roads, infantry can teleport precisely to the cursor.
 	- Attacked but not captured markers can be freely teleported to.
-	- Teleportation range zones shown on the map
-	- Rally point cost is reduced to 25 per charge
-- **CAS support** tuned down to avoid being called on infantry units.
-- **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod, requires **ACE3**
-	- Uses ACE action on the vehicles to gather loot
-	- Range depends on enemy proximity
-	- Reworked to gather one container at the time
-	- Allows several players to loot the same location is a fraction of the time, and into the same vehicle without duping items
-	- Properly handles the dropped weapons
-	- Properly handles the surrender crates (and Reammo Boxes in general)
-	- Properly interrupts the gathering on Esc/Win
-	- Improved information on the progress
+	- Teleportation range zones shown on the map.
+	- Rally point cost is reduced to 25 per charge.
+- **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod
+	- Uses ACE action on the vehicles to gather loot in 5-5000m radius (depends on enemy proximity, distance to nearest enemy - 50m)
+	- Allows several players to loot the same location, and into the same vehicle to save time.
+	- Properly handles compacting CUP launchers into storage mode.
 	- 1% chance of Jack-in-the-box
-- **Intel is useful**:
-	- rebalanced Intel distribution
+	- *Known issue*: CBA settings are mostly ignored. I've rewritten the thing several times and now I think it doesn't use any settings. I'll review it eventually.
+- **Intel**:
+	- rebalanced Intel distribution (Intel is mostly useful now)
 	- SL corpses create Intel marker on the map when using LootVehicle (use Pack action on the corpse to avoid stuck Intel)
 	- Enemy Radio Keys are saved and loaded properly between sessions
 - **Persistent corpses and vehicles**:
 	- Corpses remain in the world, ensuring no loot is lost (removed automatically by the loot vehicle)
-	- That also should improve performace by reducing amount of postmortem threads to 0.
 	- Wrecks are configured to be managed by the mission garbage collector
-	- Wrecks can be removed from the action menu (very close range)
+	- Wrecks can be removed from the action or ACE menu (very close range, be careful with cook-offs and fire)
 	- Enemy vehicles required to return to base to despawn
 	- [Experimental] Vehicles and wrecks can be sold anywhere (health affects payout)
 	- [Experimental] Spawn anchoring: players corpses and rebel vehicles now anchor enemy markers from despawning
-- **Squad Markers**: On a resource tick there is a change to intercept enemy communications and show enemies on the map.
-	- Original script was trying to show enemy squad leaders to the commander by using reveal command, but that only works for a fraction of a second.
-	- Currently if revealX is true (i.e. communications intercepted), enemy squad leaders are shown with markers on the map for each player (in 15 seconds updates).
-	- Markers also correctly apply marker type, depending on the vehicle.
-	- Vehicle markers improved visibility.
+- **Squad Markers**:
+	- Enemy squad leaders (or their vehicle) are shown with respective markers on the map for each player, not only the commander.
+	- Update interval is 15 seconds.
 	- Hides squads sharing the same vehicle.
 	- Hides SpecOps squads.
 	- Hides infantry and statics more than 1.5km away from rebel bases.
+	- Map stand at the HQ has a "Launch UAV" action, which consumes AR-2 drone back pack but removes 1.5km limitation, showing all normal squads on the map
 - **Anti-anti-air**:
 	- Enemies will attempt to destroy long range AA (e.g. radar + SAM site) if vehicle is sniped from 2 or more kilometers away.
 	- Support corridors (aka Carrier markers) are moved dynamically to allow less predictable attack vectors
+	- Enemy Air QRF disembark range increased from 200-400 to 500-800 to increase survivability against MANPADs and binoculars.
 - **[WIP] Combat Recons**:
-	- Enemies will send small infantry squads to rebel markers in order to recapture poorly defended points
+	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons.
+	- It's chance based (1% + 0.25% per war level) per marker each minute IF there is an inactive enemy base in 2km radius.
 	- Rebel garrisons are now properly leaded (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
-	- New construction options: Scaffolds and Cargo Platforms. When deployed, use "Align Platforms" action on the scaffold to snap nearby towers to the scaffold. You can carry static defences up there. You can continue building on top of the platforms (toggle Alt and Shift in the Building planner), e.g. sandbags walls.
-	- When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost garrison).
-- **[WIP] Global Mobilization**:
+- **[WIP] Tower Defense**
+	- New construction options: Scaffolds and Cargo Platforms (bottom of the list at the builder boxes)
+	- When deployed, use "Align Platforms" action on the scaffold to snap nearby towers to the scaffold
+	- You can continue building on top of the platforms (toggle Alt and Shift in the Building planner), e.g. sandbags walls. If they appear angled, use "Align Platforms" again.
+	- Known issue: builder can destroy static weapons. Build the defenses first, and then bring weapons upstairs.
+- **Global Mobilization**:
 	- Epoch restricted CUP & Vanilla weapons list to appear in the loot
 	- German names for the NPC
 	- Deutsche Mark (DM) as currently on Weferlingen
-- **[WIP] Experimental mods**: Requires separate mods for now, including **"GX-Drones"** and **Extended Anti Air**.
+	- Known issue: Trader will still offer all the futuristic weapons and items
+- **Misc changes**
+	- **Poor Man's Radar**: When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost AA guns).
+	- [Experimental] **"GX-Drones"** - handheld and 40mm UGL launched drones (sold at the Trader)
+	- [Experimental] **Extended Anti Air** - a variety of AA and radar trucks. SAM truck is available at the LRI rebel faction.
+	- **Ammobox** generation revamped: Ensures better consistency with fixed amounts.
+	- **CAS support** tuned down to avoid being called on infantry units.
+	- **UGL snipers** tuned down - more dispersion and AI using it in 150-300m range
 
-## [Features](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Features)
+## Check also original [ASU Features](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Features)
 
 ## Credits
 - Original Mission by barbolani
