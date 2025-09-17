@@ -1,6 +1,6 @@
 #include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
-params ["_units"];
+params ["_units",["_calledByACE",false]];
 
 private _unit = _units select 0;
 
@@ -29,7 +29,14 @@ private _lname = (name _unit splitString " ") # 1;
 _unit setVariable ["owner",player,true];
 
 private _originalBody = player;
+
+//disable further damage and wait until properly landed
 player allowDamage false;
+if (_calledByACE) then {
+	waitUntil {  sleep 1; "ace_medical_engine_uncon" in (animationState player);};
+};
+
+//then switch
 selectPlayer _unit;
 
 
@@ -51,10 +58,26 @@ private _timeX = aiControlTime;
 _unit setVariable ["returnControl",false];
 _unit addAction [(localize "STR_antistasi_actions_return_control_to_ai"),{player setVariable["returnControl",true];}];
 
-waitUntil {sleep 1; 
-	[localize "STR_control_unit_hint_header", format [localize "STR_control_unit_time_to_return_to_original_body", _timeX]] call A3A_fnc_customHint; 
-	_timeX = (_timeX - 1) max 0; 
-	(_timeX < 1 && !(_originalBody getVariable ["incapacitated",false])) or (player getVariable "returnControl") or (player getVariable ["incapacitated",false]) or (_originalBody getVariable ["ace_medical_bloodVolume",6] < 3.2);
+if (_calledByACE) then {
+	["Second chance!", format ["Find and heal %1 before they bleed out!", name _originalBody]] call A3A_fnc_customHint; 
+};
+
+waitUntil {
+    sleep 1;
+    if (!_calledByACE) then {
+        [localize "STR_control_unit_hint_header",
+         format [localize "STR_control_unit_time_to_return_to_original_body", _timeX]
+        ] call A3A_fnc_customHint;
+        _timeX = (_timeX - 1) max 0;
+    };
+
+	//force return of control if timed out, rescue is a success, rescue has failed (death is imminent), AI is knocked down, or manual action is used
+    (_timeX < 1)
+    || (_calledByACE && !(_originalBody getVariable ["incapacitated", false]))
+    || (_originalBody getVariable ["ace_medical_bloodVolume", 6] < 3.2)
+	|| (getOxygenRemaining _originalBody  <= 0.03)
+	|| (player getVariable ["incapacitated", false])
+	|| (player getVariable ["returnControl", false]);
 };
 
 removeAllActions _unit;

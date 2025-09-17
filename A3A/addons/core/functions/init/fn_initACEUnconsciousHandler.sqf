@@ -34,16 +34,17 @@ Info("initACEUnconsciousHandler started");
 			[_unit, group _unit, _unit getVariable ["ace_medical_lastDamageSource", objNull]] spawn A3A_fnc_AIReactOnKill;
 		};
 		
-		//Pick nearby frend to attempt rescue. Normal posession timeout is postponed until player is awake, bled out, or AI is knocked down.
-		if (isPlayer _unit && unconsciousPossessAi) then {
-			private _units = nearestObjects [getPosATL _unit, ["Man"], 200] select {
-			!(isPlayer _x) && _x isNotEqualTo petros && {[_x] call A3A_fnc_canFight} && side _x == teamPlayer };
+		//Pick a frend to attempt rescue. Control return is postponed until player is awake, bled out, AI is knocked down, or returned manually.
+		if (isPlayer _unit && unconsciousPossessAi && (getOxygenRemaining _unit > 0.1)) then {
+			private _units = (
+				//look up own group + able men nearby
+				(units group _unit + nearestObjects [getPosATL _unit, ["Man"], 200] select {side _x == teamPlayer})) select {!(isPlayer _x) && _x isNotEqualTo petros && !(_x getVariable["incapacitated",false])};
 
 			//preferably with medical education
 			[_units, [], { _x getUnitTrait "Medic" }, "DESCEND"] call BIS_fnc_sortBy;
 			
 			if (count _units > 0) then {
-				[_units] spawn A3A_fnc_controlunit;
+				[_units, true] spawn A3A_fnc_controlunit;
 			};
 		};
 	};
