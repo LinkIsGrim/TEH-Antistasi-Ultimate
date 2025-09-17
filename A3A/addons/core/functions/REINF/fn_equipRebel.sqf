@@ -57,11 +57,18 @@ if (!isNil "_customLoadout") exitWith {
 };
 
 private _rebVests = A3A_rebelGear get "ArmoredVests";
+private _civVests = A3A_rebelGear get "CivilianVests";
 private _vest = "";
+
 if (count _rebVests > 0) then {
     _vest = selectRandomWeighted (_rebVests);
 } else {
-    _vest = selectRandomWeighted (A3A_rebelGear get "CivilianVests");
+	if (count _civVests > 0) then {
+		_vest = selectRandomWeighted (_civVests);
+	}
+	else {
+		_vest = "V_BandollierB_blk";
+	};
 };
 
 _unit addVest _vest;
@@ -120,12 +127,8 @@ if (!isNil "_radio") then {_unit linkItem _radio};
 private _rebHelmets = A3A_rebelGear get "ArmoredHeadgear";
 private _helmet = "";
 if (count _rebHelmets > 0) then {
-    _helmet = selectRandomWeighted (_rebHelmets);
-} else {
-    _helmet = selectRandomWeighted (A3A_rebelGear get "headgear");
+    _unit addHeadgear (selectRandomWeighted _rebHelmets);
 };
-
-_unit addHeadgear _helmet;
 
 private _backpack = selectRandomWeighted (A3A_rebelGear get "BackpacksCargo");
 if !(isNil "_backpack") then { _unit addBackpack _backpack };
@@ -327,5 +330,3 @@ if (_nvg != "") then {
 if (backpackItems _unit isEqualTo []) then { removeBackpack _unit };
 
 Verbose_3("Class %1, type %2, loadout %3", _unitType, _recruitType, str (getUnitLoadout _unit));
-
-if (_recruitType isEqualTo 0) then { _unit setVariable ["orgLoadout", getUnitLoadout _unit, true] };
