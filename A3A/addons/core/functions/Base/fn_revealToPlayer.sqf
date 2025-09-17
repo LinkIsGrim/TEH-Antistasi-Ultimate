@@ -2,7 +2,7 @@ private _rebelBases = [];
 private _markerMap = createHashMap;
 
 while { true } do {
-
+	private _reconUAV = (missionNamespace getVariable["UAVreconTimer",0] > time);
 	private _activeVehicles = [];
     
 	if ([player] call A3A_fnc_hasRadio) then {
@@ -53,7 +53,7 @@ while { true } do {
 					_hide = true;
 				};
 				
-				if ((_statics || _infantry) && !_hide) then {
+				if ((_statics || _infantry) && !_hide && !_reconUAV) then {
 					_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
 					_hide = (_pos distance2D getMarkerPos _loc > 1500);
 				};

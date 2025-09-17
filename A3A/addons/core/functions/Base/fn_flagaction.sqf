@@ -330,8 +330,8 @@ switch _typeX do
 				if !(_cside == Occupants || _cside == Invaders) exitWith { player reveal _contact; systemChat format ["PMR: You're looking at %1 %2", side _contact, getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")]; };
 
 				{
-					_x reveal [_contact, 4];
-				} forEach ((getPos _caller) nearEntities ["Land", 500] select { side _x == side _caller });
+					[_x, [_contact,4]] remoteExec ["reveal", 2];
+				} forEach ((getPosATL _caller) nearObjects ["Land", 500] select { side _x == side _caller });
 
 				systemChat format ["PMR: Spotted enemy %1!", getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")];
 			},

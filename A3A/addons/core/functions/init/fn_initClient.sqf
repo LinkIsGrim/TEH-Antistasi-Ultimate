@@ -581,6 +581,7 @@ mapX addAction [
 	4
 ];
 mapX addAction [localize "STR_antistasi_actions_ai_load_info", { [] remoteExec ["A3A_fnc_AILoadInfo",2];},nil,0,false,true,"","((_this == theBoss) || (serverCommandAvailable ""#logout""))"];
+mapX addAction ["Launch UAV (consume AR-2 Darter)", { [] remoteExec ["A3A_fnc_launchUAV",2];}];
 mapX addAction [localize "STR_antistasi_actions_move_this_asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)", 4];
 
 [] spawn A3A_fnc_unitTraits;

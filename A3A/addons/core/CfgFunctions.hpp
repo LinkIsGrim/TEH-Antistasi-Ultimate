@@ -150,6 +150,7 @@ class CfgFunctions
             class isFrontlineNoFIA {};
             class arePositionsConnected {};
             class joinMultipleGroups {};
+			class launchUAV {};
             class localizar {};
             class lockStatic {};
             class logPerformance {};
