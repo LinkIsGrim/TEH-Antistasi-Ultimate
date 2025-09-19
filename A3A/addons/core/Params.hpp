@@ -137,8 +137,8 @@ class Params
     class globalCivilianMax: BasicParams
     {
         title = $STR_params_global_civilian_max;
-        values[] = {0,2,5,10,15,20,25,30};
-        texts[] = {"0","2","5","10","15","20","25","30"};
+        values[] = {0,2,5,10,15,20,25,30,9999};
+        texts[] = {"0","2","5","10","15","20","25","30","Unlimited"};
         default = 5;
     };
     class maxCiviliansPerTown: BasicParams
@@ -154,6 +154,13 @@ class Params
         values[] = {2000,3000,4000,6000,8000,10000,12000};
         texts[] = {"2000","3000","4000","6000","8000","10000","12000"};
         default = 3000;
+    };
+	class distanceMissionTier: BasicParams
+    {
+        title = "Mission Distance increase per War Level";
+        values[] = {0,500,1000,2000};
+        texts[] = {"Not applied","500m","1000m","2000m"};
+        default = 1000;
     };
     class distanceSPWN: BasicParams
     {

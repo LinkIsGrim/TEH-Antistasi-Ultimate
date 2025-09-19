@@ -5,6 +5,8 @@ if(!isServer) exitWith { Error("Server-only function miscalled") };
 
 params ["_type", ["_requester", clientOwner], ["_silent", false]];
 
+_missionRange = distanceMission + tierWar * distanceMissionTier;
+
 waitUntil {isNil "A3A_missionRequestInProgress"};
 A3A_missionRequestInProgress = true;
 
@@ -33,7 +35,7 @@ switch (_type) do {
 		//add controlsX not on roads and on the 'frontier'
 		private _controlsX = [controlsX, petros, true] call A3A_fnc_findIfNearAndHostile;
 		private _nearbyFriendlyMarkers = markersX select {
-			(getMarkerPos _x inArea [getMarkerPos respawnTeamPlayer, distanceMission+distanceSPWN, distanceMission+distanceSPWN, 0, false])
+			(getMarkerPos _x inArea [getMarkerPos respawnTeamPlayer, _missionRange+distanceSPWN, _missionRange+distanceSPWN, 0, false])
 			and (sidesX getVariable [_x,sideUnknown] isEqualTo teamPlayer)
 		};
 		_nearbyFriendlyMarkers deleteAt (_nearbyFriendlyMarkers find "Synd_HQ");
@@ -47,7 +49,7 @@ switch (_type) do {
 		if (count _possibleMarkers == 0) then {
 			if (!_silent) then {
 				[petros,"globalChat", localize "STR_chats_mission_request_no_AS"] remoteExec ["A3A_fnc_commsMP",_requester];
-				[petros,"hint", format [localize "STR_chats_mission_request_no_AS_hint_text", str distanceMission], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
+				[petros,"hint", format [localize "STR_chats_mission_request_no_AS_hint_text", str _missionRange], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
 			};
 		} else {
 			private _site = selectRandom _possibleMarkers;
@@ -89,7 +91,7 @@ switch (_type) do {
 		if (count _possibleMarkers == 0) then {
 			if (!_silent) then {
 				[petros, "globalChat", localize "STR_chats_mission_request_no_CON"] remoteExec ["A3A_fnc_commsMP",_requester];
-				[petros,"hint",format [localize "STR_chats_mission_request_no_CON_hint_text", str distanceMission], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
+				[petros,"hint",format [localize "STR_chats_mission_request_no_CON_hint_text", str _missionRange], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
 			};
 		} else {
 			private _milAdmins = _possibleMarkers select {_x in milAdministrationsX };
@@ -113,7 +115,7 @@ switch (_type) do {
 
 		private _controlsX = [controlsX select {!(isOnRoad (getMarkerPos _x))}, petros, true] call A3A_fnc_findIfNearAndHostile;
 		private _nearbyFriendlyMarkers = markersX select {
-			(getMarkerPos _x inArea [getMarkerPos respawnTeamPlayer, distanceMission+distanceSPWN, distanceMission+distanceSPWN, 0, false])
+			(getMarkerPos _x inArea [getMarkerPos respawnTeamPlayer, _missionRange+distanceSPWN, _missionRange+distanceSPWN, 0, false])
 			and (sidesX getVariable [_x,sideUnknown] isEqualTo teamPlayer)
 		};
 		_nearbyFriendlyMarkers deleteAt (_nearbyFriendlyMarkers find "Synd_HQ");
@@ -129,14 +131,14 @@ switch (_type) do {
 			private _nearbyMarker = [markersX, getPos _x] call BIS_fnc_nearestPosition;
 			if (
 				(sidesX getVariable [_nearbyMarker,sideUnknown] == Occupants)
-				&& (getPos _x distance getMarkerPos respawnTeamPlayer < distanceMission)
+				&& (getPos _x distance getMarkerPos respawnTeamPlayer < _missionRange)
 				) then {_possibleMarkers pushBack _x};
 		}forEach antennas;
 
 		if (count _possibleMarkers == 0) then {
 			if (!_silent) then {
 				[petros, "globalChat", localize "STR_chats_mission_request_no_DES"] remoteExec ["A3A_fnc_commsMP",_requester];
-				[petros,"hint",format [localize "STR_chats_mission_request_no_DES_hint_text", str distanceMission], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
+				[petros,"hint",format [localize "STR_chats_mission_request_no_DES_hint_text", str _missionRange], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
 			};
 		} else {
 			private _site = selectRandom _possibleMarkers;
@@ -172,7 +174,7 @@ switch (_type) do {
 				private _nearbyMarker = [markersX, getPos _x] call BIS_fnc_nearestPosition;
 				if (
 					(sidesX getVariable [_nearbyMarker,sideUnknown] != teamPlayer)
-					&& (getPos _x distance getMarkerPos respawnTeamPlayer < distanceMission)
+					&& (getPos _x distance getMarkerPos respawnTeamPlayer < _missionRange)
 					) then {_possibleMarkers pushBack _x};
 			} forEach banks;
 		};
@@ -180,7 +182,7 @@ switch (_type) do {
 		if (count _possibleMarkers == 0) then {
 			if (!_silent) then {
 				[petros, "globalChat", localize "STR_chats_mission_request_no_LOG"] remoteExec ["A3A_fnc_commsMP",_requester];
-				[petros,"hint", format [localize "STR_chats_mission_request_no_LOG_hint_text", str distanceMission], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
+				[petros,"hint", format [localize "STR_chats_mission_request_no_LOG_hint_text", str _missionRange], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
 			};
 		} else {
 			private _site = selectRandom _possibleMarkers;
@@ -210,8 +212,8 @@ switch (_type) do {
 		{
 			private _dist = getMarkerPos _x distance2D getMarkerPos respawnTeamPlayer;
 			private _supportReb = (server getVariable _x) select 3;
-			if (_dist < distanceMission && _supportReb < 90) then {
-				private _weight = (100 - _supportReb) * ((distanceMission - _dist) ^ 2);
+			if (_dist < _missionRange && _supportReb < 90) then {
+				private _weight = (100 - _supportReb) * ((_missionRange - _dist) ^ 2);
 				_possibleMarkers pushBack _x;
 				_weightedMarkers append [_x, _weight];
 			};
@@ -220,7 +222,7 @@ switch (_type) do {
 		if (count _possibleMarkers == 0) then {
 			if (!_silent) then {
 				[petros, "globalChat", localize "STR_chats_mission_request_no_SUPP"] remoteExec ["A3A_fnc_commsMP",_requester];
-				[petros,"hint",format [localize "STR_chats_mission_request_no_SUPP_hint_text", str distanceMission], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
+				[petros,"hint",format [localize "STR_chats_mission_request_no_SUPP_hint_text", str _missionRange], localize "STR_chats_mission_request_header"] remoteExec ["A3A_fnc_commsMP",_requester];
 			};
 		} else {
             Debug_1("City weights: %1", _weightedMarkers);
@@ -304,11 +306,11 @@ switch (_type) do {
 		// only do the city convoys on flip?
 		private _markers = (airportsX + milbases + resourcesX + factories + seaports + outposts - blackListDest);
 		// Pre-filter the possible source bases to make this less n-squared
-		private _possibleBases = (airportsX + outposts + milbases) select { (getMarkerPos _x) distance (getMarkerPos respawnTeamPlayer) < distanceMission + 3000 };
+		private _possibleBases = (airportsX + outposts + milbases) select { (getMarkerPos _x) distance (getMarkerPos respawnTeamPlayer) < _missionRange + 3000 };
 		private _convoyPairs = [];
 		{
 			private _site = _x;
-			if ((getMarkerPos _site) distance (getMarkerPos respawnTeamPlayer) > distanceMission) then {continue};
+			if ((getMarkerPos _site) distance (getMarkerPos respawnTeamPlayer) > _missionRange) then {continue};
 			if (sidesX getVariable [_site, teamPlayer] == teamPlayer) then {continue};
 			private _base = [_site, _possibleBases] call A3A_fnc_findBasesForConvoy;
 			if (_base != "") then {
