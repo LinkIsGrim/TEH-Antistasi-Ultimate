@@ -127,7 +127,7 @@ if (_typeX == "rem") then {
 		};
 	};
 
-	[_hr,_costs] remoteExec ["A3A_fnc_resourcesFIA",2];
+	[_hr,_costs,false] remoteExec ["A3A_fnc_resourcesFIA",2];
 
 	switch (true) do {
 		case (_watchpostFIA): {

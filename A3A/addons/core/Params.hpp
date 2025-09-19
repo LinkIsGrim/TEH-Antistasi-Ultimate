@@ -207,6 +207,13 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text,"x0.25","x0.5","x0.75","x1.0","x2.0"};
         default = 0;
     };
+	class multHR: BasicParams
+    {
+        title = "HR gain multiplier";
+        values[] = {1,2,3,4,5};
+        texts[] = {"x1","x2","x3","x4","x5"};
+        default = 1;
+    };
     class A3A_idleTimeout: BasicParams
     {
         title = $STR_params_afk;
