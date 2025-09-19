@@ -38,7 +38,7 @@ Info("initACEUnconsciousHandler started");
 		if (isPlayer _unit && unconsciousPossessAi && (getOxygenRemaining _unit > 0.1)) then {
 			private _units = (
 				//look up own group + able men nearby
-				(units group _unit + nearestObjects [getPosATL _unit, ["Man"], 200] select {side _x == teamPlayer})) select {!(isPlayer _x) && _x isNotEqualTo petros && !(_x getVariable["incapacitated",false])};
+				((units group _unit) select {_x distance _unit < 300}) + (nearestObjects [getPosATL _unit, ["Man"], 200] select {side _x == teamPlayer})) select {!(isPlayer _x) && _x isNotEqualTo petros && !(_x getVariable["incapacitated",false])};
 
 			//preferably with medical education
 			[_units, [], { _x getUnitTrait "Medic" }, "DESCEND"] call BIS_fnc_sortBy;
