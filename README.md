@@ -1,18 +1,19 @@
-<div align="center">
-  <img alt="Antistasi Ultimate" width="200" height="200" src="https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/assets/78276788/10d6e9f2-66bc-47a7-9ff5-2054b65b0e26">
+<div>
   <h1>TEH Antistasi Ultimate</h1>
   <p>
-    <i>An Arma 3 persistent multiplayer scenario about guerilla warfare tactics.</i>
-    <br/>
-    <i>Experimental/QoL fork of Antistasi Ultimate which is a fork Antistasi Plus Version focused on expanding templates, maps and features.</i>
-  </p>
-  <p>
-    Latest build in <a target="_blank" href=https://steamcommunity.com/sharedfiles/filedetails/?id=3476520930>Steam Workshop</a>
+    <i>An Arma 3 persistent multiplayer scenario about gorilla warfare tactics.</i>
+    <br><br>
+	<b>Important notes:</b>
+	<br>1) ACE3 is a strict dependency currently. Several new functionalities in this mod use ACE actions.
+	<br>2) This mod is oriented toward small cooperative servers (1-10 players maybe), some features may be abused in a malicious way, or reduce difficulty too much for bigger crowd.
+	<br>3) Gameplay is balanced to use with CUP and NIArms mods. I've tried most of popular weapon mods, and narrowed down to this.
+	</p>
+  <p align=center>
+    <b>Latest build in <a target="_blank" href=https://steamcommunity.com/sharedfiles/filedetails/?id=3476520930>Steam Workshop</a></b>
   </p>
 </div>
 
 ## TEH Changes
-NB! These changes are tuned for and tested with a small amount of players (1-5) QoL: more battlefield mobility, more info on the enemies, new mass looting system, useful intel.
 
 - **Changes to the trader**
 	- All Vanilla/CUP/NIArms primary weapon variants available for buying.
@@ -22,7 +23,6 @@ NB! These changes are tuned for and tested with a small amount of players (1-5) 
 	- Sell prices for armor are calculated from the armor class
 	- Sell button now sells whole stack of items automatically, no need to punch the number
 	- Trader search mission appears closer to mid-game (about war level 4), not from the first ever Intel
-
 - **Jeroen Arsenal QoL improvements**:
 	- **GUI**: Added detailed tooltips, improved sorting
 	- unrestricted vehicle loading (ignores both weight and volume)
@@ -53,17 +53,18 @@ NB! These changes are tuned for and tested with a small amount of players (1-5) 
 	- Attacked but not captured markers can be freely teleported to.
 	- Teleportation range zones shown on the map.
 	- Rally point cost is reduced to 25 per charge.
+	- [Experimental] Partial squad fast travel (statics and vehicles without driver stay behind)
 - **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod
 	- Uses ACE action on the vehicles to gather loot in 5-5000m radius (depends on enemy proximity, distance to nearest enemy - 50m)
 	- Allows several players to loot the same location, and into the same vehicle to save time.
 	- Properly handles compacting CUP launchers into storage mode.
 	- 1% chance of Jack-in-the-box
-	- *Known issue*: CBA settings are mostly ignored. I've rewritten the thing several times and now I think it doesn't use any settings. I'll review it eventually.
+	- *Known issue*: CBA settings are mostly ignored (except probably speed)
 - **Intel**:
-	- rebalanced Intel distribution (Intel is mostly useful now)
+	- Rebalanced Intel distribution (Intel is mostly useful now)
 	- SL corpses create Intel marker on the map when using LootVehicle (use Pack action on the corpse to avoid stuck Intel)
 	- Enemy Radio Keys are saved and loaded properly between sessions
-- **Persistent corpses and vehicles**:
+- **Persistent loot**:
 	- Corpses remain in the world, ensuring no loot is lost (removed automatically by the loot vehicle)
 	- Wrecks are configured to be managed by the mission garbage collector
 	- Wrecks can be removed from the action or ACE menu (very close range, be careful with cook-offs and fire)
@@ -85,6 +86,7 @@ NB! These changes are tuned for and tested with a small amount of players (1-5) 
 	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons.
 	- It's chance based (1% + 0.25% per war level) per marker each minute IF there is an inactive enemy base in 2km radius.
 	- Rebel garrisons are now properly leaded (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
+	- [Experimental] New HR gain multiplier parameter (works for recruitment of surrendered enemies and resque type missions) - to trade off early attacks losses
 - **[WIP] Tower Defense**
 	- New construction options: Scaffolds and Cargo Platforms (bottom of the list at the builder boxes)
 	- When deployed, use "Align Platforms" action on the scaffold to snap nearby towers to the scaffold
@@ -102,6 +104,7 @@ NB! These changes are tuned for and tested with a small amount of players (1-5) 
 	- **Ammobox** generation revamped: Ensures better consistency with fixed amounts.
 	- **CAS support** tuned down to avoid being called on infantry units.
 	- **UGL snipers** tuned down - more dispersion and AI using it in 150-300m range
+	- **Dynamic Mission Distance** - new parameter which scales possible mission distance from HQ by the War Level.
 
 ## Check also original [ASU Features](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Features)
 
