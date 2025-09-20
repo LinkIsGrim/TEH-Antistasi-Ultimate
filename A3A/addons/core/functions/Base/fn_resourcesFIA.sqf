@@ -1,16 +1,19 @@
 #include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
 
-params ["_hr", "_resourcesFIA","_applyHrBonus"];
+params ["_hr", "_resourcesFIA","_customHrMult"];
 
 private _hrMult = multHR;
+
+if (!isNil "_customHrMult") then {
+	_hrMult = _customHrMult;
+};
 
 waitUntil {!resourcesIsChanging};
 private _warningText = nil;
 resourcesIsChanging = true;
 if (isNil "_resourcesFIA") then {Error("_resourceFIA is nil");};
 if ((isNil "_hr") or (isNil "_resourcesFIA")) exitWith {resourcesIsChanging = false};
-if (!_applyHrBonus) then { _hrMult = 1;};
 if ((floor _resourcesFIA == 0) and (floor _hr == 0)) exitWith {resourcesIsChanging = false};
 private _hrT = server getVariable "hr";
 private _resourcesFIAT = server getVariable "resourcesFIA";

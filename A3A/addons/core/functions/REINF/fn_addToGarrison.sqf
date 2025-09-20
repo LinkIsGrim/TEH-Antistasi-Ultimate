@@ -101,7 +101,7 @@ if (_limit != -1) then {
                 deleteVehicle _x;
             } forEach _unitsToRefund;
 
-            [count _unitsToRefund,_refundMoney,false] remoteExec ["A3A_fnc_resourcesFIA",2];
+            [count _unitsToRefund,_refundMoney,1] remoteExec ["A3A_fnc_resourcesFIA",2];
             [localize "STR_A3A_garrison_header", localize "STR_A3A_garrison_exceed_limit"] call A3A_fnc_customHint;
         };
         default {

@@ -43,7 +43,7 @@ private ["_hr","_unit"];
 	deleteVehicle _x;
 } forEach units _newGroup;
 
-[_hr,0,false] remoteExec ["A3A_fnc_resourcesFIA",2]; 
+[_hr,0,1] remoteExec ["A3A_fnc_resourcesFIA",2]; 
 [_resourcesFIA] call A3A_fnc_resourcesPlayer;
 
 { boxX addItemCargoGlobal [_x, 1] } forEach (_items);
