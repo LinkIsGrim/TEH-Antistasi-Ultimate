@@ -60,11 +60,13 @@ if (!isNil "A3A_FFPun_Jailed" && {(getPlayerUID player) in A3A_FFPun_Jailed}) ex
 
 private _units = units _groupX;
 
+/* Instead I'll handle individual units later (e.g. infantry, and driven vehicles are moved, static stays back)
 if (_units findIf {
 	vehicle _x != _x and ((!isPlayer (driver vehicle _x) && isNull (driver vehicle _x)) or !canMove vehicle _x or vehicle _x isKindOf "Boat")
 } != -1) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_multiple"] call SCRT_fnc_misc_deniedHint;
 };
+*/
 
 positionTel = [];
 
@@ -104,6 +106,7 @@ if (fastTravelEnemyCheck && {_units findIf {[getPosATL _x] call A3A_fnc_enemyNea
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_enemiesnear_group"] call SCRT_fnc_misc_deniedHint;
 };
 
+//That kinda makes sense.
 if (vehicle player != player && {driver vehicle player != player}) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_only_drivers"] call SCRT_fnc_misc_deniedHint;
 };

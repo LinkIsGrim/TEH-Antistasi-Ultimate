@@ -205,7 +205,7 @@ waitUntil { sleep 0.1; if !(isnil "theBoss") exitWith { true }; false };
 /* ------------------------------ endless cycle ----------------------------- */
 
 // distribute processing in time like original; this keeps same per-marker cadence
-private _time = 0.1;
+private _time = 0.03;
 private ["_markers", "_marker", "_position"];
 
 while { true } do {
