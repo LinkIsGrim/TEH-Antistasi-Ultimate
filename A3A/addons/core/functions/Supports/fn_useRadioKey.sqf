@@ -16,7 +16,7 @@ params ["_side", "_position", "_reveal"];
 // Don't waste a key if we already have max info
 if (_reveal >= 0.8) exitWith { _reveal };
 
-if(_position distance2D markerPos "Synd_HQ" < distanceMission) then
+if(_position distance2D markerPos "Synd_HQ" < (distanceMission + tierWar * TEH_distanceMissionTier)) then
 {
     if(_side == Occupants && occupantsRadioKeys > 0) then {
         occupantsRadioKeys = occupantsRadioKeys - 1;

@@ -5,7 +5,7 @@ if(!isServer) exitWith { Error("Server-only function miscalled") };
 
 params ["_type", ["_requester", clientOwner], ["_silent", false]];
 
-_missionRange = distanceMission + tierWar * distanceMissionTier;
+_missionRange = distanceMission + tierWar * TEH_distanceMissionTier;
 
 waitUntil {isNil "A3A_missionRequestInProgress"};
 A3A_missionRequestInProgress = true;

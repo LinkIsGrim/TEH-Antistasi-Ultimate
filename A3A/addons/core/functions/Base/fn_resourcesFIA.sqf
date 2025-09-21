@@ -3,11 +3,13 @@ FIX_LINE_NUMBERS()
 
 params ["_hr", "_resourcesFIA","_customHrMult"];
 
-private _hrMult = multHR;
+private _hrMult = TEH_HRMul;
 
 if (!isNil "_customHrMult") then {
 	_hrMult = _customHrMult;
 };
+
+if (_hr > 0) then {_hr = _hr * _hrMult;};
 
 waitUntil {!resourcesIsChanging};
 private _warningText = nil;
@@ -37,7 +39,7 @@ resourcesIsChanging = false;
 private _textX = "";
 private _hrSim = "";
 private _resourcesFIASim = "";
-if (_hr > 0) then { _hr = _hr * _hrMult; _hrSim = "+"};
+if (_hr > 0) then { _hrSim = "+"};
 if (_resourcesFIA > 0) then {_resourcesFIASim = "+"};
 
 switch (true) do {

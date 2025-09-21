@@ -155,7 +155,7 @@ class Params
         texts[] = {"2000","3000","4000","6000","8000","10000","12000"};
         default = 3000;
     };
-	class distanceMissionTier: BasicParams
+	class TEH_distanceMissionTier: BasicParams
     {
         title = "Mission Distance increase per War Level";
         values[] = {0,500,1000,2000};
@@ -207,7 +207,7 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text,"x0.25","x0.5","x0.75","x1.0","x2.0"};
         default = 0;
     };
-	class multHR: BasicParams
+	class TEH_HRMul: BasicParams
     {
         title = "HR gain multiplier";
         values[] = {1,2,3,4,5};
@@ -773,6 +773,14 @@ class Params
         values[] = {10,11,12,13,14,15,16,17,18,19,20};
         texts[] =  {"1.0x","1.1x","1.2x","1.3x","1.4x","1.5x","1.6x","1.7x","1.8x","1.9x","2.0x"};
         default = 12;
+    };
+	class TEH_sendCombatRecons: BalanceParams
+    {
+        attr[] = {"server"};
+        title = "Enemies send combat recon squads to the nearby rebel bases";
+        values[] = {1,0};
+        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
+        default = 1;
     };
     class A3A_enemyResponseTime: BalanceParams
     {
