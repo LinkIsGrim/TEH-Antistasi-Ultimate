@@ -348,3 +348,13 @@
         addons[] = {"JK_RUS_Static_F_76n6"};
         vehicles = "vehicles_76n6";
     };
+	class addons_trg : addons_base
+	{
+		addons[] = {"TRG3Conversion"};
+		weapons = "weapons_TRG";
+	};
+	class addons_MCX : addons_base
+	{
+		addons[] = {"KAR_XM7"};
+		weapons = "weapons_MCX";
+	};

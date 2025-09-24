@@ -129,6 +129,8 @@ class cfgHALsStore
 		#include "config\hafm.hpp"
 		#include "config\gx.hpp"
 		#include "config\x26.hpp"
+		#include "config\trg.hpp"
+		#include "config\mcx.hpp"
 	};
 
 	class stores 
@@ -1003,6 +1005,22 @@ class cfgHALsStore
 			displayName = "X26 Tasers";
 			categories[] = {
 				"miscX26"
+			};
+		};
+		
+		class trgstock
+		{
+			displayName = "TRG 7.62";
+			categories[] = {
+				"riflesTRG"
+			};
+		};
+		
+		class mcxstock
+		{
+			displayName = "Sig MCX Spear";
+			categories[] = {
+				"riflesMCX"
 			};
 		};
 	};

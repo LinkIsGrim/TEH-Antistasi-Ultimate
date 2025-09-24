@@ -102,6 +102,8 @@
 	- **[X26 Tasers](https://steamcommunity.com/sharedfiles/filedetails/?id=2515852876)** - if installed, available to every faction at the new game start. Otherwise can be found at the trader under "X26 Tasers".
 	- **[Expanded Anti Air](https://steamcommunity.com/sharedfiles/filedetails/?id=3399739919)** - a variety of AA and radar trucks. SAM truck is available at the trader.
 	- **[76N6 Clam Shell Radar](https://steamcommunity.com/sharedfiles/filedetails/?id=3131324729)** - automated rotating radar with high viewpoint which helps to spot things above the trees. Both variants available at the trader.
+	- **[TRG 7.62x39 mm Variant](https://steamcommunity.com/sharedfiles/filedetails/?id=2549598652)** - rechambered TRG40, TRG41 and TRG41 GL
+	- **[Sig MCX Spear](https://steamcommunity.com/sharedfiles/filedetails/?id=3261100509)** - 6.8x51mm assault rifle (aka XM7)
 - **Misc changes**
 	- **Poor Man's Radar**: When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost AA guns).
 	- **Ammobox** generation revamped: Ensures better consistency with fixed amounts.

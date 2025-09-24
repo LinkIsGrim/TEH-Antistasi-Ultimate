@@ -186,3 +186,11 @@
         {
             prefix = "gxstock";
         };
+		class weapons_TRG : weapons_base
+        {
+            prefix = "trgstock";
+        };
+		class weapons_MCX : weapons_base
+        {
+            prefix = "mcxstock";
+        };
