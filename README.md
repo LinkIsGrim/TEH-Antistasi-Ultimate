@@ -6,7 +6,7 @@
 	<b>Important notes:</b>
 	<br>1) ACE3 is a strict dependency currently. Several new functionalities in this mod use ACE actions.
 	<br>2) This mod is oriented toward small cooperative servers (1-10 players maybe), some features may be abused in a malicious way, or reduce difficulty too much for bigger crowd.
-	<br>3) Gameplay is balanced to use with CUP and NIArms mods. I've tried most of popular weapon mods, and narrowed down to this.
+	<br>3) I mostly balance gameplay around CUP and NIArms mods. Compatibility of other supported mods (RHS, Tier1, etc) is the same as in original ASU.
 	</p>
   <p align=center>
     <b>Latest build in <a target="_blank" href=https://steamcommunity.com/sharedfiles/filedetails/?id=3476520930>Steam Workshop</a></b>
@@ -100,7 +100,7 @@
 - **Mods support**:
 	- **[GX-Drones](https://steamcommunity.com/sharedfiles/filedetails/?id=3460981677)** - a variety of deployable and 40mm UGL launched drones. If new game is started with the mod installed, some drones are added to the arsenal automatically. Otherwise some are available at the trader under "GX-Drones"
 	- **[X26 Tasers](https://steamcommunity.com/sharedfiles/filedetails/?id=2515852876)** - if installed, available to every faction at the new game start. Otherwise can be found at the trader under "X26 Tasers".
-	- **[Extended Anti Air](https://steamcommunity.com/sharedfiles/filedetails/?id=3399739919)** - a variety of AA and radar trucks. SAM truck is available at the trader.
+	- **[Expanded Anti Air](https://steamcommunity.com/sharedfiles/filedetails/?id=3399739919)** - a variety of AA and radar trucks. SAM truck is available at the trader.
 	- **[76N6 Clam Shell Radar](https://steamcommunity.com/sharedfiles/filedetails/?id=3131324729)** - automated rotating radar with high viewpoint which helps to spot things above the trees. Both variants available at the trader.
 - **Misc changes**
 	- **Poor Man's Radar**: When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost AA guns).
