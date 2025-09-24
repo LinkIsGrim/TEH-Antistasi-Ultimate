@@ -130,6 +130,16 @@ else
 
     // Do initial arsenal filling
     private _categoriesToPublish = createHashMap;
+	
+	//Prepare initial rebel equip
+	private _equipmentList = FactionGet(reb,"initialRebelEquipment");
+	
+	if (["Crow_X26"] call A3U_fnc_hasAddon) then {
+		_equipmentList pushBack "crow_x26_yellow";
+		_equipmentList pushBack "X26_Cartridge";
+	};
+	
+	//Add initial rebel equip to the arsenal
     private _addedClasses = createHashMap;       // dupe proofing
     {
         _x params ["_class", ["_count", -1]];
@@ -144,8 +154,8 @@ else
             { (missionNamespace getVariable ("unlocked" + _x)) pushBack _class } forEach _categories;
             _categoriesToPublish insert [true, _categories, []];
         };
-    } foreach FactionGet(reb,"initialRebelEquipment");
-
+    } foreach _equipmentList;
+	
     // Publish the unlocked categories (once each)
     { publicVariable ("unlocked" + _x) } forEach keys _categoriesToPublish;
 

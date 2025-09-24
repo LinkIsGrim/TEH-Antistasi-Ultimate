@@ -253,6 +253,15 @@
         description = $STR_A3AP_setupFactionsTab_CUP_LRI;
     };
 	
+	class CUP_TEH_LRI : CUP_Base
+    {
+        side = "Reb";
+        flagTexture = "\A3\Data_F_Exp\Flags\flag_VIPER_CO.paa";
+        name = "TEH LRI";
+        file = "CUP_Reb_TEH_LRI";
+        description = "Customized TEH rebel faction. Most of the equipment comes from ChDKZ.";
+    };
+	
     class LDF_Base : CUP_Base
     {
         requiredAddons[] = {"CUP_Creatures_People_Civil_Russia", "CUP_BaseConfigs", "CUP_AirVehicles_Core", "Flex_CUP_LDF_Faction"};        // units, weapons, vehicles

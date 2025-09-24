@@ -331,8 +331,6 @@
 			// Underbarrel
 			///////////////////////////////////////////////////////
 			ITEM(1Rnd_HE_Grenade_shell, 20 + GRENPRICE * 1, 100);
-			ITEM(GX_1RND_DRONE40_HE_M203, 20 + GRENPRICE * 11, 100);
-			ITEM(GX_1RND_DRONE40_RECON_M203, 20 + GRENPRICE * 5, 100);
 			
 			ITEM(UGL_FlareWhite_F, 20 + GRENPRICE * 1, 100);
 			ITEM(UGL_FlareGreen_F, 20 + GRENPRICE * 1, 100);
@@ -615,8 +613,6 @@
 			ITEM(I_UavTerminal, 800, MISC_STOCK);
 			ITEM(O_UavTerminal, 800, MISC_STOCK);
 			ITEM(B_UavTerminal, 800, MISC_STOCK);
-			
-			ITEM(GX_DEPLOYABLE_BLACK_HORNET_UAV, 400, MISC_STOCK);
 
 			ITEM(U_C_Driver_1_black, 1000, MISC_STOCK);
 			ITEM(U_C_Driver_1_blue, 1000, MISC_STOCK);

@@ -127,6 +127,8 @@ class cfgHALsStore
 		#include "config\JCAIA.hpp"
 		#include "config\JCAIE.hpp"
 		#include "config\hafm.hpp"
+		#include "config\gx.hpp"
+		#include "config\x26.hpp"
 	};
 
 	class stores 
@@ -985,6 +987,22 @@ class cfgHALsStore
 			categories[] = {
 				"vestsJCA",
 				"facewearJCA"
+			};
+		};
+		
+		class gxstock
+		{
+			displayName = "GX Drones";
+			categories[] = {
+				"miscGX"
+			};
+		};
+		
+		class x26stock
+		{
+			displayName = "X26 Tasers";
+			categories[] = {
+				"miscX26"
 			};
 		};
 	};

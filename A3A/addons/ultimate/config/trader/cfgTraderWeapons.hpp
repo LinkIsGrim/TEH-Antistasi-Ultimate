@@ -178,3 +178,11 @@
         {
             prefix = "ef";
         };
+		class weapons_X26 : weapons_base
+        {
+            prefix = "x26stock";
+        };
+		class weapons_gx_drones : weapons_base
+        {
+            prefix = "gxstock";
+        };

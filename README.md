@@ -83,7 +83,7 @@
 	- Support corridors (aka Carrier markers) are moved dynamically to allow less predictable attack vectors
 	- Enemy Air QRF disembark range increased from 200-400 to 500-800 to increase survivability against MANPADs and binoculars.
 - **[WIP] Combat Recons**:
-	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons.
+	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons (toggled by "Enemies send combat recon squads to the nearby rebel bases" parameter)
 	- It's chance based (1% + 0.25% per war level) per marker each minute IF there is an inactive enemy base in 2km radius.
 	- Rebel garrisons are now properly leaded (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
 	- [Experimental] New HR gain multiplier parameter (works for recruitment of surrendered enemies and resque type missions) - to trade off early attacks losses
@@ -97,14 +97,18 @@
 	- German names for the NPC
 	- Deutsche Mark (DM) as currently on Weferlingen
 	- Known issue: Trader will still offer all the futuristic weapons and items
+- **Mods support**:
+	- **[GX-Drones](https://steamcommunity.com/sharedfiles/filedetails/?id=3460981677)** - a variety of deployable and 40mm UGL launched drones. If new game is started with the mod installed, some drones are added to the arsenal automatically. Otherwise some are available at the trader under "GX-Drones"
+	- **[X26 Tasers](https://steamcommunity.com/sharedfiles/filedetails/?id=2515852876)** - if installed, available to every faction at the new game start. Otherwise can be found at the trader under "X26 Tasers".
+	- **[Extended Anti Air](https://steamcommunity.com/sharedfiles/filedetails/?id=3399739919)** - a variety of AA and radar trucks. SAM truck is available at the trader.
+	- **[76N6 Clam Shell Radar](https://steamcommunity.com/sharedfiles/filedetails/?id=3131324729)** - automated rotating radar with high viewpoint which helps to spot things above the trees. Both variants available at the trader.
 - **Misc changes**
 	- **Poor Man's Radar**: When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost AA guns).
-	- [Experimental] **"GX-Drones"** - handheld and 40mm UGL launched drones (sold at the Trader)
-	- [Experimental] **Extended Anti Air** - a variety of AA and radar trucks. SAM truck is available at the LRI rebel faction.
 	- **Ammobox** generation revamped: Ensures better consistency with fixed amounts.
 	- **CAS support** tuned down to avoid being called on infantry units.
 	- **UGL snipers** tuned down - more dispersion and AI using it in 150-300m range
 	- **Dynamic Mission Distance** - new parameter which scales possible mission distance from HQ by the War Level.
+	- **Boxer truck capacity** - is increased significantly, for comfortable shopping.
 
 ## Check also original [ASU Features](https://github.com/SilenceIsFatto/A3-Antistasi-Ultimate/wiki/Features)
 

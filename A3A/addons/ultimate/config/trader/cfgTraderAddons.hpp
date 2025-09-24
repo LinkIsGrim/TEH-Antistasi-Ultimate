@@ -328,3 +328,23 @@
         weapons = "weapons_ef";
         vehicles = "vehicles_ef";
     };
+	class addons_gx : addons_base
+	{
+        addons[] = {"GX_DRONES"};
+        weapons = "weapons_gx_drones";
+	};
+	class addons_x26 : addons_base
+	{
+		addons[] = {"Crow_X26"};
+		weapons = "weapons_X26";
+	};
+	class addons_eaa : addons_base
+	{
+        addons[] = {"EAA"};
+        vehicles = "vehicles_eaa";
+    };
+	class addons_76n6 : addons_base
+	{
+        addons[] = {"JK_RUS_Static_F_76n6"};
+        vehicles = "vehicles_76n6";
+    };

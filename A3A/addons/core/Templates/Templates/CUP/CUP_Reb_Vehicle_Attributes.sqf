@@ -4,10 +4,9 @@
     ["Flex_CUP_LUF_Datsun_PK", ["rebCost", 600]],
 	
 	["CUP_O_BRDM2_CHDKZ", ["rebCost", 800]],
+	["CUP_O_BTR80A_CHDKZ", ["rebCost", 1500]],
 	["CUP_O_BMP2_CHDKZ", ["rebCost", 5000]],
 	["CUP_O_ZSU23_ChDKZ", ["rebCost", 5000]],
-	["O_APC_Tracked_02_AA_F",["rebCost", 8000]],
-	["I_E_Truck_02_AA_F",["rebCost", 5000]],
 
     // up-armored vehicles
     ["Flex_CUP_LUF_BTR40", ["rebCost", 1000]],

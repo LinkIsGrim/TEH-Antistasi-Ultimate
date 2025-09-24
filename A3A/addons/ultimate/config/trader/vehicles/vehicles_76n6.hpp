@@ -1,0 +1,5 @@
+class vehicles_76n6 : vehicles_base
+{
+    ITEM(JK_I_76n6_ClamShell_F, 30000, "STATICAA", VEHICLE_CONDITION_STATICAA);
+	ITEM(JK_I_76n6_ClamShell_Lower_F, 30000, "STATICAA", VEHICLE_CONDITION_STATICAA);
+};
