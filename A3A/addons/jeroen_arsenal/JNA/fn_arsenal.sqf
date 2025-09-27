@@ -13,6 +13,7 @@
 
 #include "\A3\ui_f\hpp\defineDIKCodes.inc"
 #include "\A3\Ui_f\hpp\defineResinclDesign.inc"
+#include "tehBulletPile.inc"
 
 #include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
@@ -145,9 +146,6 @@ private _minItemsMember = {
 	if (_index in [IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG, IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG2]) then { _index = IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG };
 	private _min = jna_minItemMember select _index;
 	_min = A3A_arsenalLimits getOrDefault [_item, _min];
-	if (_index in [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG, IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL]) then {
-		_min = _min * getNumber (configfile >> "CfgMagazines" >> _item >> "count");
-	};
 	_min;
 };
 
@@ -1210,7 +1208,8 @@ switch _mode do {
 						_amount = 0;
 						{
 							_itemX = if(_idc == IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC)then{_x}else{_x select 0};
-							_amountX = if(_idc == IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC)then{1}else{_x select 1};
+							//_amountX = if(_idc == IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC)then{1}else{_x select 1};
+							_amountX = 1;
 							if(_itemX == _item)then{
 								_amount = _amount + _amountX;
 							}
@@ -1605,7 +1604,9 @@ switch _mode do {
 			_lbAdd = _ctrlList lnbaddrow ["",_displayName,str 0];
 			_ctrlList lnbsetdata [[_lbAdd,0],_data];
 			_ctrlList lnbsetpicture [[_lbAdd,0],gettext (_xCfg >> "picture")];
-
+			_text = [_item] call JN_fnc_arsenal_getTooltip;
+			_ctrlList lbsettooltip [_lbAdd * 3,_text];
+			
 			_mass = if(_index == IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC)then{
 				getnumber (_xCfg >> "itemInfo" >> "mass");
 			}else{
@@ -1616,7 +1617,8 @@ switch _mode do {
 			_lbAdd = _ctrlList lbadd _displayName;
 			_ctrlList lbsetdata [_lbAdd,_data];
 			_ctrlList lbsetpicture [_lbAdd,gettext (_xCfg >> "picture")];
-
+			_text = [_item] call JN_fnc_arsenal_getTooltip;
+			_ctrlList lbsettooltip [_lbAdd,_text];
 			//add magazine icon to weapons
 			if(_index in [
 				IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON,
@@ -1681,11 +1683,9 @@ switch _mode do {
 		_dataStr = if _type then{_ctrlList lnbData [_l,0]}else{_ctrlList lbdata _l};
 		_data = call compile _dataStr;
 		_item = _data select 0;
-		_itemTypeName = _item call BIS_fnc_itemType select 1;
+
 		_amount = _data select 1;
 		_displayName = _data select 2;
-
-
 
 		//skip empty
 		if(_item isEqualTo "")exitWith{};
@@ -1696,7 +1696,7 @@ switch _mode do {
 			private["_amount","_suffix","_prefix","_amountString"];
 			_amount = _this;
 
-
+			if(isNil "_amount") exitWith {"[   -  ]  ";};
 			if(_amount == -1)exitWith{"[   ∞  ]  ";};
 
 			_suffix = "";
@@ -1783,174 +1783,17 @@ switch _mode do {
 				_text = "           " + _text;
 			};
 			_ctrlList lnbSetText [[_l,1],_text];
+			_tooltip = [_item, _amount] call JN_fnc_arsenal_getTooltip;
+			_ctrlList lbsettooltip [_l*3, _tooltip];
 
 		}else{
-			_ctrlList lbSetText [_l, ((_amount call _checkAmount) + _displayName)];
-
-			//update ammo counter color on weapons
-			if(_index in [
-				IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON,
-				IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON,
-				IDC_RSCDISPLAYARSENAL_TAB_HANDGUN
-			])then{
-				//check how many useable mags there are
-				_ammoTotal = 0;
-				//_compatableMagazines = server getVariable [format ["%1_mags", _item],[]];//TODO marker for changed entry
-				scopeName "updateWeapon";//TODO marker for changed entry
-				_compatableMagazines = compatibleMagazines _item;
-
-				{
-					private ["_amount"];
-					_magName = _x select 0;
-					_amount = _x select 1;
-					//if(_amount == -1)exitWith{_ammoTotal = -1};//TODO marker for changed entry
-					if ([_compatableMagazines, _magName] call _arrayContains) then {
-						if (_amount == -1) then {_ammoTotal = -1; breakTo "updateWeapon"};//TODO marker for changed entry
-						_ammoTotal = _ammoTotal + _amount;
-					}
-				} forEach (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL);
-
-				//change color;
-				_colorMult = switch (_itemTypeName) do{
-					case "AssaultRifle": {1500};
-					case "Handgun": {400};
-					case "MachineGun": {4000};
-					case "Shotgun": {300};
-					case "Rifle": {1500};
-					case "SubmachineGun": {800};
-					case "SniperRifle": {200};
-					Default {20};//launchers
-				};
-				_colorMult = _ammoTotal / _colorMult;
-				if(_colorMult > 1 || _ammoTotal == -1)then{_colorMult = 1};
-				_red = -0.6*_colorMult+0.8;
-				_green = 0.6*_colorMult+0.2;
-				_ctrlList lbSetPictureRightColorSelected [_l,[_red,_green,0.3,1]];
-				_ctrlList lbSetPictureRightColor [_l,[_red,_green,0.3,1]];
-			};
+			_text =  _displayName;
+			_ctrlList lbSetText [_l, _text];
+			_tooltip = [_item, _amount] call JN_fnc_arsenal_getTooltip;
+			_ctrlList lbsettooltip [_l, _tooltip];
 		};
 		
-		//Tooltip
-		_text = "Item code: " + _item;
 		
-		switch (_itemTypeName) do {
-			case("AssaultRifle");
-			case("MachineGun");
-			case("SniperRifle");
-			case("Shotgun");
-			case("Rifle");
-			case("SubmachineGun"): {
-				_wpnbarrellenmm = getNumber (configfile >> "CfgWeapons" >> _item >> "ACE_barrelLength");
-				_wpnbarrellenin = _wpnbarrellenmm / 25.4;
-				_mag1 = getArray (configfile >> "CfgWeapons" >> _item >> "magazines") select 0;
-				_mag1name = getText (configfile >> "CfgMagazines" >> _mag1 >> "displayName");
-				_dex = (getNumber (configfile >> "CfgWeapons" >> _item >> "dexterity")) * 5;
-				_text = _text + "\nBarrel: " + str _wpnbarrellenmm + "mm / " + str ([_wpnbarrellenin, 1] call BIS_fnc_cutDecimals) + "in" +
-						"\nDefault ammo: " + _mag1name +
-						"\nHandling: " + str _dex + "/10";
-			};
-		
-			case("Launcher");
-			case("MissileLauncher");
-			case("RocketLauncher"): {
-				_magName = getarray(configFile >> "CfgWeapons" >> _item >> "magazines") select 0;
-				if (_magName == "CBA_FakeLauncherMagazine") then {
-					_text = "No data";
-				} else {
-					_ammoName = getText(configFile >> "CfgMagazines" >> _magName >> "ammo");
-					_ammoHit = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "hit");
-					_ammoCal = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "caliber");
-					_ammoSplash = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "indirectHit");
-					_ammoSplashRange = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "indirectHitRange");
-					_ammoMaxSpeed = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "maxSpeed");
-					_ammoSub = getText(configFile >> "CfgAmmo" >> _ammoName >> "submunitionAmmo");
-					_ammoSubHit = getNumber(configfile >> "CfgAmmo" >> _ammoSub >> "hit");
-					_ammoSubCal = getNumber(configfile >> "CfgAmmo" >> _ammoSub >> "caliber");
-					_text  = _text + "\nMain: " + str _ammoHit + "@" + str _ammoCal + "ap" +
-							"\nSubmunition: "+ str _ammoSubHit + "@" + str ([_ammoSubCal, 1] call BIS_fnc_cutDecimals) +"ap" +
-							"\nSplash: " + str _ammoSplash + "@" + str _ammoSplashRange + "m" +
-							"\nMax speed: "+ str _ammoMaxSpeed +"m/s";
-				};
-				
-				_lockTime = getNumber(configFile >> "CfgWeapons" >> _item >> "weaponLockDelay");
-				if (_lockTime > 0) then {
-					_text = _text + "\nLock time: " + str _lockTime + "s";
-				};
-			};
-		
-			case("Headgear");
-			case("Vest"): {
-				//_armNeck = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Neck" >> "armor");
-				_hitpoints = configProperties [configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "HitpointsProtectionInfo"];
-				{
-					_part = configName _x;
-					_armor = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "HitpointsProtectionInfo" >> _part >> "armor");
-					_pt = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "HitpointsProtectionInfo" >> _part >> "passthrough");
-					_text  = _text + "\n" + _part + ": " + str _armor + " (" + str (100 - _pt*100) + "% eff.)";
-				} forEach (_hitpoints);
-			};
-			
-						
-			case("AccessoryMuzzle"): {
-				_silencerVF = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "visibleFire");
-				_silencerVFT = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "visibleFireTime");
-				_silencerAF = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "audibleFire");
-				_silencerAFT = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "audibleFireTime");
-				_silencerHit = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "hit");
-				_silencerAir = getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "AmmoCoef" >> "airFriction");
-				_text  = _text + "\nFlash/Time: " + str _silencerVF + "/" + str _silencerVFT +
-						"\nSound/Time: " + str _silencerAF + "/" + str _silencerAFT +
-						"\nPerformance: " + str _silencerHit + "/" + str _silencerAir;
-			};
-			case("AccessorySights"): {
-				_optics = configProperties [configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "OpticsModes"];
-				{
-					_mode = configName _x;
-					_zoom = 0.25 / getNumber(configfile >> "CfgWeapons" >> _item >> "ItemInfo" >> "OpticsModes" >> _mode >> "opticsZoomMin");
-					_text  = _text + "\n" + _mode + ": x" + str ([_zoom, 1] call BIS_fnc_cutDecimals);
-				} forEach (_optics);
-			};
-			
-			case ("Bullet"): {
-				_magName = getText(configFile >> "CfgMagazines" >> _item >> "displayName");
-				_ammoName = getText(configFile >> "CfgMagazines" >> _item >> "ammo");
-				_ammoHit = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "hit");
-				_ammoCal = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "caliber");
-				_ammoSpeed = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "typicalSpeed");
-				_ammoMass = getNumber(configFile >> "CfgMagazines" >> _item >> "mass") * 50;
-				_bulletMass = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "ACE_bulletMass");
-				_text = _magName + 
-						"\nBullet code: " + _ammoName +
-						"\nDamage: " + str ([_ammoHit, 1] call BIS_fnc_cutDecimals) + "@" + str ([_ammoCal, 2] call BIS_fnc_cutDecimals) + "ap" +
-						"\nRef. muzzle speed: "+ str _ammoSpeed + "m/s" +
-						"\nRef. muzzle energy: " + str floor ((_bulletMass * _ammoSpeed * _ammoSpeed) / 2000) + "J" +
-						"\nWeight: " + str _ammoMass + "g";
-			};
-			
-			case ("Rocket");
-			case ("Missile");
-			case ("Shell");
-			case ("Grenade"): {
-				_ammoName = getText(configFile >> "CfgMagazines" >> _item >> "ammo");
-				_ammoHit = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "hit");
-				_ammoCal = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "caliber");
-				_ammoSplash = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "indirectHit");
-				_ammoSplashRange = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "indirectHitRange");
-				_ammoMaxSpeed = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "maxSpeed");
-				_ammoSub = getText(configFile >> "CfgAmmo" >> _ammoName >> "submunitionAmmo");
-				_ammoSubHit = getNumber(configfile >> "CfgAmmo" >> _ammoSub >> "hit");
-				_ammoSubCal = getNumber(configfile >> "CfgAmmo" >> _ammoSub >> "caliber");
-				_text = "Main: " + str _ammoHit + "@" + str _ammoCal + "ap" +
-						"\nSubmunition: "+ str _ammoSubHit + "@" + str ([_ammoSubCal, 1] call BIS_fnc_cutDecimals) +"ap" +
-						"\nSplash: " + str _ammoSplash + "@" + str _ammoSplashRange + "m" +
-						"\nMax speed: "+ str _ammoMaxSpeed +"m/s";
-			};
-			default {
-				_text = "Code: " + _item;
-			};
-		};
-		
-		_ctrlList lbsettooltip [_l, _text];
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////
@@ -1965,7 +1808,6 @@ switch _mode do {
 		_dataStr = if _type then{_ctrlList lnbData [_cursel,0]}else{_ctrlList lbdata _cursel};
 		_data = call compile _dataStr;
 		_item = _data select 0;
-
 
 		//--- Calculate load
 		_ctrlLoad = _display displayctrl IDC_RSCDISPLAYARSENAL_LOAD;
@@ -2461,37 +2303,59 @@ switch _mode do {
 				_oldAmmoCount = 0;
 				{ if ((_x#0 == _oldMag) && (_x#2)) exitWith { _oldAmmoCount = _x#1 }; } forEach (magazinesAmmoFull player);
 				_newMag = _item;
-				_cfgAmmoCount = getNumber (configFile >> "CfgMagazines" >> _newMag >> "count");
-				_newAmmoCount = [_amount, _cfgAmmoCount] select ((_amount == -1) || (_amount > _cfgAmmoCount));
 
 				switch true do {
 					case (ctrlenabled _ctrlListPrimaryWeapon): {
 						if (_oldMag != _newMag) then {
+							//take old mag
 							player removePrimaryWeaponItem _oldMag;
-							[_index, _oldMag, _oldAmmoCount] call jn_fnc_arsenal_addItem;
+							[_index, _oldMag, 1] call jn_fnc_arsenal_addItem;
+							//take old ammo
+							systemChat format ["Returning %1",_oldAmmoCount];
+							_ammoReturn = [_oldMag,_oldAmmoCount] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoReturn call jn_fnc_arsenal_addItem;
 							if (_newMag != "") then {
-								player addPrimaryWeaponItem _newMag;
-								[_index, _newMag, _newAmmoCount] call jn_fnc_arsenal_removeItem;
+								//give new ammo
+								_loadAmmo = [_newMag] call JN_fnc_arsenal_magLoadBullets;
+								_cap = getNumber (configfile >> "CfgMagazines" >> _newMag >> "count");
+								if (_loadAmmo#2 >= _cap) then {
+									_loadAmmo call jn_fnc_arsenal_removeItem;
+									//give new mag
+									player addPrimaryWeaponItem _newMag;
+									[_index, _newMag, 1] call jn_fnc_arsenal_removeItem;
+								} else {
+									['showMessage',[_display, "Not enough ammo for a full mag"]] call jn_fnc_arsenal;
+								}
 							};
 						};
 					};
 					case (ctrlEnabled _ctrlListSecondaryWeapon): {
 						if (_oldMag != _newMag) then {
 							player removeSecondaryWeaponItem _oldMag;
-							[_index, _oldMag, _oldAmmoCount] call jn_fnc_arsenal_addItem;
+							[_index, _oldMag, 1] call jn_fnc_arsenal_addItem;
+							_ammoReturn = [_oldMag,_oldAmmoCount] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoReturn call jn_fnc_arsenal_addItem;
 							if (_newMag != "") then {
 								player addSecondaryWeaponItem _newMag;
-								[_index, _newMag, _newAmmoCount] call jn_fnc_arsenal_removeItem;
+								[_index, _newMag, 1] call jn_fnc_arsenal_removeItem;
+								//give new ammo
+								_loadAmmo = [_newMag] call JN_fnc_arsenal_magLoadBullets;
+								_loadAmmo call jn_fnc_arsenal_removeItem;
 							};
 						};
 					};
 					case (ctrlEnabled _ctrlListHandgun): {
 						if (_oldMag != _newMag) then {
 							player removeHandgunItem _oldMag;
-							[_index, _oldMag, _oldAmmoCount] call jn_fnc_arsenal_addItem;
+							[_index, _oldMag, 1] call jn_fnc_arsenal_addItem;
+							_ammoReturn = [_oldMag,_oldAmmoCount] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoReturn call jn_fnc_arsenal_addItem;
 							if (_newMag != "") then {
 								player addHandgunItem _newMag;
-								[_index, _newMag, _newAmmoCount] call jn_fnc_arsenal_removeItem;
+								[_index, _newMag, 1] call jn_fnc_arsenal_removeItem;
+								//give new ammo
+								_loadAmmo = [_newMag] call JN_fnc_arsenal_magLoadBullets;
+								_loadAmmo call jn_fnc_arsenal_removeItem;
 							};
 						};
 					};
@@ -2543,7 +2407,6 @@ switch _mode do {
 		_center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
 		_type = (ctrltype _ctrlList == 102);
 
-
 		//--- Get container
 		_indexLeft = -1;
 		{
@@ -2593,9 +2456,9 @@ switch _mode do {
 			if(_grayout)then{_color = [1,1,0,0.60];};
 			_ctrlList lnbsetcolor [[_r,1],_color];
 			_ctrlList lnbsetcolor [[_r,2],_color];
-			_text = _ctrlList lnbtext [_r,1];
-
+			_text = [_item, _amount] call JN_fnc_arsenal_getTooltip;
 			_ctrlList lbsettooltip [_r * _columns,[_text,_text + "\n(Not compatible with currently equipped weapons)"] select _isIncompatible];
+			
 		};
 	};
 
@@ -2646,12 +2509,7 @@ switch _mode do {
 				if((_amount <= _min) AND (_amount != -1) AND !(player call A3A_fnc_isMember)) exitWith{
 					['showMessage',[_display, localize "STR_JNA_ACT_ONLY_MEMBERS"]] call jn_fnc_arsenal;
 				};
-				if(_index in [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG,IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL])then{//magazines are handeld by bullet count
-					//check if full mag can be optaind
-					_count = getNumber (configfile >> "CfgMagazines" >> _item >> "count");
-					if(_amount != -1)then{
-						if(_amount<_count)then{_count = _amount};
-					};
+				if(_index in [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG,IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL])then{
 					_canAdd = false;
 					_container = switch _selected do{
 						case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {_canAdd = (player canAddItemToUniform [_item, 1, true]); uniformContainer player};
@@ -2659,7 +2517,12 @@ switch _mode do {
 						case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {_canAdd = (player canAddItemToBackpack [_item, 1, true]); backpackContainer player;};
 					};
 					if(_canAdd)then{
-						_container addMagazineAmmoCargo [_item,1,_count];
+						//check how many bullets available for a mag
+						_bullets = [_item] call JN_fnc_arsenal_magLoadBullets;
+						//remove bullets from the pile
+						_bullets call JN_fnc_arsenal_removeItem;
+						//load the mag and give it to the player
+						_container addMagazineAmmoCargo [_item,1,_bullets # 2];
 					};
 				}else{
 					switch _selected do{
@@ -2686,7 +2549,8 @@ switch _mode do {
 					_removed = false;
 					{
 						if((_x select 0) isEqualTo _item && !_removed)then{
-							_count = _x select 1;//this mag is removed
+							_ammoReturn = [_x#0,_x#1] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoReturn call JN_fnc_arsenal_addItem;
 							_removed = true;
 						}else{
 							_container addMagazineAmmoCargo [(_x select 0),1,(_x select 1)];
@@ -2804,7 +2668,22 @@ switch _mode do {
 			_ctrlInfo ctrlcommit FADE_DELAY;
 
 			_ctrlInfoName = _display displayctrl IDC_RSCDISPLAYARSENAL_INFO_INFONAME;
-			_ctrlInfoName ctrlsettext ((_item call bis_fnc_itemType) select 1);
+
+			_itemtype = (_item call bis_fnc_itemType) select 1;
+
+			if (_itemtype isEqualTo "Bullet") then {
+				_magName = getText(configFile >> "CfgMagazines" >> _item >> "displayName");
+				_ammoName = getText(configFile >> "CfgMagazines" >> _item >> "ammo");
+				_ammoHit = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "hit");
+				_ammoCal = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "caliber");
+				_ammoSpeed = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "typicalSpeed");
+				_ammoMass = getNumber(configFile >> "CfgMagazines" >> _item >> "mass") * 50;
+				_bulletMass = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "ACE_bulletMass");
+				_remaining = [jna_datalist#IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammoName] call jn_fnc_arsenal_itemCount;
+				_ctrlInfoName ctrlsettext ("Ammo: " + (str _remaining));
+			} else {
+				_ctrlInfoName ctrlsettext (_itemtype);
+			};
 
 			_ctrlInfoAuthor = _display displayctrl IDC_RSCDISPLAYARSENAL_INFO_INFOAUTHOR;
 			_ctrlInfoAuthor ctrlsettext "";

@@ -14,11 +14,11 @@
 
 #include "\A3\ui_f\hpp\defineDIKCodes.inc"
 #include "\A3\Ui_f\hpp\defineResinclDesign.inc"
-
+#include "tehBulletPile.inc"
 
 private["_container","_array","_addToArray","_unloadContainer"];
 _container = _this;
-_array = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
+_array = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
 
 
 _addToArray = {
@@ -40,10 +40,15 @@ _unloadContainer = {
 	//magazines(exl. loaded ones)
 	_mags = magazinesAmmoCargo _container_sub;
 	{
-		_item = _x select 0;
-		_amount = _x select 1;
-		_index = _item call jn_fnc_arsenal_itemType;
-		[_array,_index,_item,_amount]call _addToArray;
+		_mag = _x select 0;
+		_ammoCount = _x select 1;
+		_ammo = getText(configFile >> "CfgMagazines" >> _mag >> "ammo");
+		
+		//adding one mag
+		[_array,IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL,_mag,1] call _addToArray;
+		
+		//adding all bullets
+		[_array,IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET,_ammo,_ammoCount] call _addToArray;
 	} forEach _mags;
 
 	//items
@@ -70,10 +75,15 @@ _unloadContainer = {
 			private["_index","_item","_amount"];
 			if(typename _x  isEqualTo "ARRAY")then{
 				if(count _x > 0)then{
-					_item = _x select 0;
-					_amount = _x select 1;
-					_index = IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL;
-					[_array,_index,_item,_amount]call _addToArray;
+					_mag = _x select 0;
+					_ammoCount = _x select 1;
+					_ammo = getText(configFile >> "CfgMagazines" >> _mag >> "ammo");
+					
+					//adding one mag
+					[_array,IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL,_mag,1] call _addToArray;
+					
+					//adding all bullets
+					[_array,IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET,_ammo,_ammoCount] call _addToArray;
 				};
 			}else{
 				if!(_x isEqualTo "")then{

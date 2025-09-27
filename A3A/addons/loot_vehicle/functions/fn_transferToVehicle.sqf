@@ -59,7 +59,8 @@ private _interrupted  = false;
 
 		_items = [];
 		_backpacks = [];
-
+		_ammo = [];
+		
 		//write down all items
 		if (_container isKindOf "CAManBase") then {
 			if (primaryWeapon _container != "") then{
@@ -77,48 +78,36 @@ private _interrupted  = false;
 			};
 			_items append assignedItems [_container, true, true];
 
-			private _backpack = backpack _container;
-			if !(_backpack isEqualTo "") then {
-				_items append magazineCargo backpackContainer _container;
-				_items append itemCargo backpackContainer _container;
-				{
-					_items pushBack (_x call BIS_fnc_baseWeapon);
-				} forEach (weaponCargo backpackContainer _container);
-				{
-					_items append (_x select {!(typeName _container == "ARRAY")} select [1,6]);
-				} forEach (weaponsItemsCargo backpackContainer _container);
-				_backpacks pushBack (_backpack call BIS_fnc_basicBackpack);
-				{
-					_backpacks pushBack (_x call BIS_fnc_basicBackpack);
-				} forEach backpackCargo (backpackContainer _container);
-			};
-			private _uniform = uniform _container;
-			if !(_uniform isEqualTo "")then {
-				_items append itemCargo uniformContainer _container;
-				_items append magazineCargo uniformContainer _container;
-				{
-					_items pushBack _x;
-				} forEach (weaponCargo uniformContainer _container);
-				{
-					_items append (_x select {!(typeName _x == "ARRAY")} select [1,6]);
-						
-				} forEach (weaponsItemsCargo uniformContainer _container);
-				_items pushBack _uniform;
-			};
-			private _vest = vest _container;
-			if !(_vest isEqualTo "") then {
-				_items append itemCargo vestContainer _container;
-				_items append magazineCargo vestContainer _container;
-				{
-					_items pushBack (_x call BIS_fnc_baseWeapon);
-				} forEach (weaponCargo vestContainer _container);
-				{
-					_items append (_x select {!(typeName _x == "ARRAY")} select [1,6]);
-				} forEach (weaponsItemsCargo vestContainer _container);
-				_items pushBack _vest;
-			};
+			_backpacks pushBack ((backpack _container) call BIS_fnc_basicBackpack);
+			_items pushBack uniform _container;
+			_items pushBack vest _container;
+			{ 
+				_cont = _x; 
+				_ammo append magazinesAmmoCargo _cont; 
+				_items append itemCargo _cont; 
+				{ 
+				_items pushBack (_x call BIS_fnc_baseWeapon); 
+				} forEach (weaponCargo _cont); 
+				{ 
+					_items append (_x select [1,3]);
+					if (_x select 4 isNotEqualTo []) then {
+						_ammo pushBack (_x select 4);
+					};
+					if (_x select 5 isNotEqualTo []) then {
+						_items pushBack (_x select 5 select 0);
+					};
+					_items pushBack (_x select 6);
+				} forEach (weaponsItemsCargo _cont); 
+				{ 
+					_backpacks pushBack (_x call BIS_fnc_basicBackpack); 
+				} forEach backpackCargo _cont; 
+			} forEach [ 
+				uniformContainer _container, 
+				backpackContainer _container, 
+				vestContainer _container
+				];
 		} else {
-			_items append magazineCargo _container;
+			_ammo append magazinesAmmoCargo _container;
 			_items append itemCargo _container;
 			{
 				_weap = (_x call BIS_fnc_baseWeapon);
@@ -129,7 +118,7 @@ private _interrupted  = false;
 			{
 					_items append (_x select [1,3]);
 					if (_x select 4 isNotEqualTo []) then {
-						_items pushBack (_x select 4 select 0);
+						_ammo pushBack (_x select 4);
 					};
 					if (_x select 5 isNotEqualTo []) then {
 						_items pushBack (_x select 5 select 0);
@@ -142,12 +131,19 @@ private _interrupted  = false;
 			} forEach backpackCargo _container;
 			{
 				_items append itemCargo (_x select 1);
-				_items append magazineCargo (_x select 1);
+				_ammo append magazinesAmmoCargo (_x select 1);
 				{
 					_items pushBack (_x call BIS_fnc_baseWeapon);
 				} forEach weaponCargo (_x select 1);
 				{
-					_items append (_x select {!(typeName _x == "ARRAY")} select [1,5]);
+					_items append (_x select [1,3]);
+					if (_x select 4 isNotEqualTo []) then {
+						_ammo pushBack (_x select 4);
+					};
+					if (_x select 5 isNotEqualTo []) then {
+						_items pushBack (_x select 5 select 0);
+					};
+					_items pushBack (_x select 6);
 				} forEach (weaponsItemsCargo (_x select 1));
 				{
 					_backpacks pushBack (_x call BIS_fnc_basicBackpack);
@@ -179,6 +175,9 @@ private _interrupted  = false;
 		{
 			_vehicle addBackpackCargoGlobal [_x, 1];
 		} forEach _backpacks;
+		{
+			_vehicle addMagazineAmmoCargo [_x#0,1,_x#1];
+		} forEach _ammo;
 
 		// Unlock
 		_vehicle setVariable [_isBusy, false, true];

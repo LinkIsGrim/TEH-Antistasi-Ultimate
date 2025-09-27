@@ -197,7 +197,18 @@ if (isNil "ace_noradio_enabled" or {!ace_noradio_enabled}) then {
     [player, createHashMapFromArray [["speaker", selectRandom (A3A_faction_reb get "voices")]]] call A3A_fnc_setIdentity;
 };
 //Give the player the base loadout.
-[player] call A3A_fnc_dress;
+private _prefix = "loadouts_reb_militia_";
+private _loadout =  switch (typeOf player) do {
+	case "I_G_medic_F":  { "Medic" }; 
+	case "I_G_Soldier_TL_F": { "SquadLeader" };
+	case "I_G_Soldier_F": { "Rifleman" };
+	case "I_G_Soldier_GL_F": { "Grenadier" };
+	case "I_G_Soldier_AR_F": { "MachineGunner" };
+	case "I_G_engineer_F":  { "Engineer" };
+	default { "Rifleman" };
+};
+
+[player, 0, _prefix + _loadout] call A3A_fnc_equipRebel;
 
 [player,"spotting"] call A3A_fnc_flagaction;
 
@@ -431,6 +442,12 @@ if (A3A_hasACE) then {
 
 // Prevent players getting shot by their own AIs. EH is respawn-persistent
 player addEventHandler ["HandleRating", {0}];
+
+//simulates storing of empty magazine by creating one after reload from empty
+player addEventHandler ["Reloaded", { 
+    params ["_unit", "_weapon", "_muzzle", "_newMagazine", "_oldMagazine"]; 
+    if (_oldMagazine # 1 == 0) then { player addMagazine[_oldMagazine#0,0]; };
+}];
 
 call A3A_fnc_initUndercover;
 

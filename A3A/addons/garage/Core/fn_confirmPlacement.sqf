@@ -27,6 +27,9 @@
 */
 #include "..\script_component.hpp"
 #include "\a3\ui_f\hpp\definedikcodes.inc"
+#include "\A3\Ui_f\hpp\defineResinclDesign.inc"
+#include "..\..\jeroen_arsenal\JNA\tehBulletPile.inc"
+
 params [
     ["_class", "", [""]]
     , ["_callBackPlace", {}]
@@ -305,79 +308,19 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
 		
 
 		if (_primarymag != "") then {
+			_ammo = getText (configfile >> "CfgMagazines" >> _primarymag >> "ammo");
 			_bullets = 600;
-			_magcount = floor (_bullets / getNumber (configfile >> "CfgMagazines" >> _primarymag >> "count"));
-			_magIdc = jna_dataList # 26 findIf { _x # 0 isEqualTo _primarymag };
-			if (_magIdc >= 0) then {
-				_available = jna_dataList # 26 # _magIdc # 1;
-				if (_available > _bullets) then {
-					jna_dataList # 26 # _magIdc set [1, _available - _bullets];
-					_veh addMagazineCargoGlobal [_primarymag, _magcount];
-				};
-				if (_available < 0) then {
-					_veh addMagazineCargoGlobal [_primarymag, _magcount];
-				};
+			_ammocount = getNumber (configfile >> "CfgMagazines" >> _primarymag >> "count");
+			_magcount = floor (_bullets / _ammocount);
+			_bullets = _magcount * _ammocount;
+			_magAvailable = [jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _primarymag] call jn_fnc_arsenal_itemCount;
+			_bulAvailable = [jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammo] call jn_fnc_arsenal_itemCount;
+			if ((_magAvailable < 0 || _magAvailable >= _magcount) && (_bulAvailable < 0 || _bulAvailable >= _bullets)) then {
+				[IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _primarymag, _magcount] call JN_fnc_arsenal_removeItem;
+				[IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammo, _bullets] call JN_fnc_arsenal_removeItem;
+				_veh addMagazineCargoGlobal [_primarymag, _magcount];
 			};
 		};
-		
-		private _launcherLimit = 3;
-		
-		//Find AA launcher
-		{
-			_weap = _x;
-			_magIdc = jna_dataList # 1 findIf { _x # 0 isEqualTo _weap };
-			if (_magIdc >= 0) then {
-				_available = jna_dataList # 1 # _magIdc # 1;
-				if (_available > _launcherLimit) then {
-					jna_dataList # 1 # _magIdc set [1, _available - _launcherLimit];
-					_veh addWeaponCargoGlobal [_weap, _launcherLimit];
-					break;
-				};
-				if (_available < 0) then {
-					_veh addWeaponCargoGlobal [_weap, _launcherLimit];
-					break;
-				};
-			};
-		} forEach ["CUP_launch_FIM92Stinger", "CUP_launch_Igla", "CUP_launch_9K32Strela"];
-		
-		//Find AT launcher
-		{
-			_weap = _x;
-			_magIdc = jna_dataList # 1 findIf { _x # 0 isEqualTo _weap };
-			if (_magIdc >= 0) then {
-				_available = jna_dataList # 1 # _magIdc # 1;
-				if (_available > _launcherLimit) then {
-					jna_dataList # 1 # _magIdc set [1, _available - _launcherLimit];
-					_veh addWeaponCargoGlobal [_weap, _launcherLimit];
-					break;
-				};
-				if (_available < 0) then {
-					_veh addWeaponCargoGlobal [_weap, _launcherLimit];
-					break;
-				};
-			};
-		} forEach ["CUP_launch_PzF3", "CUP_launch_HCPF3", "CUP_launch_APILAS", "CUP_launch_M136"];
-		
-/*		_weap = secondaryWeapon player;
-		_equipBase = (_weap call BIS_fnc_baseWeapon);
-		_launchermag = secondaryWeaponMagazine player select 0;
-		
-		if (_weap isEqualTo _equipBase && _launchermag isNotEqualTo "") then {
-			_magIdc = jna_dataList # 26 findIf { _x # 0 isEqualTo _launchermag };
-			if (_magIdc >= 0) then {
-				_available = jna_dataList # 26 # _magIdc # 1;
-				if (_available > 3) then {
-					jna_dataList # 26 # _magIdc set [1, _available - 3];
-					_veh addMagazineCargoGlobal [_launchermag, 3];
-				};
-				if (_available < 0) then {
-					_veh addMagazineCargoGlobal [_launchermag, 3];
-				};
-			};
-		};
-	*/	
-		
-		
 		
 		_veh addItemCargoGlobal ["Toolkit", 1];
 		_veh addItemCargoGlobal ["MiniGrenade", 10];
