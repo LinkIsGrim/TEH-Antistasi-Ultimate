@@ -24,12 +24,15 @@
 	- Sell button now sells whole stack of items automatically, no need to punch the number
 	- Trader search mission appears closer to mid-game (about war level 4), not from the first ever Intel
 - **Jeroen Arsenal QoL improvements**:
-	- **GUI**: Added detailed tooltips, improved sorting
-	- unrestricted vehicle loading (ignores both weight and volume)
-	- unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
+	- Detailed tooltips, improved sorting
+	- Bullets and magazines are now calculated separately (e.g. you can reuse your 75 Rnd 7.62x39 drums if you have a stockpile of respective ammo from other salvaged AK mags)
+	- On reload empty mag is saved in the inventory
+	- Convert Mag service allows to convert magazines within same model pool (or throw out unwanted empty mags, while saving ammo)
+	- Unrestricted vehicle loading (ignores both weight and volume)
+	- Unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
 - **Starter Kits**:
-	- Vehicles from the garage now come with a starter kit, including medicine, 600 bullets of primary ammo (requires loaded mag), and AT/AA launchers (arsenal numbers updated). Only loads **CUP** advanced single use launchers. Ammo and launchers are subject to the availability in the Arsenal.
-	- Arsenal's Quick Equip option now also adds ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
+	- Vehicles from the garage now come with a starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
+	- On player (re)spawn Quick Equip is executed automatically. Equips random eligible weapon and its default ammo, ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
 - **Survival fix for player APCs/Tanks**
 	- Health pool resets to 51% damage on hit if vehicle is not destroyed, while keeping components broken.
 	- Vehicle can be completely destroyed completely only with a high damaging shell or explosion (i.e. covering 49% of a health pool in one shot).
@@ -87,7 +90,7 @@
 	- It's chance based (1% + 0.25% per war level) per marker each minute IF there is an inactive enemy base in 2km radius.
 	- Rebel garrisons are now properly leaded (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
 	- [Experimental] New HR gain multiplier parameter (works for recruitment of surrendered enemies and resque type missions) - to trade off early attacks losses
-- **[WIP] Tower Defense**
+- **Tower Defense**
 	- New construction options: Scaffolds and Cargo Platforms (bottom of the list at the builder boxes)
 	- When deployed, use "Align Platforms" action on the scaffold to snap nearby towers to the scaffold
 	- You can continue building on top of the platforms (toggle Alt and Shift in the Building planner), e.g. sandbags walls. If they appear angled, use "Align Platforms" again.
