@@ -33,6 +33,9 @@ class CfgFunctions {
             class requestMissionDialog {};
             class setUpPlacerHints {};
             class teamLeaderRTSPlacerDialog {};
+			class MagConvert_convert {};
+			class MagConvert_open {};
+			class MagConvert_onSourceChanged {};
         };
         class SetupGUI {
             file = QPATHTOFOLDER(functions\SetupGUI);
