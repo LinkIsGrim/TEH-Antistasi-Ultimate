@@ -1604,8 +1604,8 @@ switch _mode do {
 			_lbAdd = _ctrlList lnbaddrow ["",_displayName,str 0];
 			_ctrlList lnbsetdata [[_lbAdd,0],_data];
 			_ctrlList lnbsetpicture [[_lbAdd,0],gettext (_xCfg >> "picture")];
-			_text = [_item] call JN_fnc_arsenal_getTooltip;
-			_ctrlList lbsettooltip [_lbAdd * 3,_text];
+			//_text = [_item] call JN_fnc_arsenal_getTooltip;
+			//_ctrlList lbsettooltip [_lbAdd * 3,_text];
 			
 			_mass = if(_index == IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC)then{
 				getnumber (_xCfg >> "itemInfo" >> "mass");
@@ -1617,8 +1617,8 @@ switch _mode do {
 			_lbAdd = _ctrlList lbadd _displayName;
 			_ctrlList lbsetdata [_lbAdd,_data];
 			_ctrlList lbsetpicture [_lbAdd,gettext (_xCfg >> "picture")];
-			_text = [_item] call JN_fnc_arsenal_getTooltip;
-			_ctrlList lbsettooltip [_lbAdd,_text];
+			//_text = [_item] call JN_fnc_arsenal_getTooltip;
+			//_ctrlList lbsettooltip [_lbAdd,_text];
 			//add magazine icon to weapons
 			if(_index in [
 				IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON,
@@ -1682,11 +1682,14 @@ switch _mode do {
 		_cursel = lbcursel _ctrlList;
 		_dataStr = if _type then{_ctrlList lnbData [_l,0]}else{_ctrlList lbdata _l};
 		_data = call compile _dataStr;
+		diag_log _data;
 		_item = _data select 0;
 
 		_amount = _data select 1;
 		_displayName = _data select 2;
+		if !(_displayName isEqualType "") then {_displayName = _item;};
 
+		//_displayName = _item;
 		//skip empty
 		if(_item isEqualTo "")exitWith{};
 
@@ -1774,7 +1777,7 @@ switch _mode do {
 		//ammmo icon for weapons
 		_ammo_logo = getText(configfile >> "RscDisplayArsenal" >> "Controls" >> "TabCargoMag" >> "text");
 		if _type then{
-			_text = ((_amount call _checkAmount) + _displayName);
+			_text = format ["%1%2",(_amount call _checkAmount), _displayName];
 			if(_index in [
 				IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON,
 				IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON,
@@ -1783,13 +1786,13 @@ switch _mode do {
 				_text = "           " + _text;
 			};
 			_ctrlList lnbSetText [[_l,1],_text];
-			_tooltip = [_item, _amount] call JN_fnc_arsenal_getTooltip;
+			_tooltip = [_item] call JN_fnc_arsenal_getTooltip;
 			_ctrlList lbsettooltip [_l*3, _tooltip];
 
 		}else{
-			_text =  _displayName;
+			_text = format ["%1%2",(_amount call _checkAmount), _displayName];
 			_ctrlList lbSetText [_l, _text];
-			_tooltip = [_item, _amount] call JN_fnc_arsenal_getTooltip;
+			_tooltip = [_item] call JN_fnc_arsenal_getTooltip;
 			_ctrlList lbsettooltip [_l, _tooltip];
 		};
 		
@@ -1988,8 +1991,10 @@ switch _mode do {
 						if(_canAdd)then{
 							_container addMagazineAmmoCargo [_magazine,1,_count];
 						}else{
-							_indexItem = _magazine call jn_fnc_arsenal_itemType;
-							[_indexItem, _magazine, _count] call jn_fnc_arsenal_addItem;
+							
+							[IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _magazine, 1] call jn_fnc_arsenal_addItem;
+							_ammoUnload = [_magazine,_count] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoUnload call jn_fnc_arsenal_addItem;
 						};
 					}forEach _magazines;
 
@@ -2146,7 +2151,9 @@ switch _mode do {
 						_amount = _x select 1;
 						_indexItem = _magazine call jn_fnc_arsenal_itemType;
 						if (_indexItem < 0) then { continue };
-						[_indexItem, _magazine, _amount] call jn_fnc_arsenal_addItem;//TODO
+						_ammoUnload = [_magazine,_amount] call JN_fnc_arsenal_magUnloadBullets;
+						_ammoUnload call jn_fnc_arsenal_addItem;
+						[_indexItem, _magazine, 1] call jn_fnc_arsenal_addItem;//TODO
 					}forEach(_oldMagazines - _newMagazines);
 
 					_newAttachments = switch _index do {
@@ -2311,7 +2318,6 @@ switch _mode do {
 							player removePrimaryWeaponItem _oldMag;
 							[_index, _oldMag, 1] call jn_fnc_arsenal_addItem;
 							//take old ammo
-							systemChat format ["Returning %1",_oldAmmoCount];
 							_ammoReturn = [_oldMag,_oldAmmoCount] call JN_fnc_arsenal_magUnloadBullets;
 							_ammoReturn call jn_fnc_arsenal_addItem;
 							if (_newMag != "") then {
@@ -2455,10 +2461,7 @@ switch _mode do {
 			_color = [[1,1,1,_alpha],[1,0.5,0,_alpha]] select _isIncompatible;
 			if(_grayout)then{_color = [1,1,0,0.60];};
 			_ctrlList lnbsetcolor [[_r,1],_color];
-			_ctrlList lnbsetcolor [[_r,2],_color];
-			_text = [_item, _amount] call JN_fnc_arsenal_getTooltip;
-			_ctrlList lbsettooltip [_r * _columns,[_text,_text + "\n(Not compatible with currently equipped weapons)"] select _isIncompatible];
-			
+			_ctrlList lnbsetcolor [[_r,2],_color];	
 		};
 	};
 
@@ -2670,20 +2673,7 @@ switch _mode do {
 			_ctrlInfoName = _display displayctrl IDC_RSCDISPLAYARSENAL_INFO_INFONAME;
 
 			_itemtype = (_item call bis_fnc_itemType) select 1;
-
-			if (_itemtype isEqualTo "Bullet") then {
-				_magName = getText(configFile >> "CfgMagazines" >> _item >> "displayName");
-				_ammoName = getText(configFile >> "CfgMagazines" >> _item >> "ammo");
-				_ammoHit = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "hit");
-				_ammoCal = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "caliber");
-				_ammoSpeed = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "typicalSpeed");
-				_ammoMass = getNumber(configFile >> "CfgMagazines" >> _item >> "mass") * 50;
-				_bulletMass = getNumber(configfile >> "CfgAmmo" >> _ammoName >> "ACE_bulletMass");
-				_remaining = [jna_datalist#IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammoName] call jn_fnc_arsenal_itemCount;
-				_ctrlInfoName ctrlsettext ("Ammo: " + (str _remaining));
-			} else {
-				_ctrlInfoName ctrlsettext (_itemtype);
-			};
+			_ctrlInfoName ctrlsettext (_itemtype);
 
 			_ctrlInfoAuthor = _display displayctrl IDC_RSCDISPLAYARSENAL_INFO_INFOAUTHOR;
 			_ctrlInfoAuthor ctrlsettext "";

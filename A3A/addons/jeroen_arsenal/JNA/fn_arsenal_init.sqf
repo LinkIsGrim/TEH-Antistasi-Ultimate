@@ -28,13 +28,14 @@ if(isServer)then{
 
     //load default if it was not loaded from savegame
     if(isnil "jna_dataList" )then{jna_dataList = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];};
-    if(isnil "jna_tooltips")then{ jna_tooltips = createHashMap;};
 };
 
 //player
 if(hasInterface)then{
     Info("JNA loading player data");
 
+    if(isnil "jna_tooltips")then{ jna_tooltips = createHashMap;};
+    
     //add arsenal button
     _object addAction [
         (format ["<img image='%1' size='1.6' shadow=2/>", STR_ACTION_ICON_ARSENAL] + format["<t size='1'> %1</t>", (localize "STR_A3_Arsenal")]),

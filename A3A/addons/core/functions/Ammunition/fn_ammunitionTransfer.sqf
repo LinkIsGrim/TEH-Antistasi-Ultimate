@@ -18,7 +18,7 @@ if (isNil {	// Run in unschedule scope.
 
 _ammunition= [];
 _items = [];
-_ammunition = magazineCargo _originX;
+_ammunition = magazinesAmmoCargo _originX;
 _items = itemCargo _originX;
 _weaponsX = [];
 _weaponsItemsCargo = weaponsItemsCargo _originX;
@@ -32,7 +32,7 @@ if (count backpackCargo _originX > 0) then {
 _containers = everyContainer _originX;
 if (count _containers > 0) then {
 	for "_i" from 0 to (count _containers) - 1 do {
-		_subObject = magazineCargo ((_containers select _i) select 1);
+		_subObject = magazinesAmmoCargo ((_containers select _i) select 1);
 		if (!isNil "_subObject") then {_ammunition = _ammunition + _subObject} else {Error_1("Error from %1",magazineCargo (_containers select _i))};
 		//_ammunition = _ammunition + (magazineCargo ((_containers select _i) select 1));
 		_items = _items + (itemCargo ((_containers select _i) select 1));
@@ -52,7 +52,7 @@ if (!isNil "_weaponsItemsCargo") then {
 				else {
 					if (_thingX isEqualType []) then {
 					if (count _thingX > 0) then {
-						_ammunition pushBack (_thingX select 0);
+						_ammunition pushBack _thingX;
 						};
 					};
 				};
@@ -83,6 +83,7 @@ if (count _weaponsFinal > 0) then {
 	};
 };
 
+/*
 _ammunitionFinal = [];
 _ammunitionFinalCount = [];
 if (isNil "_ammunition") then {
@@ -102,7 +103,11 @@ if (count _ammunitionFinal > 0) then {
 	for "_i" from 0 to (count _ammunitionFinal) - 1 do {
 		_destinationX addMagazineCargoGlobal [_ammunitionFinal select _i,_ammunitionFinalCount select _i];
 	};
-};
+};*/
+
+{
+	_destinationX addMagazineAmmoCargo [_x # 0, 1, _x # 1];
+} forEach _ammunition;
 
 _itemsFinal = [];
 _itemsFinalCount = [];
