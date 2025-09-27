@@ -119,9 +119,6 @@ private _minItemsMember = {
 	params ["_index", "_item"];					// Arsenal tab index, item classname
 	private _min = jna_minItemMember select _index;
 	_min = A3A_arsenalLimits getOrDefault [_item, _min];
-	if (_index == IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG || _index == IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL) then {
-		_min = _min * getNumber (configfile >> "CfgMagazines" >> _item >> "count");
-	};
 	_min;
 };
 
@@ -185,15 +182,12 @@ switch _mode do {
 			case IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG;
 			case IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL;
 			case IDC_RSCDISPLAYARSENAL_TAB_CARGOTHROW;
-			case IDC_RSCDISPLAYARSENAL_TAB_CARGOPUT: 	{	_magCount = getNumber (configfile >> "cfgmagazines" 	>> _item >> "count");
-															configfile >> "cfgmagazines" 	>> _item >> "mass"};
+			case IDC_RSCDISPLAYARSENAL_TAB_CARGOPUT: 	{configfile >> "cfgmagazines" 	>> _item >> "mass"};
 			case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON;
 			case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON;
 			case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN:		{configfile >> "CfgWeapons" >> _item >> "WeaponSlotsInfo" >> "mass"};
 			default										{configfile >> "cfgweapons" 	>> _item >> "ItemInfo" >> "mass"};
 		};
-
-		_amount = ceil (_amount/_magCount);
 
 		_mass = (getNumber _cfg) * _amount;
 		_mass;//return
@@ -364,6 +358,9 @@ switch _mode do {
 				IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON,
 				IDC_RSCDISPLAYARSENAL_TAB_HANDGUN
 			];
+
+			//primary is loaded by confirmPlacement, we're mostly interested in secondary
+			_usableMagazines append (compatibleMagazines (secondaryWeapon player));
 			_usableMagazines =_usableMagazines arrayIntersect _usableMagazines;
 
 			// Add compatible vehicle magazines for 3CB-style ammunition systems
@@ -587,8 +584,9 @@ switch _mode do {
 			if(_grayout)then{_color = [1,1,0,0.60];};
 			_ctrlList lnbsetcolor [[_r,1],_color];
 			_ctrlList lnbsetcolor [[_r,2],_color];
-			_text = _ctrlList lnbtext [_r,1];
-			_ctrlList lbsettooltip [_r * _columns,[_text,_text + "\n(Not compatible with currently equipped weapons)"] select _isIncompatible];
+			_text = [_item] call JN_fnc_arsenal_getTooltip;
+
+			_ctrlList lbsettooltip [_r * _columns,_text];
 		};
 	};
 
@@ -609,6 +607,7 @@ switch _mode do {
 		} forEach _inventory;
 
 		["UpdateListGui",[ _display,_ctrlList, _index]] call jn_fnc_arsenal;
+
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////
@@ -679,15 +678,6 @@ switch _mode do {
 					['showMessage',[_display,(localize "STR_JNA_ACT_ONLY_MEMBERS")]] call jn_fnc_arsenal;
 				};
 
-				//magazines are handeld by bullet count
-				if(_index in [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG,IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL])then{
-					//check if full mag can be optaind
-					_count = getNumber (configfile >> "CfgMagazines" >> _item >> "count");
-					if(_amount != -1)then{
-						if(_amount<_count)then{_count = _amount};
-					};
-				};
-
 				if(_count > 0)then{
 					_mass = jnva_loadout_mass + (["getMassItem",[_item,_count,_index]] call jn_fnc_vehicleArsenal);
 					_ctrlList lnbsettext [[_lbcursel,2],str (_amountOld + _count)];
@@ -699,10 +689,6 @@ switch _mode do {
 				};
 
 			}else{
-				if(_index in [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG,IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL])then{
-					_count = getNumber (configfile >> "CfgMagazines" >> _item >> "count");
-				};
-
 				if(_count>_amountOld)then{
 					_count = _amountOld;
 				};
@@ -926,11 +912,14 @@ switch _mode do {
 			{
 				_item = _x select 0;
 				_amount = _x select 1;
-				_count = getNumber (configfile >> "CfgMagazines" >> _item >> "count");
 
 				while{_amount>0}do{
-					_objectSelected addMagazineAmmoCargo [_item,1,_amount];
-					_amount = _amount - _count;
+					_bullets = [_item] call JN_fnc_arsenal_magLoadBullets;
+					//remove bullets from the pile
+					_bullets call JN_fnc_arsenal_removeItem;
+					//load the mag and give it to the player
+					_objectSelected addMagazineAmmoCargo [_item,1,_bullets # 2];
+					_amount = _amount - 1;
 				};
 			} forEach _list;
 		} forEach [

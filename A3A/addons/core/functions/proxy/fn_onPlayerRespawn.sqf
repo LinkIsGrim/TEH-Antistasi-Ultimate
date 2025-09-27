@@ -130,8 +130,18 @@ if (side group _newUnit == teamPlayer) then
 		[_newUnit, true] remoteExec ["A3A_fnc_theBossTransfer", 2];
 	};
 	//Give them a map, in case they're commander and need to replace petros.
-	_newUnit setUnitLoadout [[],[],[],[selectRandom ((A3A_faction_civ get "uniforms") + (A3A_faction_reb get "uniforms")), []],[],[],[],"",[],
-	[(selectRandom unlockedmaps),"","",(selectRandom unlockedCompasses),(selectRandom unlockedwatches),""]];
+	private _prefix = "loadouts_reb_militia_";
+	private _loadout =  switch (typeOf _newUnit) do {
+		case "I_G_medic_F":  { "Medic" }; 
+		case "I_G_Soldier_TL_F": { "SquadLeader" };
+		case "I_G_Soldier_F": { "Rifleman" };
+		case "I_G_Soldier_GL_F": { "Grenadier" };
+		case "I_G_Soldier_AR_F": { "MachineGunner" };
+		case "I_G_engineer_F":  { "Engineer" };
+		default { "Rifleman" };
+	};
+
+	[_newUnit, 0, _prefix + _loadout] call A3A_fnc_equipRebel;
 
 	if (!isPlayer (leader group _newUnit)) then {(group _newUnit) selectLeader _newUnit};
 	_newUnit addEventHandler ["FIRED", 

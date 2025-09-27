@@ -122,6 +122,11 @@ if (_startType != "new") then
 
     // Do the actual game loading
     call A3A_fnc_loadServer;
+	
+	//initialize and populate new bullet storage
+	if (count jna_dataList < 28) then {
+		[] call JN_fnc_arsenal_tehBulletPileMigration;
+	};
 }
 else
 {
@@ -145,7 +150,10 @@ else
             _categoriesToPublish insert [true, _categories, []];
         };
     } foreach FactionGet(reb,"initialRebelEquipment");
-
+	
+	//initialize and populate new bullet storage
+	[] call JN_fnc_arsenal_tehBulletPileMigration;
+	
     // Publish the unlocked categories (once each)
     { publicVariable ("unlocked" + _x) } forEach keys _categoriesToPublish;
 

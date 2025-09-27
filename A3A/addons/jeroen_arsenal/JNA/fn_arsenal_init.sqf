@@ -14,7 +14,7 @@ if(!isnull (missionnamespace getVariable ["jna_object",objNull]))exitWith{};
 if(isNull _object)exitWith{["Error: wrong input given '%1'",_object] call BIS_fnc_error;};
 missionnamespace setVariable ["jna_object",_object];
 
-jna_minItemMember = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+jna_minItemMember = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 //jna_minItemMember = [24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,memberOnlyMagLimit,24,24,24,24,memberOnlyMagLimit];
 jna_minItemMember = jna_minItemMember apply { A3A_guestItemLimit };
 jna_minItemMember set [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG, A3A_guestItemLimit*3];
@@ -27,7 +27,8 @@ if(isServer)then{
     Info("JNA server detected");
 
     //load default if it was not loaded from savegame
-    if(isnil "jna_dataList" )then{jna_dataList = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];};
+    if(isnil "jna_dataList" )then{jna_dataList = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];};
+    if(isnil "jna_tooltips")then{ jna_tooltips = createHashMap;};
 };
 
 //player
@@ -125,21 +126,9 @@ if(hasInterface)then{
 
     //add quick equip button
     _object addAction [
-        (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\ui_f\data\GUI\Rsc\RscDisplayArsenal\vest_ca.paa"] + format["<t size='1'> %1</t>", (localize "STR_JNA_SCT_QUICK_EQUIP")]),
+        (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\CargoMagAll_ca.paa"] + format["<t size='1'> %1</t>", "Mag Service"]),
         { 
-            private _player = _this select 1;
-            private _prefix = "loadouts_reb_militia_";
-            private _loadout =  switch (typeOf _player) do {
-                case "I_G_medic_F":  { "Medic" }; 
-                case "I_G_Soldier_TL_F": { "SquadLeader" };
-                case "I_G_Soldier_F": { "Rifleman" };
-                case "I_G_Soldier_GL_F": { "Grenadier" };
-                case "I_G_Soldier_AR_F": { "MachineGunner" };
-                case "I_G_engineer_F":  { "Engineer" };
-                default { "Rifleman" };
-            };
-
-            [_player, 0, _prefix + _loadout] call A3A_fnc_equipRebel;
+            [] call A3A_fnc_MagConvert_open;
         },
         [],
         6,

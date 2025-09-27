@@ -28,18 +28,21 @@ class CfgFunctions {
 			class arsenal_addToArray {};
 			class arsenal_cargoToArray {};
 			class arsenal_cargoToArsenal {};
+			class arsenal_getTooltip {};
 			class arsenal_handleAction {};
 			class arsenal_init {};
 			class arsenal_inList {};
 			class arsenal_itemCount {};
 			class arsenal_itemType {};
 			class arsenal_loadInventory {};
+			class arsenal_magLoadBullets {};
+			class arsenal_magUnloadBullets {};
 			class arsenal_removeFromArray {};
 			class arsenal_removeItem {};
 			class arsenal_requestOpen {};
 			class arsenal_requestClose {};
+			class arsenal_tehBulletPileMigration {};
 			class vehicleArsenal {};
-
 		};
 	};
 };
