@@ -3,6 +3,6 @@
 
 params["_item","_ammoReturn"];
 
-_ammoName = getText(configFile >> "CfgMagazines" >> _item >> "ammo");
+private _ammoName = getText(configFile >> "CfgMagazines" >> _item >> "ammo");
 
 [IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammoName, _ammoReturn];

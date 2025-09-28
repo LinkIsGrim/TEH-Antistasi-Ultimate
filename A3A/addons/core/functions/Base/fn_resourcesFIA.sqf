@@ -39,7 +39,7 @@ resourcesIsChanging = false;
 private _textX = "";
 private _hrSim = "";
 private _resourcesFIASim = "";
-if (_hr > 0) then { _hrSim = "+"};
+if (_hr > 0) then {_hrSim = "+"};
 if (_resourcesFIA > 0) then {_resourcesFIASim = "+"};
 
 switch (true) do {

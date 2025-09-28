@@ -706,7 +706,7 @@ switch _mode do {
 		};
 
 		["ColorTabs",[_display]] call jn_fnc_vehicleArsenal;
-		['showMessage',[_display,("Load"+str round (jnva_loadout_mass/_max *100)+"%")]] call jn_fnc_arsenal;
+		['showMessage',[_display,("Load is "+str round (jnva_loadout_mass/_max *100)+"% of vehicle's default capacity")]] call jn_fnc_arsenal;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////// event

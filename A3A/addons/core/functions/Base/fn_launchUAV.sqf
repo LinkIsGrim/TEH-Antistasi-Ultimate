@@ -1,12 +1,11 @@
-if (!isServer) exitWith {};
-
 private _launched = false;
 {
-	_dronePack = _x;
-	_droneId = jna_dataList # 5 findIf { _x # 0 isEqualTo _dronePack };
+	//TODO: add arsenal include and change # 5 to a constant
+	private _dronePack = _x;
+	private _droneId = jna_dataList # 5 findIf { _x # 0 isEqualTo _dronePack };
 	
 	if (_droneId > 0 && !_launched) then {
-		_droneCount = jna_dataList # 5 # _droneId # 1;
+		private _droneCount = jna_dataList # 5 # _droneId # 1;
 		if (_droneCount > 1) then {
 			jna_dataList # 5 # _droneId set [1, _droneCount - 1];
 		

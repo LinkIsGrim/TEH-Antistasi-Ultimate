@@ -150,7 +150,7 @@ class CfgFunctions
             class isFrontlineNoFIA {};
             class arePositionsConnected {};
             class joinMultipleGroups {};
-			class launchUAV {};
+            class launchUAV {};
             class localizar {};
             class lockStatic {};
             class logPerformance {};
@@ -246,7 +246,7 @@ class CfgFunctions
             class cargoSeats {};
             class civVEHinit {};
             class cleanserVeh {};
-			class combatRecon {};
+            class combatRecon {};
             class countFreeSpawnPositions {};
             class createAIAirplane {};
             class createAICities {};

@@ -2521,12 +2521,13 @@ switch _mode do {
 					};
 					if(_canAdd)then{
 						//check how many bullets available for a mag
-						_bullets = [_item] call JN_fnc_arsenal_magLoadBullets;
+						private _bullets = [_item] call JN_fnc_arsenal_magLoadBullets;
 						//remove bullets from the pile
 						_bullets call JN_fnc_arsenal_removeItem;
 						//load the mag and give it to the player
 						_container addMagazineAmmoCargo [_item,1,_bullets # 2];
 					};
+					
 				}else{
 					switch _selected do{
 						case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {player additemtouniform _item;};
@@ -2544,7 +2545,7 @@ switch _mode do {
 					};
 
 					//save mags in list and remove them
-					_mags = magazinesAmmoCargo _container;
+					private _mags = magazinesAmmoCargo _container;
 					if (_mags findIf {(_x select 0) isEqualTo _item} == -1) exitWith {};
 					clearMagazineCargoGlobal _container;
 
@@ -2559,7 +2560,6 @@ switch _mode do {
 							_container addMagazineAmmoCargo [(_x select 0),1,(_x select 1)];
 						};
 					} forEach _mags;
-
 				}else{
 					switch _selected do{
 						case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {player removeitemfromuniform _item;};

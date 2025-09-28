@@ -130,10 +130,10 @@ if !(_item in jna_tooltips) then {
 
 private _amounts = "";
 if (_itemTypeName isEqualTo "Bullet") then {
-    _mag = _item;
-    _ammo = getText(configFile >> "CfgMagazines" >> _mag >> "ammo");
-    _ammoIdx = jna_dataList # IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET findif { _x # 0 isEqualTo _ammo};
-    _ammoLeft = 0;
+    private _mag = _item;
+    private _ammo = getText(configFile >> "CfgMagazines" >> _mag >> "ammo");
+    private _ammoIdx = jna_dataList # IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET findif { _x # 0 isEqualTo _ammo};
+    private _ammoLeft = 0;
 
     if (_ammoIdx > -1) then {
         _ammoLeft = jna_dataList # IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET # _ammoIdx # 1;
@@ -163,7 +163,7 @@ if (_itemTypeName isEqualTo "Bullet") then {
         _amounts = "No";
     };
 
-    _amounts = "\n\n" + _amounts + " " + _ammo + " left";
+    _amounts = "\n\n" + _amounts + " ammo left";
 };
 
 (jna_tooltips get _item) + _amounts;

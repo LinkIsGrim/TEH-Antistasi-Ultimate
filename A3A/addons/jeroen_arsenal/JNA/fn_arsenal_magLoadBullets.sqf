@@ -16,5 +16,13 @@ if (_ammoIdx > -1) then {
     };
 };
 
+//unfortunately removeItem takes its time, thus we need a predictive system to post ammo counter
+if (_ammoIdx < 0 || _ammoBin == _ammoToLoad) then {
+        ['showMessage',[_display,"No ammo left"]] call bis_fnc_arsenal;
+} else {
+    if (_ammoBin < 1000 && _ammoBin != -1) then {
+        ['showMessage',[_display,format["%1 ammo left",_ammoBin - _ammoToLoad]]] call bis_fnc_arsenal;
+    };
+};
 
 [IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammoName, _ammoToLoad];
