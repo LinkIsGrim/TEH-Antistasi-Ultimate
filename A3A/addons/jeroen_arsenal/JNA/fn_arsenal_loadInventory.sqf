@@ -142,7 +142,6 @@ _backpack_old = backpack player;
 {
 	_array = (_x call jn_fnc_arsenal_cargoToArray);
 	//remove because they where already added
-	diag_log _array;
 	_wasEquipped = [_wasEquipped, _array] call _addArrays;
 } forEach [uniformContainer player, vestContainer player, backpackContainer player];
 
@@ -302,9 +301,6 @@ _weapons = [_inventory select 6,_inventory select 7,_inventory select 8];
 				_indexAcc = _itemAcc call jn_fnc_arsenal_itemType;
 
 				call {
-					diag_log "_itemCounts";
-					diag_log [_itemCounts];
-					diag_log [_indexAcc];
 					if ((_indexAcc != -1) AND ([_itemCounts select _indexAcc, _itemAcc] call jn_fnc_arsenal_itemCount == -1)) exitWith {
 						switch _index do{
 							case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON:{player addPrimaryWeaponItem _itemAcc;};
@@ -463,16 +459,10 @@ private _lookupConfigName = {
 	};
 	_class;
 };
-diag_log "Transaction";
-diag_log _toEquip;
-diag_log _wasEquipped;
 
 _arrayAdd = [_wasEquipped, _toEquip] call _subtractArrays; //remove items that where not added
 _arrayRemove = [_toEquip, _wasEquipped] call _subtractArrays;
 
-diag_log "Commit";
-diag_log _arrayAdd;
-diag_log _arrayRemove;
 _arrayAdd call jn_fnc_arsenal_addItem;
 _arrayRemove call jn_fnc_arsenal_removeItem;
 

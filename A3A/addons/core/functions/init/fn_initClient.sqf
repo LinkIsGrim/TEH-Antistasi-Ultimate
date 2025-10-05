@@ -445,8 +445,9 @@ player addEventHandler ["HandleRating", {0}];
 
 //simulates storing of empty magazine by creating one after reload from empty
 player addEventHandler ["Reloaded", { 
-    params ["_unit", "_weapon", "_muzzle", "_newMagazine", "_oldMagazine"]; 
-    if (_oldMagazine # 1 == 0) then { player addMagazine[_oldMagazine#0,0]; };
+    params ["_unit", "_weapon", "_muzzle", "_newMagazine", "_oldMagazine"];
+    private _ammoCapacity = getNumber (configfile >> "CfgMagazines" >> _oldMagazine#0 >> "count");
+    if (_oldMagazine # 1 == 0 && _ammoCapacity > 1) then { player addMagazine[_oldMagazine#0,0]; };
 }];
 
 call A3A_fnc_initUndercover;
