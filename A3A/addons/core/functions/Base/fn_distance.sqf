@@ -86,8 +86,8 @@ private _processMarker = {
 			// any players or their vehicles (even undercover/empty)
 			if (_ent in _players) exitWith { _anchored = true };
 			
-			// any player corpses or rebel cars/wrecks (technically, wreck anchoring is bad)
-			if ((_side != teamPlayer) && (_oside == teamPlayer)) exitWith { _anchored = true };
+			// any player corpses or rebel cars
+			if ((_side != teamPlayer) && (_oside == teamPlayer) && (_ent isKindOf "Man" or canMove _ent)) exitWith { _anchored = true };
 			
 			//that leaves an edgecase when the car is stolen and then player is killed in it but I don't want to check crews.
 		};
