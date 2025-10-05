@@ -247,6 +247,18 @@ switch _typeX do
             },nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull])",4
         ];
         [_flag] call HR_GRG_fnc_initGarage;
+        _flag addAction [
+            (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\IGUI\Cfg\Actions\reload_ca.paa"] + format["<t size='1'> %1</t>", "Quick resupply"]),
+            { 
+                [] call JN_fnc_arsenal_quickReload;
+            },
+            [],
+            6,
+            true,
+            false,
+            "",
+            "alive _target && {_target distance _this < 5} && {vehicle player == player}"
+        ];
     };
     case "Intel_Small":
     {

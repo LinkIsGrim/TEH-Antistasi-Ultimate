@@ -9,10 +9,10 @@ _loadout = switch (side group _unit) do {
 	case teamPlayer: {
 		if (toLowerANSI worldName isEqualTo "enoch") then {
 			[[],[],[],[selectRandom (FactionGet(civ,"uniforms") + FactionGet(reb,"uniforms")), []],[],[],"H_Hat_Tinfoil_F","",[],
-			[(selectRandom unlockedmaps),"","",(selectRandom unlockedCompasses),(selectRandom unlockedwatches),""]];
+			[(selectRandom unlockedmaps),"",(selectRandom unlockedRadios),(selectRandom unlockedCompasses),(selectRandom unlockedwatches),""]];
 		} else {
 			[[],[],[],[selectRandom (FactionGet(civ,"uniforms") + FactionGet(reb,"uniforms")), []],[],[],selectRandom FactionGet(civ,"headgear"),"",[],
-			[(selectRandom unlockedmaps),"","",(selectRandom unlockedCompasses),(selectRandom unlockedwatches),""]];
+			[(selectRandom unlockedmaps),"",(selectRandom unlockedRadios),(selectRandom unlockedCompasses),(selectRandom unlockedwatches),""]];
 		};
 	};
 	

@@ -46,11 +46,6 @@ if (!isNil "_customLoadout") exitWith {
         _unit addGoggles _goggles;
     };
 
-    _unit linkItem (selectRandom (A3A_faction_reb get "compasses"));
-	_unit linkItem (selectRandom (A3A_faction_reb get "maps"));
-	_unit linkItem (selectRandom (A3A_faction_reb get "watches"));
-	if (haveRadio) then {_unit linkItem (selectRandom (A3A_faction_reb get "radios"))};
-
 	if (( _unit getVariable "unitType") isEqualTo FactionGet(reb,"unitExp")) then {
 		_unit enableAIFeature ["MINEDETECTION", true]; //This should prevent them from Stepping on the Mines as an "Expert" (It helps, they still step on them)
 	};
@@ -120,9 +115,6 @@ private _fnc_addCharges = {
         _unit addItemToBackpack _charge;
     };
 };
-
-private _radio = selectRandomWeighted (A3A_rebelGear get "Radios");
-if (!isNil "_radio") then {_unit linkItem _radio};
 
 private _rebHelmets = A3A_rebelGear get "ArmoredHeadgear";
 private _helmet = "";

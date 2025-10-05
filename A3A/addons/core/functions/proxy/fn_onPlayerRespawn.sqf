@@ -130,6 +130,8 @@ if (side group _newUnit == teamPlayer) then
 		[_newUnit, true] remoteExec ["A3A_fnc_theBossTransfer", 2];
 	};
 	//Give them a map, in case they're commander and need to replace petros.
+	[_newUnit] call A3A_fnc_dress;
+	
 	private _prefix = "loadouts_reb_militia_";
 	private _loadout =  switch (typeOf _newUnit) do {
 		case "I_G_medic_F":  { "Medic" }; 

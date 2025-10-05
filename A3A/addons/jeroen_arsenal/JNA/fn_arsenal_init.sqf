@@ -126,6 +126,35 @@ if(hasInterface)then{
     ];
 
     //add quick equip button
+     _object addAction [
+        (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\IGUI\Cfg\Actions\reload_ca.paa"] + format["<t size='1'> %1</t>", "Quick resupply"]),
+        { 
+            [] call JN_fnc_arsenal_quickReload;
+        },
+        [],
+        6,
+        true,
+        false,
+        "",
+        "alive _target && {_target distance _this < 5} && {vehicle player == player}"
+    ];
+     _object addAction [
+        (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\uniform_ca.paa"] + format["<t size='1'> %1</t>", "Equip last loadout"]),
+        { 
+            private _template = player getVariable ["lastArsenalLoadout",""];
+            if (_template isNotEqualTo "") then {
+                _template call JN_fnc_arsenal_loadInventory;
+            } else {
+                ["Loadout", "Save or load loadout from the arsenal first to use this feature"] call A3A_fnc_customHint;
+            };
+        },
+        [],
+        6,
+        true,
+        false,
+        "",
+        "alive _target && {_target distance _this < 5} && {vehicle player == player}"
+    ];
     _object addAction [
         (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\CargoMagAll_ca.paa"] + format["<t size='1'> %1</t>", "Mag Service"]),
         { 

@@ -37,6 +37,7 @@ class CfgFunctions {
 			class arsenal_loadInventory {};
 			class arsenal_magLoadBullets {};
 			class arsenal_magUnloadBullets {};
+			class arsenal_quickReload {};
 			class arsenal_removeFromArray {};
 			class arsenal_removeItem {};
 			class arsenal_requestOpen {};

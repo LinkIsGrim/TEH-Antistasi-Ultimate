@@ -3262,6 +3262,7 @@ switch _mode do {
 				_hideTemplate = false;
 			};
 		};
+		player setVariable ["lastArsenalLoadout", ctrltext _ctrlTemplateName];
 		if (_hideTemplate) then {
 			_ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
 			_ctrlTemplate ctrlsetfade 1;
