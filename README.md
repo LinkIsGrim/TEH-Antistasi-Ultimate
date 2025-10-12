@@ -25,9 +25,11 @@
 	- Trader search mission appears closer to mid-game (about war level 4), not from the first ever Intel
 - **Jeroen Arsenal QoL improvements**:
 	- Detailed tooltips, improved sorting
-	- Bullets and magazines are now calculated separately (e.g. you can reuse your 75 Rnd 7.62x39 drums if you have a stockpile of respective ammo from other salvaged AK mags)
-	- On reload empty mag is saved in the inventory
+	- Bullets and magazines are now calculated separately (e.g. you can reuse your 75 Rnd 7.62x39 drums if you have a stockpile of respective ammo from other salvaged AK mags). On reload empty mag is saved in the player inventory.
+	- New shortcut: Quick Resupply (restocks medicine and reloads existing mags). Also available at the friendly bases at flag.
+	- New shortcut: Equip last loadout (last loaded or saved loadout)
 	- Convert Mag service allows to convert magazines within same model pool (or throw out unwanted empty mags, while saving ammo)
+	- Repack primary ammo self action (ACE) - streamlines repacking of primary magazines with a suitable ammo from other sources. Requires a Toolkit or a Defusal Kit to work with the belts.
 	- Unrestricted vehicle loading (ignores both weight and volume)
 	- Unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
 - **Starter Kits**:

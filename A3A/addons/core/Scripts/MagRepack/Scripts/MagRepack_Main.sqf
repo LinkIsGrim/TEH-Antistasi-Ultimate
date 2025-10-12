@@ -253,7 +253,7 @@ outlw_MR_filter =
 
 	for "_n" from 0 to ((count _magTypes) - 1) do
 	{
-		if (((getText (configFile >> "cfgMagazines" >> _magTypes select _n >> "ammo")) == _ammoType) && (((getNumber (configFile >> "cfgMagazines" >> _magTypes select _n >> "tracersEvery")) == _ammoTracer) || {_userFilter}  )) then
+		if ((getText (configFile >> "cfgMagazines" >> _magTypes select _n >> "ammo") isEqualTo _ammoType) || _userFilter ) then
 		{
 			_returnTypes set [count _returnTypes, _magTypes select _n];
 			_returnCounts set [count _returnCounts, _magAmmoCounts select _n];
@@ -693,11 +693,8 @@ outlw_MR_clearSource =
 
 	if (outlw_MR_doAddToMagazines) then
 	{
-		if (outlw_MR_sourceCount > 0) then
-		{
-			player addMagazine [outlw_MR_sourceType, outlw_MR_sourceCount];
-			_doPopulate = true;
-		};
+		player addMagazine [outlw_MR_sourceType, outlw_MR_sourceCount];
+		_doPopulate = true;
 	};
 
 	lnbClear ((uiNamespace getVariable "outlw_MR_Dialog_Main") displayCtrl 1501);

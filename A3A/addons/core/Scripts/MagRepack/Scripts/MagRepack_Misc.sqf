@@ -304,7 +304,7 @@ outlw_MR_isBeltMagazine =
 	
 	//if (_nameSound == "mGun" || {(_nameSound != "magazine" && _cap >= 100)}) then - Not returning true on DLC magazines - GiPPO
 	
-	if (_nameSound == "mGun" || {_cap >= 100}) then
+	if (_nameSound == "mGun") then
 	{
 		_returnBool = true;
 	};

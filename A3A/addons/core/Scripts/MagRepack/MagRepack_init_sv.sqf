@@ -25,8 +25,8 @@ if (isClass(configFile >> "CfgPatches" >> "outlw_magRepack")) exitWith {};
 
 disableSerialization;
 
-outlw_MR_version = "3.1.3";
-outlw_MR_date = "31 August 2015";
+outlw_MR_version = "3.2.0";
+outlw_MR_date = "October 5th 2025";
 
 outlw_MR_defaultKeybinding = [false, true, false, 19];
 

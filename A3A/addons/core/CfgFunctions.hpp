@@ -99,6 +99,8 @@ class CfgFunctions
             class loot {};
             class randomRifle {};
             class randomHandgun {};
+			class tehMagRemove {};
+			class tehMagRepack {};
             class transfer {};
             class unlockEquipment {};
             class vehicleSort {};
