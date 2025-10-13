@@ -1,5 +1,7 @@
 params ["_unit", "_injurer"];
 
+if (!((missionNamespace getVariable ["A3A_customReviveEnabled", 1]) isEqualTo 1)) exitWith {};
+
 private _bleedOut = time + 450;
 private _isPlayer = false;
 private _playersX = false;

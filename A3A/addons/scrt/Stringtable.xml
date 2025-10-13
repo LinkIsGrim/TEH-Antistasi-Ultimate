@@ -5736,6 +5736,13 @@
                 <Korean>동시에 생성 가능한 유닛의 최대 수량</Korean>
                 <French>Nombre maximum d'unités pouvant être produites simultanément</French>
             </Key>
+            <Key ID="STR_params_customReviveEnabled">
+                <Original>Enable Antistasi revive system</Original>
+                <Russian>Включить систему реанимации Antistasi</Russian>
+                <Chinesesimp>启用 Antistasi 复苏系统</Chinesesimp>
+                <Korean>Antistasi 부활 시스템 활성화</Korean>
+                <French>Activer le système de réanimation Antistasi</French>
+            </Key>
             <Key ID="STR_params_reviveKitsEnabled">
                 <Original>Enable combat readiness recovery kits</Original>
                 <Russian>Включить наборы восстановления боеспособности</Russian>
