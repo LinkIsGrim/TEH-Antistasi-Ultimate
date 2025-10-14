@@ -242,9 +242,9 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_A3A_Params_selfReviveMethods_withstand};
         default = 0;
     };
-    class A3A_customReviveEnabled: BasicParams
+    class A3A_antistasiReviveEnabled: BasicParams
     {
-        title = $STR_params_customReviveEnabled;
+        title = $STR_params_A3A_antistasiReviveEnabled;
         values[] = {1,0};
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text,$STR_antistasi_dialogs_generic_button_no_text};
         default = 1;

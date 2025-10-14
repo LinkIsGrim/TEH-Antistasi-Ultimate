@@ -55,12 +55,10 @@ if (side group _injurer == teamPlayer) then
 	};
 };
 
+if (A3A_antistasiReviveEnabled == 0) exitWith {_damage};
+
 // Let ACE medical handle the rest (inc return value) if it's running
 if (A3A_hasACEMedical) exitWith {};
-
-private _reviveEnabled = (missionNamespace getVariable ["A3A_customReviveEnabled", 1]) isEqualTo 1;
-if (!_reviveEnabled) exitWith {_damage};
-
 
 private _makeUnconscious =
 {

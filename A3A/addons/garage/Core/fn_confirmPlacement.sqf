@@ -326,24 +326,21 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
 		_veh addItemCargoGlobal ["MiniGrenade", 10];
 		_veh addItemCargoGlobal ["SmokeShell", 10];
 		if (A3A_hasACEMedical) then {
-			_veh addItemCargoGlobal ["ACE_fieldDressing",30],
+			_veh addItemCargoGlobal ["ACE_fieldDressing",32];
 
-			_veh addItemCargoGlobal ["ACE_morphine",10],
-			_veh addItemCargoGlobal ["ACE_epinephrine",10],
-			_veh addItemCargoGlobal ["ACE_adenosine",5],
+			_veh addItemCargoGlobal ["ACE_morphine",10];
+			_veh addItemCargoGlobal ["ACE_epinephrine",10];
+			_veh addItemCargoGlobal ["ACE_adenosine",5];
 
-			_veh addItemCargoGlobal ["ACE_plasmaIV_500",5],
-			_veh addItemCargoGlobal ["ACE_salineIV_500",5],
-			_veh addItemCargoGlobal ["ACE_bloodIV_500",5],
+			_veh addItemCargoGlobal ["ACE_plasmaIV_500",5];
+			_veh addItemCargoGlobal ["ACE_salineIV_500",5];
+			_veh addItemCargoGlobal ["ACE_bloodIV_500",5];
 
-			_veh addItemCargoGlobal ["ACE_tourniquet",5],
-			_veh addItemCargoGlobal ["ACE_splint",5]
+			_veh addItemCargoGlobal ["ACE_tourniquet",5];
+			_veh addItemCargoGlobal ["ACE_splint",5];
 		} else {
-			private _mediKits = _factionData get "mediKits";
-			private _firstAidKits = _factionData get "firstAidKits";
-			
-			_veh addItemCargoGlobal [_mediKits#0, 1],
-			_veh addItemCargoGlobal [_firstAidKits#0,10]
+			_veh addItemCargoGlobal ["Medikit", 1];
+			_veh addItemCargoGlobal ["FirstAidKit",12];
 		};
 		
 		_veh setPlateNumber (name player);

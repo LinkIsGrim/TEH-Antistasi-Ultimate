@@ -2,8 +2,6 @@
 FIX_LINE_NUMBERS()
 params ["_unit", "_injurer"];
 
-if (!((missionNamespace getVariable ["A3A_customReviveEnabled", 1]) isEqualTo 1)) exitWith {};
-
 private _bleedOutTime = if (surfaceIsWater (position _unit)) then {time + 60} else {time + 300};
 private _playerNear = false;
 private _group = group _unit;
