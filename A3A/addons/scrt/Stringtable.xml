@@ -5736,6 +5736,13 @@
                 <Korean>동시에 생성 가능한 유닛의 최대 수량</Korean>
                 <French>Nombre maximum d'unités pouvant être produites simultanément</French>
             </Key>
+            <Key ID="STR_params_A3A_antistasiReviveEnabled">
+                <Original>Use Antistasi Revive (disable for PiR compatibility)</Original>
+                <Russian>Использовать реанимацию Antistasi (отключите для совместимости с PiR)</Russian>
+                <Chinesesimp>使用 Antistasi 复苏系统（为兼容 PiR 请禁用）</Chinesesimp>
+                <Korean>Antistasi 부활 시스템 사용 (PiR 호환을 위해 비활성화)</Korean>
+                <French>Utiliser la réanimation Antistasi (désactiver pour la compatibilité avec PiR)</French>
+            </Key>
             <Key ID="STR_params_reviveKitsEnabled">
                 <Original>Enable combat readiness recovery kits</Original>
                 <Russian>Включить наборы восстановления боеспособности</Russian>

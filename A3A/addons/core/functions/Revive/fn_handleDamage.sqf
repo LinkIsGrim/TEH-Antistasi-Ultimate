@@ -46,9 +46,11 @@ if (_part == "" && _damage > 0.1) then
 	};
 };
 
+if (A3A_antistasiReviveEnabled == 0) exitWith {_damage};
 
 // Let ACE medical handle the rest (inc return value) if it's running
 if (A3A_hasACEMedical) exitWith {};
+
 
 
 private _makeUnconscious =

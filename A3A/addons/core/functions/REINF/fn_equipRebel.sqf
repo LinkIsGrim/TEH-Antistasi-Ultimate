@@ -68,19 +68,30 @@ if (count _rebVests > 0) then {
 
 _unit addVest _vest;
 
-{
-    for "_i" from 1 to (_x select 1) do {
-        _unit addItem (_x select 0);
-    };
-} forEach [
-    ["ACE_fieldDressing", 8],
-    ["ACE_morphine", 2],
-    ["ACE_epinephrine", 2],
-    ["ACE_plasmaIV_500", 1],
-    ["ACE_salineIV_500", 1],
-    ["ACE_bloodIV_500", 1],
-    ["ACE_splint", 2]
-];
+if (A3A_hasACEMedical) then {
+    {
+        for "_i" from 1 to (_x select 1) do {
+            _unit addItem (_x select 0);
+        };
+    } forEach [
+        ["ACE_fieldDressing", 8],
+        ["ACE_morphine", 2],
+        ["ACE_epinephrine", 2],
+        ["ACE_plasmaIV_500", 1],
+        ["ACE_salineIV_500", 1],
+        ["ACE_bloodIV_500", 1],
+        ["ACE_splint", 2]
+    ];
+} else {
+    {
+        for "_i" from 1 to (_x select 1) do {
+            _unit addItem (_x select 0);
+        };
+    } forEach [
+        ["firstAidKit", 3]
+    ];
+};
+
 
 private _fnc_addSecondaryAndMags = {
     params ["_unit", "_weapon", "_totalMagWeight"];
