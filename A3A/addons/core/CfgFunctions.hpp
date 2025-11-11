@@ -97,8 +97,7 @@ class CfgFunctions
             class itemType {};
             class launcherInfo {};
             class loot {};
-            class randomRifle {};
-            class randomHandgun {};
+            class randomWeapon {};
 			class tehMagRemove {};
 			class tehMagRepack {};
             class transfer {};
@@ -169,6 +168,7 @@ class CfgFunctions
             class playableUnits {};
             class getSideRadioTowerInfluence {};
             class rebuildAssets {};
+            class rebuildEconomicAssets {};
             class rebuildRadioTower {};
             class relocateHQObjects {};
             class repairRuinedBuilding {};
@@ -204,6 +204,8 @@ class CfgFunctions
             class buildingComplete {};
             class buildingPlacer {};
             class buildingPlacerStart {};
+            class handlerTerrainManipulator {};
+            class handlerTerrainObjectHiderPostInitClient {};
             class initBuildableObjects {};
             class initBuilderMonitors {};
             class initPlacerDB {};
@@ -406,6 +408,7 @@ class CfgFunctions
             class searchIntelOnLeader {};
             class selectIntel {};
             class showIntel {};
+            class showNoIntelMessage {};
         };
 
         class keybinds {

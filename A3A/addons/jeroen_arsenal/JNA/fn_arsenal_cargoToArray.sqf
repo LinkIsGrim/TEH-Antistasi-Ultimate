@@ -16,10 +16,10 @@
 #include "\A3\Ui_f\hpp\defineResinclDesign.inc"
 #include "tehBulletPile.inc"
 
-private["_container","_array","_addToArray","_unloadContainer"];
-_container = _this;
-_array = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
+private["_array","_addToArray","_unloadContainer"];
+params ["_container", ["_isPlayer", false]];
 
+_array = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
 
 _addToArray = {
 	private ["_array","_index","_item","_amount"];
@@ -38,7 +38,7 @@ _unloadContainer = {
 	_container_sub = _this;
 
 	//magazines(exl. loaded ones)
-	_mags = magazinesAmmoCargo _container_sub;
+	_mags = [magazinesAmmoCargo _container_sub, magazinesAmmo _container_sub] select (_isPlayer);
 	{
 		_mag = _x select 0;
 		_ammoCount = _x select 1;
@@ -52,7 +52,7 @@ _unloadContainer = {
 	} forEach _mags;
 
 	//items
-	_items = itemCargo _container_sub;
+	_items = [itemCargo _container_sub, (items _container_sub) + (assignedItems player)] select (_isPlayer);
 	{
 		_item = _x;
 		_index = _item call jn_fnc_arsenal_itemType;
@@ -60,7 +60,7 @@ _unloadContainer = {
 	} forEach _items;
 
 	//backpacks
-	_backpacks = backpackCargo _container_sub;
+	_backpacks = [backpackCargo _container_sub, [backpack _container_sub]] select (_isPlayer);
 	{
 		_item = _x call A3A_fnc_basicBackpack;
 		_index = IDC_RSCDISPLAYARSENAL_TAB_BACKPACK;
@@ -68,7 +68,7 @@ _unloadContainer = {
 	} forEach _backpacks;
 
 	//weapons and attachmetns
-	_attItems = weaponsItemsCargo _container_sub;
+	_attItems = [weaponsItemsCargo _container_sub, weaponsItems _container_sub] select (_isPlayer);
 	// [["arifle_TRG21_GL_F","","","optic_dms",["ammo"],""]]
 	{
 		{
@@ -107,9 +107,19 @@ _unloadContainer = {
 
 
 	//sub containers;
-	{
-		_x select 1 call _unloadContainer;
-	}foreach (everyContainer _container_sub);
+	if (_isPlayer) then {
+		{
+			_item = _x;
+			if (_x isNotEqualTo "") then {
+				_index = _item call jn_fnc_arsenal_itemType;
+				[_array,_index,_item,1]call _addToArray;
+			};
+		} forEach [uniform _container_sub, vest _container_sub, headgear _container_sub, goggles _container_sub];
+	} else {
+		{
+			_x select 1 call _unloadContainer;
+		} foreach (everyContainer _container_sub);
+	};
 };
 
 //startloop

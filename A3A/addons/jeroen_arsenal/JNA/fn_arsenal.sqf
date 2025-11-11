@@ -1029,7 +1029,7 @@ switch _mode do {
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG2: {
 				_ctrlListPrimaryWeapon = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON);
-				if (!ctrlEnabled _ctrlListPrimaryWeapon) exitWith { [] };
+				if (!ctrlEnabled _ctrlListPrimaryWeapon || {primaryWeapon player isEqualTo ""}) exitWith { [] };
 				
 				_weapon = primaryWeapon player;
 				// below from core\functions\Ammunition\fn_randomRifle.sqf
@@ -1077,6 +1077,7 @@ switch _mode do {
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG2: {
 				_weapon = primaryWeapon player;
+				if (_weapon isEqualTo "") exitWith {};
 				_weaponCfg = configFile >> "CfgWeapons" >> _weapon;
 				_muzzle = configName (_weaponCfg >> (getArray (_weaponCfg >> "muzzles") select 1));
 				_item = "";
@@ -2372,6 +2373,7 @@ switch _mode do {
 				// will probably break with anything weird like a masterkey / underbarrel shotgun or something else I can't think of rn
 				_index = IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL;
 				_weapon = primaryWeapon player;
+				if (_weapon isEqualTo "") exitWith {};
 				_weaponCfg = configFile >> "CfgWeapons" >> _weapon;
 				_muzzle = configName (_weaponCfg >> (getArray (_weaponCfg >> "muzzles") select 1));
 				_oldMag = "";

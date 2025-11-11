@@ -52,7 +52,8 @@ private _text = "";
 private _sideName = _faction get "name";
 private _intelContent = -1;
 
-if (!isTraderQuestCompleted && !isTraderQuestAssigned && (tierWar > 3)) then {
+
+if (!disableTrader && {!isTraderQuestCompleted && {!isTraderQuestAssigned} && (tierWar > 3)}) then {
     private _thresholds = createHashMapFromArray [
         ["Civilian", 20],
         ["Small", 20],

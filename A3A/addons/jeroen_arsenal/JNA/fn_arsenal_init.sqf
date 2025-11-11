@@ -167,6 +167,23 @@ if(hasInterface)then{
         "",
         "alive _target && {_target distance _this < 5} && {vehicle player == player}"
     ];
+	
+	_object addAction [
+        (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\CargoMagAll_ca.paa"] + format["<t size='1'> %1</t>", "Empty Loadout"]),
+        { 
+            private _array = [_player, true] call jn_fnc_arsenal_cargoToArray;
+            _player setUnitLoadout (configFile >> "EmptyLoadout");
+            [_player, 0, _prefix + _loadout] call A3A_fnc_equipRebel;
+            _array call jn_fnc_arsenal_addItem;
+
+        },
+        [],
+        6,
+        true,
+        false,
+        "",
+        "alive _target && {_target distance _this < 5} && {vehicle player == player}"
+    ];
 
     //add open event
     [missionNamespace, "arsenalOpened", {

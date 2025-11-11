@@ -60,6 +60,9 @@ if (A3A_antistasiReviveEnabled == 0) exitWith {_damage};
 // Let ACE medical handle the rest (inc return value) if it's running
 if (A3A_hasACEMedical) exitWith {};
 
+// Don't bother with the unconscious nonsense, based on param values
+if (unconChanceEny > random 10) exitWith {};
+
 private _makeUnconscious =
 {
 	params ["_unit", "_injurer"];
