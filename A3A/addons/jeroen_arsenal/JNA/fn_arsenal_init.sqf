@@ -168,6 +168,7 @@ if(hasInterface)then{
         "alive _target && {_target distance _this < 5} && {vehicle player == player}"
     ];
 	
+	/* TODO: figure out if we need it
 	_object addAction [
         (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\CargoMagAll_ca.paa"] + format["<t size='1'> %1</t>", "Empty Loadout"]),
         { 
@@ -184,7 +185,7 @@ if(hasInterface)then{
         "",
         "alive _target && {_target distance _this < 5} && {vehicle player == player}"
     ];
-
+	*/
     //add open event
     [missionNamespace, "arsenalOpened", {
         disableSerialization;

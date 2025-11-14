@@ -79,16 +79,24 @@ private _fnc_addFacewear = {
 private _fnc_addHeadgear = {
     params ["_unit"];
     
-    private _helmet = selectRandomWeighted (A3A_rebelGear get "ArmoredHeadgear");
-    if (_helmet == "") then { _helmet = selectRandom (A3A_faction_reb get "headgear") };
+    private _helmet = "";
+	private _helmets = A3A_rebelGear get "ArmoredHeadgear";
+	if (count _helmets > 0) then {
+		_helmet = selectRandomWeighted _helmets;
+	}
+    else { _helmet = selectRandom (A3A_faction_reb get "headgear") };
     _unit addHeadgear _helmet;
 };
 
 private _fnc_addVest = {
     params ["_unit"];
 
-    private _vest = selectRandomWeighted (A3A_rebelGear get "ArmoredVests");
-    if (_vest == "") then { _vest = selectRandomWeighted (A3A_rebelGear get "CivilianVests") };
+    private _vest = "";
+	private _vests = A3A_rebelGear get "ArmoredVests";
+	if (count _vests > 0) then {
+		_vest = selectRandomWeighted (A3A_rebelGear get "ArmoredVests");
+	}
+    else { _vest = selectRandomWeighted (A3A_rebelGear get "CivilianVests") };
     _unit addVest _vest;
 };
 

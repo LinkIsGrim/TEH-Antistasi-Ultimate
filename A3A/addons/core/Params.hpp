@@ -116,22 +116,6 @@ class Params
         default = 2;
     };
 
-    class TEH_distanceMissionTier: ScenarioParams
-    {
-        title = "Mission Distance increase per War Level";
-        values[] = {0,500,1000,2000};
-        texts[] = {"Not applied","500m","1000m","2000m"};
-        default = 1000;
-    };
-
-    class TEH_HRMul: ScenarioParams
-    {
-        title = "HR gain multiplier";
-        values[] = {1,2,3,4,5};
-        texts[] = {"x1","x2","x3","x4","x5"};
-        default = 1;
-    };
-
     class A3A_antistasiReviveEnabled: ScenarioParams
     {
         title = $STR_params_A3A_antistasiReviveEnabled;
@@ -340,8 +324,8 @@ class Params
     class globalCivilianMax: AIParams
     {
         title = $STR_params_global_civilian_max;
-        values[] = {0,2,5,10,15,20,25,30};
-        texts[] = {"0","2","5","10","15","20","25","30"};
+        values[] = {0,2,5,10,15,20,25,30,9999};
+        texts[] = {"0","2","5","10","15","20","25","30","Unlimited"};
         default = 5;
     };
     class maxCiviliansPerTown: AIParams
@@ -466,6 +450,13 @@ class Params
         texts[] = {"0","8","16","24","32","50"};
         default = 8;
         lockOnSave = 1;
+    };
+	class TEH_HRMul: RebelBalanceParams
+    {
+        title = "HR gain multiplier";
+        values[] = {1,2,3,4,5};
+        texts[] = {"x1","x2","x3","x4","x5"};
+        default = 1;
     };
     class limitHR: RebelBalanceParams
     {
@@ -659,6 +650,14 @@ class Params
         default = 12;
         lockInGame = 1;
     };
+	class TEH_sendCombatRecons: AIBalanceParams
+    {
+        attr[] = {"server"};
+        title = "Enemies send combat recon squads to the nearby rebel bases";
+        values[] = {1,0};
+        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
+        default = 1;
+    };
     class enablePunishments: AIBalanceParams
     {
         title = $STR_params_enablePunishments;
@@ -747,8 +746,17 @@ class Params
         title = $STR_params_distanceMission;
         values[] = {2000,3000,4000,6000,8000,10000,12000};
         texts[] = {"2000","3000","4000","6000","8000","10000","12000"};
-        default = 3000;
+        default = 2000;
     };
+	
+	class TEH_distanceMissionTier: AIBalanceParams
+    {
+        title = "Mission Distance increase per War Level";
+        values[] = {0,500,1000,2000};
+        texts[] = {"Not applied","500","1000","2000"};
+        default = 1000;
+    };
+
     class MiscBalanceParamsSpacer : AIParamsSpacer
     {
         type = "MiscBalance";

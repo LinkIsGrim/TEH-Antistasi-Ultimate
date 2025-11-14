@@ -1031,6 +1031,9 @@ class cfgHALsStore
 			displayName = "Sig MCX Spear";
 			categories[] = {
 				"riflesMCX"
+			};
+		};
+		
 		class mpp_stock
 		{
 			displayName = $STR_ARMS_DEALER_STORE;
