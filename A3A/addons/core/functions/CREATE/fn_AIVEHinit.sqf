@@ -80,15 +80,6 @@ if (_veh isKindOf "Car" or{ _veh isKindOf "Tank"}) then {
 } else {
 	switch (true) do {
 		case (_typeX in (FactionGet(all,"vehiclesFixedWing") + FactionGet(all,"vehiclesHelis"))): {
-			_veh addEventHandler ["GetIn", {
-				if (_this select 1 != "driver") exitWith {};
-				_unit = _this select 2;
-				if (!isPlayer _unit and {_unit getVariable ["spawner",false] and {side group _unit == teamPlayer}}) then {
-					moveOut _unit;
-					[localize "STR_A3A_Create_AIVEHINIT_header", localize "STR_A3A_Create_AIVEHINIT_only_humans"] call A3A_fnc_customHint;
-				};
-			}];
-
 			if (_veh isKindOf "Helicopter" && {_typeX in FactionGet(all,"vehiclesTransportAir")}) then {
 				_veh setVariable ["within",true];
 				_veh addEventHandler ["GetOut", {private _veh = _this select 0; if ((isTouchingGround _veh) and (isEngineOn _veh)) then {if (side (_this select 2) != teamPlayer) then {if (_veh getVariable "within") then {_veh setVariable ["within",false]; [_veh] call A3A_fnc_smokeCoverAuto}}}}];

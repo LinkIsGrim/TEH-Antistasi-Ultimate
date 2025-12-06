@@ -157,6 +157,32 @@ if (napalmEnabled) then {
 	};
 };
 
+if (A3A_newSupportTypes) then {
+    if (tierWar >= 3) then {
+        private _index = lbAdd [1750, localize "STR_commander_menu_mortar_title"];
+        lbSetData [1750, _index, "MORTAR"];
+        lbSetTooltip [1750, _index, localize "STR_commander_menu_mortar_tooltip"];
+    };
+
+    if (tierWar >= 5) then {
+        private _index = lbAdd [1750, localize "STR_commander_menu_artillery_title"];
+        lbSetData [1750, _index, "ARTILLERY"];
+        lbSetTooltip [1750, _index, localize "STR_commander_menu_artillery_tooltip"];
+    };
+
+    if (tierWar >= 7) then {
+        private _index = lbAdd [1750, localize "STR_commander_menu_mlrs_title"];
+        lbSetData [1750, _index, "MLRS"];
+        lbSetTooltip [1750, _index, localize "STR_commander_menu_mlrs_tooltip"];
+    };
+
+    if (tierWar >= 4) then {
+        private _index = lbAdd [1750, localize "STR_commander_menu_recon_uav_title"];
+        lbSetData [1750, _index, "RECON_UAV"];
+        lbSetTooltip [1750, _index, localize "STR_commander_menu_recon_uav_tooltip"];
+    };
+};
+
 lbSetCurSel [1750, 0];
 
 //Create Outpost Combobox 
