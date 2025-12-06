@@ -15,8 +15,14 @@ switch (supportType) do {
     case ("SUPPLY");
     case ("SMOKE");
     case ("FLARE");
-    case ("RECON"): {
+    case ("RECON");
+    case ("RECON_UAV"): {
         _costTextBox ctrlSetText format [localize "STR_commander_menu_abilities_cost_support_point", 1];
+    };
+    case ("MORTAR");
+    case ("ARTILLERY");
+    case ("MLRS"): {
+        _costTextBox ctrlSetText format [localize "STR_commander_menu_abilities_cost_support_point", 2];
     };
     case ("VEH_AIRDROP"): {
         _costTextBox ctrlSetText format [localize "STR_commander_menu_abilities_cost_support_point_and_money", 1, 200, A3A_faction_civ get "currencySymbol"];

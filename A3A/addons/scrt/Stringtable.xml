@@ -2129,6 +2129,14 @@
                 <Korean>집중 포화</Korean>
                 <French>Barrage</French>
             </Key>
+            <Key ID="STR_support_artillery_target">
+                <Original>Artillery Target</Original>
+                <Russian>Цель артиллерии</Russian>
+            </Key>
+            <Key ID="STR_support_recon_uav_target">
+                <Original>UAV Recon Area</Original>
+                <Russian>Зона разведки БПЛА</Russian>
+            </Key>
             <Key ID="STR_support_hmg_airdrop_init">
                 <Original>HMG Airdrop Entry Point</Original>
                 <Russian>Точка входа (сброс тяжелого пулемета)</Russian>
@@ -2345,6 +2353,14 @@
                 <Korean>&lt;t size='0.6'&gt;아군 박격포가 당신의 위치 근처 전장을 비추기 위해 &lt;t size='0.6' color='#808080'&gt;조명탄&lt;/t&gt;을 발사합니다.&lt;/t&gt;</Korean>
                 <French>&lt;t size='0.6'&gt;Notre mortier tire quelques &lt;t size='0.6' color='#808080'&gt;fusées éclairantes&lt;/t&gt; pour éclairer le champ de bataille près de votre position.&lt;/t&gt;</French>
             </Key>
+            <Key ID="STR_comms_mp_airstrike_vehicle">
+                <Original>&lt;t size='0.6'&gt;Airstrike inbound on enemy vehicles.&lt;/t&gt;</Original>
+                <Russian>&lt;t size='0.6'&gt;Авиаудар по вражеской технике.&lt;/t&gt;</Russian>
+            </Key>
+            <Key ID="STR_comms_mp_splash">
+                <Original>&lt;t size='0.6'&gt;Splash!&lt;/t&gt;</Original>
+                <Russian>&lt;t size='0.6'&gt;Прилет!&lt;/t&gt;</Russian>
+            </Key>
         </Container>
         <Container name="chats">
             <Key ID="STR_chats_mission_request_header">
@@ -2353,6 +2369,18 @@
                 <Chinesesimp>任务</Chinesesimp>
                 <Korean>임무</Korean>
                 <French>Missions</French>
+            </Key>
+            <Key ID="STR_chats_uav_deployed">
+                <Original>UAV deployed to the area.</Original>
+                <Russian>БПЛА направлен в район.</Russian>
+            </Key>
+            <Key ID="STR_chats_interceptors_deployed">
+                <Original>Interceptors deployed.</Original>
+                <Russian>Перехватчики направлены.</Russian>
+            </Key>
+            <Key ID="STR_chats_barrage_splash_out">
+                <Original>Rounds away!</Original>
+                <Russian>Залп!</Russian>
             </Key>
             <Key ID="STR_chats_mission_request_no_AS_hint_text">
                 <Original>Assassination missions require cities, patrolled forests, open plains or airports within %1m of HQ.</Original>
@@ -6253,6 +6281,22 @@
                 <Korean>实验选项</Korean>
                 <French>OPTIONS EXPÉRIMENTALES</French>
             </Key>
+            <Key ID="STR_params_newSupportTypes">
+                <Original>Enable New Support Types</Original>
+                <Russian>Включить новые виды поддержки</Russian>
+            </Key>
+            <Key ID="STR_params_newSupportTypes_desc">
+                <Original>Enables Mortar, Artillery, MLRS, and Recon UAV in Commander Menu.</Original>
+                <Russian>Включает Миномет, Артиллерию, РСЗО и Разведывательный БПЛА в меню командира.</Russian>
+            </Key>
+            <Key ID="STR_params_unlockRadioGPS">
+                <Original>Unlock Radio and GPS</Original>
+                <Russian>Разблокировать Рацию и GPS</Russian>
+            </Key>
+            <Key ID="STR_params_unlockRadioGPS_desc">
+                <Original>Starts the game with Radio and GPS unlocked in the arsenal.</Original>
+                <Russian>Начинает игру с разблокированными Рацией и GPS в арсенале.</Russian>
+            </Key>
             <Key ID="STR_params_development">
                 <Original>DEVELOPMENT OPTIONS</Original>
                 <Russian>ВАРИАНТЫ РАЗВИТИЯ</Russian>
@@ -7754,6 +7798,54 @@
                 <Chinesesimp>侦察机飞过，在指定地点标记敌方大概位置。</Chinesesimp>
                 <Korean>정찰기가 상공을 비행해서 지정한 위치에 적 위치를 표시합니다.</Korean>
                 <French>L'avion de reconnaissance survole et marque les positions ennemies à l'endroit spécifié.</French>
+            </Key>
+            <Key ID="STR_commander_menu_mortar_title">
+                <Original>Mortar Barrage</Original>
+                <Russian>Минометный обстрел</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_mortar_tooltip">
+                <Original>Fires a mortar barrage at the selected position.</Original>
+                <Russian>Ведет минометный огонь по выбранной позиции.</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_artillery_title">
+                <Original>Artillery Barrage</Original>
+                <Russian>Артобстрел</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_artillery_tooltip">
+                <Original>Fires an artillery barrage at the selected position.</Original>
+                <Russian>Ведет артиллерийский огонь по выбранной позиции.</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_mlrs_title">
+                <Original>MLRS Barrage</Original>
+                <Russian>Залп РСЗО</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_mlrs_tooltip">
+                <Original>Fires a MLRS barrage at the selected position.</Original>
+                <Russian>Ведет огонь из РСЗО по выбранной позиции.</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_recon_uav_title">
+                <Original>Recon UAV</Original>
+                <Russian>Разведывательный БПЛА</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_recon_uav_tooltip">
+                <Original>Deploys a UAV to recon the area for 3 minutes.</Original>
+                <Russian>Развертывает БПЛА для разведки местности в течение 3 минут.</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_airstrike_vehicle_title">
+                <Original>Vehicle Airstrike</Original>
+                <Russian>Авиаудар по технике</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_airstrike_vehicle_tooltip">
+                <Original>Calls an airstrike targeting vehicles in the area.</Original>
+                <Russian>Вызывает авиаудар по технике в этом районе.</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_interceptors_title">
+                <Original>Interceptors</Original>
+                <Russian>Перехватчики</Russian>
+            </Key>
+            <Key ID="STR_commander_menu_interceptors_tooltip">
+                <Original>Deploys interceptors to engage enemy aircraft.</Original>
+                <Russian>Развертывает перехватчики для борьбы с вражеской авиацией.</Russian>
             </Key>
             <Key ID="STR_commander_menu_sca_title">
                 <Original>Supply Crate Airdrop</Original>

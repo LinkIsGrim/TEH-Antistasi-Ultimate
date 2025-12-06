@@ -57,13 +57,23 @@ if(_mode isEqualTo "ADD") then {
                         supportMarkerOrigin setMarkerColorLocal "colorCivilian";
                         supportMarkerOrigin setMarkerTextLocal (localize "STR_support_loot_helicopter_init");
                     };
+                    case ("MORTAR");
+                    case ("ARTILLERY");
+                    case ("MLRS"): {
+                        supportMarkerOrigin setMarkerColorLocal "ColorRed";
+                        supportMarkerOrigin setMarkerTextLocal (localize "STR_support_artillery_target");
+                    };
+                    case ("RECON_UAV"): {
+                        supportMarkerOrigin setMarkerColorLocal "ColorYellow";
+                        supportMarkerOrigin setMarkerTextLocal (localize "STR_support_recon_uav_target");
+                    };
                     default {
                         supportMarkerOrigin setMarkerColorLocal "ColorRed";
                         supportMarkerOrigin setMarkerTextLocal (localize "STR_support_bomb_run_init");
                     };
                 };
             } else {
-                if !(supportType in ["SMOKE", "FLARE"]) then {
+                if !(supportType in ["SMOKE", "FLARE", "MORTAR", "ARTILLERY", "MLRS", "RECON_UAV"]) then {
                     if (supportType == "PARADROP") then {
                         private _nearMarker = [forbiddenParadropZones, _pos] call BIS_fnc_nearestPosition;
                         if ((getMarkerPos _nearMarker) distance2D _pos < 500) then {

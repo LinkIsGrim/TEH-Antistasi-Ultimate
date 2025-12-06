@@ -7,6 +7,7 @@ params ["_markerX"];
 private _groups = [];
 private _soldiers = [];
 private _dogs = [];
+private _vehicles = [];
 
 private _positionX = getMarkerPos _markerX;
 
@@ -95,6 +96,7 @@ waitUntil {sleep 1;(spawner getVariable _markerX == 2)};
 
 {if (alive _x) then {deleteVehicle _x}} forEach _soldiers;
 {deleteVehicle _x} forEach _dogs;
+{deleteVehicle _x} forEach _vehicles;
 { deleteGroup _x } forEach _groups;
 
 ["locationSpawned", [_markerX, "City", false]] call EFUNC(Events,triggerEvent);

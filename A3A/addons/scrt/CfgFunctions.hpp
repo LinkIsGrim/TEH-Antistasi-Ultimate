@@ -235,6 +235,8 @@ class CfgFunctions {
 			class support_smokeBarrage {};
 			class support_planeParadropRun {};
 			class support_lootHeli {};
+			class support_artillery {};
+			class support_reconUAV {};
 		};
 
 		class Composition {

@@ -16,7 +16,16 @@ if (supportType in ["NAPALM", "HE", "CLUSTER", "CHEMICAL"] && bombRuns < 1) exit
 	] spawn SCRT_fnc_ui_showMessage;
 };
 
-if (supportType in ["LOOTHELI","SUPPLY", "SMOKE", "FLARE", "VEH_AIRDROP", "RECON", "PARADROP"] && supportPoints < 1) exitWith {
+if (supportType in ["LOOTHELI","SUPPLY", "SMOKE", "FLARE", "VEH_AIRDROP", "RECON", "PARADROP", "RECON_UAV"] && supportPoints < 1) exitWith {
+    [
+		localize "STR_notifiers_fail_type",
+		localize "STR_notifiers_support_header",  
+		parseText (localize "STR_notifiers_support_not_enough_support"), 
+		30
+	] spawn SCRT_fnc_ui_showMessage;
+};
+
+if (supportType in ["MORTAR", "ARTILLERY", "MLRS"] && supportPoints < 2) exitWith {
     [
 		localize "STR_notifiers_fail_type",
 		localize "STR_notifiers_support_header",  
@@ -81,7 +90,7 @@ if (isNil "supportMarkerOrigin") exitWith {
 	] spawn SCRT_fnc_ui_showMessage;
 };
 
-if (!(supportType in ["SMOKE", "FLARE"]) && {isNil "supportMarkerDestination"}) exitWith {
+if (!(supportType in ["SMOKE", "FLARE", "MORTAR", "ARTILLERY", "MLRS"]) && {isNil "supportMarkerDestination"}) exitWith {
     [
 		localize "STR_notifiers_fail_type",
 		localize "STR_notifiers_support_header",  
@@ -136,8 +145,15 @@ switch (supportType) do {
     case ("SUPPLY");
     case ("SMOKE");
     case ("FLARE");
-    case ("RECON"): {
+    case ("RECON");
+    case ("RECON_UAV"): {
         supportPoints = supportPoints - 1;
+        publicVariable "supportPoints";
+    };
+    case ("MORTAR");
+    case ("ARTILLERY");
+    case ("MLRS"): {
+        supportPoints = supportPoints - 2;
         publicVariable "supportPoints";
     };
     case ("VEH_AIRDROP"): {
@@ -188,6 +204,12 @@ switch (true) do {
     case (supportType isEqualTo "SUPPLY");
     case (supportType in ["HE", "CLUSTER", "CHEMICAL", "NAPALM"]): {
         [] spawn SCRT_fnc_support_planePayloadedRun;
+    };
+    case (supportType in ["MORTAR", "ARTILLERY", "MLRS"]): {
+        [supportType] spawn SCRT_fnc_support_artillery;
+    };
+    case (supportType isEqualTo "RECON_UAV"): {
+        [] spawn SCRT_fnc_support_reconUAV;
     };
 };
 

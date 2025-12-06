@@ -248,6 +248,11 @@ call A3A_fnc_initSupports;
 // Needs saved arsenal data
 call A3A_fnc_generateRebelGear;
 
+if (A3A_unlockRadioGPS) then {
+    ["ItemRadio", true] call A3A_fnc_unlockEquipment;
+    ["ItemGPS", true] call A3A_fnc_unlockEquipment;
+};
+
 // Needs A3A_rebelGear for equipping
 call A3A_fnc_createPetros;
 
