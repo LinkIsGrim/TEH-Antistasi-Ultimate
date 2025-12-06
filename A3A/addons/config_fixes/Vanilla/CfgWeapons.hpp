@@ -7,4 +7,14 @@ class CfgWeapons
     {
         baseWeapon = "arifle_AK12_GL_lush_F";
     };
+	
+    class Put {
+		class PutMuzzle;
+        class bigied_muzzle : PutMuzzle {
+            magazines[] = {
+                "IEDUrbanBig_Remote_Mag",
+                "IEDLandBig_Remote_Mag"
+            };
+        };
+    };
 };

@@ -112,7 +112,7 @@ for "_i" from 0 to _soilderCount do {
 	private _soldier = [_garrisonGroup, (selectRandom _unitPool), _buildingPosition, [], 0, "NONE"] call A3A_fnc_createUnit;
 	_soldier allowDamage false;
 	_soldier setunitpos "UP";
-	_soldier disableAI "PATH";
+	_soldier setBehaviour "AWARE";
 	[_soldier] call A3A_fnc_NATOinit;
 	sleep 0.5;
 	_soldier allowDamage true;

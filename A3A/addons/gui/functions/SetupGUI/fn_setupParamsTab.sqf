@@ -192,7 +192,7 @@ switch (_mode) do
         private _shownTypes = switch (lbCurSel A3A_IDC_SETUP_PARAMSTYPE) do {
             case (-1): { [] }; // lbCurSel is -1 until params tab is loaded
             case (0): { ["Basic", "Scenario", "Member", "Script", "Timer"] };
-            case (1): { ["AI", "Balance", "RebelBalance", "AIBalance", "MiscBalance"] };
+            case (1): { ["AI", "Balance", "RebelBalance", "AIBalance","Challenges", "MiscBalance"] };
             case (2): { ["BlackMarket", "Loot", "Unlocks", "Crates", "VehicleLoot", "MiscLoot"] };
             case (3): { ["Builder"] };
             case (4): { ["Extender", "Experimental", "Development"] };

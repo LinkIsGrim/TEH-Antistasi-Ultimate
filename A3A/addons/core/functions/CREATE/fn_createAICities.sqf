@@ -70,8 +70,35 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 
 	// Forced non-spawner for performance and consistency with other garrison patrols
 	{
-		[_x, "", false] call A3A_fnc_NATOinit; 
-		_soldiers pushBack _x;
+		private _unit = _x;
+		[_unit, "", false] call A3A_fnc_NATOinit;
+		_soldiers pushBack _unit;
+
+		// Early-game police nerf: no primaries on city cops before war tier 2
+		if ((_params # 2) isEqualTo (_faction get "groupPolice")) then {
+			// If your war-tier variable isn't 'tierWar', swap this:
+			if (!isNil "tierWar" && { tierWar < 2 }) then {
+				private _primary = primaryWeapon _unit;
+				if (_primary != "") then {
+					_unit removeWeaponGlobal _primary;
+				};
+				{
+					if !(_x in handgunMagazine _unit) then {
+						_unit removeMagazineGlobal _x;
+					};
+				} forEach (magazines _unit);
+			};
+
+			// Killed EH for police response van (see next section)
+			_unit addEventHandler ["Killed", {
+				params ["_unit", "_killer", "_instigator", "_useEffects"];
+
+				// 33% chance to call SWAT
+				if ((random 100 > 33) or TEH_spawnSwat == 0) exitWith {};
+
+				[_unit,_instigator] spawn A3A_fnc_spawnSwat;
+			}];
+		};
 	} forEach units _groupX;
 
 	sleep 1;

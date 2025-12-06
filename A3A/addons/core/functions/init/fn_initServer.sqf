@@ -152,13 +152,17 @@ else
         _addedClasses set [_class, nil];
 
         private _arsenalTab = _class call jn_fnc_arsenal_itemType;
-        jna_dataList#_arsenalTab pushBack [_class, _count];         // direct add to avoid O(N^2) issue
+		
+		if (_arsenalTab >= TEH_civStart) then {
+			 //0 - all weaps, 2 = handguns only, 3 = no weaps
+			jna_dataList#_arsenalTab pushBack [_class, _count];         // direct add to avoid O(N^2) issue
 
-        if (_count == -1 || {(minWeaps != -1) && _count >= minWeaps}) then {
-            private _categories = _class call A3A_fnc_equipmentClassToCategories;
-            { (missionNamespace getVariable ("unlocked" + _x)) pushBack _class } forEach _categories;
-            _categoriesToPublish insert [true, _categories, []];
-        };
+			if (_count == -1 || {(minWeaps != -1) && _count >= minWeaps}) then {
+				private _categories = _class call A3A_fnc_equipmentClassToCategories;
+				{ (missionNamespace getVariable ("unlocked" + _x)) pushBack _class } forEach _categories;
+				_categoriesToPublish insert [true, _categories, []];
+			};
+		};
     } foreach _equipmentList;
 	
 	//initialize and populate new bullet storage

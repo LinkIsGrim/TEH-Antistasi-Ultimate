@@ -12,6 +12,7 @@ private _vehiclesX = [];
 private _groups = [];
 private _soldiers = [];
 private _dogs = [];
+private _outpostMines = []; 
 private _spawnsUsed = [];
 
 private _positionX = getMarkerPos (_markerX);
@@ -361,6 +362,43 @@ for "_i" from 0 to (count _array - 1) do {
 		[_groupX, "Patrol_Defend", 0, 100, -1, true, _positionX, false] call A3A_fnc_patrolLoop;
 	};
 };
+
+
+// --- BEGIN: random AT mines around outpost ---
+private _mineCount = TEH_outpostMines;
+private _minRadius = 20;
+private _maxRadius = 100;
+
+for "_i" from 1 to _mineCount do {
+    private _attempts = 0;
+    private _minePos  = [0,0,0];
+
+    while {_attempts < 10} do {
+        _attempts = _attempts + 1;
+
+        private _dir  = random 360;
+        private _dist = _minRadius + (random (_maxRadius - _minRadius));   // 50–150m
+        _minePos = _positionX getPos [_dist, _dir];
+
+        if (
+            !surfaceIsWater _minePos &&                  // not in water
+            { !(isOnRoad _minePos) } &&                  // avoid roads
+            { (_minePos select 2) < 1 } &&               // not up a wall/roof
+            { (count (nearestObjects [_minePos, ["House","Building","Land"], 2])) == 0 }
+        ) exitWith {};
+    };
+
+    if (_attempts < 10) then {
+        // Use generic AT mine; swap for faction-specific if you want
+        private _mine = createMine ["ATMine", _minePos, [], 0];
+        if (!isNull _mine) then {
+            _outpostMines pushBack _mine;
+        };
+    };
+};
+// --- END: random AT mines around outpost ---
+
+
 ["locationSpawned", [_markerX, "Outpost", true]] call EFUNC(Events,triggerEvent);
 
 {
@@ -393,6 +431,15 @@ _sideX = sidesX getVariable [_markerX,sideUnknown]; //captured maybe?
 		else { if !(_x isKindOf "StaticWeapon") then { [_x] spawn A3A_fnc_VEHdespawner } };
 	};
 } forEach _vehiclesX;
+
+
+// --- BEGIN: cleanup of outpost AT mines ---
+{
+    if (!isNull _x) then {
+        deleteVehicle _x;
+    };
+} forEach _outpostMines;
+// --- END: cleanup of outpost AT mines ---
 
 _spawnsUsed call A3A_fnc_freeSpawnPositions;
 
