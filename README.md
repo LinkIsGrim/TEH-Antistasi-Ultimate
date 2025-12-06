@@ -87,11 +87,17 @@
 	- Enemies will attempt to destroy long range AA (e.g. radar + SAM site) if vehicle is sniped from 2 or more kilometers away.
 	- Support corridors (aka Carrier markers) are moved dynamically to allow less predictable attack vectors
 	- Enemy Air QRF disembark range increased from 200-400 to 500-800 to increase survivability against MANPADs and binoculars.
-- **[WIP] Combat Recons**:
-	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons (toggled by "Enemies send combat recon squads to the nearby rebel bases" parameter)
-	- It's chance based (1% + 0.25% per war level) per marker each minute IF there is an inactive enemy base in 2km radius.
-	- Rebel garrisons are now properly leaded (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
-	- [Experimental] New HR gain multiplier parameter (works for recruitment of surrendered enemies and resque type missions) - to trade off early attacks losses
+- **Challeges**: Optional challenges can be found in AI and Rebel balance section
+	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons (It's chance based at 1% + 0.25% per war level per marker each minute IF there is an inactive enemy base in 2km radius.)
+	- SWAT teams dispatched when police officers are down (33% base chance)
+	- Enemy outposts and ports are protected by antitank mines to mitigate vehicle rush
+	- Starting option: start with handguns or without weapons (hand grenades remain)
+	- Only Randoms: loot weapons and handguns are sold instead of arsenal storage. Unlock new weapons by gathering Intel.
+- **Balance**:
+	- New HR gain multiplier parameter (works for recruitment of surrendered enemies and resque type missions) - to trade off early attacks losses
+	- Flexible rebel garrisons squads: now with proper command chain (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
+	- [Experimental] new support types for rebel faction
+	- [Experimental] Friendly AIs are allowed to pilot aircrafts
 - **Tower Defense**
 	- New construction options: Scaffolds and Cargo Platforms (bottom of the list at the builder boxes)
 	- When deployed, use "Align Platforms" action on the scaffold to snap nearby towers to the scaffold
