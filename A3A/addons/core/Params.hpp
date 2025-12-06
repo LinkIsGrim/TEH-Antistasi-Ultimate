@@ -496,6 +496,14 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text,$STR_antistasi_dialogs_generic_button_yes_text};
         default = 1;
     };
+    class A3A_unlockRadioGPS : RebelBalanceParams
+    {
+        title = $STR_params_unlockRadioGPS;
+        tooltip = $STR_params_unlockRadioGPS_desc;
+        values[] = {0, 1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+    };
     class aceFood: RebelBalanceParams
     {
         attr[] = {"server"};
@@ -1219,14 +1227,6 @@ class Params
         values[] = {0, 1};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 1;
-    };
-    class A3A_unlockRadioGPS : ExperimentalParams
-    {
-        title = $STR_params_unlockRadioGPS;
-        tooltip = $STR_params_unlockRadioGPS_desc;
-        values[] = {0, 1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
     };
     class limitWeaponsByUnitType : ExperimentalParams
     {
