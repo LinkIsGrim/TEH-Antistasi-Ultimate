@@ -57,6 +57,11 @@ if (isClass (configFile >> "CfgWeapons" >> _weapon)) then {
             };
         };
     };
+
+    if (_weapon == "Rifles" and _unit == player and TEH_civStart == 0 and TEH_onlyRandom == 1 and A3A_hasCUP) then {
+        //is not a no pistol / no weapons start or something is unlocked already
+        _pool = _pool + TEH_randomRifle;
+    };
     _weapon = selectRandomWeighted _pool;
 };
 
@@ -74,6 +79,12 @@ if ("GrenadeLaunchers" in _categories && {"Rifles" in _categories} ) then {
 
 if !(_weapon in (weapons _unit)) then { _unit addWeapon _weapon };
 private _magazine = if (_weaponData isEqualType [] && {!isNil {_weaponData select 4}}) then { _weaponData select 4 select 0 } else { selectRandom ((A3A_rebelGear get "Magazines") get _weapon) };
+
+
+if (isNil "_magazine") then {
+    _magazine = selectRandom (compatibleMagazines _weapon);
+};
+
 if (!isNil "_magazine" && {!("Disposable" in _categories)}) then {
     private _magweight = 5 max getNumber (configFile >> "CfgMagazines" >> _magazine >> "mass");
     _unit addWeaponItem [_weapon, _magazine];

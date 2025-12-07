@@ -479,15 +479,6 @@ class Params
         texts[] = {"1","2","3","4","5","6"};
         default = 3;
     };
-    class pistolStart : RebelBalanceParams
-    {
-        title = $STR_params_pistolStart;
-        values[] = {0, 1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
-        lockOnSave = 1;
-        lockInGame = 1;
-    };
     class startWithLongRangeRadio: RebelBalanceParams
     {
         attr[] = {"server"};
@@ -620,6 +611,22 @@ class Params
         texts[] = {"2", "4", "6", "8", "10", "12", "14", "16"};
         default = 8;
     };
+	class distanceMission: RebelBalanceParams
+    {
+        title = $STR_params_distanceMission;
+        values[] = {2000,3000,4000,6000,8000,10000,12000};
+        texts[] = {"2000","3000","4000","6000","8000","10000","12000"};
+        default = 2000;
+    };
+	
+	class TEH_distanceMissionTier: RebelBalanceParams
+    {
+        title = "Mission Distance increase per War Level";
+        values[] = {0,500,1000,2000};
+        texts[] = {"Not applied","500","1000","2000"};
+        default = 1000;
+    };
+	
     class AIBalanceParamsSpacer : AIParamsSpacer
     {
         type = "AIBalance";
@@ -658,21 +665,6 @@ class Params
         default = 12;
         lockInGame = 1;
     };
-	class TEH_sendCombatRecons: AIBalanceParams
-    {
-        attr[] = {"server"};
-        title = "Enemies send combat recon squads to the nearby rebel bases";
-        values[] = {1,0};
-        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
-        default = 1;
-    };
-    class enablePunishments: AIBalanceParams
-    {
-        title = $STR_params_enablePunishments;
-        values[] = {1,0};
-        texts[] = {$STR_params_afk_enabled, $STR_params_afk_disabled};
-        default = 1;
-    };
     class A3A_enemyResponseTime: AIBalanceParams
     {
         attr[] = {"server"};
@@ -710,37 +702,6 @@ class Params
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.45", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
         default = 45;
     };
-    class napalmEnabled: AIBalanceParams
-    {
-        title = $STR_params_napalmEnabled;
-        values[] = {0,1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        default = 1;
-    };
-    class allowUnfairSupports: AIBalanceParams
-    {
-        attr[] = {"server"};
-        title = $STR_params_allowUnfairSupports;
-        values[] = {0,1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
-    };
-    class allowFuturisticSupports: AIBalanceParams
-    {
-        attr[] = {"server"};
-        title = $STR_params_allowFuturisticSupports;
-        values[] = {0,1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
-    };
-    class allowFuturisticUnfairSupports: AIBalanceParams
-    {
-        attr[] = {"server"};
-        title = $STR_params_allowFuturisticUnfairSupports;
-        values[] = {0,1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
-    };
     class A3A_UAVSpawnChance: AIBalanceParams
     {
         title = $STR_params_UAVSpawnChance;
@@ -749,22 +710,105 @@ class Params
         texts[] = {"0", "10%", "20%", "30%", "50%", "100%", "200%"};
         default = 0.2;
     };
-    class distanceMission: AIBalanceParams
+	
+	class TEHChallengesParamsSpacer : AIParamsSpacer
     {
-        title = $STR_params_distanceMission;
-        values[] = {2000,3000,4000,6000,8000,10000,12000};
-        texts[] = {"2000","3000","4000","6000","8000","10000","12000"};
-        default = 2000;
+        type = "Challenges";
+    };
+    class TEHChallengesParams : AIParams
+    {
+        type = "Challenges";
+        title = "OPTIONAL CHALLENGES";
+        values[] = {""};
+        texts[] = {""};
+        default = "";
+    };
+	class TEH_sendCombatRecons: TEHChallengesParams
+    {
+        attr[] = {"server"};
+        title = "Enemies send combat recon squads to the nearby rebel bases";
+        values[] = {1,0};
+        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
+        default = 1;
     };
 	
-	class TEH_distanceMissionTier: AIBalanceParams
+	class TEH_outpostMines: TEHChallengesParams
     {
-        title = "Mission Distance increase per War Level";
-        values[] = {0,500,1000,2000};
-        texts[] = {"Not applied","500","1000","2000"};
-        default = 1000;
+        attr[] = {"server"};
+        title = "Enemy outposts are protected by AT mines";
+		tooltip = "Enemy port and outposts will randomly spawn antitank mines around the flag on each marker activation.";
+        values[] = {0,15,25,50};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, "15 mines", "25 mines", "50 mines"};
+        default = 25;
     };
-
+	
+	class TEH_onlyRandom: TEHChallengesParams
+    {
+        attr[] = {"server"};
+        title = "Arsenal can only hold unlocked primary weapons and handguns";
+		tooltip = "Weapons can be unlocked only by finding weapon cache Intel. Looted weapons are instantly sold upon reaching the arsenal (500 per primary, 150 per handgun). Other item types are stored as usual.";
+        values[] = {1,0};
+        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
+        default = 0;
+    };
+	
+	class TEH_civStart: TEHChallengesParams
+    {
+        attr[] = {"server"};
+        title = "Limit starting weapons";
+        values[] = {0,2,3};
+        texts[] = {"No limits", "Only handguns", "No starting weapons"};
+        default = 0;
+    };
+	
+	class TEH_spawnSwat: TEHChallengesParams
+    {
+        attr[] = {"server"};
+        title = "Spawn SWAT teams to help police";
+		tooltip = "Killing a policeman can trigger a SWAT operation - enemies will send a Gendarmerie van full of angry cops";
+        values[] = {1,0};
+        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
+        default = 1;
+    };
+	class enablePunishments: TEHChallengesParams
+    {
+        title = $STR_params_enablePunishments;
+        values[] = {1,0};
+        texts[] = {$STR_params_afk_enabled, $STR_params_afk_disabled};
+        default = 1;
+    };
+    class napalmEnabled: TEHChallengesParams
+    {
+        title = $STR_params_napalmEnabled;
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 1;
+    };
+    class allowUnfairSupports: TEHChallengesParams
+    {
+        attr[] = {"server"};
+        title = $STR_params_allowUnfairSupports;
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+    };
+    class allowFuturisticSupports: TEHChallengesParams
+    {
+        attr[] = {"server"};
+        title = $STR_params_allowFuturisticSupports;
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+    };
+    class allowFuturisticUnfairSupports: TEHChallengesParams
+    {
+        attr[] = {"server"};
+        title = $STR_params_allowFuturisticUnfairSupports;
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+    };
+	
     class MiscBalanceParamsSpacer : AIParamsSpacer
     {
         type = "MiscBalance";

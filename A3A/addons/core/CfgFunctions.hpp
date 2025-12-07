@@ -564,6 +564,7 @@ class CfgFunctions
             class reDressFaction {};
             class reinfPlayer {};
             class spawnHCGroup {};
+            class spawnSwat {};
             class vehiclePrice {};
             class vehStats {};
         };

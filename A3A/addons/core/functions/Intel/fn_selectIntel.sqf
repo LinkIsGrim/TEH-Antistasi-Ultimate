@@ -72,6 +72,7 @@ private _fnc_addWeapon = {
     private _notYetUnlocked = allWeapons - unlockedWeapons;
     private _newWeapon = selectRandom _notYetUnlocked;
     private _magazine = selectRandom compatibleMagazines _newWeapon;
+	private _ammo = getText(configFile >> "CfgMagazines" >> _magazine >> "ammo");
 
     private _quantity = [
         [A3A_guestItemLimit, (50 - A3A_guestItemLimit) / 2, 50], // base QTYs on guestItemLimit for consistency with other arsenal functionality when unlocks disabled
@@ -87,7 +88,13 @@ private _fnc_addWeapon = {
     [
         _magazine call jn_fnc_arsenal_itemType,
         _magazine,
-        _quantity * 6 * getNumber (configFile >> "CfgMagazines" >> _magazine >> "count")
+        ceil ( 1500 / getNumber (configFile >> "CfgMagazines" >> _magazine >> "count"))
+    ] call jn_fnc_arsenal_addItem;
+	
+	[
+        28,
+        _ammo,
+        1500
     ] call jn_fnc_arsenal_addItem;
 
     private _return = [

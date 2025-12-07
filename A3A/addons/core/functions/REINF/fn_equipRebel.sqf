@@ -138,7 +138,7 @@ private _fnc_addPrimary = {
         default { 50 };
     };
     
-    [_unit, _weaponType, _totalMagWeight] call A3A_fnc_randomWeapon;
+	[_unit, _weaponType, _totalMagWeight] call A3A_fnc_randomWeapon;
 };
 
 private _fnc_addSecondary = {
@@ -221,14 +221,11 @@ private _fnc_addClassEquip = {
                 if !(isNil "_mineDetector") then { _unit addItem _mineDetector };
             };
 
-            private _hasToolkit = (_items arrayIntersect (A3A_rebelGear get "Toolkits")) isNotEqualTo [];
-            if (!_hasToolkit) then {
-                private _toolkit = selectRandomWeighted (A3A_rebelGear get "Toolkits");
-                if !(isNil "_toolkit") then { _unit addItem _toolkit };
-            };
+            _unit addItem "ACE_DefusalKit";
 
-            [_unit, "Grenades", 2] call _fnc_addGrenades;
-            [_unit, 50] call _fnc_addCharges;
+            _unit addItemToBackpack "IEDLandBig_Remote_Mag";
+            _unit addItemToBackpack "IEDLandBig_Remote_Mag";
+            _unit addItemToBackpack "IEDLandBig_Remote_Mag";
         };
         case ("Engineer"): {
             [_unit, "SmokeGrenades", 3] call _fnc_addGrenades;

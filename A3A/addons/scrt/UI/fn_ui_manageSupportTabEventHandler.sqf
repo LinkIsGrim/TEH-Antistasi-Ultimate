@@ -73,7 +73,8 @@ if(_mode isEqualTo "ADD") then {
                     };
                 };
             } else {
-                if !(supportType in ["SMOKE", "FLARE", "MORTAR", "ARTILLERY", "MLRS", "RECON_UAV"]) then {
+                if !(supportType in ["SMOKE", "FLARE", "MORTAR", "ARTILLERY", "MLRS"]) then {
+
                     if (supportType == "PARADROP") then {
                         private _nearMarker = [forbiddenParadropZones, _pos] call BIS_fnc_nearestPosition;
                         if ((getMarkerPos _nearMarker) distance2D _pos < 500) then {
@@ -110,6 +111,10 @@ if(_mode isEqualTo "ADD") then {
                         case ("PARADROP"): {
                             supportMarkerDestination setMarkerColorLocal "ColorGrey";
                             supportMarkerDestination setMarkerTextLocal (localize "STR_support_paradrop_exit");
+                        };
+                        case ("RECON_UAV"): {
+                            supportMarkerDestination setMarkerColorLocal "ColorYellow";
+                            supportMarkerDestination setMarkerTextLocal "Exit";
                         };
                         case ("LOOTHELI"): {
                             supportMarkerDestination setMarkerColorLocal "colorCivilian";
