@@ -74,6 +74,7 @@ if(_mode isEqualTo "ADD") then {
                 };
             } else {
                 if !(supportType in ["SMOKE", "FLARE", "MORTAR", "ARTILLERY", "MLRS"]) then {
+
                     if (supportType == "PARADROP") then {
                         private _nearMarker = [forbiddenParadropZones, _pos] call BIS_fnc_nearestPosition;
                         if ((getMarkerPos _nearMarker) distance2D _pos < 500) then {
