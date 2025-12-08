@@ -5,7 +5,7 @@ private _side = _unit getVariable "originalSide";
 // Only occupiers/invaders get SWAT-style response
 if !(_side in [Occupants, Invaders]) exitWith {};
 
-private _incidentPos = getPosWorld _unit;
+private _incidentPos = getPosATL _unit;
 
 // War tier for scaling team size
 private _warTier = missionNamespace getVariable ["tierWar", 0];
@@ -47,7 +47,11 @@ private _gruntCount = 4 + _warTier;
 if (_gruntCount > 10) then { _gruntCount = 10; };
 
 for "_i" from 1 to _gruntCount do {
-	_grp createUnit ["B_GEN_Soldier_F", _spawnPos, [], 0, "NONE"];
+    private _u = _grp createUnit ["B_GEN_Soldier_F", _spawnPos, [], 0, "NONE"];
+
+    // Override headgear
+    removeHeadgear _u;
+    _u addHeadgear "H_PASGT_basic_blue_F";
 };
 
 // Initial group behaviour while mounted
