@@ -1683,7 +1683,6 @@ switch _mode do {
 		_cursel = lbcursel _ctrlList;
 		_dataStr = if _type then{_ctrlList lnbData [_l,0]}else{_ctrlList lbdata _l};
 		_data = call compile _dataStr;
-		diag_log _data;
 		_item = _data select 0;
 
 		_amount = _data select 1;

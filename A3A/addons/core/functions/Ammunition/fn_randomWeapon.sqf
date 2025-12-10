@@ -35,6 +35,8 @@ params ["_unit", "_weaponData", ["_totalMagWeight", 50]];
 call A3A_fnc_fetchRebelGear;        // Send current version of rebelGear from server if we're out of date
 
 private _weapon = if (_weaponData isEqualType []) then { _weaponData select 0} else { _weaponData };
+if (isNil "_weapon") exitWith {};
+
 private ["_weaponType", "_isPrimary"];
 if (isClass (configFile >> "CfgWeapons" >> _weapon)) then {
     _weaponType = ([_weapon] call A3A_fnc_equipmentClassToCategories) select 0;
@@ -64,8 +66,6 @@ if (isClass (configFile >> "CfgWeapons" >> _weapon)) then {
     };
     _weapon = selectRandomWeighted _pool;
 };
-
-if (isNil "_weapon") exitWith {};
 
 private _categories = _weapon call A3A_fnc_equipmentClassToCategories;
 if ("GrenadeLaunchers" in _categories && {"Rifles" in _categories} ) then {
