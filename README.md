@@ -60,7 +60,7 @@
 	- Rally point cost is reduced to 25 per charge.
 	- [Experimental] Partial squad fast travel (statics and vehicles without driver stay behind)
 - **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod
-	- Uses ACE action on the vehicles to gather loot in 5-5000m radius (depends on enemy proximity, distance to nearest enemy - 50m)
+	- Uses ACE action on the vehicles to gather loot in 5-5000m radius (depends on enemy proximity, distance to nearest enemy minus 50m)
 	- Allows several players to loot the same location, and into the same vehicle to save time.
 	- Properly handles compacting CUP launchers into storage mode.
 	- 1% chance of Jack-in-the-box
