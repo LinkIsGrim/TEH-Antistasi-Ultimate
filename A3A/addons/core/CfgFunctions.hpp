@@ -155,10 +155,12 @@ class CfgFunctions
             class localizar {};
             class lockStatic {};
             class logPerformance {};
+            class manageFlagAccess {};
             class markerChange {};
             class moveHQ {};
             class mrkUpdate {};
             class mrkWIN {};
+            class moveOutCrew {};
             class numericRank {};
             class onHeadlessClientDisconnect {};
             class onPlayerDisconnect {};
@@ -177,7 +179,6 @@ class CfgFunctions
             class returnMuzzle {};
             class revealToPlayer {};
             class scheduler {};
-            class moveOutCrew {};
             class sellVehicle {};
             class setMarkerAlphaForSide {};
             class setPlaneLoadout {};
@@ -823,6 +824,7 @@ class CfgFunctions
             class initMovableObject {};
             class initObject {};
             class initObjectRemote {};
+            class remainingAmmo {};
             class remainingFuel {};
             class rotateItem {};
         };

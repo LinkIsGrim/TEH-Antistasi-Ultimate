@@ -52,7 +52,7 @@ if (A3A_antistasiReviveEnabled == 0) exitWith {_damage};
 if (A3A_hasACEMedical) exitWith {};
 
 // Don't bother with the unconscious nonsense, based on param values
-if (unconChanceReb > random 10) exitWith {};
+if (unconChanceReb < random 10) exitWith {};
 
 
 

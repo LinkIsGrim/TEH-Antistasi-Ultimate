@@ -1,6 +1,5 @@
-#include "\A3\ui_f\hpp\defineDIKCodes.inc"
-#include "\A3\Ui_f\hpp\defineResinclDesign.inc"
 #include "tehBulletPile.inc"
+#include "..\defineCommon.inc"
 
 //items that need to be removed from arsenal
 _wasEquipped = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];

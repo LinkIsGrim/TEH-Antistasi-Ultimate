@@ -14,6 +14,16 @@ params ["_crate",
 
 Debug("Lootcrate called");
 
+if (!isServer && hasInterface) exitWith {
+	Error("fillLootCrate was not called on the server? Recalling on server");
+	_this remoteExec ["A3A_fnc_fillLootCrate", 2];
+};
+
+if (isNil "A3U_forbiddenItems") then {
+	Error("A3U_forbiddenItems is nil, attempting to recreate the value");
+	call A3U_fnc_grabForbiddenItems;
+};
+
 private _unlocks = (unlockedHeadgear + unlockedVests + unlockedNVGs + unlockedOptics + unlockedItems + unlockedWeapons + unlockedBackpacks + unlockedMagazines);
 private _available = objNull;
 private _amount = objNull;
