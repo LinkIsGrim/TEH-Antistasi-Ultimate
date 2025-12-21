@@ -14,6 +14,8 @@
 		Array of categories for item
 **/
 #include "..\..\script_component.hpp"
+#include "\A3\Ui_f\hpp\defineResinclDesign.inc"
+
 FIX_LINE_NUMBERS()
 params ["_className", ["_noPublish", false], ["_dontAddToArsenal", false]];
 
@@ -23,6 +25,12 @@ if (!_dontAddToArsenal) then {
 	//Add the equipment to the arsenal.
 	private _arsenalTab = _className call jn_fnc_arsenal_itemType;
 	[_arsenalTab,_className,-1] call jn_fnc_arsenal_addItem;
+
+	if (_arsenalTab == IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL) then {
+		private _ammo = getText(configFile >> "cfgMagazines" >> _className >> "ammo");
+		[_arsenalTab+1,_ammo,-1] call jn_fnc_arsenal_addItem;
+	};
+
 	if (!isNil "serverInitDone") then {ServerDebug_1("Item unlocked: %1", _className)};
 };
 

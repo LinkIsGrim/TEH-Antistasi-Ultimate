@@ -26,15 +26,9 @@ private _bullets = objNull;
 private _count = objNull;
 {
 	_type = _x select 0;
+	_count = _x select 1;
 	_magConfig = configFile >> "CfgMagazines" >> _type;
-	_capacity = 1 max getNumber (_magConfig >> "count");			// Avoid div-by-zero on broken/missing config
-
-	// control unlocking missile launcher magazines
-	// the capacity check is an optimisation to bypass the config check. ~18% perf gain on the loop.
-	if (_capacity != 1 || allowGuidedLaunchers isEqualTo 1 ||
-		{!(getText (_magConfig >> "ammo") isKindOf "MissileBase")}) then {
-		_bullets = _x select 1;
-		_count = floor (_bullets/_capacity);
+	if (!(getText (_magConfig >> "ammo") isKindOf "MissileBase") || (allowGuidedLaunchers isEqualTo 1)) then {
 		_magazine pushBack [_type,_count];
 	};
 } forEach _magazines;
@@ -81,7 +75,7 @@ private _categoriesToPublish = createHashMap;
 		//Unlock ammo for guns, if appropriate.
 		if (unlockedUnlimitedAmmo == 1 && ("Weapons" in _categories)) then {
 			private _weaponMagazine = (getArray (configFile / "CfgWeapons" / _item / "magazines") select 0);
-			if (!isNil "_weaponMagazine") then {
+			if (!isNil "_weaponMagazine" && _weaponMagazine isNotEqualTo "CBA_FakeLauncherMagazine") then {
 				if (not(_weaponMagazine in unlockedMagazines)) then {
 					_updated = format ["%1%2<br/>",_updated,getText (configFile >> "CfgMagazines" >> _weaponMagazine >> "displayName")];
 					private _categories = [_weaponMagazine, true] call A3A_fnc_unlockEquipment;
