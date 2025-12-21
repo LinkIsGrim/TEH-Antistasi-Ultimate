@@ -3195,7 +3195,9 @@ switch _mode do {
 
 	case "buttonSetLoadoutMenu": {
 		_display = _this select 0;
-		private _reverse = (reverseCustomLoadoutsLock == 1);
+		//FIXME: prevent inverting on save
+		//private _reverse = reverseCustomLoadoutsLock;
+		private _reverse = false;
 		private _loadout = getUnitLoadout player;
 		
 		{
@@ -3203,13 +3205,14 @@ switch _mode do {
 			private _control = _display displayCtrl (IDC_RSCDISPLAYARSENAL_TAB + _x);
 			private _item = _loadout select _forEachIndex;
 			private _override = _control getVariable ["OverrideTab", false];
+			private _setRandom = (_override == _reverse);
 
 			switch (_forEachIndex) do {
 				case (0); // primary weapon
 				case (1); // secondary weapon
 				case (2); // handgun
 				case (8): { // binoculars
-					if !(_override xor _reverse) exitWith { _loadout set [_forEachIndex, nil] };
+					if (_setRandom) exitWith { _loadout set [_forEachIndex, nil] };
 					{
 						private _controlRight = _display displayCtrl (IDC_RSCDISPLAYARSENAL_TAB + _x);
 						if !(_ctrlIDC in (_controlRight getVariable ["OverrideIDCs", []])) then { _item set [_forEachIndex + 1, nil] };
@@ -3218,7 +3221,7 @@ switch _mode do {
 				case (3); // uniform
 				case (4); // vest
 				case (5): { // backpack
-					if !(_override xor _reverse) exitWith { _loadout set [_forEachIndex, nil] };
+					if (_setRandom) exitWith { _loadout set [_forEachIndex, nil] };
 					if !(_item isEqualType []) exitWith {};
 					/*{
 						private _controlRight = _display displayCtrl (IDC_RSCDISPLAYARSENAL_TAB + _x);
@@ -3227,7 +3230,7 @@ switch _mode do {
 				};
 				case (6); // headgear
 				case (7): { // goggles
-					if !(_override xor _reverse) then { _loadout set [_forEachIndex, nil]; };
+					if (_setRandom) then { _loadout set [_forEachIndex, nil]; };
 				};
 			};
 		} forEach IDCS_LOADOUT;
@@ -3236,7 +3239,7 @@ switch _mode do {
 			private _control = _display displayCtrl (IDC_RSCDISPLAYARSENAL_TAB + _x);
 			private _item = _loadout select 9;
 			private _override = _control getVariable ["OverrideTab", false];
-			if !(_override xor _reverse) then { _item set [_forEachIndex, nil] };
+			if (_override == _reverse) then { _item set [_forEachIndex, nil] };
 		} forEach IDCS_ASSIGNED_ITEMS;
 
 		rebelLoadouts deleteAt currentRebelLoadout;
