@@ -138,7 +138,9 @@ private _fnc_addPrimary = {
         default { 50 };
     };
     
-	[_unit, _weaponType, _totalMagWeight] call A3A_fnc_randomWeapon;
+    if (isNil "_weaponType" || {_weaponType isEqualTo []}) exitWith {};
+    [_unit, _weaponType, _totalMagWeight] call A3A_fnc_randomWeapon;
+
 };
 
 private _fnc_addSecondary = {
@@ -165,7 +167,7 @@ private _fnc_addSecondary = {
         _overrideClass;
     };
 
-    if (isNil "_weapon") exitWith {};
+    if (isNil "_weapon" || {_weapon isEqualTo []}) exitWith {};
     [_unit, _weapon, 100] call A3A_fnc_randomWeapon;
 };
 
@@ -173,6 +175,8 @@ private _fnc_addHandgun = {
     params ["_unit", "_overrideClass"];
 
     private _weaponType = if !(isNil "_overrideClass") then { _overrideClass } else { "Handguns" };
+    
+    if (isNil "_weaponType" || {_weaponType isEqualTo []}) exitWith {};
     [_unit, _weaponType, 10] call A3A_fnc_randomWeapon;
 };
 
@@ -181,6 +185,7 @@ private _fnc_addBinoculars = {
 
     if (isNil "_overrideClass" && (_typeTag isNotEqualTo "SquadLeader")) exitWith {};
     private _binoType = if !(isNil "_overrideClass") then { _overrideClass } else { "Binocular" };
+    if (_binoType isEqualTo []) exitWith {};
     [_unit, _binoType, 5] call A3A_fnc_randomWeapon;
 };
 

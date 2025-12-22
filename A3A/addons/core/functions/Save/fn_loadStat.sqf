@@ -456,6 +456,7 @@ if (_varName in specialVarLoads) then {
                 };
             };
             publicVariable "staticsToSave";
+            publicVariable "A3A_buildingsToSave";
         };
 
         case 'tasks': {

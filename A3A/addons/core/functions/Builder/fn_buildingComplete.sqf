@@ -80,6 +80,7 @@ if (_building isKindOf "Land_Scaffolding_New_F") then {
 _building setVariable ["A3A_building", true, true];            // Used to identify removable buildings
 
 A3A_buildingsToSave pushBack _building; ///could move terrain smoothing here
+publicVariable "A3A_buildingsToSave";
 
 // Allowing flagpole construction is probably not a good idea due to how markerChange handles flags atm
 if (_className isEqualTo (A3A_faction_reb get "flag")) then {
