@@ -3199,9 +3199,6 @@ switch _mode do {
 
 	case "buttonSetLoadoutMenu": {
 		_display = _this select 0;
-		//FIXME: prevent inverting on save
-		//private _reverse = reverseCustomLoadoutsLock;
-		private _reverse = false;
 		private _loadout = getUnitLoadout player;
 		
 		{
@@ -3209,7 +3206,7 @@ switch _mode do {
 			private _control = _display displayCtrl (IDC_RSCDISPLAYARSENAL_TAB + _x);
 			private _item = _loadout select _forEachIndex;
 			private _override = _control getVariable ["OverrideTab", false];
-			private _setRandom = (_override == _reverse);
+			private _setRandom = !_override;
 
 			switch (_forEachIndex) do {
 				case (0); // primary weapon

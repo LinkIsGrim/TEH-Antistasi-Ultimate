@@ -317,7 +317,6 @@ switch _typeX do
         private _cond = "(_target getVariable ['ownerSide', teamPlayer] == teamPlayer) and (isNull attachedTo _target) and (_this call A3A_fnc_isMember) and ";
         _flag addAction [localize "STR_antistasi_actions_move_vehicle_allow_ai", A3A_fnc_unlockStatic, nil, 1, false, true, "", _cond+"!isNil {_target getVariable 'lockedForAI'}", 4];
         _flag addAction [localize "STR_antistasi_actions_move_vehicle_prevent_ai", A3A_fnc_lockStatic, nil, 1, false, true, "", _cond+"isNil {_target getVariable 'lockedForAI'}", 4];
-        _flag addAction [localize "STR_antistasi_actions_move_this_asset", A3A_fnc_moveHQObject, nil, 1.5, false, true, "",  _cond+"(count crew _target == 0)", 4];
     };
     case "rivals_quest":
     {

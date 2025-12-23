@@ -1312,14 +1312,6 @@ class Params
         texts[] = {"0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"};
         default = 10;
     };
-	class reverseCustomLoadoutsLock : ExperimentalParams
-    {
-        title = "Reverse custom AI loadouts lock";
-        tooltip = "Current implementation requires you to double-click items to enforce their usage. This toggle will reverse this logic - you have to double-click items you want to leave randomized";
-        values[] = {0, 1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
-	};
     class A3U_enableVehiclesForAI : ExperimentalParams
     {
         title = $STR_params_enableVehiclesForAI;

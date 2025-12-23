@@ -39,9 +39,10 @@
 	- Health pool resets to 51% damage on hit if vehicle is not destroyed, while keeping components broken.
 	- Vehicle can be completely destroyed completely only with a high damaging shell or explosion (i.e. covering 49% of a health pool in one shot).
 	- Only works on vehicles taken from the garage.
-- **Second Chance**: when "Allow players to take control of AI units while unconscious" parameter (Experimental tab) is set to "Yes", on being shot down you automatically take control of nearby AI unit to save yourself (once per knockdown)
+- **Second Chance**: when "Allow players to take control of AI units while unconscious" parameter is set to "Yes", on being shot down you automatically take control of nearby AI unit to save yourself (once per knockdown)
 	- Skipped if the wound is fatal
 	- Known issue: Original body is invulnerable  while controlling an AI (but still bleeds out and can drown, AI control ends shortly before death)
+	- Known issue: Return to original body may break if additional out-of-body experience is involved (e.g. Zeus).
 	- Timeout is postponed until owner is no longer incapacitated.
 	- If AI is knocked down, control is lost, no additional attempts provided.
 	- AI doesn't have to be in your squad, nearby infantry can help too (200m)
@@ -106,7 +107,7 @@
 - **Global Mobilization**:
 	- Epoch restricted CUP & Vanilla weapons list to appear in the loot
 	- German names for the NPC
-	- Deutsche Mark (DM) as currently on Weferlingen
+	- Deutsche Mark (DM) as currency on Weferlingen
 	- Known issue: Trader will still offer all the futuristic weapons and items
 - **Mods support**:
 	- **[GX-Drones](https://steamcommunity.com/sharedfiles/filedetails/?id=3460981677)** - a variety of deployable and 40mm UGL launched drones. If new game is started with the mod installed, some drones are added to the arsenal automatically. Otherwise some are available at the trader under "GX-Drones"
