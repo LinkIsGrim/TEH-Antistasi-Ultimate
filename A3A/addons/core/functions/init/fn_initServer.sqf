@@ -367,6 +367,9 @@ addMissionEventHandler ["EntityKilled", {
 			"Remove Wreck",                             // Action title
 			{
 				params ["_target", "_caller"];
+                if ([getPosATL player] call A3A_fnc_enemyNearCheck) exitWith {
+	                ["Wreck Removal Failed", "Can't remove this wreck when there are enemies nearby"] call SCRT_fnc_misc_deniedHint;
+                };
 				[_caller,_target] spawn A3A_fnc_sellVehicle;
 			},
 			nil,                                        // Arguments

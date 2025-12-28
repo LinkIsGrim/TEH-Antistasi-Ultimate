@@ -83,7 +83,8 @@ private _storeLootSellVehicle = [
 	"LootVehicleSellAction", "Sell Vehicle", "",
 	{
 		params ["_target", "_player"];
-		
+		if ([getPosATL _player] call A3A_fnc_enemyNearCheck) exitWith {
+			["Sell Vehicle", "Can't sell this vehicle when there are enemies nearby"] call SCRT_fnc_misc_deniedHint;};
 		[_player,_target] spawn A3A_fnc_sellVehicle;
 	},
 	{
