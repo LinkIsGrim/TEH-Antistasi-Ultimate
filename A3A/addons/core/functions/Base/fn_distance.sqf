@@ -1,3 +1,31 @@
+/*
+Author: Barbolani, Bob-Murphy, Wurzel0701, Triada, TEH Megamin
+
+Description:
+    Handles the spawned state of locations, scheduling spawning,
+    handling simulation state of garrisons, and marking for de-spawning
+    (de-spawning handled in the spawning code).
+
+Arguments: <nil>
+Return Value: <nil>
+Scope: Server
+Environment: Scheduled
+Public: No
+Dependencies:
+    Occupants, Invaders, teamPlayer, markersX, forcedSpawn, spawner,
+    controlsX, airportsX, milbases, resourcesX, factories, outposts, seports,
+    A3A_fnc_createAICities, A3A_fnc_createAIcontrols,
+    A3A_fnc_createAIAirplane, A3A_fnc_createAIresources, A3A_fnc_createAIOutposts,
+    A3A_fnc_createSDKGarrisons
+
+Example: [] spawn A3A_fnc_distance;
+*/
+
+/* -------------------------------------------------------------------------- */
+/*                                   defines                                  */
+/* -------------------------------------------------------------------------- */
+
+// the spawn units array will update ones at this count cycles
 /* -------------------------------------------------------------------------- */
 /*                                   defines                                  */
 /* -------------------------------------------------------------------------- */
@@ -6,13 +34,17 @@
 #define DISABLED 1
 #define DESPAWN 2
 
+private _teamplayer = [];
+private _occupants = [];
+private _invaders = [];
 private _players = [];
+
 /* -------------------------------------------------------------------------- */
 /*                             unified marker processor                       */
 /* -------------------------------------------------------------------------- */
 
 private _processMarker = {
-    params ["_marker","_position","_forceAnchor"];
+    params ["_marker","_forceAnchor"];
 
     // resolve marker side
     private _side = sidesX getVariable [_marker, sideUnknown];
@@ -52,36 +84,17 @@ private _processMarker = {
     };
 
     if (_anchored == false) then {
-        private _objs = nearestObjects [_position, ["Land","Air","Sea"], distanceSPWN, true];
         /* ---------------------- compute hostile sides for this marker ---------------------- */
-        private _hostileSides = [];
+        private _hostileSides = [[],[]];
         switch (_side) do {
-            case Occupants:    { _hostileSides = [teamPlayer, Invaders]; };   // Occupant markers consider players + invaders hostile
-            case Invaders:     { _hostileSides = [teamPlayer, Occupants]; };  // Invader markers consider players + occupants hostile
-            case teamPlayer:   { _hostileSides = [Occupants, Invaders]; };    // Player markers consider both NPC factions hostile
+            case Occupants:    { _hostileSides = [_teamplayer, _invaders]; };   // Occupant markers consider players + invaders hostile
+            case Invaders:     { _hostileSides = [_teamplayer, _occupants]; };  // Invader markers consider players + occupants hostile
+            case teamPlayer:   { _hostileSides = [_occupants, _invaders]; };    // Player markers consider both NPC factions hostile
         };
 
-        /* ---------------------- nearestObjects sequential scan ---------------------- */
-        // get everything inside distanceSPWN (user requested "all" types for now)
-        
-        {
-            private _ent = _x;
-            private _oside = _x getVariable ["originalside", (side _x)];
-                    
-            if ((_side != teamPlayer) && (_oside == _side)) then {
-                //continue;
-            } else {
-                // any alive hostile
-                if (alive _ent && ((side _ent) in _hostileSides)) then { _anchored = true };
-                
-                // any player corpses or rebel cars
-                if ((_side != teamPlayer) && (_oside == teamPlayer) && (_ent isKindOf "Man" or canMove _ent)) then { _anchored = true };
-                
-                //that leaves an edgecase when the car is stolen and then player is killed in it but I don't want to check crews.
-            };
-            if (_anchored) exitWith {};
-
-        } forEach _objs;
+        _anchored = ( _hostileSides#0 inAreaArray [_marker, distanceSPWN,distanceSPWN] isNotEqualTo [] )
+                 || ( _hostileSides#1 inAreaArray [_marker, distanceSPWN,distanceSPWN] isNotEqualTo [] )
+                 || ( _marker in forcedSpawn );
     };
 
     /* ---------------------- state machine (ENABLED / DISABLED / DESPAWN) ---------------------- */
@@ -89,22 +102,15 @@ private _processMarker = {
     switch (_state) do {
         case ENABLED: {
             // if any hostile or marker forced to spawn -> keep enabled
-            if (_anchored || {_marker in forcedSpawn}) exitWith {};
+            if (_anchored) exitWith {};
             // otherwise disable
             spawner setVariable [_marker, DISABLED, true];
         };
 
         case DISABLED: {
             // presence of hostile or forced spawn -> enable
-            if (_anchored || {_marker in forcedSpawn}) then {
+            if (_anchored) then {
                 spawner setVariable [_marker, ENABLED, true];
-
-                // enable simulation for units tied to this marker
-                {
-                    if ((_x getVariable ["markerX", ""] == _marker) && { vehicle _x == _x }) then {
-                        _x enableSimulationGlobal true;
-                    };
-                } forEach allUnits;
             } else {
                 // no hostiles -> move to DESPAWN state
                 spawner setVariable [_marker, DESPAWN, true];
@@ -113,7 +119,7 @@ private _processMarker = {
 
         case DESPAWN: {
             // remain despawned unless hostile present or forced spawn
-            if (!_anchored && {!(_marker in forcedSpawn)}) exitWith {};
+            if (!_anchored) exitWith {};
             // otherwise spawn (enable) and call spawn routines
             spawner setVariable [_marker, ENABLED, true];
 
@@ -182,14 +188,8 @@ private _processMarker = {
 };
 
 private _checkNearbyPlayers = {
-    params ["_mPos"];
-    private _playerFound = false;
-    {
-        private _veh = _x;
-        if ((_veh distance2D _mPos) < distanceSPWN) exitWith { _playerFound = true };
-    } forEach _players;
-
-    _playerFound;
+    params ["_mrkr"];
+    _players inAreaArray [_mrkr,distanceSPWN,distanceSPWN] isNotEqualTo [];
 };
 
 /* -------------------------------------------------------------------------- */
@@ -205,68 +205,47 @@ waitUntil { sleep 0.1; if !(isnil "theBoss") exitWith { true }; false };
 
 /* ------------------------------ endless cycle ----------------------------- */
 
-private _processableMarkers = markersX + milAdministrationsX;
-
-private _loopSleep          = 0.05;   // seconds: main loop pace
+private _loopSleep          = 0.05;   // seconds: main loop pace, for a 300 markers map it should take ~15 seconds.
 private _priorityInterval   = 1;      // seconds: how often we do near-vehicle pass
-
-// PRECOMPUTE STATIC MARKER DATA
-
-private _markerCount  = count _processableMarkers;
-private _markerPoses  = _processableMarkers apply { getMarkerPos _x };
-private _markerIndex  = -1;  // round-robin for background sweep
-private _lastPriority = 0;   // last time we ran the priority pass
+private _lastPriority = 0;            // last time we ran the priority pass
 
 // MAIN LOOP
 
 while { true } do {
     private _now = time;
 
-    // 1) Collect unique player vehicles (including players on foot as their own "vehicle")
-    private _playerList = allPlayers - entities "HeadlessClient_F";
-    _players = [];
+    // 1) Collect units
+    _occupants = units Occupants select { _x getVariable ["spawner", false] and _x == effectiveCommander vehicle _x };
+    _invaders = units Invaders select { _x getVariable ["spawner", false] and _x == effectiveCommander vehicle _x };
+    _teamplayer = units teamPlayer select { _x getVariable ["spawner", false] and _x == effectiveCommander vehicle _x };
+    _teamplayer append (vehicles select {_x getVariable "originalSide" == teamPlayer && alive _x});
+
+    private _markers = markersX + milAdministrationsX;
     {
-        private _veh = vehicle _x;
-        if (!isNull _veh && {alive _veh}) then {
-            if !(_veh in _players) then {
-                _players pushBack _veh;
-            };
+        private _marker = _x;
+
+        // 2) PRIORITY PASS (once per _priorityInterval seconds)
+        if ((_now - _lastPriority) > _priorityInterval) then {
+            _lastPriority = _now;
+
+            private _playerList = allPlayers - entities "HeadlessClient_F";
+            _players = [];
+            { _players pushBackUnique vehicle _x; } forEach _playerList;
+
+            // For each marker once per priority pass
+            {
+                // Skip markers already in ENABLED state (spawning/spawned)
+                if (spawner getVariable [_x, DESPAWN] == ENABLED) then { continue };
+
+                if ([_x] call _checkNearbyPlayers) then {
+                    [_x, true] call _processMarker;
+                };
+            } forEach (_markers);
         };
-    } forEach _playerList;
 
-    // 2) PRIORITY PASS (once per _priorityInterval seconds)
-    if ((_now - _lastPriority) > _priorityInterval) then {
-        _lastPriority = _now;
-
-        // For each marker once per priority pass
-        for "_i" from 0 to (_markerCount - 1) do {
-            private _marker = _processableMarkers select _i;
-
-            // Skip markers already in ENABLED state (spawning/spawned)
-            private _state = spawner getVariable [_marker, DESPAWN];
-            if (_state == ENABLED) then { continue };
-
-            private _mPos          = _markerPoses select _i;
-            private _forceAnchor = [_mPos] call _checkNearbyPlayers;
-
-            if (_forceAnchor) then {
-                // Unified processor decides spawn/despawn etc based on marker state/logic
-                [_marker, _mPos,_forceAnchor] call _processMarker;
-            };
-        };
-    };
-
-    // 3) BACKGROUND SWEEP – one marker per loop, with its own sleep pacing
-
-    _markerIndex = _markerIndex + 1;
-    if (_markerIndex >= _markerCount) then { _markerIndex = 0 };
-
-    private _bgMarker = _processableMarkers select _markerIndex;
-    private _bgPos    = _markerPoses select _markerIndex;
-    
-    private _forceAnchor = [_bgPos] call _checkNearbyPlayers;
-    [_bgMarker, _bgPos, _forceAnchor] call _processMarker;
-
-    // 4) Global loop sleep (this also spreads background sweep because we do 1 marker/loop)
-    sleep _loopSleep;
+        // 3) BACKGROUND SWEEP – one marker per loop, with its own sleep pacing
+        private _forceAnchor = [_marker] call _checkNearbyPlayers;
+        [_marker, _forceAnchor] call _processMarker;
+        sleep _loopSleep;
+    } forEach (_markers);
 };
