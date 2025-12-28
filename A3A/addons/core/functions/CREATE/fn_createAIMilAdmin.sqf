@@ -221,7 +221,7 @@ _groups pushBack _groupCollaborant;
 private _ammoBox = if (garrison getVariable [_marker + "_lootCD", 0] == 0) then {
 	private _ammoBoxPosition = _buildingPositions select (selectRandom _cratePositions);
 	_ammoBoxPosition = _ammoBoxPosition vectorAdd [0,0,1];
-	private _ammoBoxType = _faction get "equipmentBox";
+	private _ammoBoxType = "B_CargoNet_01_ammo_F";
 	private _ammoBox = createVehicle [_ammoBoxType, [0, 0, 0], [], 0, "CAN_COLLIDE"];
 	_ammoBox allowDamage false;
 	_ammoBox setPosATL _ammoBoxPosition;
@@ -238,8 +238,8 @@ private _ammoBox = if (garrison getVariable [_marker + "_lootCD", 0] == 0) then 
 	];
 
 	_crateContents call A3A_fnc_fillLootCrate;
-	[_ammoBox, nil, true] call A3A_Logistics_fnc_addLoadAction;
-	[_ammoBox] remoteExec ["SCRT_fnc_common_addActionMove", [teamPlayer, civilian], _ammoBox];
+	//[_ammoBox, nil, true] call A3A_Logistics_fnc_addLoadAction;
+	//[_ammoBox] remoteExec ["SCRT_fnc_common_addActionMove", [teamPlayer, civilian], _ammoBox];
 
 	sleep 2;
 	_ammoBox allowDamage true;
