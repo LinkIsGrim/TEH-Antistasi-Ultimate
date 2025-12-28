@@ -125,6 +125,29 @@ while {true} do
 		};
     };
 
+    //Snitching civilians
+    if (TEH_snitchingCivilians == 1) then {
+        private _potentialSnitches = units Civilian select {!isPlayer _x};
+        private _phonedList = [];
+        {
+            private _seenRebels = (_x nearTargets 100 select {_x#2 == teamPlayer});
+            {
+                _phonedList pushBackUnique _x#4;
+            } forEach _seenRebels;
+        } foreach _potentialSnitches;
+
+        
+        {
+            private _listener = _x;
+            {
+                _listener reveal [_x,4];
+            } forEach _phonedList;
+        } forEach ((units Occupants) select {_x getVariable ["unitPrefix", ""] isEqualTo "police"});
+        
+        diag_log "Snitching is complete";
+        diag_log _phonedList;
+    };
+
     sleep 60;
 };
 

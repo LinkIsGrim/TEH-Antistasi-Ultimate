@@ -770,6 +770,15 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
         default = 1;
     };
+	class TEH_snitchingCivilians: TEHChallengesParams
+    {
+        attr[] = {"server"};
+        title = "Civilians snitch armed rebels to the police";
+		tooltip = "If civilian recognize an armed rebel, they will call the police to last known location";
+        values[] = {1,0};
+        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
+        default = 1;
+    };
 	class enablePunishments: TEHChallengesParams
     {
         title = $STR_params_enablePunishments;

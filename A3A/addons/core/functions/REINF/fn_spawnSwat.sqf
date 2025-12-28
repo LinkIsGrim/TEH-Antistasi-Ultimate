@@ -39,8 +39,10 @@ private _veh = createVehicle [_vehClass, _spawnPos, [], 0, "NONE"];
 // Create SWAT group on same side as dead cop
 private _grp = createGroup _side;
 
+private _skill = (0.1 * A3A_enemySkillMul) + (0.07 * (1 max A3A_activePlayerCount^0.5)) + (0.01 * tierWar);
 // Commander first → becomes leader
 private _commander = _grp createUnit ["B_GEN_Commander_F", _spawnPos, [], 0, "NONE"];
+_commander setSkill _skill*1.1;
 
 // Group size: commander + N grunts (max 11 seats in van)
 private _gruntCount = 4 + _warTier;
@@ -52,6 +54,8 @@ for "_i" from 1 to _gruntCount do {
     // Override headgear
     removeHeadgear _u;
     _u addHeadgear "H_PASGT_basic_blue_F";
+
+    _u setSkill _skill*1.05;
 };
 
 // Initial group behaviour while mounted
@@ -99,6 +103,9 @@ _wp setWaypointFormation "COLUMN";
 			doGetOut _x;
 		};
 	} forEach units _grp;
+	
+	//turn off sirens
+	[_veh, 'CustomSoundController1',0,0.4] remoteExec ['BIS_fnc_setCustomSoundController', 0, ['CustomSoundController1', netID this] joinString ':'];
 
 	// Aggressive posture on foot
 	_grp setCombatMode "RED";
