@@ -64,6 +64,9 @@ if (!fleeing leader _group and random 1 < 0.5) then
 if (_group getVariable ["A3A_reactingToKill", false]) exitWith {};      // don't spam this loop
 _group setVariable ["A3A_reactingToKill", true];
 
+{
+    _x enableAI "PATH";
+} forEach _activeGroupMembers;
 
 {
     if !(_x call A3A_fnc_canFight) then { continue };

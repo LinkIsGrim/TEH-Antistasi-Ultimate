@@ -74,10 +74,9 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 		[_unit, "", false] call A3A_fnc_NATOinit;
 		_soldiers pushBack _unit;
 
-		// Early-game police nerf: no primaries on city cops before war tier 2
+		// Early-game police nerf: no primaries on city cops before war tier 2 if player starts with handguns or no weapons
 		if ((_params # 2) isEqualTo (_faction get "groupPolice")) then {
-			// If your war-tier variable isn't 'tierWar', swap this:
-			if (!isNil "tierWar" && { tierWar < 2 }) then {
+			if (tierWar == 1 && TEH_civStart > 0) then {
 				private _primary = primaryWeapon _unit;
 				if (_primary != "") then {
 					_unit removeWeaponGlobal _primary;
@@ -89,15 +88,17 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 				} forEach (magazines _unit);
 			};
 
-			// Killed EH for police response van (see next section)
-			_unit addEventHandler ["Killed", {
-				params ["_unit", "_killer", "_instigator", "_useEffects"];
+			// Killed EH for police response van
+			if (TEH_spawnSwat == 1) then {
+				_unit addEventHandler ["Killed", {
+					params ["_unit", "_killer", "_instigator", "_useEffects"];
 
-				// 33% chance to call SWAT
-				if ((random 100 > 33) or TEH_spawnSwat == 0) exitWith {};
+					// 33% chance to call SWAT
+					if (random 100 > 33) exitWith {};
 
-				[_unit,_instigator] spawn A3A_fnc_spawnSwat;
-			}];
+					[_unit,_instigator] spawn A3A_fnc_spawnSwat;
+				}];
+			};
 		};
 	} forEach units _groupX;
 

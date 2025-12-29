@@ -116,14 +116,6 @@ class Params
         default = 2;
     };
 
-    class A3A_antistasiReviveEnabled: ScenarioParams
-    {
-        title = $STR_params_A3A_antistasiReviveEnabled;
-        values[] = {1,0};
-        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text,$STR_antistasi_dialogs_generic_button_no_text};
-        default = 1;
-    };
-
     class victoryCondition: ScenarioParams
 
     {
@@ -231,6 +223,13 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 0;
         lockInGame = 1;
+    };
+	class A3A_antistasiReviveEnabled: ScriptParams
+    {
+        title = $STR_params_A3A_antistasiReviveEnabled;
+        values[] = {1,0};
+        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text,$STR_antistasi_dialogs_generic_button_no_text};
+        default = 1;
     };
     class TimerParamsSpacer : BasicParams
     {
@@ -361,13 +360,6 @@ class Params
         title = $STR_A3AU_old_garrison_spawn;
         values[] = {0,1};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text,$STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
-    };
-    class radiomanSupport: AIParams
-    {
-        title = $STR_A3AU_radioman_support;
-        values[] = {0,1};
-        texts[] = {$STR_A3AU_dialogs_radioman_support,$STR_A3AU_dialogs_squadleader_support};
         default = 0;
     };
     class playerRecruitAI: AIParams
@@ -778,6 +770,13 @@ class Params
         values[] = {1,0};
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
         default = 1;
+    };
+	class radiomanSupport: TEHChallengesParams
+    {
+        title = $STR_A3AU_radioman_support;
+        values[] = {0,1};
+        texts[] = {$STR_A3AU_dialogs_radioman_support,$STR_A3AU_dialogs_squadleader_support};
+        default = 0;
     };
 	class enablePunishments: TEHChallengesParams
     {

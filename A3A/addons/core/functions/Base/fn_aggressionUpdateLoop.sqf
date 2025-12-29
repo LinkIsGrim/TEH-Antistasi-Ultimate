@@ -144,8 +144,7 @@ while {true} do
             } forEach _phonedList;
         } forEach ((units Occupants) select {_x getVariable ["unitPrefix", ""] isEqualTo "police"});
         
-        diag_log "Snitching is complete";
-        diag_log _phonedList;
+        diag_log format["Snitching Civilians memory: %1", _phonedList];
     };
 
     sleep 60;

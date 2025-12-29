@@ -112,7 +112,7 @@ for "_i" from 0 to _soilderCount do {
 	private _soldier = [_garrisonGroup, (selectRandom _unitPool), _buildingPosition, [], 0, "NONE"] call A3A_fnc_createUnit;
 	_soldier allowDamage false;
 	_soldier setunitpos "UP";
-	_soldier setBehaviour "AWARE";
+	_soldier disableAI "PATH";
 	[_soldier] call A3A_fnc_NATOinit;
 	sleep 0.5;
 	_soldier allowDamage true;
@@ -229,7 +229,8 @@ private _ammoBox = if (garrison getVariable [_marker + "_lootCD", 0] == 0) then 
 
 	// Otherwise when destroyed, ammoboxes sink 100m underground and are never cleared up
 	_ammoBox addEventHandler ["Killed", { [_this#0] spawn { sleep 10; deleteVehicle (_this#0) } }];
-
+	_ammoBox setVariable ["ace_cargo_noLoad", true, true];
+	
 	private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 	private _crateContents = selectRandom [
 		[_ammoBox, 2, _playerCount, 0, 0, 1, (round random [6,8,9]), 0, 0, 0, 0, 0, 0, 0, 0, 1, _playerCount, 0, 0],

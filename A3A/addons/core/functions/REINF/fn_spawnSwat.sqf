@@ -42,6 +42,7 @@ private _grp = createGroup _side;
 private _skill = (0.1 * A3A_enemySkillMul) + (0.07 * (1 max A3A_activePlayerCount^0.5)) + (0.01 * tierWar);
 // Commander first → becomes leader
 private _commander = _grp createUnit ["B_GEN_Commander_F", _spawnPos, [], 0, "NONE"];
+[_commander] call A3A_fnc_NATOinit;
 _commander setSkill _skill*1.1;
 
 // Group size: commander + N grunts (max 11 seats in van)
@@ -54,7 +55,7 @@ for "_i" from 1 to _gruntCount do {
     // Override headgear
     removeHeadgear _u;
     _u addHeadgear "H_PASGT_basic_blue_F";
-
+	[_u] call A3A_fnc_NATOinit;
     _u setSkill _skill*1.05;
 };
 

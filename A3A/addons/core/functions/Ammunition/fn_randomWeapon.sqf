@@ -67,6 +67,9 @@ if (isClass (configFile >> "CfgWeapons" >> _weapon)) then {
     _weapon = selectRandomWeighted _pool;
 };
 
+//if no weapon start, no weapons are assigned
+if (isNil "_weapon") exitWith { };
+
 private _categories = _weapon call A3A_fnc_equipmentClassToCategories;
 if ("GrenadeLaunchers" in _categories && {"Rifles" in _categories} ) then {
     // lookup real underbarrel GL magazine, because not everything is 40mm
