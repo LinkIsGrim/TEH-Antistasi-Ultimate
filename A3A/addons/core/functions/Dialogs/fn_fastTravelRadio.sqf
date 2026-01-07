@@ -24,6 +24,19 @@ private _teleportZones = _markersX  select { sidesX getVariable _x == teamPlayer
 
 } forEach _teleportZones;
 
+private _vics = vehicles select {_x getVariable "originalSide" == teamPlayer};
+private _vicmrks = [];
+{
+	_mrk = createMarkerLocal [format["teleport-%1", random 99999],getPosATL _x];
+	_vicmrks pushBack _mrk;
+	_mrk setMarkerShapeLocal "ELLIPSE";
+	_mrk setMarkerSizeLocal [100,100];
+	_mrk setMarkerColorLocal "ColorGreen";
+	_mrk setMarkerAlphaLocal 0.5;
+	_mrk setMarkerBrushLocal "Solid";
+
+} forEach _vics;
+
 private _esHC = false;
 if (count hcSelected player > 1) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_error_only_one_hc"] call SCRT_fnc_misc_deniedHint
@@ -82,6 +95,10 @@ onMapSingleClick "";
 	deleteMarkerLocal format["teleport-%1",_x];
 } forEach _teleportZones;
 
+{
+	deleteMarkerLocal _x;
+} forEach _vicmrks;
+
 private _positionTel = positionTel;
 private _earlyEscape = false;
 
@@ -115,6 +132,8 @@ if (_positionTel isEqualTo []) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_missclick"] call SCRT_fnc_misc_deniedHint;
 };
 
+private _nearvic = [_vics, _positionTel] call BIS_Fnc_nearestPosition;
+
 private _base = [_markersX, _positionTel] call BIS_Fnc_nearestPosition;
 private _rebelMarkers = if (!isNil "traderMarker") then {["Synd_HQ", traderMarker]} else {["Synd_HQ"]};
 private _isValidTargetLocation = (_base in (_rebelMarkers + airportsX + milbases));
@@ -124,19 +143,27 @@ if (_checkForPlayer && limitedFT == 1 && !_isValidTargetLocation) exitWith {
 };
 
 private _withinBoundaries = true;
-if (limitedFT == 2) then {
+if (limitedFT >= 2) then {
 	private _rebelLocations = (_rebelMarkers + airportsX + milbases) select { sidesX getVariable _x == teamPlayer };
 	private _nearestPosition = [_rebelLocations, player] call BIS_Fnc_nearestPosition;
 	private _distanceToNearest = player distance getMarkerPos _nearestPosition;
 	_withinBoundaries = _distanceToNearest < 500;	
 };
+
 if (_checkForPlayer && limitedFT == 2 && (!_isValidTargetLocation or !_withinBoundaries)) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_limited_to_between_destinations"] call SCRT_fnc_misc_deniedHint;
 };
 
-if ((sidesX getVariable [_base,sideUnknown]) in [Occupants, Invaders]) exitWith {
-	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_zone"] call SCRT_fnc_misc_deniedHint; 
-	openMap [false,false];
+private _baseDist = _positionTel distance getMarkerPos _base;
+
+private _vicDist = 999;
+if (_nearvic isNotEqualTo [0,0,0]) then { diag_log _nearvic; _vicDist = _positionTel distance2d getPosATL _nearvic;};
+
+if (_baseDist < _vicDist || _vicDist > 100) then {
+	if ((sidesX getVariable [_base,sideUnknown]) in [Occupants, Invaders]) exitWith {
+		[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_zone"] call SCRT_fnc_misc_deniedHint; 
+		openMap [false,false];
+	};
 };
 
 /*
@@ -151,7 +178,8 @@ if ([getMarkerPos _base] call A3A_fnc_enemyNearCheck) exitWith {
 };
 */
 
-if (_positionTel distance getMarkerPos _base < 500) then {
+
+if (_baseDist <= 500 || _vicDist <= 100) then {
 	private _positionX = _positionTel;
 	private _distanceX = round (((position _boss) distance _positionX)/200);
 	private _forcedX = false;
