@@ -38,6 +38,7 @@ private _teamplayer = [];
 private _occupants = [];
 private _invaders = [];
 private _players = [];
+private _playerVehicles = [];
 
 /* -------------------------------------------------------------------------- */
 /*                             unified marker processor                       */
@@ -79,8 +80,6 @@ private _processMarker = {
                 };
             };
         };
-
-        // city civ handled — continue to generic flow (cities also spawn AI below)
     };
 
     if (_anchored == false) then {
