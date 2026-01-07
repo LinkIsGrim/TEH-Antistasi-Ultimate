@@ -332,37 +332,57 @@ switch _typeX do
             4
         ];
     };
-	
-	case "spotting":
-	{
-		_flag addAction [
-			"<t color='#ffaa00'>Reveal target</t>",
-			{
-				params ["_target", "_caller"];
+    
+    case "spotting":
+    {
+        _flag addAction [
+            "<t color='#ffaa00'>Reveal target</t>",
+            {
+                params ["_target", "_caller"];
 
-				private _contact = cursorObject;
-				if (isNull _contact) exitWith { systemChat "PMR: Nothing to see here."; };
-				if !(_contact isKindOf "AllVehicles") exitWith { systemChat "PMR: Nothing to see here."; };
-				private _cside = side _contact;
-				player reveal _contact;
-				if !(_cside == Occupants || _cside == Invaders) exitWith { player reveal _contact; systemChat format ["PMR: You're looking at %1 %2", side _contact, getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")]; };
+                private _contact = cursorObject;
+                if (isNull _contact) exitWith { systemChat "PMR: Nothing to see here."; };
+                if !(_contact isKindOf "AllVehicles") exitWith { systemChat "PMR: Nothing to see here."; };
+                private _cside = side _contact;
+                player reveal _contact;
+                if !(_cside == Occupants || _cside == Invaders) exitWith { player reveal _contact; systemChat format ["PMR: You're looking at %1 %2", side _contact, getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")]; };
 
-				{
-					[_x, [_contact,4]] remoteExec ["reveal", 2];
-				} forEach ((getPosATL _caller) nearObjects ["Land", 500] select { side _x == side _caller });
+                {
+                    [_x, [_contact,4]] remoteExec ["reveal", 2];
+                } forEach ((getPosATL _caller) nearObjects ["Land", 500] select { side _x == side _caller });
 
-				systemChat format ["PMR: Spotted enemy %1!", getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")];
-			},
-			nil,
-			1.5,
-			true,
-			true,
-			"",  // no shortcut
-			"(currentWeapon player) isKindOf ['Binocular', configFile >> 'CfgWeapons']",
-			-1
-		];
+                systemChat format ["PMR: Spotted enemy %1!", getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")];
+            },
+            nil,
+            1.5,
+            true,
+            true,
+            "",  // no shortcut
+            "(currentWeapon player) isKindOf ['Binocular', configFile >> 'CfgWeapons']",
+            -1
+        ];
 
-	}
+    };
+
+    case "stabilize":
+    {
+        _flag addAction [
+            "<t color='#007700'>Stabilize</t>",
+            {
+                params ["_target", "_caller"];
+
+                [_target,_caller] call ace_medical_fnc_fullHeal;
+            },
+            nil,
+            1.5,
+            true,
+            true,
+            "",  // no shortcut
+            "alive _target && (_target getVariable ['originalSide','Unknown'] != teamPlayer) && ([_target] call ace_medical_fnc_isInjured)",
+            2
+        ];
+
+    };
 };
 
 _actionX

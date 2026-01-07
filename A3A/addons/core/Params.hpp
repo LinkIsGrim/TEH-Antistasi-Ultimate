@@ -1329,6 +1329,14 @@ class Params
         default = 1;
         lockInGame = 1;
     };
+    class TEH_unconsciousAIshortcuts : ExperimentalParams
+    {
+        title = "POW shortcuts for uncoscious enemy units (ACE)";
+        tooltip = "If the unit is unconscious and not rebel side, quick fix get them surrender or take them prisoner";
+        values[] = {0, 1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+    };
 
     class DevelopmentParamsSpacer : AllParams
     {
