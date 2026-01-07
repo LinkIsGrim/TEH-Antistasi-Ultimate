@@ -25,6 +25,7 @@
 #define DISCOUNT      500
 #define RIVALS        501
 #define DEALER        502
+#define NOTFOUND      404
 
 params ["_intelType", "_side"];
 
@@ -146,9 +147,10 @@ if (_text isEqualTo "") then {
             };
         };
         case (_intelType isEqualTo "Small"): {
+            private _notFoundWeight = A3A_activePlayerCount + ([2,0] select hideEnemyMarkers);
             _intelContent = [
-                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5, REVEAL_ZONE_LARGE, 0.5, DECRYPTION_KEY, 3.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2],
-                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5, REVEAL_ZONE_LARGE, 0.5, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2, RIVALS, 1]
+                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5*hideEnemyMarkers, REVEAL_ZONE_LARGE, 0.5*hideEnemyMarkers, DECRYPTION_KEY, 3.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2, NOTFOUND, _notFoundWeight,],
+                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5*hideEnemyMarkers, REVEAL_ZONE_LARGE, 0.5*hideEnemyMarkers, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2, RIVALS, 1, NOTFOUND, _notFoundWeight]
             ] select (areRivalsEnabled && {areRivalsDiscovered && {!areRivalsDefeated}});
             
             switch (_intelContent) do
@@ -211,6 +213,10 @@ if (_text isEqualTo "") then {
                 {
                     _text = format [(localize "STR_intel_rivals"), A3A_faction_riv get "name", _sideName];
                     [15] remoteExecCall ["SCRT_fnc_rivals_addProgressToRivalsLocationReveal", 2];
+                };
+                case (NOTFOUND):
+                {
+                    [] call A3A_fnc_showNoIntelMessage;
                 };
             };
         };

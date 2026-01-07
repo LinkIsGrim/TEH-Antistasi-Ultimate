@@ -135,6 +135,7 @@ _flagX allowDamage false;
 _vehiclesX pushBack _flagX;
 if (flagTexture _flagX != (_faction get "flagTexture")) then {[_flagX,(_faction get "flagTexture")] remoteExec ["setFlagTexture",_flagX]};
 
+diag_log (garrison getVariable [_markerX + "_lootCD", 0]);
 // Only create ammoBox if it's been recharged (see reinforcementsAI)
 private _ammoBox = if (garrison getVariable [_markerX + "_lootCD", 0] == 0) then
 {
@@ -445,12 +446,9 @@ _spawnsUsed call A3A_fnc_freeSpawnPositions;
 
 
 // If loot crate was stolen, set the cooldown
-if (!isNil "_ammoBox" && _sideX != teamPlayer) then {
-	if ((alive _ammoBox) and (_ammoBox distance2d _positionX < 100)) exitWith { deleteVehicle _ammoBox };
-	if (alive _ammoBox) then { [_ammoBox] spawn A3A_fnc_VEHdespawner };
-};
-
 if (!isNil "_ammoBox") then {
+	if ((_sideX != teamPlayer) and (alive _ammoBox) and (_ammoBox distance2d _positionX < 100)) exitWith { deleteVehicle _ammoBox };
+	if (alive _ammoBox) then { [_ammoBox] spawn A3A_fnc_VEHdespawner };
 	private _lootCD = 60;
 	garrison setVariable [_markerX + "_lootCD", _lootCD, true];
 };

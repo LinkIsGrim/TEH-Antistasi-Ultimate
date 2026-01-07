@@ -113,15 +113,11 @@ else
 };
 _caller setVariable ["intelFound", nil];
 
-private _bTimeOut = time + 60;
-waitUntil {sleep 0.5; time > _bTimeOut};
-
-
 private _belongings = _squadLeader getVariable ["A3A_belongings", []];
 if (_belongings isNotEqualTo []) then {
     _nil = [_belongings] spawn {
         params ["_props"];
-        sleep random [30,45,60];
+        sleep random [90,100,120];
         {deleteVehicle _x} forEach _props;
         terminate _thisScript;
     };
