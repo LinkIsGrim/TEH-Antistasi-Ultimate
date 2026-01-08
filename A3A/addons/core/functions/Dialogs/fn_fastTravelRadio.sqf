@@ -143,7 +143,7 @@ if (_checkForPlayer && limitedFT == 1 && !_isValidTargetLocation) exitWith {
 };
 
 private _withinBoundaries = true;
-if (limitedFT >= 2) then {
+if (limitedFT == 2) then {
 	private _rebelLocations = (_rebelMarkers + airportsX + milbases) select { sidesX getVariable _x == teamPlayer };
 	private _nearestPosition = [_rebelLocations, player] call BIS_Fnc_nearestPosition;
 	private _distanceToNearest = player distance getMarkerPos _nearestPosition;
