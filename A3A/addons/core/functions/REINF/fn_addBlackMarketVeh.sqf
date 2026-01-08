@@ -66,5 +66,6 @@ if (_addToGarage) then {
 	//[[_typeVehX], getPlayerUID player] remoteExecCall ["HR_GRG_fnc_addVehiclesByClass", 2]; // if we want to lock the vehicle when garaging
 	[[_typeVehX], ""] remoteExecCall ["HR_GRG_fnc_addVehiclesByClass", 2];
 } else {
+	HR_GRG_curTexture = [];
 	[_typeVehX, _fnc_placed, _fnc_check, [_cost, _fnc_buyVehicle], nil, nil, nil, _extraMessage] call HR_GRG_fnc_confirmPlacement;
 };

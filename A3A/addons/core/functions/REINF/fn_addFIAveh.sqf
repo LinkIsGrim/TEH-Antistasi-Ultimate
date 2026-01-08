@@ -58,5 +58,5 @@ private _fnc_placed = {
 		publicVariable "staticsToSave";
 	};
 };
-
+HR_GRG_curTexture = [];
 [_typeVehX, _fnc_placed, {false}, [_cost], nil, nil, nil, _extraMessage] call HR_GRG_fnc_confirmPlacement;

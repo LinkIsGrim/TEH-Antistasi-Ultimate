@@ -147,10 +147,11 @@ if (_text isEqualTo "") then {
             };
         };
         case (_intelType isEqualTo "Small"): {
+            private _hiddenWeight = ([0,0.5] select hideEnemyMarkers);
             private _notFoundWeight = A3A_activePlayerCount + ([2,0] select hideEnemyMarkers);
             _intelContent = [
-                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5*hideEnemyMarkers, REVEAL_ZONE_LARGE, 0.5*hideEnemyMarkers, DECRYPTION_KEY, 3.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2, NOTFOUND, _notFoundWeight,],
-                selectRandomWeighted [REVEAL_ZONE_SMALL, 1.5*hideEnemyMarkers, REVEAL_ZONE_LARGE, 0.5*hideEnemyMarkers, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2, RIVALS, 1, NOTFOUND, _notFoundWeight]
+                selectRandomWeighted [REVEAL_ZONE_SMALL, 3*_hiddenWeight, REVEAL_ZONE_LARGE, _hiddenWeight, DECRYPTION_KEY, 3.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2, NOTFOUND, _notFoundWeight],
+                selectRandomWeighted [REVEAL_ZONE_SMALL, 3*_hiddenWeight, REVEAL_ZONE_LARGE, _hiddenWeight, DECRYPTION_KEY, 2.5, KEY_PACK, 1.5, WEAPON, 1, MONEY, 2, RIVALS, 1, NOTFOUND, _notFoundWeight]
             ] select (areRivalsEnabled && {areRivalsDiscovered && {!areRivalsDefeated}});
             
             switch (_intelContent) do
