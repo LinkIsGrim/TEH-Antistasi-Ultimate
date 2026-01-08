@@ -59,7 +59,8 @@
 	- Attacked but not captured markers can be freely teleported to.
 	- Teleportation range zones shown on the map.
 	- Rally point cost is reduced to 25 per charge.
-	- [Experimental] Partial squad fast travel (statics and vehicles without driver stay behind)
+	- Partial squad fast travel (statics and vehicles without driver stay behind)
+	- [Experimental] fast travel to rebel vehicles (doesn't work for stolen vehicles though)
 - **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod
 	- Uses ACE action on the vehicles to gather loot in 5-5000m radius (depends on enemy proximity, distance to nearest enemy minus 50m)
 	- Allows several players to loot the same location, and into the same vehicle to save time.
@@ -67,7 +68,7 @@
 	- 1% chance of Jack-in-the-box
 	- *Known issue*: CBA settings are mostly ignored (except probably speed)
 - **Intel**:
-	- Rebalanced Intel distribution (Intel is mostly useful now)
+	- Rebalanced Intel distribution (Intel is mostly useful now + included AU flavor messages for failed attempts)
 	- SL corpses create Intel marker on the map when using LootVehicle (use Pack action on the corpse to avoid stuck Intel)
 	- Enemy Radio Keys are saved and loaded properly between sessions
 - **Persistent loot**:
@@ -75,8 +76,8 @@
 	- Wrecks are configured to be managed by the mission garbage collector
 	- Wrecks can be removed from the action or ACE menu (very close range, be careful with cook-offs and fire)
 	- Enemy vehicles required to return to base to despawn
-	- [Experimental] Vehicles and wrecks can be sold anywhere (health affects payout)
-	- [Experimental] Spawn anchoring: players corpses and rebel vehicles now anchor enemy markers from despawning
+	- [Experimental] Vehicles and wrecks can be sold anywhere (health affects payout, enemy distance check)
+	- [Experimental] Spawn anchoring: rebel vehicles now anchor enemy markers from despawning (will be marked green during Fast Travel)
 - **Squad Markers**:
 	- Enemy squad leaders (or their vehicle) are shown with respective markers on the map for each player, not only the commander.
 	- Update interval is 15 seconds.
@@ -91,6 +92,7 @@
 - **Challeges**: Optional challenges can be found in AI and Rebel balance section
 	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons (It's chance based at 1% + 0.25% per war level per marker each minute IF there is an inactive enemy base in 2km radius.)
 	- SWAT teams dispatched when police officers are down (33% base chance)
+	- Civilians guide the police if they see an armed rebel.
 	- Enemy outposts and ports are protected by antitank mines to mitigate vehicle rush
 	- Starting option: start with handguns or without weapons (hand grenades remain)
 	- Only Randoms: loot weapons and handguns are sold instead of arsenal storage. Unlock new weapons by gathering Intel.
