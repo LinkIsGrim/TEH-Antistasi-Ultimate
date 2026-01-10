@@ -85,6 +85,7 @@ if (_backpack != "") then {
 };
 _unit setUnitLoadout [ [], [], [], [uniform _unit, []], [], [], "", "", [], ["","","","","",""] ];
 
+//find and properly dispose dropped weapons
 {
 	_boxX addWeaponWithAttachmentsCargoGlobal [(weaponsItemsCargo _x) select 0, 1];
 	deleteVehicle _x;
