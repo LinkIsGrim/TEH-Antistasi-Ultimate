@@ -18,8 +18,9 @@ Info("initACEUnconsciousHandler started");
 	if (_knockout) exitWith
 	{
 		_unit setVariable ["incapacitated", true, true];	// for canFight tests
-		if (TEH_unconsciousAIshortcuts == 1) then {
+		if (TEH_POWshortcuts) then {
 			//TODO: WIP
+			_unit setCaptive true;
 			[_unit,"stabilize"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_unit]; //shortcut for capturing bleeding enemies
 		};
 

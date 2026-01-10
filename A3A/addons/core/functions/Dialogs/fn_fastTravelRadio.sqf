@@ -24,7 +24,7 @@ private _teleportZones = _markersX  select { sidesX getVariable _x == teamPlayer
 
 } forEach _teleportZones;
 
-private _vics = vehicles select {_x getVariable "originalSide" == teamPlayer};
+private _vics = vehicles select {(alive _x) && (side _x == teamPlayer || (side _x == Civilian && _x getVariable ["originalSide",sideUnknown] == teamPlayer))};
 private _vicmrks = [];
 {
 	_mrk = createMarkerLocal [format["teleport-%1", random 99999],getPosATL _x];
@@ -159,12 +159,11 @@ private _baseDist = _positionTel distance getMarkerPos _base;
 private _vicDist = 999;
 if (_nearvic isNotEqualTo [0,0,0]) then { diag_log _nearvic; _vicDist = _positionTel distance2d getPosATL _nearvic;};
 
-if (_baseDist < _vicDist || _vicDist > 100) then {
-	if ((sidesX getVariable [_base,sideUnknown]) in [Occupants, Invaders]) exitWith {
-		[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_zone"] call SCRT_fnc_misc_deniedHint; 
-		openMap [false,false];
-	};
+if ((_baseDist < _vicDist || _vicDist > 100) && ((sidesX getVariable [_base,sideUnknown]) in [Occupants, Invaders])) exitWith {
+	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_zone"] call SCRT_fnc_misc_deniedHint; 
+	openMap [false,false];
 };
+
 
 /*
 if (_base in forcedSpawn) exitWith {

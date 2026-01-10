@@ -383,6 +383,28 @@ switch _typeX do
         ];
 
     };
+
+    case "arrest":
+    {
+        _flag addAction [
+            "<t color='#770077'>Stop!</t>",
+            {
+                params ["_target", "_caller"];
+                
+                _target disableAI "PATH";
+                sleep 15;
+                _target enableAI "PATH";
+            },
+            nil,
+            1.5,
+            true,
+            true,
+            "",  // no shortcut
+            "alive _target && canMove _target",
+            25
+        ];
+
+    };
 };
 
 _actionX

@@ -79,6 +79,12 @@ if !(_unit getVariable "isRival") then {
 	};
 };
 
+if (TEH_POWshortcuts) then {
+	//TODO: WIP
+	_unit setCaptive true;
+	[_unit,"arrest"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_unit]; //shortcut for arresting fleeing enemies
+};
+
 // check for zone capture
 private _markerX = _unit getVariable "markerX";
 if (!isNil "_markerX") then { [_markerX, _unitSide] remoteExec ["A3A_fnc_zoneCheck",2] };

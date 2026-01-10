@@ -1329,10 +1329,10 @@ class Params
         default = 1;
         lockInGame = 1;
     };
-    class TEH_unconsciousAIshortcuts : ExperimentalParams
+    class TEH_POWshortcuts : ExperimentalParams
     {
-        title = "POW shortcuts for uncoscious enemy units (ACE)";
-        tooltip = "If the unit is unconscious and not rebel side, quick fix get them surrender or take them prisoner";
+        title = "POW shortcuts for enemy units";
+        tooltip = "Adds Stabilize action for wounded unconscious enemy, and Stop! for panic runner (25m distance, 15 seconds duration)";
         values[] = {0, 1};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 0;
