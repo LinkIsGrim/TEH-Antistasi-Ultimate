@@ -17,6 +17,7 @@ private _oldBehaviour = combatBehaviour _unit;		// actually the same as behaviou
 _unit setCombatBehaviour "CARELESS";
 _unit setUnitPos "UP";
 private _loadOut = getUnitLoadout _unit;
+_unit setVariable ["hiddenLoadout", true];
 removeAllItems _unit;
 removeAllAssignedItems _unit;
 removeAllWeapons _unit;			// also removes magazines
@@ -51,3 +52,4 @@ _unit setUnitPos "AUTO";
 // Remove backpack if changed, prevents static/device dupe exploits
 if (_loadOut#5 isNotEqualTo [] and { backpack _unit != _loadOut#5#0 }) then { _loadOut set [5, []] };
 _unit setUnitLoadout _loadOut;
+_unit setVariable ["hiddenLoadout", false];

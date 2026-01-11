@@ -3575,14 +3575,23 @@
                 <Korean>적의 군사 기지가 당신을 발견했습니다!</Korean>
             </Key>
             <Key ID="STR_A3A_fn_undercover_goUn_detect_roadb">
-                <Original>An enemy roadblock has detected you!</Original>
-                <Italian>Un posto di blocco nemico ti ha avvistato!</Italian>
-                <French>Un barrage routier ennemi vous a detecté !</French>
-                <Korean>적의 검문소가 당신을 발견했습니다!</Korean>
-                <Russian>Вас обнаружил вражеский блокпост!</Russian>
-                <Czech>Nepřátelský zátaras tě zpozoroval!</Czech>
-                <Chinesesimp>敌人的阻击路障已经察觉到你了！</Chinesesimp>
+                <Original>The roadblock discovered hidden weapons!</Original>
+                <Italian>Il posto di blocco ha scoperto armi nascoste!</Italian>
+                <French>Le barrage routier a découvert des armes cachées !</French>
+                <Korean>검문소에서 숨겨진 무기를 발견했습니다!</Korean>
+                <Russian>Блокпост обнаружил спрятанное оружие!</Russian>
+                <Czech>Silniční zátaras odhalil ukryté zbraně!</Czech>
+                <Chinesesimp>检查站发现了藏匿的武器！</Chinesesimp>
             </Key>
+			<Key ID="STR_A3A_fn_undercover_goUn_detect_roadb_contraband">
+				<Original>The roadblock found contraband goods!</Original>
+				<Italian>Il posto di blocco ha trovato merce di contrabbando!</Italian>
+				<French>Le barrage routier a trouvé de la contrebande !</French>
+				<Korean>검문소에서 밀수품을 발견했습니다!</Korean>
+				<Russian>Блокпост обнаружил контрабанду!</Russian>
+				<Czech>Silniční zátaras našel kontraband!</Czech>
+				<Chinesesimp>检查站发现了违禁品！</Chinesesimp>
+			</Key>
             <Key ID="STR_A3A_fn_undercover_goUn_entered_veh1">
                 <Original>You entered a non civilian vehicle!</Original>
                 <Italian>Sei salito su un veicolo non civile!</Italian>

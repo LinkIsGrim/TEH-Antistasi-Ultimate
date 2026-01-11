@@ -78,6 +78,11 @@ private _secureBases = (
 private _lastBaseInside = "";
 private _reason = "";
 ["Undercover", [""]] call EFUNC(Events,triggerEvent);
+private _headgear = "player's headgear";
+private _armoredHeadgear = false;
+private _uniform = "player's uniform";
+private _civUniforms = (A3A_faction_civ get "uniforms")+TEH_whitelistCivilianUniforms;
+private _allowedUniform = false;
 
 while {_reason == ""} do
 {
@@ -94,6 +99,17 @@ while {_reason == ""} do
         _reason = "Reported";
     };
 
+    //equipment check only when changed
+    if (headgear player != _headgear) then {
+        _headgear = headgear player;
+        _armoredHeadgear = _headgear in allArmoredHeadgear;
+    };
+    if (uniform player != _uniform) then {
+        _uniform = uniform player;
+        _allowedUniform = _uniform in _civUniforms;
+    };
+
+    //finding a reason
     private _veh = objectParent player;
     if !(isNull _veh) then
     {
@@ -136,9 +152,25 @@ while {_reason == ""} do
         {
             if (!(isOnRoad position _veh) && {count (_veh nearRoads 50) == 0}) then
             {
-                if ({((side _x == Invaders) || (side _x == Occupants)) && ((_x knowsAbout player > 1.4) || (_x distance player < 350))} count allUnits > 0) then
+                private _checkOccDistance = 75 * aggressionLevelOccupants;
+                private _checkInvDistance = 100 * aggressionLevelInvaders;
+
+                if (((units Occupants) inAreaArray [_veh, _checkOccDistance, _checkOccDistance]) select {_x knowsAbout _veh > 1 && _x call A3A_fnc_canFight} isNotEqualTo []) then
                 {
                     _reason = "Highway";
+                };
+                if (((units Invaders) inAreaArray [_veh, _checkInvDistance, _checkInvDistance]) select {_x knowsAbout _veh > 1 && _x call A3A_fnc_canFight} isNotEqualTo []) then
+                {
+                    _reason = "Highway";
+                };
+            };
+
+            //handgun is fine
+            if ( (primaryWeapon player != "") || (secondaryWeapon player != "")  || (vest player != "") || _armoredHeadgear || (!_allowedUniform) || (hmd player != "") ) exitWith
+            {
+                if ({((side _x == Invaders) or (side _x == Occupants)) and (_x knowsAbout _veh > 2) and (_x distance _veh < 150) and _x call A3A_fnc_canFight} count allUnits > 0) then
+                {
+                    _reason = "clothes2";
                 };
             };
         };
@@ -147,7 +179,7 @@ while {_reason == ""} do
     {
         if (_healingTarget != objNull && {side _healingTarget != civilian && {_healingTarget isKindOf "Man"}}) exitWith
         {
-            if ({((side _x == Invaders) or(side _x == Occupants)) and((_x knowsAbout player > 1.4) or(_x distance player < 350))} count allUnits > 0) then
+            if ({((side _x == Invaders) or(side _x == Occupants)) and (_x knowsAbout player > 1.4) and (_x distance player < 350) and _x call A3A_fnc_canFight} count allUnits > 0) then
             {
                 _reason = "BadMedic2";
             }
@@ -156,9 +188,9 @@ while {_reason == ""} do
                 _reason = "BadMedic";
             };
         };
-        if ((primaryWeapon player != "") || (secondaryWeapon player != "") || (handgunWeapon player != "") || (vest player != "") || (getNumber(configfile >> "CfgWeapons" >> headgear player >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Head" >> "armor") > 2) || (hmd player != "") || (!(uniform player in (A3A_faction_civ get "uniforms")))) exitWith
+        if ((primaryWeapon player != "") || (secondaryWeapon player != "") || (handgunWeapon player != "") || (vest player != "") || _armoredHeadgear || (!_allowedUniform) || (hmd player != "") ) exitWith
         {
-            if ({((side _x == Invaders) or (side _x == Occupants)) and ((_x knowsAbout player > 1.4) or (_x distance player < 350))} count allUnits > 0) then
+            if ({((side _x == Invaders) or (side _x == Occupants)) and (_x knowsAbout player > 1.4) and (_x distance player < 350) and _x call A3A_fnc_canFight} count allUnits > 0) then
             {
                 _reason = "clothes2"
             }
@@ -205,14 +237,28 @@ while {_reason == ""} do
             _reason = "Milbase";
         };
 
-        private _aggro = if (_baseSide == Occupants) then {aggressionOccupants + (tierWar * 10)} else {aggressionInvaders + (tierWar * 10)};
-        if (random 100 < _aggro) exitWith
+        //checkpoints do contraband checks
+        private _luggage = vehicle player;
         {
-            private _roadblocks = controlsX select {isOnRoad(getMarkerPos _x)};
-            if (_base in _roadblocks || _onDetectionMarker) then {
+            if (!(_x in ["ToolKit","Medikit","FirstAidKit"])) exitWith { _reason = "Roadblock2"; };
+        } forEach itemCargo _luggage;
+
+        if ((weaponCargo _luggage) isNotEqualTo [] or (magazineCargo _luggage) isNotEqualTo []) then {
+            _reason = "Roadblock";
+        };
+
+        {
+            if ((weaponCargo _x) isNotEqualTo [] or (magazineCargo _x) isNotEqualTo [] or _x getVariable ["hiddenLoadout", false]) exitWith {
                 _reason = "Roadblock";
             };
+        } forEach crew _luggage;
+        
+        
+        private _roadblocks = controlsX select {isOnRoad(getMarkerPos _x)};
+        if (!(_base in _roadblocks || _onDetectionMarker)) then {
+            _reason = ""; //can't catch if not a roadblock
         };
+
         _lastBaseInside = _base; // Don't check this base again once we passed the check
     };
 };
@@ -298,7 +344,7 @@ switch (_reason) do
     {
         ["Undercover", localize "STR_A3A_fn_undercover_goUn_leftveh"] call A3A_fnc_customHint;
     };
-    case "Airport"; case "Roadblock"; case "Outpost"; case "Seaport"; case "Milbase":
+    case "Airport"; case "Roadblock"; case "Roadblock2" case "Outpost"; case "Seaport"; case "Milbase":
     {
         private _text = switch (_reason) do {
             case "Airport": {localize "STR_A3A_fn_undercover_goUn_trespass"};
@@ -306,6 +352,7 @@ switch (_reason) do
             case "Milbase": {localize"STR_A3A_fn_undercover_goUn_detect_milb"};
             case "Seaport": {localize "STR_A3A_fn_undercover_goUn_detect_outp"};
             case "Roadblock": {localize "STR_A3A_fn_undercover_goUn_detect_roadb"};
+            case "Roadblock2": {localize "STR_A3A_fn_undercover_goUn_detect_roadb_contraband"};
         };
         ["Undercover", _text] call A3A_fnc_customHint;
 

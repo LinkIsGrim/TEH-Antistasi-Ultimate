@@ -109,7 +109,7 @@ else
         _result set [0, false];
         _result pushBack "NVG visible";
     };
-    if ((uniform player != "") && !(uniform player in (A3A_faction_civ get "uniforms"))) then
+    if ((uniform player != "") && !(uniform player in ((A3A_faction_civ get "uniforms") + TEH_whitelistCivilianUniforms))) then
     {
         _text = format [localize "STR_A3A_fn_undercover_canGoUn_no_reason_uniform", _text];
         _result set [0, false];
@@ -150,8 +150,9 @@ if
 (
     {
         ((side _x == Invaders) || (side _x == Occupants)) &&
-        {(_x knowsAbout player > 1.4) &&
-        {_x distance player < 500}}
+        (_x knowsAbout player > 1.4) &&
+        (_x distance player < 500) &&
+        (_x call A3A_fnc_canFight)
     } count allUnits > 0
 ) exitWith
 {
