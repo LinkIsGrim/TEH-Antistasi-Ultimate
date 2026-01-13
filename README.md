@@ -35,6 +35,12 @@
 - **Starter Kits**:
 	- Vehicles from the garage now come with a starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
 	- On player (re)spawn Quick Equip is executed automatically. Equips random eligible weapon and its default ammo, ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
+- **Undercover Rework**:
+	- All the undercover checks are knowledge based (enemies have to know about your presense).
+	- Offroading doesn't mark your car as reported.
+	- Driving in a civilian vehicle wearing military gear or weapons will remove undercover if the enemies are close enough.
+	- Some equipped weapons can be concealed from nearby enemies when sitting in the car (handguns, and short rifles (short barrel or bullpup) with no muzzle attachments).
+	- Roadblocks are no longer luck based - instead they check the cargo. Illegal items can be hidden in backpacks or containers in the car. AI passengers will always fail the check.
 - **Survival fix for player APCs/Tanks**
 	- Health pool resets to 51% damage on hit if vehicle is not destroyed, while keeping components broken.
 	- Vehicle can be completely destroyed completely only with a high damaging shell or explosion (i.e. covering 49% of a health pool in one shot).

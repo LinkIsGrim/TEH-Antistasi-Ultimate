@@ -78,11 +78,13 @@ private _secureBases = (
 private _lastBaseInside = "";
 private _reason = "";
 ["Undercover", [""]] call EFUNC(Events,triggerEvent);
-private _headgear = "player's headgear";
+private _headgear = "";
 private _armoredHeadgear = false;
-private _uniform = "player's uniform";
+private _uniform = "no uniform?";
 private _civUniforms = (A3A_faction_civ get "uniforms")+TEH_whitelistCivilianUniforms;
 private _allowedUniform = false;
+private _primary = "";
+private _visiblePrimary = false;
 
 while {_reason == ""} do
 {
@@ -104,10 +106,41 @@ while {_reason == ""} do
         _headgear = headgear player;
         _armoredHeadgear = _headgear in allArmoredHeadgear;
     };
+    
     if (uniform player != _uniform) then {
         _uniform = uniform player;
-        _allowedUniform = _uniform in _civUniforms;
+        _allowedUniform = ((_uniform in _civUniforms) && (_allowedUniform isNotEqualTo ""));
     };
+
+    if (primaryWeapon player != _primary) then {
+        _visiblePrimary = true;
+        _primary = primaryWeapon player;
+        
+        if (_primary isEqualTo "") exitWith { _visiblePrimary = false; };
+
+        private _barrel = getNumber(configfile >> "CfgWeapons" >> _primary >> "ACE_barrelLength");
+
+        if (!isNil "_barrel") then {
+            if (_barrel < 222) exitWith { _visiblePrimary = false; };
+
+            private _reload = getText(configfile >> "CfgWeapons" >> _primary >> "reloadAction");
+            //P90 and bullpup rifles
+            if (_barrel < 333 and _reload in ["GestureReload_smg_03","GestureReloadTRG"]) exitWith { _visiblePrimary = false; };
+        };
+
+        if ((primaryWeaponItems player # 0) isNotEqualTo "") then {
+            _visiblePrimary = true;
+        };
+        
+        if (_visiblePrimary) then {
+           ["Undercover", "Unable to conceal the primary weapon - nearby enemies will break your cover. Only some short rifles/SMGs without suppressors can be concealed."] call A3A_fnc_customHint;
+        };
+    };
+
+    if ((primaryWeaponItems player # 0) isNotEqualTo "") then {
+        _visiblePrimary = true;
+    };
+
 
     //finding a reason
     private _veh = objectParent player;
@@ -166,9 +199,9 @@ while {_reason == ""} do
             };
 
             //handgun is fine
-            if ( (primaryWeapon player != "") || (secondaryWeapon player != "")  || (vest player != "") || _armoredHeadgear || (!_allowedUniform) || (hmd player != "") ) exitWith
+            if ( _visiblePrimary || (secondaryWeapon player != "")  || (vest player != "") || _armoredHeadgear || (!_allowedUniform) || (hmd player != "") ) exitWith
             {
-                if ({((side _x == Invaders) or (side _x == Occupants)) and (_x knowsAbout _veh > 2) and (_x distance _veh < 150) and _x call A3A_fnc_canFight} count allUnits > 0) then
+                if ({((side _x == Invaders) or (side _x == Occupants)) and (_x knowsAbout _veh > 2) and (_x distance _veh < 75) and _x call A3A_fnc_canFight} count allUnits > 0) then
                 {
                     _reason = "clothes2";
                 };
@@ -320,7 +353,6 @@ switch (_reason) do
     case "Highway":
     {
         ["Undercover", localize "STR_A3A_fn_undercover_goUn_no_distance"] call A3A_fnc_customHint;
-        (objectParent player) setVariable ["A3A_reported", true, true];
     };
     case "clothes":
     {
@@ -330,6 +362,9 @@ switch (_reason) do
     {
         ["Undercover", localize "STR_A3A_fn_undercover_goUn_no_reason_2"] call A3A_fnc_customHint;
         player setVariable["compromised", dateToNumber[date select 0, date select 1, date select 2, date select 3, (date select 4) + 30]];
+        if (objectParent player != player) then {
+            (objectParent player) setVariable ["A3A_reported", true, true];
+        };
     };
     case "BadMedic":
     {
@@ -344,7 +379,7 @@ switch (_reason) do
     {
         ["Undercover", localize "STR_A3A_fn_undercover_goUn_leftveh"] call A3A_fnc_customHint;
     };
-    case "Airport"; case "Roadblock"; case "Roadblock2" case "Outpost"; case "Seaport"; case "Milbase":
+    case "Airport"; case "Roadblock"; case "Roadblock2"; case "Outpost"; case "Seaport"; case "Milbase":
     {
         private _text = switch (_reason) do {
             case "Airport": {localize "STR_A3A_fn_undercover_goUn_trespass"};
