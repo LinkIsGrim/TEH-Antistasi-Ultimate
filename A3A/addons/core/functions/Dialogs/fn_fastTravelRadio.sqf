@@ -159,11 +159,19 @@ private _baseDist = _positionTel distance getMarkerPos _base;
 private _vicDist = 999;
 if (_nearvic isNotEqualTo [0,0,0]) then { diag_log _nearvic; _vicDist = _positionTel distance2d getPosATL _nearvic;};
 
-if ((_baseDist < _vicDist || _vicDist > 100) && ((sidesX getVariable [_base,sideUnknown]) in [Occupants, Invaders])) exitWith {
+private _enemyBase = (sidesX getVariable [_base,sideUnknown]) in [Occupants, Invaders];
+
+
+if ((_baseDist < _vicDist || _vicDist > 100) && _enemyBase) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_zone"] call SCRT_fnc_misc_deniedHint; 
 	openMap [false,false];
 };
 
+private _chargeForTravel = 0;
+if (_enemyBase) then {
+	//charge player (unless it's HQ) + each AI traveller
+	_chargeForTravel = ([50,0] select (_esHC)) + 50 * (count (_units select { !isPlayer _x }));
+};
 
 /*
 if (_base in forcedSpawn) exitWith {
@@ -191,7 +199,15 @@ if (_baseDist <= 500 || _vicDist <= 100) then {
 		[localize "STR_A3A_Dialogs_fast_travel_header", format [localize "STR_A3A_Dialogs_fast_travel_moving_hc_group",groupID _groupX]] call A3A_fnc_customHint; 
 		sleep _distanceX;
 	};
-	
+
+	if (_esHC) then {
+		[0,-_chargeForTravel] remoteExec ["A3A_fnc_resourcesFIA",2];
+		systemChat format["Faction paid %1%2 for squad fast travel to the vehicle", _chargeForTravel,A3A_faction_civ get "currencySymbol"];
+	} else {
+		[-_chargeForTravel, player] remoteExec ["A3A_fnc_addMoneyPlayer", player];
+		systemChat format["You paid %1%2 for squad fast travel to the vehicle", _chargeForTravel,A3A_faction_civ get "currencySymbol"];
+	};
+
 	if (!_esHC) then {
 		private _timePassed = 0;
 		while {_timePassed < _distanceX} do {
@@ -215,7 +231,7 @@ if (_baseDist <= 500 || _vicDist <= 100) then {
 	private _ftUnits = [];
 	{
 		private _unit = _x;
-		if (!isPlayer _unit or {_unit == player}) then {
+		if ((!isPlayer _unit and (leader _unit) == player) or {_unit == player} or _esHC) then {
 			_unit allowDamage false;
 			_ftUnits pushBack _unit;
 			if (_unit != vehicle _unit) then {
