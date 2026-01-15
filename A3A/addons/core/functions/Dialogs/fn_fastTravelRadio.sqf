@@ -161,16 +161,9 @@ if (_nearvic isNotEqualTo [0,0,0]) then { diag_log _nearvic; _vicDist = _positio
 
 private _enemyBase = (sidesX getVariable [_base,sideUnknown]) in [Occupants, Invaders];
 
-
 if ((_baseDist < _vicDist || _vicDist > 100) && _enemyBase) exitWith {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_no_enemy_zone"] call SCRT_fnc_misc_deniedHint; 
 	openMap [false,false];
-};
-
-private _chargeForTravel = 0;
-if (_enemyBase) then {
-	//charge player (unless it's HQ) + each AI traveller
-	_chargeForTravel = ([50,0] select (_esHC)) + 50 * (count (_units select { !isPlayer _x }));
 };
 
 /*
@@ -200,14 +193,6 @@ if (_baseDist <= 500 || _vicDist <= 100) then {
 		sleep _distanceX;
 	};
 
-	if (_esHC) then {
-		[0,-_chargeForTravel] remoteExec ["A3A_fnc_resourcesFIA",2];
-		systemChat format["Faction paid %1%2 for squad fast travel to the vehicle", _chargeForTravel,A3A_faction_civ get "currencySymbol"];
-	} else {
-		[-_chargeForTravel, player] remoteExec ["A3A_fnc_addMoneyPlayer", player];
-		systemChat format["You paid %1%2 for squad fast travel to the vehicle", _chargeForTravel,A3A_faction_civ get "currencySymbol"];
-	};
-
 	if (!_esHC) then {
 		private _timePassed = 0;
 		while {_timePassed < _distanceX} do {
@@ -226,6 +211,8 @@ if (_baseDist <= 500 || _vicDist <= 100) then {
 	if (_checkForPlayer and !_isValidTargetLocation) exitWith {
 		[localize "STR_A3A_Dialogs_fast_travel_header", format [localize "STR_A3A_Dialogs_fast_travel_cancel",groupID _groupX]] call A3A_fnc_customHint;
 	};
+
+	private _chargeForTravel = 0;
 
 	private _movedUnits = units _groupX;
 	private _ftUnits = [];
@@ -247,10 +234,15 @@ if (_baseDist <= 500 || _vicDist <= 100) then {
 					_road = _roads select 0;
 					private _pos = position _road findEmptyPosition [10,100,typeOf (vehicle _unit)];
 					vehicle _unit setPos _pos;
+					
+					_chargeForTravel = _chargeForTravel + 100 + 50*(count (crew vehicle _unit));
+					diag_log format["Vehicle travel. Tally %1",_chargeForTravel];
 				};
 				if ((vehicle _unit isKindOf "StaticWeapon") and (!isPlayer (leader _unit))) then {
-				private _pos = _positionX findEmptyPosition [10,100,typeOf (vehicle _unit)];
-				vehicle _unit setPosATL _pos;
+					private _pos = _positionX findEmptyPosition [10,100,typeOf (vehicle _unit)];
+					vehicle _unit setPosATL _pos;
+					_chargeForTravel = _chargeForTravel + 100;
+					diag_log format["Static travel. Tally %1",_chargeForTravel];
 				};
 			} else {
 				if (!(_unit getVariable ["incapacitated",false])) then {
@@ -263,9 +255,22 @@ if (_baseDist <= 500 || _vicDist <= 100) then {
 					_positionX = _positionX findEmptyPosition [1,50,typeOf _unit];
 					_unit setPosATL _positionX;
 				};
+				_chargeForTravel = _chargeForTravel + 50; 
+				diag_log format["Unit travel. Tally %1",_chargeForTravel];
 			};
 		};
 	} forEach _movedUnits;
+
+	if (_enemyBase) then {
+		if (_esHC) then {
+			[0,-_chargeForTravel] remoteExec ["A3A_fnc_resourcesFIA",2];
+			systemChat format["Faction paid %1%2 for squad fast travel to the vehicle", _chargeForTravel,A3A_faction_civ get "currencySymbol"];
+		} else {
+			[-_chargeForTravel, player] remoteExec ["A3A_fnc_addMoneyPlayer", player];
+			systemChat format["You paid %1%2 for squad fast travel to the vehicle", _chargeForTravel,A3A_faction_civ get "currencySymbol"];
+		};
+	};
+
 	if (!_esHC) then {
 		disableUserInput false;
 		cutText [localize "STR_hints_FT_dest","BLACK IN",1]

@@ -12,7 +12,7 @@
 ["flagMarkerType", "flag_Viper"] call _fnc_saveToTemplate;
 
 ["vehiclesBasic", ["C_Quadbike_01_F"]] call _fnc_saveToTemplate;
-["vehiclesLightUnarmed", ["CUP_O_Hilux_unarmed_CHDKZ"]] call _fnc_saveToTemplate;
+["vehiclesLightUnarmed", ["CUP_I_Hilux_unarmed_NAPA"]] call _fnc_saveToTemplate;
 ["vehiclesLightArmed", ["CUP_O_BRDM2_CHDKZ", "CUP_O_BTR80A_CHDKZ"]] call _fnc_saveToTemplate;
 ["vehiclesTruck", ["a3u_cup_kamaz_open_olive"]] call _fnc_saveToTemplate;
 ["vehiclesAT", ["CUP_O_BMP2_CHDKZ"]] call _fnc_saveToTemplate;

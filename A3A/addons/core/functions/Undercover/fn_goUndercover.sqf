@@ -116,7 +116,7 @@ while {_reason == ""} do
         _visiblePrimary = true;
         _primary = primaryWeapon player;
         
-        if (_primary isEqualTo "") exitWith { _visiblePrimary = false; };
+        if (_primary isEqualTo "" or _primary isEqualTo "sgun_HunterShotgun_01_sawedoff_F") exitWith { _visiblePrimary = false; };
 
         private _barrel = getNumber(configfile >> "CfgWeapons" >> _primary >> "ACE_barrelLength");
 
@@ -140,7 +140,10 @@ while {_reason == ""} do
     if ((primaryWeaponItems player # 0) isNotEqualTo "") then {
         _visiblePrimary = true;
     };
-
+    
+    if ("_aim" in animationState player) then {
+        _visiblePrimary = true;
+    };
 
     //finding a reason
     private _veh = objectParent player;
