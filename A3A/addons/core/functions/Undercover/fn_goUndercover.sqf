@@ -85,6 +85,8 @@ private _civUniforms = (A3A_faction_civ get "uniforms")+TEH_whitelistCivilianUni
 private _allowedUniform = false;
 private _primary = "";
 private _visiblePrimary = false;
+private _aiming = false;
+private _aimStart = 0;
 
 while {_reason == ""} do
 {
@@ -116,7 +118,7 @@ while {_reason == ""} do
         _visiblePrimary = true;
         _primary = primaryWeapon player;
         
-        if (_primary isEqualTo "" or _primary isEqualTo "sgun_HunterShotgun_01_sawedoff_F") exitWith { _visiblePrimary = false; };
+        if (_primary isEqualTo "" or _primary isEqualTo "sgun_HunterShotgun_01_sawedoff_F") then { _visiblePrimary = false; };
 
         private _barrel = getNumber(configfile >> "CfgWeapons" >> _primary >> "ACE_barrelLength");
 
@@ -141,10 +143,17 @@ while {_reason == ""} do
         _visiblePrimary = true;
     };
     
-    if ("_aim" in animationState player) then {
-        _visiblePrimary = true;
+    if (animationState player find "_aim" != -1) then {
+        if (_aimStart > 1) then {
+            _aiming = true;
+        } else {
+            _aimStart = _aimStart + 1;
+        };
+    } else {
+        _aiming = false;
+        _aimStart = 0;
     };
-
+    
     //finding a reason
     private _veh = objectParent player;
     if !(isNull _veh) then
@@ -202,7 +211,7 @@ while {_reason == ""} do
             };
 
             //handgun is fine
-            if ( _visiblePrimary || (secondaryWeapon player != "")  || (vest player != "") || _armoredHeadgear || (!_allowedUniform) || (hmd player != "") ) exitWith
+            if ( _aiming || _visiblePrimary || (secondaryWeapon player != "")  || (vest player != "") || _armoredHeadgear || (!_allowedUniform) || (hmd player != "") ) exitWith
             {
                 if ({((side _x == Invaders) or (side _x == Occupants)) and (_x knowsAbout _veh > 2) and (_x distance _veh < 75) and _x call A3A_fnc_canFight} count allUnits > 0) then
                 {

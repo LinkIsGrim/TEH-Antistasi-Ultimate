@@ -369,7 +369,7 @@ for "_i" from 0 to (count _array - 1) do {
 private _mineCount = TEH_outpostMines;
 private _minRadius = 20;
 private _maxRadius = 100;
-
+private _mineType = selectRandom (_faction get "minefieldAT");
 for "_i" from 1 to _mineCount do {
     private _attempts = 0;
     private _minePos  = [0,0,0];
@@ -391,7 +391,7 @@ for "_i" from 1 to _mineCount do {
 
     if (_attempts < 10) then {
         // Use generic AT mine; swap for faction-specific if you want
-        private _mine = createMine ["ATMine", _minePos, [], 0];
+        private _mine = createMine [_mineType, _minePos, [], 0];
         if (!isNull _mine) then {
             _outpostMines pushBack _mine;
         };

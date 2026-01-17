@@ -369,6 +369,13 @@ class Params
         texts[] = {$STR_params_afk_enabled, $STR_params_afk_disabled};
         default = 1;
     };
+	class TEH_playerSquadLimit: AIParams
+    {
+        title = "Limit AI recruiting to the player squad";
+        values[] = {1,3,7,11,15,19};
+        texts[] = {"1", "3", "7", "11", "15", "19"};
+        default = 7;
+    };
     class recruitToPlayerSquad: AIParams
     {
         title = $STR_params_recruitToPlayerSquad;
