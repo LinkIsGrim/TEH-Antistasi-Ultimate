@@ -672,6 +672,16 @@ class Params
         texts[] =  {$STR_A3A_Params_generic_veryslow, $STR_A3A_Params_generic_slow, $STR_A3A_Params_generic_normal, $STR_A3A_Params_generic_fast, $STR_A3A_Params_generic_veryfast};
         default = 10;
     };
+	
+	class TEH_counterSeverity: AIBalanceParams
+    {
+        attr[] = {"server"};
+        title = "Counter-attack size";
+		tooltip = "Defence resource multiplier to define the how deep in debt can side go for a counter-attack";
+        values[] = {0.6,0.9,1.2,2.4,10};
+        texts[] =  {"Default","150%","200%","400%","Everyone"};
+        default = 0.6;
+    };
     class A3A_attackHQProximityMul: AIBalanceParams
     {
         attr[] = {"server"};

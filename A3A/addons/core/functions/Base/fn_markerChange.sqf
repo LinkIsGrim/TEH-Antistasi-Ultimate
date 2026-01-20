@@ -60,7 +60,9 @@ garrison setVariable [format ["%1_requested", _markerX], [], true];
 
 if (_winner == teamPlayer) then
 {
+
 	// Old garrison rushes to the flag
+	private _from = distanceSPWN max 500;
 	{
 		if ((side _x == Invaders) || (side _x == Occupants)) then {
 			private _lead = leader _x;
@@ -68,7 +70,7 @@ if (_winner == teamPlayer) then
 
 			if (side _lead isNotEqualTo side _x) then {continue;};
 			
-			if (_pos distance2D getMarkerPos _markerX < 500) then {
+			if (_pos distance2D getMarkerPos _markerX < _from) then {
 				while {count waypoints _x > 0} do { deleteWaypoint [_x, 0] };
 				private _rush_B = _x addWaypoint [getMarkerPos _markerX, 25];
 				_rush_B setWaypointType "SAD";
@@ -81,7 +83,7 @@ if (_winner == teamPlayer) then
 	} forEach allGroups;
 	
 	// Cap to 0.6 max to reward captures without previous support calls
-	private _resources = [_loser, teamPlayer, _markerX, 0.6] call A3A_fnc_maxDefenceSpend;
+	private _resources = [_loser, teamPlayer, _markerX, TEH_counterSeverity] call A3A_fnc_maxDefenceSpend;
 
 	// Don't send anything if it'd be too small
 	private _minAttack = (1 + random 0.5) * A3A_balanceResourceRate;
