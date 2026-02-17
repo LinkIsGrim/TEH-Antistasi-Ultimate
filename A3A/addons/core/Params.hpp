@@ -309,8 +309,8 @@ class Params
     class distanceSPWN: AIParams
     {
         title = $STR_params_spawnDistance;
-        values[] = {700,800,900,1000,1100,1200,1300,1400,1500};
-        texts[] = {"700","800","900","1000","1100","1200", "1300" ,"1400", "1500"};
+        values[] = {700,800,900,1000,1100,1200,1300,1400,1500,2000,25000};
+        texts[] = {"700","800","900","1000","1100","1200", "1300" ,"1400", "1500","2000","2500"};
         default = 1100;
     };
     class enemyNearDistance: AIParams
@@ -1065,8 +1065,8 @@ class Params
     class lootCrateDistance: CrateParams
     {
         title = $STR_params_lootCrateDistance;
-        values[] = {10, 25, 50, 75, 100, 200, 300, 400};
-        texts[] = {"10", "25", "50", "75", "100", "200", "300", "400"};
+        values[] = {10, 25, 50, 75, 100, 200, 300, 400, 600, 1000, 2000};
+        texts[] = {"10", "25", "50", "75", "100", "200", "300", "400", "600", "1000", "2000"};
         default = 50;
     };
     class lootCratePrice: CrateParams
