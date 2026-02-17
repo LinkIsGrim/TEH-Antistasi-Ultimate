@@ -65,10 +65,8 @@ if (isServer) then {
 	//Antistasi Ultimate variables
 	["revealedZones"] call A3A_fnc_getStatVariable; publicVariable "revealedZones";
 	["unlockedVehicleTypes"] call A3A_fnc_getStatVariable; publicVariable "unlockedVehicleTypes";
-	
-	//TEH Antistasi Ultimate variables
-	["occupantsRadioKeys"] call A3A_fnc_getStatVariable;
-	["invaderRadioKeys"] call A3A_fnc_getStatVariable;
+	["occupantsRadioKeys"] call A3A_fnc_getStatVariable; publicVariable "occupantsRadioKeys";
+	["invaderRadioKeys"] call A3A_fnc_getStatVariable; publicVariable "invaderRadioKeys";
 
 	//===========================================================================
 
@@ -197,6 +195,8 @@ if (isServer) then {
 	} forEach _savedPlayers;
 
     Info("Persistent Load Completed.");
+
+	["locationSpawned", QGVAR(crewLocationStatics), { call A3A_fnc_crewLocationStatics }] call EFUNC(Events,addEventListener);
 
 	// uh, why here?
 	["tasks"] call A3A_fnc_getStatVariable;

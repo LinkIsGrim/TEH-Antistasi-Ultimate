@@ -119,6 +119,8 @@
 ]] call _fnc_saveToTemplate;
 "GermanMen" call _fnc_saveNames;
 
+"GermanMen" call _fnc_saveNames;
+
 //////////////////////////
 //       Loadouts       //
 //////////////////////////

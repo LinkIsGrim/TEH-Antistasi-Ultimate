@@ -181,7 +181,6 @@ class CfgWorlds
 				Boehm = "Böhm";
 				Braun = "Braun";
 				Busch = "Busch";
-
 				Ebert = "Ebert";
 				Engel = "Engel";
 				Ernst = "Ernst";
@@ -189,7 +188,6 @@ class CfgWorlds
 				Fink = "Fink";
 				Fischer = "Fischer";
 				Franke = "Franke";
-				
 				Friedrich = "Friedrich";
 				Graf = "Graf";
 				Gross = "Groß";
@@ -197,7 +195,6 @@ class CfgWorlds
 				Hahn = "Hahn";
 				Hartmann = "Hartmann";
 				Heinemann = "Heinemann";
-
 				Hoffmann = "Hoffmann";
 				Horn = "Horn";
 				Jaeger = "Jäger";
@@ -222,7 +219,6 @@ class CfgWorlds
 				Peters = "Peters";
 				Pohl = "Pohl";
 				Reich = "Reich";
-				
 				Roth = "Roth";
 				Schaefer = "Schäfer";
 				Schmid = "Schmid";
@@ -239,7 +235,6 @@ class CfgWorlds
 				Stein = "Stein";
 				Vogel = "Vogel";
 				Wagner = "Wagner";
-				
 				Weber = "Weber";
 				Weiss = "Weiß";
 				Werner = "Werner";

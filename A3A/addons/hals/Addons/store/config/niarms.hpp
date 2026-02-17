@@ -189,6 +189,12 @@
 
 			ITEM(hlc_rifle_LAR, OLD762, 100);
 
+			ITEM(hlc_wp_XM16E1, OLD556, RIFLE_STOCK); // hlc_30rnd_556x45_EPR
+			ITEM(hlc_wp_XM177E2, OLD556, RIFLE_STOCK);
+			ITEM(hlc_rifle_mk18mod0, MOD762, RIFLE_STOCK); // hlc_30rnd_556x45_TDim_L5
+			ITEM(hlc_wp_MK17IUR_556, MOD556, RIFLE_STOCK); // hlc_30rnd_556x45_EPR_PMAG
+			ITEM(hlc_WP_MK17IUR, MOD762, RIFLE_STOCK); // hlc_20Rnd_762x51_B_SCARH_Tan
+
 			ITEM(hlc_wp_M16A1, OLD556, 100);
 			ITEM(hlc_wp_m16A2_Early, OLD556, 100);
 			ITEM(hlc_rifle_M16A1_m203, OLDGL556, 100);
@@ -220,6 +226,7 @@
 			ITEM(hlc_rifle_saiga12k, 1000, 100);
 			ITEM(hlc_rifle_SAMR, OLD556, 100);
 			ITEM(hlc_rifle_samr2, OLD556, 100);
+
 
 			ITEM(hlc_WP_SCARH_CQC, MOD762, 100);
 			ITEM(hlc_wp_SCARH_CQC_Blk, MOD762, 100);
@@ -341,9 +348,6 @@
 			ITEM(HLC_rifle_XM8_Proto_Carbine_Green, MOD556, 100);
 			ITEM(HLC_rifle_XM8_Proto_Carbine_OD, MOD556, 100);
 			ITEM(HLC_rifle_XM8_Proto_Carbine_Tan, MOD556, 100);
-
-
-
 		};
 		class sniperRiflesNIArms 
 		{

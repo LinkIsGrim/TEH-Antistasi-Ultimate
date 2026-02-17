@@ -267,6 +267,9 @@ private _typeUnit = [_faction get "unitTierStaticCrew"] call SCRT_fnc_unit_getTi
 while {true} do {
 	private _spawnParameter = [_markerX, "Mortar"] call A3A_fnc_findSpawnPosition;
 	if (_spawnParameter isEqualType false) exitWith {};
+	if (A3U_disableMortars) exitWith {
+    	Debug("Exiting mortar creation; Param was set to disabled.");
+	};
 
 	_spawnsUsed pushBack _spawnParameter#2;
 
@@ -427,6 +430,100 @@ for "_i" from 0 to (count _array - 1) do {
 	} else {
 		[_groupX, "Patrol_Defend", 0, 200, -1, true, _positionX, false] call A3A_fnc_patrolLoop;
 	};
+};
+
+/////////////////////////////
+// Self-propelled AA 	  //
+////////////////////////////
+
+if (random 10 < (tierWar + difficultyCoef)) then {
+	private _max = if (_frontierX) then {2} else {1};
+	for "_i" from 1 to _max do {
+		private _spawnParameter = [_markerX, "Vehicle"] call A3A_fnc_findSpawnPosition;
+		
+		if !(_spawnParameter isEqualType []) exitWith {};
+		_spawnsUsed pushBack _spawnParameter#2;
+
+		private _veh = nil;
+		isNil {
+			_veh = createVehicle [selectRandom (_faction get "vehiclesAA"), (_spawnParameter select 0), [], 0, "CAN_COLLIDE"];
+			_veh setDir (_spawnParameter select 1);
+		};
+
+		_groupVeh = [_sideX, _veh] call A3A_fnc_createVehicleCrew;
+		{[_x,_markerX] call A3A_fnc_NATOinit} forEach units _groupVeh;
+		[_veh, _sideX] call A3A_fnc_AIVEHinit;
+		_soldiers append units _groupVeh;
+		_groups pushBack _groupVeh;
+		[_groupVeh, "Patrol_Area", 25, 100, 250, true, _positionX, false] call A3A_fnc_patrolLoop;
+		_vehiclesX pushBack _veh;
+
+		sleep 1;
+		[gunner _veh] spawn SCRT_fnc_common_scanHorizon;
+
+		_veh setVariable ["originalPos", getPosATL _veh];
+	};
+};
+
+{
+  if (_x isKindOf "Static" || _x isKindOf "StaticWeapon") then {continue};
+  [_x, true] call A3U_fnc_setLock;
+} forEach _vehiclesX;
+
+private _boatType = selectRandom (_faction get "vehiclesGunBoats");
+private _mrkMar = seaSpawn select {getMarkerPos _x inArea _markerX};
+if (count _mrkMar > 0) then {
+	private _pos = (getMarkerPos (_mrkMar select 0)) findEmptyPosition [0,20,_typeVehX];
+	private _vehicle=[_pos, 0,_boatType, _sideX] call A3A_fnc_spawnVehicle;
+	private _veh = _vehicle select 0;
+	[_veh, _sideX] call A3A_fnc_AIVEHinit;
+	private _vehCrew = _vehicle select 1;
+	{[_x,_markerX] call A3A_fnc_NATOinit} forEach _vehCrew;
+	private _groupVeh = _vehicle select 2;
+	_soldiers append _vehCrew;
+	[_groupVeh, "Patrol_Water", 25, 200, -1, true, _pos] call A3A_fnc_patrolLoop;
+	_groups pushBack _groupVeh;
+	_vehiclesX pushBack _veh;
+	sleep 1;
+	_veh setVariable ["originalPos", getPosATL _veh];
+};
+
+/////////////////////////////
+// Heavy Patrol Vehicle   //
+////////////////////////////
+
+if (random 100 < (30 + tierWar * 6)) then {
+	private _heavyVehPool =  (_faction get "vehiclesTanks") + (_faction get "vehiclesAPCs") + (_faction get "vehiclesLightAPCs") + (_faction get "vehiclesIFVs") + (_faction get "vehiclesLightTanks");
+	private _type = selectRandom _heavyVehPool;
+
+	private _road = [_positionX] call A3A_fnc_findNearestGoodRoad;
+	if (_road distance2D _positionX > 800) exitWith {};
+
+	private _heavyVehicle = [_type, (position _road), 15, 10] call A3A_fnc_safeVehicleSpawn;
+	if (isNull _heavyVehicle) exitWith {};
+
+	private _crewType = [_sideX, _heavyVehicle] call A3A_fnc_crewTypeForVehicle;
+	private _group = createGroup _sideX;
+
+	_group = [_group, _heavyVehicle, _crewType] call A3A_fnc_createVehicleCrew;
+
+	[_heavyVehicle, _sideX] call A3A_fnc_AIVEHinit;
+	{[_x,_markerX] call A3A_fnc_NATOinit} forEach (units _group);
+
+	if (_type in ((_faction get "vehiclesAPCs") + (_faction get "vehiclesIFVs") + (_faction get "vehiclesLightAPCs"))) then {
+		sleep 1;
+		private _troopGroup = [(position _road), _sideX, (selectRandom ([_faction, "groupsTierMedium"] call SCRT_fnc_unit_flattenTier))] call A3A_fnc_spawnGroup;
+		{_x assignAsCargo _heavyVehicle;_x moveInCargo _heavyVehicle; _soldiers pushBack _x; [_x] joinSilent _group; [_x,"",false] call A3A_fnc_NATOinit} forEach units _troopGroup;
+		deleteGroup _troopGroup;
+	};
+
+	[_group, "Patrol_Area", 25, 100, 250, true, _positionX, false] call A3A_fnc_patrolLoop;
+	
+	_soldiers append (units _group);
+	_groups pushBack _group;
+	_vehiclesX pushBack _heavyVehicle;		
+
+	_heavyVehicle setVariable ["originalPos", getPosATL _heavyVehicle];
 };
 
 ["locationSpawned", [_markerX, "Milbase", true]] call EFUNC(Events,triggerEvent);
