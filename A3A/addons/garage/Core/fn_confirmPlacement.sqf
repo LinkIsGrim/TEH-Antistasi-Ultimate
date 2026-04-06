@@ -305,8 +305,13 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
                 _veh setPylonLoadout [_pylonIndex, _mag, _forced, _turret]
             } forEach HR_GRG_CP_pylons;
         };
-        _veh spawn {sleep 0.5;_this allowDamage true;_this enableSimulation true; { _x allowDamage true; } forEach (attachedObjects _this); };
-        ([_veh] + HR_GRG_CP_callBackArgs) call HR_GRG_CP_callBackPlace;
+        _veh spawn {
+            sleep 0.5;
+            _this allowDamage true;
+            _this enableSimulation true; 
+            { _x allowDamage true; } forEach (attachedObjects _this);
+        };
+        ([_veh] + HR_GRG_CP_callBackArgs) call HR_GRG_CP_callbackPlace;
 		
 		_primarymag = (primaryWeaponMagazine player) select 0;
 		
