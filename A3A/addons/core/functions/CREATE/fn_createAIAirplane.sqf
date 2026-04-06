@@ -296,8 +296,6 @@ if (!_busy) then {
 		_pos = _runwaySpawnLocation select 0;
 		_ang = _runwaySpawnLocation select 1;
 	};
-	private _groupX = createGroup _sideX;
-	_groups pushBack _groupX;
 	_countX = 0;
 	private _vehCount = round (random [2, 4, 5]);
 	while {_countX < _vehCount} do {
@@ -333,14 +331,43 @@ if (!_busy) then {
 			};
 		} else {
 			if !(_runwaySpawnLocation isEqualTo []) then {
-				private _airVehTypes = (_faction get "vehiclesPlanesCAS")
-                    + (_faction get "vehiclesPlanesAA")
-					+ (_faction get "vehiclesPlanesLargeCAS")
-                    + (_faction get "vehiclesPlanesLargeAA")
-                    + (_faction get "vehiclesPlanesTransport");
-		    		+ (_faction getOrDefault ["vehiclesPlanesGunship", []]);
-					+ (_faction getOrDefault ["uavsAttack", []]);
-				_typeVehX = selectRandom _airVehTypes;
+				private _vehiclesPlanesCAS = _faction get "vehiclesPlanesCAS";
+				private _vehiclesPlanesAA = _faction get "vehiclesPlanesAA";
+				private _vehiclesPlanesLargeCAS = _faction get "vehiclesPlanesLargeCAS";
+				private _vehiclesPlanesLargeAA = _faction get "vehiclesPlanesLargeAA";
+				private _vehiclesPlanesTransport = _faction get "vehiclesPlanesTransport";
+				private _vehiclesPlanesGunship = _faction getOrDefault ["vehiclesPlanesGunship", []];
+				private _uavsAttack = _faction getOrDefault ["uavsAttack", []];
+				private _vehPool = [];
+				{
+				    _vehPool pushBack _x;
+				    _vehPool pushBack 0.7;
+				} forEach _vehiclesPlanesCAS;
+				{
+				    _vehPool pushBack _x;
+				    _vehPool pushBack 0.7;
+				} forEach _vehiclesPlanesAA;
+				{
+				    _vehPool pushBack _x;
+				    _vehPool pushBack 1;
+				} forEach _vehiclesPlanesLargeCAS;
+				{
+				    _vehPool pushBack _x;
+				    _vehPool pushBack 1;
+				} forEach _vehiclesPlanesLargeAA;
+				{
+				    _vehPool pushBack _x;
+				    _vehPool pushBack 1;
+				} forEach _vehiclesPlanesTransport;
+				{
+				    _vehPool pushBack _x;
+				    _vehPool pushBack 0.5;
+				} forEach _vehiclesPlanesGunship;
+				{
+				    _vehPool pushBack _x;
+				    _vehPool pushBack ((A3A_UAVSpawnChance - 10) max 0);
+				} forEach _uavsAttack;
+				_typeVehX = selectRandomWeighted _vehPool;
 				if (!isNil "_typeVehX") then {
 					_veh = createVehicle [_typeVehX, _pos, [],50, "NONE"];
 					_veh setDir (_ang);
@@ -357,31 +384,12 @@ if (!_busy) then {
 	};
 };
 
-private _typeVehX = _faction get "flag";
-private _flagX = createVehicle [_typeVehX, _positionX, [],0, "NONE"];
-_flagX allowDamage false;
-[_flagX,"take"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_flagX];
+([_markerX] call A3A_fnc_createZoneFlag) params ["_flagX", "_flagSpawn"];
 _vehiclesX pushBack _flagX;
-if (flagTexture _flagX != (_faction get "flagTexture")) then {[_flagX,(_faction get "flagTexture")] remoteExec ["setFlagTexture",_flagX]};
+if (!isNil "_flagSpawn") then { _spawnsUsed pushBack _flagSpawn };
 
-// Only create ammoBox if it's been recharged (see reinforcementsAI)
-private _ammoBox = if (garrison getVariable [_markerX + "_lootCD", 0] == 0) then
-{
-	private _ammoBoxType = _faction get "ammobox";
-	private _ammoBox = [_ammoBoxType, _positionX, 15, 5, true] call A3A_fnc_safeVehicleSpawn;
-	// Otherwise when destroyed, ammoboxes sink 100m underground and are never cleared up
-	_ammoBox addEventHandler ["Killed", { [_this#0] spawn { sleep 10; deleteVehicle (_this#0) } }];
-	[_ammoBox] spawn A3A_fnc_fillLootCrate;
-	[_ammoBox, nil, true] call A3A_Logistics_fnc_addLoadAction;
-
-	[_ammoBox] spawn {
-		sleep 1;    //make sure fillLootCrate finished clearing the crate
-		{
-			_this#0 addItemCargoGlobal [_x, round random [5,15,15]];
-		} forEach (A3A_faction_reb get "flyGear");
-	};
-	_ammoBox;
-};
+([_markerX] call A3A_fnc_createZoneAmmoBox) params ["_ammoBox", "_ammoBoxSpawn"];
+if (!isNil "_ammoBoxSpawn") then { _spawnsUsed pushBack _ammoBoxSpawn };
 
 private _heavyarmed = 	(_faction get "vehiclesLightAPCs") + 
 						(_faction get "vehiclesAPCs") + 

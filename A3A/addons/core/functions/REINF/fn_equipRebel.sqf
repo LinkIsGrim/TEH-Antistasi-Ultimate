@@ -107,6 +107,14 @@ private _fnc_addBackpack = {
     if !(isNil "_backpack") then { _unit addBackpack _backpack };
 };
 
+private _fnc_hasItemType = {
+    params ["_unit", "_itemType"];
+
+    private _allItemsOfType = missionNamespace getVariable ["all" + _itemType, []];
+    private _unitMags = magazineCargo _unit;
+    (_allItemsOfType arrayIntersect _unitMags) isNotEqualTo [];
+};
+
 private _fnc_addGrenades = {
     params ["_unit", ["_gType", ""], ["_gAmount", 1]];
 
@@ -116,6 +124,15 @@ private _fnc_addGrenades = {
         private _grenades = A3A_rebelGear get _x;
         if (_grenades isNotEqualTo []) then { _unit addMagazines [selectRandomWeighted _grenades, _gAmount] }
     } forEach _types;
+};
+
+private _fnc_hasMags = {
+    params ["_unit", "_weaponData"];
+
+    private _weapon = if (_weaponData isEqualType []) then { _weaponData select 0 } else { _weaponData };
+    private _compatibleMags = compatibleMagazines _weapon;
+    private _unitMags = magazineCargo _unit;
+    (_compatibleMags arrayIntersect _unitMags) isNotEqualTo [];
 };
 
 private _fnc_addPrimary = {
@@ -139,8 +156,8 @@ private _fnc_addPrimary = {
     };
     
     if (isNil "_weaponType" || {_weaponType isEqualTo []}) exitWith {};
-    [_unit, _weaponType, _totalMagWeight] call A3A_fnc_randomWeapon;
-
+    private _hasMags = !(_weaponType in keys A3A_rebelGear) && {[_unit, _weaponType] call _fnc_hasMags};
+    [_unit, _weaponType, [_totalMagWeight, 0] select (_hasMags)] call A3A_fnc_randomWeapon;
 };
 
 private _fnc_addSecondary = {
@@ -168,7 +185,8 @@ private _fnc_addSecondary = {
     };
 
     if (isNil "_weapon" || {_weapon isEqualTo []}) exitWith {};
-    [_unit, _weapon, 100] call A3A_fnc_randomWeapon;
+    private _hasMags = [_unit, _weapon] call _fnc_hasMags;
+    [_unit, _weapon, [100, 0] select (_hasMags)] call A3A_fnc_randomWeapon;
 };
 
 private _fnc_addHandgun = {
@@ -177,7 +195,8 @@ private _fnc_addHandgun = {
     private _weaponType = if !(isNil "_overrideClass") then { _overrideClass } else { "Handguns" };
     
     if (isNil "_weaponType" || {_weaponType isEqualTo []}) exitWith {};
-    [_unit, _weaponType, 10] call A3A_fnc_randomWeapon;
+    private _hasMags = !(_weaponType in keys A3A_rebelGear) && {[_unit, _weaponType] call _fnc_hasMags};
+    [_unit, _weaponType, [10, 0] select (_hasMags)] call A3A_fnc_randomWeapon;
 };
 
 private _fnc_addBinoculars = {
@@ -208,6 +227,42 @@ private _fnc_addAssignedItems = {
     };
 };
 
+private _fnc_addItemSet = {
+    params ["_unit", "_itemSet"];
+
+    private _items = items _unit;
+
+    private _itemsToAdd = [];
+    {
+        for "_i" from 1 to (_x#1) do { _itemsToAdd pushBack (_x#0) };
+    } forEach (_itemSet);
+
+    if ((_itemsToAdd arrayIntersect _items) isEqualTo []) then {
+        { _unit addItem _x } forEach _itemsToAdd;
+    };
+};
+
+private _fnc_addMedItems = {
+    params ["_unit"];
+
+    private _level = switch (_typeTag) do {
+        case ("Rifleman");
+        case ("Engineer");
+        case ("Grenadier");
+        case ("SquadLeader"): {
+            "STANDARD";
+        };
+        case ("Medic"): {
+            "MEDIC";
+        };
+        default {
+            "MINIMAL";
+        };
+    };
+    
+    [_unit, [_level, independent] call A3A_fnc_itemset_medicalSupplies] call _fnc_addItemSet;
+};
+
 private _fnc_addClassEquip = {
     params ["_unit"];
 
@@ -215,13 +270,14 @@ private _fnc_addClassEquip = {
     
     switch (_typeTag) do {
         case ("Rifleman"): {
+            if ([_unit, "Grenades"] call _fnc_hasItemType || {[_unit, "SmokeGrenades"] call _fnc_hasItemType}) exitWith {};
             [_unit, "Grenades", 2] call _fnc_addGrenades;
             [_unit, "SmokeGrenades", 1] call _fnc_addGrenades;
         };
         case ("ExplosivesExpert"): {
             _unit enableAIFeature ["MINEDETECTION", true]; //This should prevent them from Stepping on the Mines as an "Expert" (It helps, they still step on them)
 
-            private _hasMineDetector = (_items arrayIntersect (A3A_rebelGear get "MineDetectors")) isNotEqualTo [];
+            private _hasMineDetector = [_unit, "MineDetectors"] call _fnc_hasItemType;
             if (!_hasMineDetector) then {
                 private _mineDetector = selectRandomWeighted (A3A_rebelGear get "MineDetectors");
                 if !(isNil "_mineDetector") then { _unit addItem _mineDetector };
@@ -234,59 +290,38 @@ private _fnc_addClassEquip = {
             _unit addItemToBackpack "IEDLandBig_Remote_Mag";
         };
         case ("Engineer"): {
-            [_unit, "SmokeGrenades", 3] call _fnc_addGrenades;
-
-            private _hasToolkit = (_items arrayIntersect (A3A_rebelGear get "Toolkits")) isNotEqualTo [];
+            private _hasToolkit = [_unit, "Toolkits"] call _fnc_hasItemType;
             if (!_hasToolkit) then {
                 private _toolkit = selectRandomWeighted (A3A_rebelGear get "Toolkits");
                 if !(isNil "_toolkit") then { _unit addItem _toolkit };
             };
 
+            if ([_unit, "SmokeGrenades"] call _fnc_hasItemType || {[_unit, "ExplosiveCharges"] call _fnc_hasItemType}) exitWith {};
+            [_unit, "SmokeGrenades", 3] call _fnc_addGrenades;
             [_unit, 50] call _fnc_addCharges;
         };
         case ("Medic"): {
+            if ([_unit, "SmokeGrenades"] call _fnc_hasItemType) exitWith {};
             [_unit, "SmokeGrenades", 5] call _fnc_addGrenades;
-
-            // not-so-temporary hack
-            private _medItems = [];
-            {
-                for "_i" from 1 to (_x#1) do { _medItems pushBack (_x#0) };
-            } forEach (["MEDIC",independent] call A3A_fnc_itemset_medicalSupplies);
-            {
-                _medItems deleteAt (_medItems find _x);
-            } forEach items _unit;
-            {
-                _unit addItemToBackpack _x;
-            } forEach _medItems;
         };
         case ("SquadLeader"): {
+            if ([_unit, "Grenades"] call _fnc_hasItemType || {[_unit, "SmokeGrenades"] call _fnc_hasItemType}) exitWith {};
             [_unit, "Grenades", 1] call _fnc_addGrenades;
             [_unit, "SmokeGrenades", 2] call _fnc_addGrenades;
         };
         default {
-            Error_1("Unknown unit class: %1", _typeTag);
+            Warning_1("Unit class does not have class-specific items to add to loadout: %1", _typeTag);
         };
     };
+
+    [_unit, [] call A3A_fnc_itemset_miscEssentials] call _fnc_addItemSet;
+    [_unit] call _fnc_addMedItems;
 };
 
 private _fnc_addUniform = {
     params ["_unit", "_overrideClass"];
 
     if (isNil "_overrideClass") then { _unit forceAddUniform (selectRandom (A3A_faction_reb get 'uniforms')) };
-
-    private _uniform = uniformContainer _unit;
-
-    switch (_typeTag) do {
-        case ("Rifleman");
-        case ("Engineer");
-        case ("Grenadier");
-        case ("SquadLeader"): {
-            { _uniform addItemCargo _x; } forEach ((["STANDARD", independent] call A3A_fnc_itemset_medicalSupplies) + ([] call A3A_fnc_itemset_miscEssentials));
-        };
-        default {
-            { _uniform addItemCargo _x; } forEach ((["MINIMAL", independent] call A3A_fnc_itemset_medicalSupplies) + ([] call A3A_fnc_itemset_miscEssentials));
-        };
-    };
 };
 
 if (!isNil "_customLoadout") then {
