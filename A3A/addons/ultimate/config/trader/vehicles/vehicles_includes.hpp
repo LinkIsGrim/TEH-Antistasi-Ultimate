@@ -56,4 +56,4 @@
 #include "vehicles_contact.hpp"
 #include "vehicles_kart.hpp"
 #include "vehicles_ScifiVP.hpp"
-
+#include "vehicles_jcals.hpp"
