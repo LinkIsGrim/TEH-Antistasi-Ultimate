@@ -167,7 +167,7 @@
         {"Land_CzechHedgehog_01_new_F", 15}, \
         {"Land_Razorwire_F", 15}, \
         {"CargoPlaftorm_01_brown_F", 200}, \
-	    {"Land_Scaffolding_New_F", 50};
+        {"Land_Scaffolding_New_F", 50} \
     }}, \
     {"$STR_antistasi_dialogs_construction_menu_category_lights", "\A3\EditorPreviews_F\Data\CfgVehicles\Land_PortableLight_double_F.jpg", { \
         {"Land_PortableLight_double_F", 50}, \

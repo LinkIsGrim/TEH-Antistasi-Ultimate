@@ -1715,7 +1715,7 @@ class Params
         };
         default = 45;
     };
-    class unconChanceEny : AIBalanceParams
+	class unconChanceEny : AIBalanceParams
     {
         title = $STR_params_unconChanceEny;
         tooltip = $STR_params_unconChanceEny_desc;
@@ -1787,12 +1787,12 @@ class Params
         };
         default = 20;
     };
-	
-	class TEHChallengesParamsSpacer : AIParamsSpacer
+	/*
+	class AIBalanceParamsSpacer : AIParamsSpacer
     {
         type = "Challenges";
     };
-    class TEHChallengesParams : AIParams
+    class AIBalanceParams : AIParams
     {
         type = "Challenges";
         title = "OPTIONAL CHALLENGES";
@@ -1800,7 +1800,9 @@ class Params
         texts[] = {""};
         default = "";
     };
-	class TEH_sendCombatRecons: TEHChallengesParams
+    */
+    
+	class TEH_sendCombatRecons: AIBalanceParams
     {
         attr[] = {"server"};
         title = "Enemies send combat recon squads to the nearby rebel bases";
@@ -1809,7 +1811,7 @@ class Params
         default = 1;
     };
 	
-	class TEH_outpostMines: TEHChallengesParams
+	class TEH_outpostMines: AIBalanceParams
     {
         attr[] = {"server"};
         title = "Enemy outposts are protected by AT mines";
@@ -1819,7 +1821,7 @@ class Params
         default = 25;
     };
 	
-	class TEH_onlyRandom: TEHChallengesParams
+	class TEH_onlyRandom: AIBalanceParams
     {
         attr[] = {"server"};
         title = "Arsenal can only hold unlocked primary weapons and handguns";
@@ -1829,7 +1831,7 @@ class Params
         default = 0;
     };
 	
-	class TEH_civStart: TEHChallengesParams
+	class TEH_civStart: AIBalanceParams
     {
         attr[] = {"server"};
         title = "Limit starting weapons";
@@ -1838,7 +1840,7 @@ class Params
         default = 0;
     };
 	
-    class pistolStart : TEHChallengesParams
+    class pistolStart : AIBalanceParams
     {
         title = $STR_params_pistolStart;
         tooltip = $STR_params_pistolStart_desc;
@@ -1866,7 +1868,7 @@ class Params
         lockInGame = 1;
     };
 
-	class TEH_spawnSwat: TEHChallengesParams
+	class TEH_spawnSwat: AIBalanceParams
     {
         attr[] = {"server"};
         title = "Spawn SWAT teams to help police";
@@ -1875,7 +1877,7 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
         default = 1;
     };
-	class TEH_snitchingCivilians: TEHChallengesParams
+	class TEH_snitchingCivilians: AIBalanceParams
     {
         attr[] = {"server"};
         title = "Civilians call the police";
@@ -1884,7 +1886,7 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
         default = 1;
     };
-    class radiomanSupport: TEHChallengesParams
+    class radiomanSupport: AIBalanceParams
     {
         title = $STR_A3AU_radioman_support;
         tooltip = $STR_A3AU_radioman_support_desc;
@@ -1904,7 +1906,7 @@ class Params
         };
         default = 0;
     };
-    class enablePunishments: TEHChallengesParams
+    class enablePunishments: AIBalanceParams
     {
         title = $STR_params_enablePunishments;
         tooltip = $STR_params_enablePunishments_desc;
@@ -1929,7 +1931,7 @@ class Params
         };
         default = 1;
     };
-    class napalmEnabled: TEHChallengesParams
+    class napalmEnabled: AIBalanceParams
     {
         title = $STR_params_napalmEnabled;
         tooltip = $STR_params_napalmEnabled_desc;
@@ -1954,7 +1956,7 @@ class Params
         };
         default = 1;
     };
-    class allowUnfairSupports: TEHChallengesParams
+    class allowUnfairSupports: AIBalanceParams
     {
         attr[] = {"server"};
         title = $STR_params_allowUnfairSupports;
@@ -1980,7 +1982,7 @@ class Params
         };
         default = 0;
     };
-    class allowFuturisticSupports: TEHChallengesParams
+    class allowFuturisticSupports: AIBalanceParams
     {
         attr[] = {"server"};
         title = $STR_params_allowFuturisticSupports;
@@ -1989,7 +1991,7 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 0;
     };
-    class allowFuturisticUnfairSupports: TEHChallengesParams
+    class allowFuturisticUnfairSupports: AIBalanceParams
     {
         attr[] = {"server"};
         title = $STR_params_allowFuturisticUnfairSupports;
@@ -2015,9 +2017,7 @@ class Params
         };
         default = 0;
     };
-	
-
-    class A3U_enableVehiclesForAI : AIBalanceParams
+	class A3U_enableVehiclesForAI : AIBalanceParams
     {
         title = $STR_params_enableVehiclesForAI;
         tooltip = $STR_params_enableVehiclesForAI_desc;
