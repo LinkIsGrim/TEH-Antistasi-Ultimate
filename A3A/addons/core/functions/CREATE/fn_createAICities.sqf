@@ -89,12 +89,12 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 			};
 
 			// Killed EH for police response van
-			if (TEH_spawnSwat == 1) then {
+			if (TEH_spawnSwat > 0) then {
 				_unit addEventHandler ["Killed", {
 					params ["_unit", "_killer", "_instigator", "_useEffects"];
 
-					// 33% chance to call SWAT
-					if (random 100 > 33) exitWith {};
+					// 50% chance to call Gendarmerie, 70% chance to call faction police
+					if (random 100 < 30 + 20 * TEH_spawnSwat) exitWith {};
 
 					[_unit,_instigator] spawn A3A_fnc_spawnSwat;
 				}];

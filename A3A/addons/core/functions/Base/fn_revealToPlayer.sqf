@@ -1,5 +1,7 @@
 private _rebelBases = [];
 private _markerMap = createHashMap;
+private _emptyCycle = 0;
+private _emptyMarkers = [];
 
 while { true } do {
 	private _reconUAV = (missionNamespace getVariable["UAVreconTimer",0] > time);
@@ -111,6 +113,61 @@ while { true } do {
 	} forEach _markerMap;
 
 	sleep 15;
+	_emptyCycle = _emptyCycle + 1;
+
+	if (_emptyCycle > 3) then {
+		_emptyCycle = 0;
+
+		{
+			deleteMarkerLocal _x;
+		} forEach _emptyMarkers;
+		_emptyMarkers = [];
+
+		{
+			private _veh = _x;
+			private _side = _veh getVariable ["originalSide", sideUnknown];
+
+			if (
+				alive _veh
+				&& {_side in [Invaders, Occupants, teamPlayer]}
+				&& {(crew _veh findIf {alive _x}) == -1}
+			) then {
+				private _typeX = switch (true) do {
+					case (_veh isKindOf "Helicopter"): { "air" };
+					case (_veh isKindOf "Tank"): { "armor" };
+					case (_veh isKindOf "Wheeled_APC_F"): { "mech_inf" };
+					case (_veh isKindOf "Truck" || _veh isKindOf "Car"): { "motor_inf" };
+					case (_veh isKindOf "Plane_Base_F"): { "plane" };
+					case (_veh isKindOf "Boat_F"): { "naval" };
+					default { "unknown" };
+				};
+
+				if (_typeX isNotEqualTo "unknown") then {
+					private _mrkName = format ["reveal-empty-%1", netId _veh];
+
+					private _formatX = switch (_side) do {
+						case Occupants: { "b" };
+						case Invaders: { "o" };
+						default { "n" };
+					};
+
+					private _color = switch (_side) do {
+						case Occupants: { colorOccupants };
+						case Invaders: { colorInvaders };
+						default { colorTeamPlayer };
+					};
+
+					private _mrk = createMarkerLocal [_mrkName, getPosATL _veh];
+					_mrk setMarkerTypeLocal format ["%1_%2", _formatX, _typeX];
+					_mrk setMarkerColorLocal _color;
+					_mrk setMarkerSizeLocal [0.75, 0.75];
+					_mrk setMarkerAlphaLocal 0.5;
+
+					_emptyMarkers pushBack _mrk;
+				};
+			};
+		} forEach vehicles;
+	};
 };
 
 // remove all

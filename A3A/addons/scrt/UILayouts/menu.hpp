@@ -345,7 +345,7 @@ class radioComm: SimpleMenuBigger
 			x = 0.257187 * safezoneW + safezoneX;
 			y = 0.388 * safezoneH + safezoneY;
 			tooltip = $STR_antistasi_dialogs_undercover_tooltip;
-			action = "closeDialog 0; [] spawn A3A_fnc_goUndercover";
+			action = "closeDialog 0; if (captive player) then {player setCaptive false;} else {[] spawn A3A_fnc_goUndercover;};";
 		};
 
 		class l3Button: SimpleButton

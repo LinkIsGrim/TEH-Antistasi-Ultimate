@@ -1873,9 +1873,9 @@ class Params
         attr[] = {"server"};
         title = "Spawn SWAT teams to help police";
 		tooltip = "Killing a policeman can trigger a SWAT operation - enemies will send a Gendarmerie van full of angry cops";
-        values[] = {1,0};
-        texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
-        default = 1;
+        values[] = {0,1,2};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, "Send Gendarmerie", "Send faction police"};
+        default = 2;
     };
 	class TEH_snitchingCivilians: AIBalanceParams
     {
@@ -3117,6 +3117,9 @@ class Params
     {
         title = "POW shortcuts for enemy units";
         tooltip = "Adds Stabilize action for wounded unconscious enemy, and Stop! for panic runner (25m distance, 15 seconds duration)";
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
 	};
     class A3U_disablePATCOMMortars : ExperimentalParams
     {
