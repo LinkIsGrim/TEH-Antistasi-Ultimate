@@ -1707,6 +1707,211 @@
                 <Polish>Na fladze w kwaterze dowodzenia, jeśli włączona jest funkcja Członków Serwera, możesz sprawdzić, którzy z Członków Serwera są w grze i całkowitą liczbę pozostałych osób.</Polish>
                 <Turkish>Sunucu Üyesi özelliği etkinse, Karargah Bayrağı'ndan hangi Sunucu Üyelerinin oyunda olduğunu ve üye olmayanların toplam sayısını kontrol edebilirsiniz.</Turkish>
             </Key>
+            <Key ID="STR_antistasi_journal_subject_TEH_tutorial">
+                <Original>TEH Tutorial</Original>
+                <Russian>TEH Обучение</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_1">
+                <Original>TEH Antistasi Ultimate</Original>
+                <Russian>TEH Antistasi Ultimate</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_1">
+                <Original>TEH Antistasi Ultimate is a further expansion of Antistasi Ultimate with ACE integration and many original features. If you are already familiar with AU concepts, you are mostly ready for this expansion, but check the following entries, as some new functionality is hidden behind ACE actions or may not be obvious at first.</Original>
+                <Russian>TEH Antistasi Ultimate — это дальнейшее расширение Antistasi Ultimate с интеграцией ACE и большим количеством оригинальных механик. Если вы уже знакомы с концепциями AU, вы в целом готовы к этому расширению, но всё же просмотрите следующие записи, поскольку часть новой функциональности спрятана за ACE-действиями или может быть неочевидна с первого взгляда.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_2">
+                <Original>Trader Changes</Original>
+                <Russian>Изменения торговца</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_2">
+                <Original>The trader now offers all Vanilla, CUP and NIArms primary weapon variants. Prices are fixed from epoch, weapon features and caliber. Armor sell price depends on armor class, and the Sell button sells the whole item stack automatically.</Original>
+                <Russian>Торговец теперь продаёт все варианты основного оружия Vanilla, CUP и NIArms. Цены фиксированы и зависят от эпохи, особенностей оружия и калибра. Цена продажи брони зависит от класса защиты, а кнопка продажи автоматически продаёт все предметы одного класса сразу.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_3">
+                <Original>Finding the Trader</Original>
+                <Russian>Поиск торговца</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_3">
+                <Original>The trader search mission no longer appears from the first Intel. This prevents rushing meta, overpowered, or simply familiar builds and helps expand the early game. Expect the trader to appear around War Level 4.</Original>
+                <Russian>Миссия на поиск торговца больше не появляется с самого первого Intel. Это предупреждает быстрый переход на метовые, слишком сильные или просто привычные сборки и делают начальную фазу игры длиннее. Ожидайте появление торговца примерно на 4 уровне войны.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_4">
+                <Original>New arsenal ammo system</Original>
+                <Russian>Новая система боеприпасов</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_4">
+                <Original>Magazines and bullets are tracked separately. Empty magazines are kept on reload, and compatible ammo can refill magazines later in arsenal or on the flag if arsenal contains a reserve of this ammo from looted unused mags. Do not throw away rare mags or drums just because they are empty.</Original>
+                <Russian>Магазины и патроны учитываются по-отдельности. Пустые магазины сохраняются при перезарядке, и их можно перезарядить в арсенале или на флаге, если в арсенале есть запас таких патронов из трофейных ненужных магазинов. Не выбрасывайте редкие магазины и барабаны только потому, что они пустые!</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_5">
+                <Original>Quick Resupply and Last Loadout</Original>
+                <Russian>Быстрое пополнение БК и загрузка экипировки</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_5">
+                <Original>Quick Resupply restocks medicine and reloads existing magazines. It is available on the arsenal crate and at friendly base flags. Equip Last Loadout restores the last loaded or saved loadout when you need to get back into action quickly.</Original>
+                <Russian>Quick Resupply восстанавливает медицинские припасы и перезаряжает пустые магазины. Оно доступно на ящике арсенала и на флагах дружественных баз. На ящике арсенала также можно быстро загрузить предыдущую сохранённую экипировку.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_6">
+                <Original>Magazine Conversion and Repacking</Original>
+                <Russian>Конвертация и перепаковка магазинов</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_6">
+                <Original>Convert Mag can move magazines within the same model pool, or discard unwanted empty magazines while keeping the ammo. ACE Repack primary ammo repacks primary weapon magazines from suitable ammo sources, saving empty mags (unlike ACE). Belts require a Toolkit or Defusal Kit.</Original>
+                <Russian>Конвертация магазинов позволяет менять магазины внутри одного модельного пула или выбрасывать ненужные пустые магазины с сохранением патронов. ACE-действие для перепаковки основного боезапаса собирает магазины из подходящих источников патронов, с сохранением пустых магазинов в отличие от базовой перепаковки в ACE. Для лент нужен Toolkit или Defusal Kit.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_7">
+                <Original>Loading Limits</Original>
+                <Russian>Лимиты погрузки</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_7">
+                <Original>Vehicles ignore weight and volume when loading equipment from the arsenal or gathering loot into a vehicle. This may reduce realism or be abused, but it makes logistics much less annoying. The Boxer truck capacity is also increased significantly for comfortable shopping. When equipping items from the arsenal, the weight check is disabled as well, so you can overload yourself and suffer from lack of stamina if you want to. Your call.</Original>
+                <Russian>Техника игнорирует вес и объём при загрузке снаряжения из арсенала или сборе лута в транспорт. Это снижает реализм, но делает логистику намного менее раздражающей. Вместимость грузовика с фургоном также значительно увеличена для удобных закупок. При экипировке предметов из арсенала проверка веса тоже отключена, поэтому вы можете перегрузить себя и страдать от нехватки выносливости, без необходимости использования сторонних контейнеров. Ваш выбор.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_8">
+                <Original>Starter Kits and Quick Equip</Original>
+                <Russian>Стартовые наборы и автоэкипировка</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_8">
+                <Original>Garage vehicles spawn with starter supplies, including medicine and up to 600 primary weapon bullets if a loaded magazine exists. On respawn, random rebel loadouts automatically run Quick Equip with weapon ammo, ACE medicine, armor and helmet when available.</Original>
+                <Russian>Техника из гаража появляется со стартовым набором: медицина и до 600 патронов для основного оружия, если в вашем основном оружии есть заряженный магазин. При респавне игроку автоматически выдаётся снаряжение выбранного класса: оружие с патронами, ACE-медицина, броня и шлем при наличии.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_9">
+                <Original>Undercover Changes</Original>
+                <Russian>Изменения маскировки</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_9">
+                <Original>Undercover checks are knowledge-based: enemies must know about your presence. Offroading no longer reports your civilian vehicle by itself. Military gear or visible weapons inside a civilian vehicle can still break undercover if enemies are close enough.</Original>
+                <Russian>Проверки маскировки теперь завязаны на знание врага: противник должен знать о вашем присутствии. Езда вне дорог сама по себе больше не сдаёт гражданскую машину. Но военное снаряжение или видимое оружие в гражданской машине теперь могут сорвать маскировку, если враги достаточно близко.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_10">
+                <Original>Concealed Weapons</Original>
+                <Russian>Скрытое оружие</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_10">
+                <Original>Some weapons can stay concealed while you are sitting in a civil vehicle: handguns and short rifles, such as short-barrel or bullpup rifles, if they have no muzzle attachments. Do not assume every compact weapon is safe. Hint message will be shown if the weapon cannot be concealed.</Original>
+                <Russian>Некоторое оружие может оставаться скрытым, пока вы сидите в гражданской машине: пистолеты и короткие винтовки, например короткоствольные или bullpup, если на них нет дульных насадок. Не считайте любое компактное оружие безопасным автоматически. Если оружие нельзя спрятать, будет показана подсказка при посадке в машину.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_11">
+                <Original>Roadblocks and Cargo</Original>
+                <Russian>Блокпосты и груз</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_11">
+                <Original>Roadblocks are no longer random luck checks. They inspect cargo. Illegal items can be hidden in backpacks or containers inside the car, but AI passengers always fail the check.</Original>
+                <Russian>Блокпосты больше не работают как случайная проверка удачи. Они проверяют груз. Нелегальные предметы можно спрятать в рюкзаках или контейнерах внутри машины, но AI-пассажиры всегда проваливают проверку.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_12">
+                <Original>Rebel Armored Tanks</Original>
+                <Russian>Выживаемость бронетехники повстанцев</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_12">
+                <Original>APCs and tanks taken from the garage get a survival fix. If they are hit but not destroyed, the health pool resets to 51 percent damage while components stay broken. A single powerful shell or explosion can still destroy them outright.</Original>
+                <Russian>БТРы и танки, взятые из гаража, включают новый механизм выживания. Если техника получила попадание, но не уничтожена, общий урон сбрасывается до 51 процента, при этом компоненты остаются сломанными. Однако мощный снаряд, ракета или взрыв всё ещё могут полностью уничтожить технику.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_14">
+                <Original>Second Chance</Original>
+                <Russian>Второй Шанс</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_14">
+                <Original>If the parameter allowing AI control while unconscious is enabled, being knocked down can transfer you into a nearby infantry AI once per knockdown. It is skipped for fatal wounds. The AI does not have to be in your squad, but must be within 200 meters. While you control an AI, your original body is invulnerable but can still bleed out or drown. If the borrowed AI is knocked down, control is lost and there is no extra attempt. Zeus or other out-of-body systems may break the return.</Original>
+                <Russian>Если параметр управления AI при потере сознания включён, при нокдауне вы можете один раз вселиться в ближайшего ИИ-пехотинца. При смертельном ранении это не сработает. ИИ не обязан быть в вашем отряде, но должен быть в пределах 200 метров. Пока вы управляете ИИ, исходное тело неуязвимо, но всё ещё может истечь кровью или утонуть. Если выбранный ИИ получает тяжёлое ранение, второй шанс будет упущен окончательно. Zeus и другие системы выхода из тела могут сломать возврат.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_15">
+                <Original>Enemy Bases Capture</Original>
+                <Russian>Захват вражеских баз</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_15">
+                <Original>Captured base leftovers are less disposable now. Spawned vehicles and ammo boxes do not vanish just because you captured the base and left. Remaining enemies no longer surrender automatically when the location is seized; they try to rush back to the flag.</Original>
+                <Russian>Трофеи после захвата баз теперь не пропадают так легко. Вражеская техника и ящики не исчезают только потому, что вы захватили базу и уехали. Также, оставшиеся в живых враги больше не сдаются автоматически при захвате точки, а пытаются прорваться обратно к флагу.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_16">
+                <Original>Fast Travel+</Original>
+                <Russian>Быстрое Перемещение+</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_16">
+                <Original>Fast travel allows free selection within 500 meters of friendly markers, but only when the closest marker is friendly. Also you can teleport to a friendly vehicle (green circles), though outside friendly areas this travel charges a fee per squad member. Vehicles stick to roads, while infantry can travel directly to the cursor. Markers under attack do not prevent fast travel. Partial squads can still teleport, leaving statics and driverless vehicles behind.</Original>
+                <Russian>Быстрое перемещение позволяет свободно выбирать точку в радиусе 500 метров от дружественных маркеров, но только если ближайший маркер является дружественным. Также можно перемещаться в 100м от дружественной техники (за перемещение за пределами активных зон будет взыматься плата). Техника придерживается дорог, а пехота может перемещаться прямо к курсору. Маркеры под атакой не блокируют быстрое перемещение. Неполные отряды всё ещё могут телепортироваться, оставляя стационарные орудия и технику без водителя в начальной точке.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_17">
+                <Original>Loot to Vehicle</Original>
+                <Russian>Сбор лута в технику</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_17">
+                <Original>Use ACE action on vehicles to collect loot in a radius from 5 to 5000 meters. The radius depends on enemy proximity: roughly distance to nearest enemy minus 50 meters. Several players can loot the same area, even into the same vehicle. CUP launchers are correctly compacted into storage mode</Original>
+                <Russian>Используйте ACE-действие на технике, чтобы собрать лут в радиусе от 5 до 5000 метров. Радиус зависит от близости врага: примерно расстояние до ближайшего противника минус 50 метров. Несколько игроков могут лутать одну зону, даже в одну и ту же машину. Этот сборщик корректно обрабатывает складывание CUP-пусковых установок в режим хранения</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_18">
+                <Original>Finding Intel</Original>
+                <Russian>Поиск разведданных</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_18">
+                <Original>Loot to Vehicle creates Intel markers on squad leader corpses. Use Pack on a squad leader corpse if Intel gets stuck. Enemy Radio Keys now save and load correctly between sessions.</Original>
+                <Russian>Loot to Vehicle также показывает Intel-маркеры на трупах командиров отделений. Используйте Pack на трупе командира, если Intel обнаружен, но не может быть найден. Вражеские радиоключи теперь корректно сохраняются и загружаются между сессиями.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_19">
+                <Original>Persistent Loot</Original>
+                <Russian>Постоянный лут</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_19">
+                <Original>Corpses do not disappear on timeout, so your loot is not lost during a long siege. Use Loot Vehicle or the garbage collector to remove empty bodies, for example if the loot was collected by a Loot Box or is no longer needed because everything is unlocked. Wrecks can be removed from a very close range through the action or ACE menu, but watch out for cook-offs and fire.</Original>
+                <Russian>Трупы не исчезают по таймауту, поэтому ваш лут не пропадёт во время долгой осады. Используйте Loot Vehicle или сборщик мусора, чтобы убрать пустые тела, например если лут был собран Loot Box или больше не нужен, потому что всё уже разблокировано. Остовы техники можно убирать с очень близкой дистанции через обычное действие или ACE-меню, но остерегайтесь детонации боекомплекта и огня.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_20">
+                <Original>Selling Vehicles</Original>
+                <Russian>Продажа техники</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_20">
+                <Original>This experimental change lets vehicles and wrecks be sold anywhere if enemy distance checks pass. Health affects payout (health multiplier). Selling returns vehicle inventory to the Arsenal.</Original>
+                <Russian>Это экспериментальные изменения позволяет продавать технику и остовы где угодно, если пройдена проверка дистанции до врага. Состояние влияет на размер выплаты. Продажа техники возвращает её инвентарь в арсенал.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_21">
+                <Original>Squad Markers and UAV</Original>
+                <Russian>Маркеры отрядов и БПЛА</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_21">
+                <Original>Enemy squad leaders, squad transports and non-civil empty vehicles are shown on each player's map, not only to the commander. Normal infantry and static squads farther than 1.5 km from rebel bases are hidden unless the HQ map stand Launch UAV action is used by Commander (AR-2 drone backpack is expended).</Original>
+                <Russian>Командиры вражеских отрядов, их техника, а также пустая не-гражданская техника отображаются на карте каждого игрока, а не только командира. Обычная пехота и статики дальше 1,5 км от баз повстанцев скрыты. На карте в штабе командир может запустить разведывательный беспилотник, чтобы раскрыть всю пехоту на карте (Launch UAV, требует рюкзак с дроном AR-2).</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_22">
+                <Original>Anti-Anti-Air</Original>
+                <Russian>Противодействие ПВО</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_22">
+                <Original>Sniping enemy aircraft with long-range AA from 2 km or more can trigger enemy attempts to destroy your AA assets, such as radar and SAM sites. Enemy airborne QRF disembark distance is increased significantly, making MANPAD ambushes less effective.</Original>
+                <Russian>Уничтожение вражеской авиации из дальнобойного ПВО с дистанции 2 км или больше может спровоцировать попытки врага уничтожить ваши средства ПВО, например радары и ЗРК. Дистанция высадки вражеских воздушных СБР значительно увеличена, поэтому засады с ПЗРК стали менее эффективными.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_23">
+                <Original>Optional Challenges</Original>
+                <Russian>Опциональные челленджи</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_23">
+                <Original>For extra difficulty and even longer early game there are optional challenges parameters under AI and Rebel balance settings. They can add enemy recapture squads, SWAT reactions to dead police, civilian police guides, antitank mines at outposts and ports, harsher starting weapons, OnlyRandoms arsenal progression etc.</Original>
+                <Russian>Для повышения сложности и продления ранней стадии игры, используйте параметры для опциональных челленджей, которые находятся в настройках баланса AI и повстанцев. Они могут добавить вражеские отряды для перезахвата, SWAT-реакцию на смерть полиции, гражданских информаторов, противотанковые мины у аванпостов и портов, ограничения на стартовое оружие, прогрессию арсенала OnlyRandoms итд.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_24">
+                <Original>Tower Defense and Binoculars</Original>
+                <Russian>Оборонительные башни и Бинокли</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_24">
+                <Original>This function allows building elevated platforms and tower for defensive weaponry and machinegun nests. Builder boxes include Scaffolds and Cargo Platforms near the bottom of the list. Construct the buildings, then use Align Platforms on scaffolds to snap nearby towers. You can keep building on platforms with Alt and Shift in the planner; run Align Platforms again if objects appear angled. Use Reveal Target on Binoculars (or advanced visors) to relay target information to the outpost garrisons</Original>
+                <Russian>Эта функция позволяет строить высокие оборонительные платформы и башни. В ящиках строителя ближе к концу списка есть Scaffolds и Cargo Platforms. Разместите постройки поблизости друг от друга, затем используйте действие Align Platforms на строительных лесах, чтобы выровнять башни. На платформах можно продолжать строить через Alt и Shift в планировщике; если объекты стоят под углом, снова используйте Align Platforms. Используйте Reveal Target в бинокле или улучшенном оборудовании, чтобы сообщить о противнике ближайшему гарнизону</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_25">
+                <Original>Spawn Anchoring</Original>
+                <Russian>Контроль активности врага</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_25">
+                <Original>This experimental change makes rebel vehicles and player corpses anchor active non-city markers from despawning. Use LootVehicle for corpse collection and empty vehicle markers to remove anchors.</Original>
+                <Russian>Это экспериментальное изменение. Техника повстанцев и тела игроков могут удерживать вражеские маркеры от деспавна. Используйте Loot Vehicle для уборки тел, и маркеры пустой техники для поиска якорей.</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_header_TEH_tutorial_26">
+                <Original>Rebel Loadout Inheritance</Original>
+                <Russian>Наследование снаряжения</Russian>
+            </Key>
+            <Key ID="STR_antistasi_journal_entry_text_TEH_tutorial_26">
+                <Original>If a custom Rifleman rebel loadout exists (Set rebel loadouts button), newly generated rebel loadouts inherit its uniform, vest, helmet, facewear and NVG while automatically picking their role-specific equipment.</Original>
+                <Russian>Если создан шаблон Cтрелка повстанцев (кнопка Настроить снаряжение повстанцев), новые сгенерированные шаблоны повстанцев наследуют его униформу, жилет, шлем, маску/очки и ПНВ, автоматически подбирая остальное снаряжение своей роли.</Russian>
+            </Key>
+
             <Key ID="STR_antistasi_journal_entry_header_SpecialK_1">
                 <Original>Battle Options</Original>
                 <French>Options de combat</French>

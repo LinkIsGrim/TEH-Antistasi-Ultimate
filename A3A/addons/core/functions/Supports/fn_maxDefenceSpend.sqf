@@ -21,7 +21,7 @@ Examples:
 #include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
 
-params ["_side", "_target", "_callPos", ["_maxResMod", 1]];
+params ["_side", "_target", "_callPos", ["_maxResMod", 10]];
 private _targetSide = if (_target isEqualType objNull) then { side group _target } else { _target };
 
 private _curResources = [A3A_resourcesDefenceInv, A3A_resourcesDefenceOcc] select (_side == Occupants);
@@ -183,7 +183,7 @@ private _targPosSpend = 0;
 Debug_2("Callpos spend %1, targpos spend %2", _callPosSpend, _targPosSpend);
 
 private _maxSpend = _threatBalance*_maxSpendLoc - (_callPosSpend max _targPosSpend);      // reduce by what's already been spent
-_maxSpend = _maxSpend min _curResources min (_maxResMod*_maxSpendLoc);
+_maxSpend = _maxSpend min _curResources min (_maxResMod*_maxSpendLoc/10);
 
 // If result is low then there's an increasing chance of not sending anything for now
 // Does this adequately replace the counterAttack size check? Probably...

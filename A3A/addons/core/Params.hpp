@@ -1615,9 +1615,9 @@ class Params
         attr[] = {"server"};
         title = "Counter-attack size";
 		tooltip = "Defence resource multiplier to define the how deep in debt can side go for a counter-attack";
-        values[] = {0.6,0.9,1.2,2.4,10};
-        texts[] =  {"Default","150%","200%","400%","Everyone"};
-        default = 0.6;
+        values[] = {3,6,12,24,100};
+        texts[] =  {"50%","Default","200%","400%","Everyone"};
+        default = 6;
     };
     class A3A_attackHQProximityMul: AIBalanceParams
     {

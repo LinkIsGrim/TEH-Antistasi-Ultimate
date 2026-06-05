@@ -44,6 +44,7 @@ private _unitType = if (_forceClass != "") then {_forceClass} else {_unit getVar
 private _typeTag = _unitType splitString "_" select 3;
 private _rebelLoadouts = +rebelLoadouts;
 private _customLoadout = _rebelLoadouts get _unitType;
+private _riflemanLoadout = _rebelLoadouts get "loadouts_reb_militia_Rifleman";
 
 private _fnc_addCharges = {
     params ["_unit", "_totalWeight"];
@@ -227,6 +228,16 @@ private _fnc_addAssignedItems = {
     };
 };
 
+private _fnc_addAssignedItemsNoNVG = {
+    params ["_unit"];
+
+    _unit call _fnc_addRadio;
+    {
+        private _item = selectRandom _x;
+        if (!isNil "_item") then { _unit linkItem _item };
+    } forEach [unlockedMaps, unlockedCompasses, unlockedWatches]; // should be populated even with no unlocks; GPS not included due to potential of including UAV terminals
+};
+
 private _fnc_addItemSet = {
     params ["_unit", "_itemSet"];
 
@@ -347,12 +358,44 @@ if (!isNil "_customLoadout") then {
         _unit removeWeapon (secondaryWeapon _unit)
     };
 } else {
-    _unit call _fnc_addUniform;
-    _unit call _fnc_addHeadgear;
-    _unit call _fnc_addFacewear;
-    _unit call _fnc_addVest;
+    if (!isNil "_riflemanLoadout" && {!isNil {_riflemanLoadout select 3}} && {(_riflemanLoadout select 3) isEqualType []} && {count (_riflemanLoadout select 3) > 0} && {!isNil {(_riflemanLoadout select 3) select 0}}) then {
+        private _uniform = (_riflemanLoadout select 3) select 0;
+        if (_uniform isNotEqualTo "") then { _unit forceAddUniform _uniform } else { _unit call _fnc_addUniform };
+    } else {
+        _unit call _fnc_addUniform;
+    };
+
+    if (!isNil "_riflemanLoadout" && {!isNil {_riflemanLoadout select 6}}) then {
+        private _helmet = _riflemanLoadout select 6;
+        if (_helmet isNotEqualTo "") then { _unit addHeadgear _helmet };
+    } else {
+        _unit call _fnc_addHeadgear;
+    };
+
+    if (!isNil "_riflemanLoadout" && {!isNil {_riflemanLoadout select 7}}) then {
+        private _facewear = _riflemanLoadout select 7;
+        if (_facewear isNotEqualTo "") then { _unit addGoggles _facewear };
+    } else {
+        _unit call _fnc_addFacewear;
+    };
+
+    if (!isNil "_riflemanLoadout" && {!isNil {_riflemanLoadout select 4}} && {(_riflemanLoadout select 4) isEqualType []} && {count (_riflemanLoadout select 4) > 0} && {!isNil {(_riflemanLoadout select 4) select 0}}) then {
+    private _vest = (_riflemanLoadout select 4) select 0;
+        if (_vest isNotEqualTo "") then { _unit addVest _vest };
+    } else {
+        _unit call _fnc_addVest;
+    };
+
     _unit call _fnc_addBackpack;
-    _unit call _fnc_addAssignedItems;
+
+    if (!isNil "_riflemanLoadout" && {!isNil {_riflemanLoadout select 9}} && {(_riflemanLoadout select 9) isEqualType []} && {count (_riflemanLoadout select 9) > 5} && {!isNil {(_riflemanLoadout select 9) select 5}}) then {
+        _unit call _fnc_addAssignedItemsNoNVG;
+        private _nvg = (_riflemanLoadout select 9) select 5;
+        if (_nvg isNotEqualTo "") then { _unit linkItem _nvg };
+    } else {
+        _unit call _fnc_addAssignedItems;
+    };
+
     _unit call _fnc_addPrimary;
     _unit call _fnc_addSecondary;
     _unit call _fnc_addHandgun;

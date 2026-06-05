@@ -31,6 +31,32 @@ if (side player isEqualTo teamPlayer) then {
 	player createDiaryRecord ["Commander",[format [localize "STR_antistasi_journal_entry_header_commander_2"],format [localize "STR_antistasi_journal_entry_text_commander_2"]]];
 	player createDiaryRecord ["Commander",[format [localize "STR_antistasi_journal_entry_header_commander_1"],format [localize "STR_antistasi_journal_entry_text_commander_1"]]];
 
+	player createDiarySubject ["TEH_tutorial", localize "STR_antistasi_journal_subject_TEH_tutorial"];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_26"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_26"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_25"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_25"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_24"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_24"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_23"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_23"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_22"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_22"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_21"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_21"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_20"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_20"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_19"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_19"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_18"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_18"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_17"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_17"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_16"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_16"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_15"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_15"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_14"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_14"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_12"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_12"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_11"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_11"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_10"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_10"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_9"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_9"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_8"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_8"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_7"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_7"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_6"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_6"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_5"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_5"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_4"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_4"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_3"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_3"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_2"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_2"]]];
+	player createDiaryRecord ["TEH_tutorial",[format [localize "STR_antistasi_journal_entry_header_TEH_tutorial_1"],format [localize "STR_antistasi_journal_entry_text_TEH_tutorial_1"]]];
 
 	_index =player createDiarySubject ["SpecialK", localize "STR_antistasi_journal_entry_header_special_keys_name"];
 	player createDiaryRecord ["SpecialK",[format [localize "STR_antistasi_journal_entry_header_SpecialK_3"],format [localize "STR_antistasi_journal_entry_text_SpecialK_3"]]];
