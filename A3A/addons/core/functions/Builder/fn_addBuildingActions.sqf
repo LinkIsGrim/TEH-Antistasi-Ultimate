@@ -10,22 +10,50 @@ Arguments:
 
 params ["_plankObject", "_holdTime"];
 
-[
-    _plankObject,
+_plankObject addAction [
     "Build",
-    "a3\ui_f\data\igui\cfg\actions\repair_ca.paa",
-    "a3\ui_f\data\igui\cfg\actions\repair_ca.paa",
-    "isNull objectParent player && {player call A3A_fnc_isEngineer && {(player distance _target < 8)}}",
-    "[player] call A3A_fnc_canFight and (player distance _target < 10)",
-    {},
-    {},
     {
-        [_this#0, true] remoteExecCall ["A3A_fnc_buildingComplete", 2];
+        params ["_target", "_caller", "_actionId", "_arguments"];
+
+        _arguments params ["_holdTime"];
+
+        if !(isNull objectParent _caller) exitWith {};
+        if !(_caller call A3A_fnc_isEngineer) exitWith {};
+        if !([_caller] call A3A_fnc_canFight) exitWith {};
+        if !(_caller distance _target < 10) exitWith {};
+
+        [
+            _holdTime,
+            [_target, _caller],
+            {
+                params ["_args", "_elapsedTime", "_totalTime", "_errorCode"];
+                _args params ["_target", "_caller"];
+
+                [_target, true] remoteExecCall ["A3A_fnc_buildingComplete", 2];
+            },
+            {},
+            "Build",
+            {
+                params ["_args", "_elapsedTime", "_totalTime", "_errorCode"];
+                _args params ["_target", "_caller"];
+
+                [_caller] call A3A_fnc_canFight
+                && {isNull objectParent _caller}
+                && {_caller distance _target < 10}
+            },
+            [],
+            true
+        ] call ace_common_fnc_progressBar;
     },
-    {},
-    [],
-    _holdTime
-] call BIS_fnc_holdActionAdd;
+    [_holdTime],
+    1.5,
+    true,
+    true,
+    "",
+    "isNull objectParent player && {player call A3A_fnc_isEngineer && {(player distance _target < 8)}}",
+    8,
+    false
+];
 
 _plankObject addAction ["Cancel",
     {

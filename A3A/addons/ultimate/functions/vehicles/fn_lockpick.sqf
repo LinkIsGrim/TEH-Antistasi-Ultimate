@@ -29,22 +29,59 @@ params ["_vehicle"];
 
 if isNull(_vehicle) exitWith {};
 
-_vehicle setVariable[QGVAR(lockpickAction), [ 
-    _vehicle,
-    localize "STR_A3AU_action_lockpick_title",
-    "\a3\ui_f\data\igui\cfg\actions\repair_ca.paa",
-    "\a3\ui_f\data\igui\cfg\actions\repair_ca.paa",
-    QUOTE([ARR_3(_this,_target,true)] call A3U_fnc_canLockpick),
-    QUOTE([ARR_2(_caller,_target)] call A3U_fnc_canLockpick),
-    { call A3U_fnc_lockpickOnStart },
-    { call A3U_fnc_lockpickOnProgress },
-    { call A3U_fnc_lockpickOnSuccess },
-    { call A3U_fnc_lockpickOnFail },
-    [],
-    vehicleLockpickTime,
-    2026,
-    false,
-    false
-] call BIS_fnc_holdActionAdd];
+_vehicle setVariable [QGVAR(lockpickAction),
+    _vehicle addAction [
+        localize "STR_A3AU_action_lockpick_title",
+        {
+            params ["_target", "_caller", "_actionId", "_arguments"];
+
+            _arguments params [
+                "_duration",
+                "_title"
+            ];
+
+            if !([_caller, _target] call A3U_fnc_canLockpick) exitWith {};
+
+            [_target, _caller] call A3U_fnc_lockpickOnStart;
+
+            [
+                _duration,
+                [_target, _caller],
+                {
+                    params ["_args", "_elapsedTime", "_totalTime", "_errorCode"];
+                    _args params ["_target", "_caller"];
+
+                    [_target] call A3U_fnc_lockpickOnSuccess;
+                },
+                {
+                    params ["_args", "_elapsedTime", "_totalTime", "_errorCode"];
+                    _args params ["_target", "_caller"];
+
+                    [_target, _caller] call A3U_fnc_lockpickOnFail;
+                },
+                _title,
+                {
+                    params ["_args", "_elapsedTime", "_totalTime", "_errorCode"];
+                    _args params ["_target", "_caller"];
+
+                    [_caller, _target] call A3U_fnc_canLockpick
+                },
+                [],
+                true
+            ] call ace_common_fnc_progressBar;
+        },
+        [
+            vehicleLockpickTime,
+            localize "STR_A3AU_action_lockpick_title"
+        ],
+        2026,
+        false,
+        true,
+        "",
+        QUOTE([ARR_3(_this,_target,true)] call A3U_fnc_canLockpick),
+        5,
+        false
+    ]
+];
 
 nil;
