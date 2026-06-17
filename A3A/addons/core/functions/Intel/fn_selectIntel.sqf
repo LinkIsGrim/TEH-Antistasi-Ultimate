@@ -110,7 +110,6 @@ if (_text isEqualTo "") then {
         case (_intelType isEqualTo "Civilian"): {
             _intelContent = selectRandomWeighted [
                 MONEY, 0.15,
-                WEAPON, 0.05,
                 DECRYPTION_KEY, 0.5,
                 TRAITOR, 0.3
             ];
@@ -127,17 +126,6 @@ if (_text isEqualTo "") then {
                 {
                     occupantsRadioKeys = occupantsRadioKeys + 1;
                     _text = format [localize "STR_intel_decryption_key", _sideName];
-                };
-                case (WEAPON):
-                {
-                    [] call _fnc_addWeapon params ["_weaponName", "_quantity"];
-                    private _texts = [
-                        format [localize "STR_antistasi_intel_weapon_informant", _weaponName, _quantity],
-                        format [localize "STR_antistasi_intel_weapon_convoy", _quantity, _weaponName],
-                        format [localize "STR_antistasi_intel_weapon_truck", Faction(_side) get "name", _quantity, _weaponName]
-                    ];
-                    if (isTraderQuestCompleted) then { _texts pushBack (format [localize "STR_antistasi_intel_weapon_trader", _quantity, _weaponName]) };
-                    _text = selectRandom (_texts);
                 };
                 case (TRAITOR):
                 {

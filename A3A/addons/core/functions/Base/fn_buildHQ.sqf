@@ -20,3 +20,4 @@ petros setBehaviour "SAFE";
 
 sleep 5;
 ["HQPlaced", [getPos petros]] call EFUNC(Events,triggerEvent);
+petros action ["SwitchWeapon", petros, petros, -1];

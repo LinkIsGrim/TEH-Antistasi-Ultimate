@@ -32,12 +32,16 @@ if (_civNonHuman) exitWith {};
 
 // We add the music source to a radio item rather than the building itself.
 // This is so we can delete the source later in a easier fashion.
-private _radioItem = getPosATL _building;
-_radioItem set [2, ((_radioItem select 2) + 1)];
-private _musicSource = createVehicle ["Land_FMradio_F", _radioItem];
+private _housePositions = [_building] call BIS_fnc_buildingPositions;
+if (_housePositions isEqualTo []) exitWith { objNull };
 
-[_radioItem, _musicSource] spawn {
-    params ["_radioItem", "_musicSource", "_locationType"];
+private _radioPos = selectRandom _housePositions;
+_radioPos set [2, (_radioPos # 2) + 0.2];
+
+private _musicSource = createVehicle ["Land_FMradio_F", _radioPos, [], 0, "CAN_COLLIDE"];
+
+_musicSource spawn {
+    params ["_musicSource"];
     private _tracksPlayed = 1;
     // name of the sound file in CfgSounds.hpp and the duration (in sec)
     private _tracks = 

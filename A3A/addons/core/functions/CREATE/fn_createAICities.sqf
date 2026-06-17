@@ -76,7 +76,8 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 
 		// Early-game police nerf: no primaries on city cops before war tier 2 if player starts with handguns or no weapons
 		if ((_params # 2) isEqualTo (_faction get "groupPolice")) then {
-			if (tierWar == 1 && TEH_civStart > 0) then {
+			private _handgun = handgunWeapon _unit;
+			if (tierWar == 1 && TEH_civStart > 0 && _handgun != "") then {
 				private _primary = primaryWeapon _unit;
 				if (_primary != "") then {
 					_unit removeWeaponGlobal _primary;
@@ -86,6 +87,9 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 						_unit removeMagazineGlobal _x;
 					};
 				} forEach (magazines _unit);
+
+				_unit selectWeapon _handgun;
+				_unit action ["SwitchWeapon", _unit, _unit, -1];
 			};
 
 			// Killed EH for police response van
@@ -94,7 +98,7 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 					params ["_unit", "_killer", "_instigator", "_useEffects"];
 
 					// 50% chance to call Gendarmerie, 70% chance to call faction police
-					if (random 100 < 30 + 20 * TEH_spawnSwat) exitWith {};
+					if (random 100 < 30 + 10 * TEH_spawnSwat) exitWith {};
 
 					[_unit,_instigator] spawn A3A_fnc_spawnSwat;
 				}];
@@ -103,7 +107,7 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 	} forEach units _groupX;
 
 	sleep 1;
-
+	
 	// Only spawn dog units with Occupant forces.
 	if (_isAAF) then {
 		if (random 10 < 2.5) then {

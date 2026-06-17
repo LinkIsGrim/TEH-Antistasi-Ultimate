@@ -154,46 +154,56 @@ for "_i" from 1 to _numCiv do {
         Info("Global Civilian spawn limit reached! - Exiting");
     };
 
-    private _posHouse = [];
+    private _building = objNull;
+    private _spawnPosition = [];
+    private _spawnInBuilding = count _buildings > 0;
 
-    if (count _buildings > 0 && {_civNonHuman isEqualTo false}) then {
+    if (_spawnInBuilding) then {
         _building = selectRandom _buildings;
-        private _housePositions = [_building] call BIS_fnc_buildingPositions;
         _buildings deleteAt (_buildings find _building);
 
-        if !(_housePositions isEqualTo []) then {
-            _posHouse = selectRandom _housePositions;
+        private _housePositions = [_building] call BIS_fnc_buildingPositions;
+
+        _spawnPosition = if !(_housePositions isEqualTo []) then {
+            selectRandom _housePositions;
         } else {
-            _posHouse = [_positionX, 10, 150, 3, 0, -1, 0] call A3A_fnc_getSafePos;
+            [_positionX, 10, 150, 3, 0, -1, 0] call A3A_fnc_getSafePos;
         };
+    } else {
+        _spawnPosition = [_positionX, 10, 150, 3, 0, -1, 0] call A3A_fnc_getSafePos;
+    };
 
-        private _groupX = createGroup _groupSide;
+    private _groupX = createGroup _groupSide;
+    private _civUnit = [_groupX, FactionGet(civ, "unitMan"), _spawnPosition, [], 0, "NONE"] call A3A_fnc_createUnit;
 
-        private _civUnit = [_groupX, FactionGet(civ, "unitMan"), _posHouse, [], 0, "NONE"] call A3A_fnc_createUnit;
+    _civUnit setPosATL _spawnPosition;
+    _civilianGroups pushBack _groupX;
+    _civilians pushBack _civUnit;
 
-        _civUnit setPosATL _posHouse;
-        _civilianGroups pushBack _groupX;
-        _civilians pushBack _civUnit;
-        [_civUnit] spawn A3A_fnc_civilianInitEH;
-        [_civUnit] call A3A_fnc_dialogCivAction;
+    // TEH Vars
+    _civUnit setVariable ["TEH_Town", _markerX, true];
+    private _loyal = random 100 > ((server getVariable _markerX) # 2);
+    _civUnit setVariable ["TEH_RebelLoyalty", _loyal, true];
 
-        // Actions to do during the evening hours of spawn.
+    [_civUnit] spawn A3A_fnc_civilianInitEH;
+    [_civUnit] call A3A_fnc_dialogCivAction;
+
+    if (_spawnInBuilding) then {
         if (_dayState == "EVENING" || {_dayState == "NIGHT"}) then {
-            _light = [_building] call A3A_fnc_createRoomLight;
+            private _light = [_building] call A3A_fnc_createRoomLight;
             _lightSources pushBack _light;
         };
 
-        // Actions to do during the morning hours of spawn.
         if (_dayState == "MORNING") then {
             if (4 > random 10) then {
                 private _soundSource = [_building] call A3A_fnc_createMusicSource;
                 _soundSources pushBack _soundSource;
             };
-            _light = [_building] call A3A_fnc_createRoomLight;
+
+            private _light = [_building] call A3A_fnc_createRoomLight;
             _lightSources pushBack _light;
         };
 
-        // Actions to do during the day hours of spawn
         if (_dayState == "DAY") then {
             if (7 > random 10) then {
                 private _soundSource = [_building] call A3A_fnc_createMusicSource;
@@ -202,22 +212,51 @@ for "_i" from 1 to _numCiv do {
 
             [_groupX] call A3A_fnc_patrolLoop;
         };
-
     } else {
-        private _groupX = createGroup _groupSide;
-        private _spawnPosition = [_positionX, 10, 150, 3, 0, -1, 0] call A3A_fnc_getSafePos;
-
-        private _civUnit = [_groupX, FactionGet(civ, "unitMan"), _posHouse, [], 0, "NONE"] call A3A_fnc_createUnit;
-
-        _civUnit setPosATL _spawnPosition;
-        _civilianGroups pushBack _groupX;
-        _civilians pushBack _civUnit;
-        [_civUnit] spawn A3A_fnc_civilianInitEH;
-        [_civUnit] call A3A_fnc_dialogCivAction;
         [_groupX] call A3A_fnc_patrolLoop;
     };
 };
 
+// TEH Oblivion: Assign one Joe and one Bob only if this spawned town has at least two civilians.
+// No plot armor: if either role dies, despawns, or becomes unavailable, the lead can simply be lost.
+if (isNil {missionNamespace getVariable "TEH_CivDialogTownStates"}) then {
+    missionNamespace setVariable ["TEH_CivDialogTownStates", createHashMap, true];
+};
+
+_town = _markerX;
+
+if (_town isEqualTo "") exitWith {false};
+
+private _townStates = missionNamespace getVariable ["TEH_CivDialogTownStates", createHashMap];
+private _townState = _townStates getOrDefault [_town, createHashMap];
+
+if !(_townState getOrDefault ["CacheCompleted", false]) then {
+
+    private _civilians = allUnits select {
+        alive _x
+        && {side group _x isEqualTo civilian}
+        && {isNull objectParent _x}
+        && {(_x getVariable ["TEH_Town", ""]) isEqualTo _town}
+    };
+
+    if ((count _civilians) < 2) exitWith {false};
+
+    private _joe = selectRandom _civilians;
+    private _bob = selectRandom (_civilians - [_joe]);
+
+    _townState set ["Town", _town];
+    _townState set ["CacheStarted", true];
+    _townState set ["CacheLead", _joe];
+    _townState set ["CacheContact", _bob];
+    _townStates set [_town, _townState];
+
+    missionNamespace setVariable ["TEH_CivDialogTownStates", _townStates, true];
+
+    _joe setVariable ["TEH_CacheRole", "Joe", true];
+    _bob setVariable ["TEH_CacheRole", "Bob", true];
+    _bob setVariable ["TEH_CacheContactUnlocked", false, true];
+    _bob setVariable ["TEH_CacheBobFound", false, true];
+};
 // Handle removal of civ's.
 waitUntil {sleep 1;(spawner getVariable _spawnKey == 2)};
 {if (alive _x) then {deleteVehicle _x};} forEach _civilians;

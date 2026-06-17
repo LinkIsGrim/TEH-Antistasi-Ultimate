@@ -379,7 +379,7 @@ switch _typeX do
             true,
             true,
             "",  // no shortcut
-            "alive _target && (_target getVariable ['originalSide','Unknown'] != teamPlayer) && ([_target] call ace_medical_fnc_isInjured)",
+            "alive _target && (_target getVariable ['originalSide', sideUnknown] != teamPlayer) && ([_target] call ace_medical_fnc_isInjured)",
             2
         ];
 

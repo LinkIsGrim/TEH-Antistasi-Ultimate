@@ -26,6 +26,7 @@ if (petros == leader group petros) then {
 	petros disableAI "MOVE";
 	petros disableAI "AUTOTARGET";
 	petros setBehaviour "SAFE";
+    petros action ["SwitchWeapon", petros, petros, -1];
 };
 
 // Install both moving and static actions
