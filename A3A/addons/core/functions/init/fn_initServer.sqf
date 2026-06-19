@@ -153,8 +153,8 @@ else
 
         private _arsenalTab = _class call jn_fnc_arsenal_itemType;
 		
-		if (_arsenalTab >= TEH_civStart) then {
-			 //0 - all weaps, 2 = handguns only, 3 = no weaps
+		if (_arsenalTab >= TEH_civStart && TEH_civStart isNotEqualTo 1) then {
+			 //0 - all equipment, 1 - no equipment 2 = handguns only, 3 = no weaps
 			jna_dataList#_arsenalTab pushBack [_class, _count];         // direct add to avoid O(N^2) issue
 
 			if (_count == -1 || {(minWeaps != -1) && _count >= minWeaps}) then {

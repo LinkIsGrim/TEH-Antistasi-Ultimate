@@ -331,25 +331,32 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
 			};
 		};
 		
-		_veh addItemCargoGlobal ["Toolkit", 1];
-		_veh addItemCargoGlobal ["MiniGrenade", 10];
-		_veh addItemCargoGlobal ["SmokeShell", 10];
+        if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
+            _veh addItemCargoGlobal ["Toolkit", 1];
+            _veh addItemCargoGlobal ["MiniGrenade", 10];
+            _veh addItemCargoGlobal ["SmokeShell", 10];
+        };
+		
 		if (A3A_hasACEMedical) then {
-			_veh addItemCargoGlobal ["ACE_fieldDressing",32];
+            if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
+                _veh addItemCargoGlobal ["ACE_fieldDressing",32];
 
-			_veh addItemCargoGlobal ["ACE_morphine",10];
-			_veh addItemCargoGlobal ["ACE_epinephrine",10];
-			_veh addItemCargoGlobal ["ACE_adenosine",5];
+                _veh addItemCargoGlobal ["ACE_morphine",10];
+                _veh addItemCargoGlobal ["ACE_epinephrine",10];
+                _veh addItemCargoGlobal ["ACE_adenosine",5];
 
-			_veh addItemCargoGlobal ["ACE_plasmaIV_500",5];
-			_veh addItemCargoGlobal ["ACE_salineIV_500",5];
-			_veh addItemCargoGlobal ["ACE_bloodIV_500",5];
+                _veh addItemCargoGlobal ["ACE_plasmaIV_500",5];
+                _veh addItemCargoGlobal ["ACE_salineIV_500",5];
+                _veh addItemCargoGlobal ["ACE_bloodIV_500",5];
 
-			_veh addItemCargoGlobal ["ACE_tourniquet",5];
-			_veh addItemCargoGlobal ["ACE_splint",5];
+                _veh addItemCargoGlobal ["ACE_tourniquet",5];
+                _veh addItemCargoGlobal ["ACE_splint",5];
+            };
 		} else {
-			_veh addItemCargoGlobal ["Medikit", 1];
-			_veh addItemCargoGlobal ["FirstAidKit",12];
+            if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
+                _veh addItemCargoGlobal ["Medikit", 1];
+                _veh addItemCargoGlobal ["FirstAidKit",12];
+            };
 		};
 		
 		_veh setPlateNumber (name player);

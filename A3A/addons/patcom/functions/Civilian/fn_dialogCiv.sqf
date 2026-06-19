@@ -1,6 +1,6 @@
 /*
     Author:
-        MaxxLite / TEH questlines RC1
+        MaxxLite / TEH
 
     Description:
         Adds local civilian dialog actions.

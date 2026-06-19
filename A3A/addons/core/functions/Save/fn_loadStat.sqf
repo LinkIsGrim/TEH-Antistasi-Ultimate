@@ -607,7 +607,7 @@ if (_varName in specialVarLoads) then {
 				_xVectorDir = _varvalue select _i select 3;
 				private _veh = createVehicle [_typeVehX,[0,0,1000],[],0,"CAN_COLLIDE"];
 				_veh setPosWorld _posVeh;
-				_veh setVectorDirAndUp [_xVectorDir,_xVectorUp];				
+				_veh setVectorDirAndUp [_xVectorDir,_xVectorUp];
 				constructionsToSave pushBack _veh;
 			};
 			publicVariable "constructionsToSave";

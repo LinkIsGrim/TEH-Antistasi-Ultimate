@@ -14,7 +14,7 @@ Info("initACEUnconsciousHandler started");
 	params["_unit", "_knockout"];
 	if !(local _unit) exitWith {};				// handler runs everywhere, only process where unit is local
 	private _realSide = side group _unit;		// setUnconscious in ACE often breaks this otherwise
-
+	private _groupLeader = leader (group _unit);
 	if (_knockout) exitWith
 	{
 		_unit setVariable ["incapacitated", true, true];	// for canFight tests
@@ -23,8 +23,6 @@ Info("initACEUnconsciousHandler started");
 			_unit setCaptive true;
 			[_unit,"stabilize"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_unit]; //shortcut for capturing bleeding enemies
 		};
-
-		_groupLeader = leader (group _unit);
 
         // Pass group lead if unit is the leader
         if (_unit == leader (group _unit)) then

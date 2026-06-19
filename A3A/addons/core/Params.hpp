@@ -1834,36 +1834,22 @@ class Params
 	class TEH_civStart: AIBalanceParams
     {
         attr[] = {"server"};
-        title = "Limit starting weapons";
-        values[] = {0,2,3};
-        texts[] = {"No limits", "Only handguns", "No starting weapons"};
-        default = 0;
-    };
-	
-    class pistolStart : AIBalanceParams
-    {
-        title = $STR_params_pistolStart;
-        tooltip = $STR_params_pistolStart_desc;
-        values[] = {0, 1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        title = "Limit starting equipment";
+        values[] = {0,2,3,1};
+        texts[] = {"No limits", "Only handguns", "No starting weapons","Empty arsenal!"};
         class difficulty
         {
             class solo
             {
                 easy = 0;
-                medium = 0;
+                medium = 2;
                 hard = 1;
             };
             class small : solo {};
-            class medium
-            {
-                easy = 0;
-                medium = 1;
-                hard = 1;
-            };
+            class medium : solo {};
             class large : solo {};
         };
-        default = 0;
+        default = 2;
         lockOnSave = 1;
         lockInGame = 1;
     };

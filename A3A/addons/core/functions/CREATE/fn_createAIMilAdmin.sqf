@@ -247,6 +247,10 @@ private _ammoBox = if (garrison getVariable [_marker + "_lootCD", 0] == 0) then 
 
 	_ammoBox;
 };
+private _ammoBoxInv = [];
+if (!isNil "_ammoBox") then {
+	_ammoBoxInv = weaponCargo _ammoBox;
+};
 
 waitUntil {sleep 1; spawner getVariable _marker == 2 or {!alive _milAdministration or {!alive _collaborant}}};
 
@@ -276,19 +280,15 @@ waitUntil {sleep 1; (spawner getVariable _marker == 2)};
 
 // If loot crate was stolen, set the cooldown
 if (!isNil "_ammoBox") then {
-	if ((alive _ammoBox) and (_ammoBox distance2d _milAdministrationPos < 100)) exitWith { deleteVehicle _ammoBox };
-	if (alive _ammoBox) then { [_ammoBox] spawn A3A_fnc_VEHdespawner };
-	private _lootCD = 120*16 / ([_marker] call A3A_fnc_garrisonSize);
-	garrison setVariable [_marker + "_lootCD", _lootCD, true];
+	if ((alive _ammoBox) and (_ammoBoxInv isEqualTo (weaponCargo _ammoBox))) exitWith {	deleteVehicle _ammoBox; };
+	garrison setVariable [_marker + "_lootCD", time + 3600, true];
+	deleteVehicle _ammoBox;
 };
 
 if (count (units _grpPOW) != count _POWs) then {
-	private _powCD = 120*16 / ([_marker] call A3A_fnc_garrisonSize);
 	garrison setVariable [_marker + "_powCD", time + 3600, true];
 };
 
-// {deleteVehicle _x} forEach _POWs;
-// deleteGroup _grpPOW;
 if (!isNil "_grpPOW") then {
 	[_grpPOW] spawn A3A_fnc_groupDespawner;
 };

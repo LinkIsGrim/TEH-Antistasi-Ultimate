@@ -29,11 +29,13 @@ private _meds = createHashMapFromArray [
 	};
 } forEach itemCargo player;
 
-{
-	for "_i" from 1 to (_meds get _x) do {
-		player addItem _x;
-	};
-} forEach _meds;
+if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
+    {
+        for "_i" from 1 to (_meds get _x) do {
+            player addItem _x;
+        };
+    } forEach _meds;
+};
 
 //tallies
 private _magBox = createHashMap;
