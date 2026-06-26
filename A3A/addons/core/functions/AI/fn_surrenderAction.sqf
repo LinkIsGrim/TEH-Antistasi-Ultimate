@@ -92,9 +92,9 @@ _unit setUnitLoadout [ [], [], [], [uniform _unit, []], [], [], "", "", [], ["",
 } forEach nearestObjects [_unit,["WeaponHolderSimulated"],5,true];
 
 if (_unitSide == Occupants) then {
-	[-2, 0, getPos _unit] remoteExec ["A3A_fnc_citySupportChange", 2];
+	[-2, 2, getPos _unit] remoteExec ["A3A_fnc_citySupportChange", 2];
 } else {
-	[0, 1, getPos _unit] remoteExec ["A3A_fnc_citySupportChange", 2];
+	[0, 2, getPos _unit] remoteExec ["A3A_fnc_citySupportChange", 2];
 };
 
 private _markerX = _unit getVariable "markerX";

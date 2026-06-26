@@ -367,41 +367,86 @@ switch _typeX do
 
     case "stabilize":
     {
+        if (_flag getVariable ["TEH_hasStabilizeAction", false]) exitWith {};
+
+        _flag setVariable ["TEH_hasStabilizeAction", true];
+
         _flag addAction [
-            "<t color='#007700'>Stabilize</t>",
+            "<t color='#007700'>Capture prisoner</t>",
             {
                 params ["_target", "_caller"];
 
-                [_target,_caller] call ace_medical_fnc_fullHeal;
+                private _zipTieClass = "ACE_CableTie";
+
+                private _targetHasZipTie = _zipTieClass in (items _target);
+                private _callerHasZipTie = _zipTieClass in (items _caller);
+
+                if (!_targetHasZipTie && !_callerHasZipTie) exitWith {
+                    ["Capture prisoner", "Cable tie not found"] call A3A_fnc_customHint;
+                };
+
+                [
+                    10,
+                    [_target, _caller, _zipTieClass],
+                    {
+                        params ["_args", "_elapsedTime", "_totalTime", "_errorCode"];
+                        _args params ["_target", "_caller", "_zipTieClass"];
+
+                        private _targetHasZipTie = _zipTieClass in (items _target);
+                        private _callerHasZipTie = _zipTieClass in (items _caller);
+
+                        if (!_targetHasZipTie && {!_callerHasZipTie}) exitWith {
+                            ["Capture prisoner", "Cable tie not found"] call A3A_fnc_customHint;
+                        };
+
+                        if (_targetHasZipTie) then {
+                            _target removeItem _zipTieClass;
+                        } else {
+                            _caller removeItem _zipTieClass;
+                        };
+
+                        [_target, _caller] call ace_medical_fnc_fullHeal;
+                    },
+                    {},
+                    "Stabilizing the prisoner",
+                    {
+                        params ["_args", "_elapsedTime", "_totalTime"];
+                        _args params ["_target", "_caller", "_zipTieClass"];
+
+                        alive _target
+                        && {alive _caller}
+                        && {_caller distance _target < 3}
+                        && {[_target] call ace_medical_fnc_isInjured}
+                    },
+                    [],
+                    true
+                ] call ace_common_fnc_progressBar;
             },
             nil,
             1.5,
             true,
             true,
-            "",  // no shortcut
-            "alive _target && (_target getVariable ['originalSide', sideUnknown] != teamPlayer) && ([_target] call ace_medical_fnc_isInjured)",
+            "",
+            "alive _target && (_target getVariable ['originalSide', sideUnknown] != teamPlayer) && (_target getVariable ['incapacitated', false])",
             2
         ];
-
     };
 
     case "arrest":
     {
         _flag addAction [
-            "<t color='#770077'>Stop!</t>",
+            "<t color='#770077'>Surrender!</t>",
             {
                 params ["_target", "_caller"];
-                
-                _target disableAI "PATH";
-                sleep 15;
-                _target enableAI "PATH";
+                _target setVariable ["surrendered", false, true];
+                [_target] call A3A_fnc_surrenderAction;
             },
             nil,
             1.5,
             true,
             true,
             "",  // no shortcut
-            "alive _target && canMove _target",
+            "alive _target && canMove _target && (isNil {_target getVariable 'A3U_PoW_unitType'});",
             25
         ];
 
