@@ -214,9 +214,9 @@ while { true } do {
     private _now = time;
 
     // 1) Collect units
-    _occupants = units Occupants select { _x == effectiveCommander vehicle _x && !(captive _x) };
-    _invaders = units Invaders select { _x == effectiveCommander vehicle _x && !(captive _x) };
-    _teamplayer = units teamPlayer select { _x == effectiveCommander vehicle _x && !(captive _x) };
+    _occupants = units Occupants select {  _x getVariable ["spawner", false] && _x == effectiveCommander vehicle _x && !(captive _x) };
+    _invaders = units Invaders select { _x getVariable ["spawner", false] && _x == effectiveCommander vehicle _x && !(captive _x) };
+    _teamplayer = units teamPlayer select { _x getVariable ["spawner", false] && _x == effectiveCommander vehicle _x && !(captive _x) };
     _teamplayer append (vehicles select {_x getVariable "originalSide" == teamPlayer && alive _x});
 
     private _markers = markersX + milAdministrationsX;

@@ -1617,12 +1617,12 @@
                 <Turkish>%1&lt;br/&gt;Cephanelik Güncellendi&lt;br/&gt;&lt;br/&gt;%2</Turkish>
             </Key>
             <Key ID="STR_comms_mp_taxes_income">
-                <Original>&lt;t size='0.6' color='#C1C0BB'&gt;Income&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;HR: +%1&lt;br/&gt;Money: +%2%3</Original>
-                <Russian>&lt;t size='0.6' color='#C1C0BB'&gt;Доход&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;ЛР: +%1&lt;br/&gt;Деньги: +%2%3</Russian>
-                <Chinesesimp>&lt;t size='0.6' color='#C1C0BB'&gt;收入&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;HR: +%1&lt;br/&gt;钱: +%2%3</Chinesesimp>
-                <Korean>&lt;t size='0.6' color='#C1C0BB'&gt;소득&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;인력: +%1&lt;br/&gt;자금: +%2%3</Korean>
-                <French>&lt;t size='0.6' color='#C1C0BB'&gt;Revenu&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;HR: +%1&lt;br/&gt;Argent: +%2%3</French>
-                <Turkish>&lt;t size='0.6' color='#C1C0BB'&gt;Gelir&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;İnsan Kaynağı: +%1&lt;br/&gt;Para: +%2%3</Turkish>
+                <Original>&lt;t size='0.6' color='#C1C0BB'&gt;Income&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;HR: +%1&lt;br/&gt;Money: +%2%3&lt;br/&gt;Salaries: -%4%5</Original>
+                <Russian>&lt;t size='0.6' color='#C1C0BB'&gt;Доход&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;ЛР: +%1&lt;br/&gt;Деньги: +%2%3&lt;br/&gt;Зарплаты: -%4%5</Russian>
+                <Chinesesimp>&lt;t size='0.6' color='#C1C0BB'&gt;收入&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;HR: +%1&lt;br/&gt;钱: +%2%3&lt;br/&gt;薪资: -%4%5</Chinesesimp>
+                <Korean>&lt;t size='0.6' color='#C1C0BB'&gt;소득&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;인력: +%1&lt;br/&gt;자금: +%2%3&lt;br/&gt;급여: -%4%5</Korean>
+                <French>&lt;t size='0.6' color='#C1C0BB'&gt;Revenu&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;HR: +%1&lt;br/&gt;Argent: +%2%3&lt;br/&gt;Salaires: -%4%5</French>
+                <Turkish>&lt;t size='0.6' color='#C1C0BB'&gt;Gelir&lt;br/&gt; &lt;t size='0.5' color='#C1C0BB'&gt;&lt;br/&gt;İnsan Kaynağı: +%1&lt;br/&gt;Para: +%2%3&lt;br/&gt;Maaşlar: -%4%5</Turkish>
             </Key>
             <Key ID="STR_comms_mp_paycheck">
                 <Original>&lt;t size='0.6'&gt;%1 receives &lt;t size='0.6' color='#00FF00'&gt;%2%3&lt;/t&gt; for fighting for %4!&lt;/t&gt;</Original>

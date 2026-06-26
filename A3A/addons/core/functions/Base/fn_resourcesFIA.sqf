@@ -25,7 +25,7 @@ _hrT = _hrT + _hr;
 _resourcesFIAT = round (_resourcesFIAT + _resourcesFIA);
 
 if (_hrT < 0) then {_hrT = 0};
-if (_resourcesFIAT < 0) then {_resourcesFIAT = 0};
+//if (_resourcesFIAT < 0) then {_resourcesFIAT = 0};
 
 if (limitHR != 0) then {
 	_hrLimit = (((tierWar * 100) * (limitHR / 100)) + 100);

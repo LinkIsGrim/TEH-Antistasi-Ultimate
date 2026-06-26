@@ -33,6 +33,7 @@ private _copyGameCtrl = _display displayCtrl A3A_IDC_SETUP_COPYGAMECHECKBOX;
 private _oldParamsCtrl = _display displayCtrl A3A_IDC_SETUP_OLDPARAMSCHECKBOX;
 private _newSaveCtrl = _display displayCtrl A3A_IDC_SETUP_NAMESPACECHECKBOX;
 private _saveInfoCtrl = _display displayCtrl A3A_IDC_SETUP_SAVEINFOTEXT;
+private _randomHQ = _display displayCtrl A3A_IDC_SETUP_HQRANDOM;
 
 private _saveBoxColumns = [
     ["gameID", "ID", 0, 9],
@@ -88,6 +89,8 @@ switch (_mode) do
         (_display displayCtrl A3A_IDC_SETUP_OLDPARAMSTEXT) ctrlShow _newGame;
         (_display displayCtrl A3A_IDC_SETUP_NAMESPACETEXT) ctrlShow _newGame;
         (_display displayCtrl A3A_IDC_SETUP_HQPOSBUTTON) ctrlShow (_newGame && !cbChecked _copyGameCtrl);
+        (_display displayCtrl A3A_IDC_SETUP_HQRANDOM) ctrlShow (_newGame && !cbChecked _copyGameCtrl);
+        (_display displayCtrl A3A_IDC_SETUP_HQRANDOMTEXT) ctrlShow (_newGame && !cbChecked _copyGameCtrl);
 
         // If we're selecting a game to load, load factions if available
         private _factions = [_saveData get "factions", _saveData get "addonVics", _saveData get "DLC"];
@@ -188,6 +191,64 @@ switch (_mode) do
         private _saveData = createHashMap;
         private _confirmText = "";
         if (cbChecked _newGameCtrl and !cbChecked _copyGameCtrl) then {
+            diag_log "TEH New game start";
+            diag_log TEH_randomStartLoc;
+            if (cbChecked _randomHQ) then {
+                diag_log "TEH random HQ start";
+                private _mainMarkers = markersX - controlsX - ["Synd_HQ"];
+
+                private _blacklist = _mainMarkers apply {
+                    [markerPos _x, 500]
+                };
+
+                private _fnc_isValidRandomStartPos = {
+                    params ["_pos", "_mainMarkers"];
+
+                    if (_pos isEqualTo []) exitWith { false };
+
+                    private _x = _pos # 0;
+                    private _y = _pos # 1;
+
+                    if (_x < 0 || {_x > worldSize} || {_y < 0} || {_y > worldSize}) exitWith { false };
+                    if (surfaceIsWater _pos) exitWith { false };
+
+                    if (_mainMarkers findIf { markerPos _x distance2D _pos < 500 } != -1) exitWith { false };
+
+                    true
+                };
+
+                private _randomValidPlace = [];
+                private _maxAttempts = 50;
+
+                for "_i" from 1 to _maxAttempts do {
+                    private _pos = [
+                        [worldSize / 2, worldSize / 2, 0],  // center
+                        0,                                  // min distance
+                        worldSize * 0.71,                   // max distance, roughly map half-diagonal
+                        8,                                  // object clearance
+                        0,                                  // land only
+                        0.25,                               // max gradient
+                        0,                                  // shoreline not required
+                        _blacklist,
+                        [[-1, -1, 0], [-1, -1, 0]]          // failure fallback
+                    ] call BIS_fnc_findSafePos;
+
+                    if ([_pos, _mainMarkers] call _fnc_isValidRandomStartPos) exitWith {
+                        _randomValidPlace = _pos;
+                    };
+                };
+
+                if (_randomValidPlace isEqualTo []) exitWith {
+                    [
+                        localize "STR_antistasi_dialogs_hqpos_feedback_title",
+                        "Could not find a valid random HQ position. Try manual placement."
+                    ] call A3A_fnc_customHint;
+                    diag_log "TEH Random HQ location failed";
+                };
+
+                "Synd_HQ" setMarkerPos _randomValidPlace;
+                respawnTeamPlayer setMarkerPos markerPos "Synd_HQ";
+            };
             _saveData set ["startType", "new"];
             _saveData set ["name", ctrlText (_display displayCtrl A3A_IDC_SETUP_NAMEEDITBOX)];
             _saveData set ["startPos", markerPos "Synd_HQ"];

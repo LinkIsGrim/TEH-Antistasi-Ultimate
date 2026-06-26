@@ -29,6 +29,8 @@ params ["_vehicle"];
 
 if isNull(_vehicle) exitWith {};
 
+private _pickRoll = vehicleLockpickTime / 2 + random vehicleLockpickTime;
+
 _vehicle setVariable [QGVAR(lockpickAction),
     _vehicle addAction [
         localize "STR_A3AU_action_lockpick_title",
@@ -71,7 +73,7 @@ _vehicle setVariable [QGVAR(lockpickAction),
             ] call ace_common_fnc_progressBar;
         },
         [
-            vehicleLockpickTime,
+            _pickRoll,
             localize "STR_A3AU_action_lockpick_title"
         ],
         2026,

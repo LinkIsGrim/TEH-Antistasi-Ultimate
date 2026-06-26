@@ -164,7 +164,7 @@ class A3A_SetupDialog : A3A_TabbedDialog
                     x = 126 * GRID_W;
                     y = 4 * GRID_H;
                     w = 30 * GRID_W;
-                    h = 37 * GRID_H;
+                    h = 43 * GRID_H;
 
                     class controls {
                         class GameOptions: A3A_Text {
@@ -239,6 +239,23 @@ class A3A_SetupDialog : A3A_TabbedDialog
                             y = 32 * GRID_H;
                             w = 30 * GRID_W;
                             h = 5 * GRID_H;
+                        };
+                        class RandomHQCheck: A3A_Checkbox {
+                            idc = A3A_IDC_SETUP_HQRANDOM;
+                            onCheckedChanged = "";
+                            x = 0;
+                            y = 38 * GRID_H;
+                            w = 4 * GRID_W;
+                            h = 4 * GRID_H;
+                        };
+
+                        class RandomHQText: A3A_Text {
+                            idc = A3A_IDC_SETUP_HQRANDOMTEXT;
+                            text = $STR_antistasi_dialogs_setup_random_hq_location;
+                            x = 4 * GRID_W;
+                            y = 38 * GRID_H;
+                            w = 26 * GRID_W;
+                            h = 4 * GRID_H;
                         };
                     };
                 };

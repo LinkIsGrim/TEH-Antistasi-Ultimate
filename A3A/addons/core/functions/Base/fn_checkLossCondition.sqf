@@ -52,7 +52,7 @@ switch (lossCondition) do
     //faction has no money left
     case 2:
     {
-        if (_factionMoney <= 0) then
+        if (_factionMoney < 0) then
         {
             isNil {["ended", true] call A3A_fnc_writebackSaveVar};
             ["financialLoss",false,true] remoteExec ["BIS_fnc_endMission"];

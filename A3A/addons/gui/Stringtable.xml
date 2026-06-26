@@ -3863,6 +3863,18 @@
                 <Chinesesimp>设置总部位置</Chinesesimp>
                 <Turkish>Karargâh Belirle</Turkish>
             </Key>
+            <Key ID="STR_antistasi_dialogs_setup_random_hq_location">
+                <Original>Random HQ Location</Original>
+                <Czech>Náhodná pozice velitelství</Czech>
+                <French>Position aléatoire du QG</French>
+                <Italian>Posizione HQ Casuale</Italian>
+                <Korean>본부 위치 무작위 설정</Korean>
+                <Russian>Случайное место старта</Russian>
+                <Polish>Losowa Pozycja Sztabu</Polish>
+                <Portuguese>Posição aleatória do Posto de Comando</Portuguese>
+                <Chinesesimp>随机总部位置</Chinesesimp>
+                <Turkish>Rastgele Karargâh Konumu</Turkish>
+            </Key>
             <Key ID="STR_antistasi_dialogs_setup_new_save_name">
                 <Original>New save name</Original>
                 <Czech>Nový název uložení</Czech>

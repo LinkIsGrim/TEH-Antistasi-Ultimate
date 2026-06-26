@@ -582,7 +582,7 @@ class Params
     {
         title = $STR_params_spawnDistance;
         tooltip = $STR_params_spawnDistance_desc;
-        values[] = {700,800,900,1000,1100,1200,1300,1400,1500,2000,25000};
+        values[] = {700,800,900,1000,1100,1200,1300,1400,1500,2000,2500};
         texts[] = {"700","800","900","1000","1100","1200", "1300" ,"1400", "1500","2000","2500"};
         class difficulty
         {
@@ -815,6 +815,47 @@ class Params
             class large : solo {};
         };
         default = 5;
+        lockInGame = 1;
+    };
+    class limitWeaponsByUnitType : AIParams
+    {
+        title = $STR_params_limitWeaponsByUnitType;
+        tooltip = $STR_params_limitWeaponsByUnitType_desc;
+        values[] = {0, 1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        class difficulty
+        {
+            class solo
+            {
+                easy = 0;
+                medium = 1;
+                hard = 1;
+            };
+            class small : solo {};
+            class medium : solo {};
+            class large : solo {};
+        };
+        default = 0;
+    };
+    class A3U_enableVehiclesForAI : AIParams
+    {
+        title = $STR_params_enableVehiclesForAI;
+        tooltip = $STR_params_enableVehiclesForAI_desc;
+        values[] = {0, 1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        class difficulty
+        {
+            class solo
+            {
+                easy = 1;
+                medium = 1;
+                hard = 0;
+            };
+            class small : solo {};
+            class medium : solo {};
+            class large : solo {};
+        };
+        default = 1;
         lockInGame = 1;
     };
 
@@ -1801,8 +1842,21 @@ class Params
         default = "";
     };
     */
-    
-	class TEH_sendCombatRecons: AIBalanceParams
+    class TehChallengesSpacer : AIParamsSpacer
+    {
+        type = "TehChallenges";
+    };
+    class TehChallengesParams : AIParams
+    {
+        type = "TehChallenges";
+        title = "OPTIONAL CHALLENGES";
+        //tooltip = $STR_params_miscBalanceParams_desc;
+        values[] = {};
+        texts[] = {};
+        default = 0;
+    };
+
+	class TEH_sendCombatRecons: TehChallengesParams
     {
         attr[] = {"server"};
         title = "Enemies send combat recon squads to the nearby rebel bases";
@@ -1811,7 +1865,7 @@ class Params
         default = 1;
     };
 	
-	class TEH_outpostMines: AIBalanceParams
+	class TEH_outpostMines: TehChallengesParams
     {
         attr[] = {"server"};
         title = "Enemy outposts are protected by AT mines";
@@ -1821,7 +1875,7 @@ class Params
         default = 25;
     };
 	
-	class TEH_onlyRandom: AIBalanceParams
+	class TEH_onlyRandom: TehChallengesParams
     {
         attr[] = {"server"};
         title = "Arsenal can only hold unlocked primary weapons and handguns";
@@ -1831,7 +1885,7 @@ class Params
         default = 0;
     };
 	
-	class TEH_civStart: AIBalanceParams
+	class TEH_civStart: TehChallengesParams
     {
         attr[] = {"server"};
         title = "Limit starting equipment";
@@ -1854,7 +1908,7 @@ class Params
         lockInGame = 1;
     };
 
-	class TEH_spawnSwat: AIBalanceParams
+	class TEH_spawnSwat: TehChallengesParams
     {
         attr[] = {"server"};
         title = "Spawn SWAT teams to help police";
@@ -1863,7 +1917,7 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, "Send Gendarmerie", "Send faction police"};
         default = 2;
     };
-	class TEH_snitchingCivilians: AIBalanceParams
+	class TEH_snitchingCivilians: TehChallengesParams
     {
         attr[] = {"server"};
         title = "Civilians call the police";
@@ -1872,7 +1926,29 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
         default = 1;
     };
-    class radiomanSupport: AIBalanceParams
+
+    class TEH_hrSalaries: TehChallengesParams
+    {
+        title = "Reservists salaries";
+        tooltip = "HR resources earn stand-by salaries depending on Rebel training level";
+        values[] = {0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text,"20%", "40%", "60%", "80%", "100%", "120%", "140%", "160%", "180%", "200%"};
+        class difficulty
+        {
+            class solo
+            {
+                easy = 0;
+                medium = 60;
+                hard = 100;
+            };
+            class small : solo {};
+            class medium : solo {};
+            class large : solo {};
+        };
+        default = 0;
+    };
+
+    class radiomanSupport: TehChallengesParams
     {
         title = $STR_A3AU_radioman_support;
         tooltip = $STR_A3AU_radioman_support_desc;
@@ -1892,7 +1968,7 @@ class Params
         };
         default = 0;
     };
-    class enablePunishments: AIBalanceParams
+    class enablePunishments: TehChallengesParams
     {
         title = $STR_params_enablePunishments;
         tooltip = $STR_params_enablePunishments_desc;
@@ -1917,7 +1993,7 @@ class Params
         };
         default = 1;
     };
-    class napalmEnabled: AIBalanceParams
+    class napalmEnabled: TehChallengesParams
     {
         title = $STR_params_napalmEnabled;
         tooltip = $STR_params_napalmEnabled_desc;
@@ -1942,7 +2018,7 @@ class Params
         };
         default = 1;
     };
-    class allowUnfairSupports: AIBalanceParams
+    class allowUnfairSupports: TehChallengesParams
     {
         attr[] = {"server"};
         title = $STR_params_allowUnfairSupports;
@@ -1968,7 +2044,7 @@ class Params
         };
         default = 0;
     };
-    class allowFuturisticSupports: AIBalanceParams
+    class allowFuturisticSupports: TehChallengesParams
     {
         attr[] = {"server"};
         title = $STR_params_allowFuturisticSupports;
@@ -1977,7 +2053,7 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 0;
     };
-    class allowFuturisticUnfairSupports: AIBalanceParams
+    class allowFuturisticUnfairSupports: TehChallengesParams
     {
         attr[] = {"server"};
         title = $STR_params_allowFuturisticUnfairSupports;
@@ -2003,27 +2079,7 @@ class Params
         };
         default = 0;
     };
-	class A3U_enableVehiclesForAI : AIBalanceParams
-    {
-        title = $STR_params_enableVehiclesForAI;
-        tooltip = $STR_params_enableVehiclesForAI_desc;
-        values[] = {0, 1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        class difficulty
-        {
-            class solo
-            {
-                easy = 1;
-                medium = 1;
-                hard = 0;
-            };
-            class small : solo {};
-            class medium : solo {};
-            class large : solo {};
-        };
-        default = 1;
-        lockInGame = 1;
-    };
+
     class MiscBalanceParamsSpacer : AIParamsSpacer
     {
         type = "MiscBalance";
@@ -2151,26 +2207,7 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 1;
     };
-    class limitWeaponsByUnitType : MiscBalanceParams
-    {
-        title = $STR_params_limitWeaponsByUnitType;
-        tooltip = $STR_params_limitWeaponsByUnitType_desc;
-        values[] = {0, 1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        class difficulty
-        {
-            class solo
-            {
-                easy = 0;
-                medium = 1;
-                hard = 1;
-            };
-            class small : solo {};
-            class medium : solo {};
-            class large : solo {};
-        };
-        default = 0;
-    };
+
     class AIParamsSpacer2 : AllParams
     {
         type = "AI";

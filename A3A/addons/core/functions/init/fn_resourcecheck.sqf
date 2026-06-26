@@ -119,18 +119,19 @@ while {true} do {
 		};
 	} forEach citiesX;
 
-	call A3A_fnc_checkWinCondition;
-
-	if (lossCondition isNotEqualTo 1) then {
-		call A3A_fnc_checkLossCondition;
-	};
-
 	{
 		if (sidesX getVariable [_x,sideUnknown] == teamPlayer and {!(_x in destroyedSites)}) then
 		{
 			_resAdd = _resAdd + (300 * _resBoost);
 		};
 	} forEach resourcesX;
+
+	private _hrCount = server getVariable ["hr", 0];
+	private _salaries = 0;
+	
+	if (tierWar > 1) then {
+		_salaries = floor ((TEH_hrSalaries * skillFIA * _hrCount)/100);
+	};
 
 	_resAdd = [_resAdd] call SCRT_fnc_common_rebelSalary;
 	if (isNil "_resAdd" || {!finite _resAdd}) then {
@@ -141,8 +142,15 @@ while {true} do {
 	_resAdd = round _resAdd;
 	if (!finite _resAdd) then { _resAdd = 25000; }; //either number is too large or something is broken
 	if (!finite _hrAdd) then { _hrAdd = 30; };
-	server setVariable ["hr", _hrAdd + (server getVariable ["hr", 0]), true];
-	server setVariable ["resourcesFIA", _resAdd + (server getVariable ["resourcesFIA", 0]), true];
+	server setVariable ["hr", _hrAdd + _hrCount, true];
+	server setVariable ["resourcesFIA", _resAdd - _salaries + (server getVariable ["resourcesFIA", 0]), true];
+
+
+	call A3A_fnc_checkWinCondition;
+
+	if (lossCondition isNotEqualTo 1) then {
+		call A3A_fnc_checkLossCondition;
+	};
 
 	private _rebAirportsQuantity = {sidesX getVariable [_x,sideUnknown] == teamPlayer} count airportsX;
 	bombRuns = bombRuns + 0.25 * _rebAirportsQuantity;
@@ -173,7 +181,7 @@ while {true} do {
 		[_arsenalTab, _class, _count] call jn_fnc_arsenal_addItem;
 	} forEach (A3A_faction_reb get "initialRebelEquipment");
 
-	private _textX = format [localize "STR_comms_mp_taxes_income", _hrAdd, _resAdd, A3A_faction_civ get "currencySymbol"];
+	private _textX = format [localize "STR_comms_mp_taxes_income", _hrAdd, _resAdd, A3A_faction_civ get "currencySymbol",_salaries, A3A_faction_civ get "currencySymbol"];
 	private _textArsenal = [] call A3A_fnc_arsenalManage;
 	if (_textArsenal != "") then {_textX = format [localize "STR_comms_mp_arsenal_updated", _textX, _textArsenal]};
 	[petros, "taxRep", _textX] remoteExec ["A3A_fnc_commsMP", [teamPlayer, civilian]];
