@@ -18,4 +18,4 @@ params ["_target", "_side", "_maxSpend", "_availTypes"];
 
 if (_target in (A3A_faction_all get "vehiclesFixedWing")) exitWith { 0 };     // Arguable but whatever
 if (_target isKindOf "StaticWeapon") exitWith { 2 };
-1;
+1 - TEH_QRFBalance;

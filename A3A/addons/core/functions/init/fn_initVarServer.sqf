@@ -206,6 +206,7 @@ baseRivalsDecay = switch (rivalsDifficulty) do {
 publicVariable "A3A_buildingsToSave";
 publicVariable "baseRivalsDecay";
 
+TEH_QRFBalance = 0;
 
 ///////////////////////////////////////////
 //     INITIALISING ITEM CATEGORIES     ///

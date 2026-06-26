@@ -358,6 +358,16 @@ addMissionEventHandler ["EntityKilled", {
 	if ((_victim isKindOf "Air" || _victim isKindOf "StaticWeapon") && (_victim distance2D _killer > 2000) && (_victim getVariable ["ownerSide","Unknown"] in [Occupants, Invaders]) && ((random 100) < 33)) then {
 		[(_victim getVariable "ownerSide"), _killer, getPosATL _victim, 0, 1] remoteExec ["A3A_fnc_requestSupport", 2];
 	};
+
+    // on killing flyer or armored vehicle, weight of QRF should shift towards Land or Air, whichever is safer.
+    // -1 -> 0 weight of Air QRF, many helicopters downed
+    // +1 -> 0 weight of Land QRF, many tanks died
+    if (_victim isKindOf "Air" && (_victim getVariable ["ownerSide","Unknown"] in [Occupants, Invaders])) then {
+        TEH_QRFBalance = -1 max (TEH_QRFBalance - 0.1);
+    };
+    if (((_victim isKindOf "Tank") || (_victim isKindOf "Wheeled_APC_F")) && (_victim getVariable ["ownerSide","Unknown"] in [Occupants, Invaders])) then {
+        TEH_QRFBalance = 1 min (TEH_QRFBalance + 0.1);
+    };
 	
 	if (_victim isKindOf "Air" || (_victim isKindOf "Land" && !(_victim isKindOf "Man"))) then {
 		private _box = boundingBoxReal _victim;

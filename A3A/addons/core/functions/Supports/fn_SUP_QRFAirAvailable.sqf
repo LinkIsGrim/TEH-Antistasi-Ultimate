@@ -31,4 +31,4 @@ if (typeOf _target in _allAA) exitWith { 0 };
 
 if (_target isKindOf "Air" || _target isKindOf "StaticWeapon") exitWith { 0 };
 if !(_target isKindOf "Man") exitWith { 0.5 };
-1;
+1 + TEH_QRFBalance;
