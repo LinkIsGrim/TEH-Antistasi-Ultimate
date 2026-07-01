@@ -103,3 +103,7 @@ if (_victimLocation != "") then
         [_victimLocation,_victimSide] remoteExec ["A3A_fnc_zoneCheck",2]
 	};
 };
+
+if (_victim isKindOf "CAManBase") then {
+    [_victim,"packbox"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_victim];
+}

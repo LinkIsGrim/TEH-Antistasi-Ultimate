@@ -125,7 +125,7 @@ while { true } do {
 
 		{
 			private _veh = _x;
-			private _side = _veh getVariable ["originalSide", sideUnknown];
+			private _side = _veh getVariable ["ownerSide", sideUnknown];
 
 			if (
 				alive _veh

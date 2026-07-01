@@ -451,6 +451,50 @@ switch _typeX do
         ];
 
     };
+
+    case "packbox":
+    {
+        _flag addAction [
+            "<img image='a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa'/> Pack to the box",
+            {
+                params ["_target", "_player", "_actionId", "_arguments"];
+
+                private _pos = getPosATL _target;
+                private _box = createVehicle [
+                    "VirtualReammoBox_small_F",
+                    [_pos select 0, _pos select 1, (_pos select 2) + 1],
+                    [],
+                    0,
+                    "CAN_COLLIDE"
+                ];
+
+                systemChat "LootVehicle: Scavenging the surroundings";
+
+                // First dropped weapons, as they are erased with the body otherwise
+                private _holders = nearestObjects [_target, ["WeaponHolderSimulated"], 5];
+
+                // Then everything else
+                private _containerList = (
+                    nearestObjects [_target, ["CAManBase", "WeaponHolder"], 3]
+                ) select {
+                    !alive _x || {!(_x isKindOf "CAManBase")}
+                };
+
+                private _loots = _holders + _containerList;
+                private _ignoreIntel = true;
+
+                [_box, _loots, _player, _ignoreIntel] spawn loot_vehicle_fnc_transferToVehicle;
+            },
+            nil,
+            1.5,
+            true,
+            true,
+            "",
+            "!alive _target",
+            5,
+            false
+        ];
+    };
 };
 
 _actionX
