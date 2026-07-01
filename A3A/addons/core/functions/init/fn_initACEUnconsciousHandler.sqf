@@ -37,17 +37,47 @@ Info("initACEUnconsciousHandler started");
 			[_unit, group _unit, _unit getVariable ["ace_medical_lastDamageSource", objNull]] spawn A3A_fnc_AIReactOnKill;
 		};
 		
-		//Pick a frend to attempt rescue. Control return is postponed until player is awake, bled out, AI is knocked down, or returned manually.
-		if (isPlayer _unit && unconsciousPossessAi && (getOxygenRemaining _unit > 0.1)) then {
+		//Pick a fren to attempt rescue. Control return is postponed until player is awake, bled out, AI is knocked down, or returned manually.
+		if (isPlayer _unit && unconsciousPossessAi && (getOxygenRemaining _unit > 0.1) && _unit getVariable ["owner","Nobody"] isEqualTo _unit) then {
 			private _units = (
 				//look up own group + able men nearby
-				((units group _unit) select {_x distance _unit < 300}) + (nearestObjects [getPosATL _unit, ["Man"], 200] select {side _x == teamPlayer})) select {!(isPlayer _x) && _x isNotEqualTo petros && !(_x getVariable["incapacitated",false])};
+				((units group _unit) select {_x distance _unit < 300}) + (nearestObjects [getPosATL _unit, ["Man"], 200] select {side _x == teamPlayer})
+			) select {
+				!(isPlayer _x)
+				&& {_x isNotEqualTo petros}
+				&& {!(_x getVariable ["incapacitated", false])}
+			};
 
 			//preferably with medical education
-			[_units, [], { _x getUnitTrait "Medic" }, "DESCEND"] call BIS_fnc_sortBy;
-			
+			_units = [_units, [], { _x getUnitTrait "Medic" }, "DESCEND"] call BIS_fnc_sortBy;
+
 			if (count _units > 0) then {
+				//player setCaptive false;
 				[_units, true] spawn A3A_fnc_controlunit;
+			} else {
+				private _vehicles = nearestObjects [getPosATL _unit, ["Car"], 500] select {
+					alive _x
+					&& {_x isKindOf "Car"}
+					&& {crew _x isEqualTo []}
+					&& {(_x getVariable ["ownerSide", sideUnknown]) isEqualTo teamPlayer}
+				};
+
+				if (count _vehicles > 0) then {
+					private _veh = _vehicles # 0;
+					private _typeRifle = FactionGet(reb, "unitRifle");
+
+					private _newUnit = [group _unit, _typeRifle, getPosATL _veh, [], 0, "NONE"] call A3A_fnc_createUnit;
+
+					if (!isNull _newUnit) then {
+						[-1, -100] remoteExec ["A3A_fnc_resourcesFIA", 2];
+
+						[_newUnit] spawn A3A_fnc_FIAinit;
+						//player setCaptive false;
+						[[_newUnit], true] spawn A3A_fnc_controlunit;
+
+						sleep 10;
+					};
+				};
 			};
 		};
 	};

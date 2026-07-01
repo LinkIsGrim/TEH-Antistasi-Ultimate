@@ -6,6 +6,7 @@ if (isPlayer _unit) exitWith {};
 private _leader = _unit getVariable ["owner",leader group _unit];
 if (!isPlayer _leader) exitWith {};
 if (!captive _leader) exitWith {};
+if (_leader getVariable ["incapacitated", false]) exitWith {};
 if (captive _unit) exitWith {};
 [_unit,true] remoteExec ["setCaptive",_unit];
 _unit setCaptive true;
