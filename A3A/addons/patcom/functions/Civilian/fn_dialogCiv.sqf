@@ -299,7 +299,7 @@ _unit addAction [
             _target playActionNow "gesturePoint";
             _target setVariable ["TEH_CivSoldierIntelDone", true, true];
             _target setVariable ["TEH_CivSoldierIntelSucceeded", false, true];
-            if (random 100 > 25) then {
+            if (random 100 > 66) then {
                 [_target, _caller, selectRandom [
                     "The soldiers protect us from people asking questions like that.",
                     "No. I am not getting dragged into rebel business.",
@@ -385,6 +385,20 @@ _unit addAction [
 
         if !(_target getVariable ["TEH_RebelLoyalty", false]) exitWith {
             [_target, _caller, "All our supply are belong to us."] call _sayToCaller;
+            if (random 100 > 33) then {
+                [_target, _caller, selectRandom [
+                    "The soldiers protect us from people asking questions like that.",
+                    "No. I am not getting dragged into rebel business.",
+                    "Talk to the checkpoint if you care so much."
+                ]] call _sayToCaller;
+            } else {
+                [_target, _caller, selectRandom [
+                    "Guards! Guards!",
+                    "Malden Police, arrest this man!",
+                    "Stop right there criminal scum!"
+                ]] call _sayToCaller;
+                _caller setCaptive false;
+            };
             false
         };
 
@@ -506,12 +520,22 @@ _unit addAction [
             false
         };
 
-        _caller setVariable ["moneyX", _money - _price, true];
+        _caller setVariable ["moneyX", _money - _price, (owner _caller)];
         _target setVariable ["TEH_RebelLoyalty", true, true];
 
+		private _expenceText = format [
+			localize "STR_comms_mp_bribe",
+			name _caller,
+			_price, 
+			A3A_faction_civ get "currencySymbol"
+		];		
+		[petros, "income", _expenceText] remoteExec ["A3A_fnc_commsMP", _caller];
+
         [_caller, _caller, format ["Here. %1. We understand each other?", _price]] call _sayToCaller;
+        
         _target lookAt _caller;
         sleep 1;
+        _target playActionNow "gestureNod";
         [_target, _caller, "For that? Sure. I always liked the rebels. Very quietly."] call _sayToCaller;
 
         true
