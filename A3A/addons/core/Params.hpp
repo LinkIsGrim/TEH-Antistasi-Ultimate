@@ -2786,21 +2786,21 @@ class Params
     {
         title = $STR_params_crateAmmoNumMax;
         tooltip = $STR_params_crateAmmoNumMax_desc;
-        values[] = {0,1,3,5,10,15,20,25,30};
-        texts[] = {$STR_params_civ_traffic_none,"1","3","5","10","15","20","25","30"};
+        values[] = {0,1,3,5,8,10,12,15,20};
+        texts[] = {$STR_params_civ_traffic_none,"1","3","5","8","10","12","15","20"};
         class difficulty
         {
             class solo
             {
-                easy = 30;
-                medium = 20;
-                hard = 10;
+                easy = 10;
+                medium = 5;
+                hard = 3;
             };
             class small : solo {};
             class medium : solo {};
             class large : solo {};
         };
-        default = 20;
+        default = 10;
     };
     class crateExplosiveTypeMax: CrateParams
     {

@@ -7099,19 +7099,19 @@
                 <French>Nombre maximal de types de munitions distincts dans une caisse.</French>
             </Key>
             <Key ID="STR_params_crateAmmoNumMax">
-                <Original>Maximum Ammo Quantity in Crates</Original>
-                <Russian>Максимальное количество боеприпасов в ящиках</Russian>
-                <Chinesesimp>箱子里的最大弹药量</Chinesesimp>
-                <Korean>상자의 탄약 최대 수량</Korean>
-                <French>Quantité maximale de munitions dans les caisses</French>
-                <Turkish>Kutulardaki Maksimum Mühimmat Miktarı</Turkish>
+                <Original>Ammo Quantity Multiplier in Crates</Original>
+                <Russian>Множитель количества боеприпасов в ящиках</Russian>
+                <Chinesesimp>箱子弹药数量倍率</Chinesesimp>
+                <Korean>상자 탄약 수량 배율</Korean>
+                <French>Multiplicateur de quantité de munitions dans les caisses</French>
+                <Turkish>Kutulardaki Mühimmat Miktarı Çarpanı</Turkish>
             </Key>
             <Key ID="STR_params_crateAmmoNumMax_desc">
-                <Original>Maximum quantity of ammunition contained in a crate.</Original>
-                <Russian>Максимальное количество боеприпасов в ящике.</Russian>
-                <Chinesesimp>箱子中包含的最大弹药数量。</Chinesesimp>
-                <Korean>상자에 들어갈 수 있는 최대 탄약 수입니다.</Korean>
-                <French>Quantité maximale de munitions contenue dans une caisse.</French>
+                <Original>Amount of magazines per weapon in the crate. For example, 5 weapons with a setting of 10 will add 50 magazines. Guided missiles are provided at up to x3 maximum. Standalone ammo packs use (5 + Weapon Quantity in Crates) multiplier to this setting.</Original>
+                <Russian>Количество магазинов на каждое оружие в ящике. Например, 5 оружий при значении 10 добавят 50 магазинов. Управляемые ракеты добавляются максимум в количестве x3. Отдельные наборы боеприпасов используют множитель (5 + Количество оружия в ящиках) для этой настройки.</Russian>
+                <Chinesesimp>箱子中每件武器对应的弹匣数量。例如，5 件武器且设置为 10 时，会添加 50 个弹匣。制导导弹最多按 x3 提供。独立弹药包对此设置使用（5 + 箱子中的武器数量）倍率。</Chinesesimp>
+                <Korean>상자 안의 무기당 탄창 수입니다. 예를 들어 무기 5개에 설정값이 10이면 탄창 50개가 추가됩니다. 유도 미사일은 최대 x3까지 제공됩니다. 독립 탄약 팩은 이 설정에 (5 + 상자의 무기 수량) 배율을 사용합니다.</Korean>
+                <French>Nombre de chargeurs par arme dans la caisse. Par exemple, 5 armes avec un réglage de 10 ajoutent 50 chargeurs. Les missiles guidés sont fournis jusqu’à un maximum de x3. Les packs de munitions autonomes utilisent le multiplicateur (5 + Quantité d’armes dans les caisses) pour cette valeur.</French>
             </Key>
             <Key ID="STR_params_crateExplosiveTypeMax">
                 <Original>Maximum Explosive Types in Crates</Original>

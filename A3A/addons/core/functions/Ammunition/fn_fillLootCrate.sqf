@@ -181,7 +181,7 @@ if (_crateWepTypeMax != 0) then {
 		}
 		else
 		{
-			_amount = 5;
+			_amount = crateWepNumMax;
 			
             Debug(_loot);
 
@@ -192,9 +192,9 @@ if (_crateWepTypeMax != 0) then {
 
 			_magazine = selectRandom _magazines;
 			_magAmount = if ((getText (configFile >> "CfgMagazines" >> _magazine >> "ammo") isKindOf "MissileBase")) then {
-				(_amount * 3);
+				(_amount * (crateAmmoNumMax min 3));
 			} else {
-				(_amount * 10);
+				(_amount * crateAmmoNumMax);
 			};
 			Debug(_magazine);
 			
@@ -240,7 +240,7 @@ if (_crateAmmoTypeMax != 0) then {
             Debug("No Ammo Left in Loot List");
 		}
 		else {
-			_amount = 100;
+			_amount = ceil ((crateAmmoNumMax * (5 + crateWepNumMax)) / 5) * 5;
 			_crate addMagazineCargoGlobal [_loot,_amount];
             Verbose_2("Spawning %1 of %2", _amount,_loot);
 		};
