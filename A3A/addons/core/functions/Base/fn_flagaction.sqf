@@ -344,15 +344,42 @@ switch _typeX do
                 private _contact = cursorObject;
                 if (isNull _contact) exitWith { systemChat "PMR: Nothing to see here."; };
                 if !(_contact isKindOf "AllVehicles") exitWith { systemChat "PMR: Nothing to see here."; };
+
+                private _desc = "";
+
+                if (_contact isKindOf "CAManBase") then {
+                    private _getItemName = {
+                        params ["_class", "_fallback"];
+                        if (_class isEqualTo "") exitWith {_fallback};
+
+                        private _name = getText (configFile >> "CfgWeapons" >> _class >> "displayName");
+                        if (_name isEqualTo "") then {_class} else {_name};
+                    };
+
+                    private _uniformName = [uniform _contact, "ordinary civilian clothes"] call _getItemName;
+                    private _vestName = [vest _contact, ""] call _getItemName;
+                    private _headgearName = [headgear _contact, ""] call _getItemName;
+
+                    private _parts = [format [" He wears %1", _uniformName]];
+                    if (_vestName isNotEqualTo "") then {_parts pushBack format ["with %1", _vestName]};
+                    if (_headgearName isNotEqualTo "") then {_parts pushBack format ["and %1 on his head", _headgearName]};
+
+                    _desc = _parts joinString ", "
+                };
+
                 private _cside = side _contact;
                 player reveal _contact;
-                if !(_cside == Occupants || _cside == Invaders) exitWith { player reveal _contact; systemChat format ["PMR: You're looking at %1 %2", side _contact, getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")]; };
+                if !(_cside == Occupants || _cside == Invaders) exitWith {
+                    player reveal _contact;
+
+                    systemChat format ["PMR: You're looking at %1 %2.%3", side _contact, getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname"),_desc];
+                };
 
                 {
                     [_x, [_contact,4]] remoteExec ["reveal", 2];
                 } forEach ((getPosATL _caller) nearObjects ["Land", 500] select { side _x == side _caller });
 
-                systemChat format ["PMR: Spotted enemy %1!", getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname")];
+                systemChat format ["PMR: Spotted enemy %1!%2", getText (configFile >> "CfgVehicles" >> typeOf _contact >> "displayname"),_desc];
             },
             nil,
             1.5,
