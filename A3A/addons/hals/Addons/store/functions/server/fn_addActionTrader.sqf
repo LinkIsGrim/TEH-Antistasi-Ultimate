@@ -145,7 +145,7 @@ if (_target isEqualType false) then {
 				[
 					"Buy ammo",
 					format [
-						"Bought %1 rounds of %2 for %3%4.",
+						"Bought %1 rounds of %2 for %3%4. Package is delivered to the Arsenal.",
 						_ammoQuantity,
 						_ammoName,
 						_price,

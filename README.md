@@ -26,6 +26,7 @@
 - **Jeroen Arsenal QoL improvements**:
 	- Detailed tooltips, improved sorting
 	- Bullets and magazines are now calculated separately (e.g. you can reuse your 75 Rnd 7.62x39 drums if you have a stockpile of respective ammo from other salvaged AK mags). On reload empty mag is saved in the player inventory.
+	- Trader sells primary ammo in bulk, without overcharging for magazines (ammo is given based on currently loaded magazine in your rifle. Explosive, submunition, grenades can't be ordered).
 	- New shortcut: Quick Resupply (restocks medicine and reloads existing mags). Also available at the friendly bases at flag.
 	- New shortcut: Equip last loadout (last loaded or saved loadout)
 	- Convert Mag service allows to convert magazines within same model pool (or throw out unwanted empty mags, while saving ammo)
@@ -35,6 +36,7 @@
 - **Starter Kits**:
 	- Vehicles from the garage now come with a starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
 	- On player (re)spawn Quick Equip is executed automatically. Equips random eligible weapon and its default ammo, ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
+	- NB! Doesn't work on War Level 1, when starting with Empty Arsenal challenge!
 - **Undercover Rework**:
 	- All the undercover checks are knowledge based (enemies have to know about your presense).
 	- Offroading doesn't mark your car as reported.
@@ -53,6 +55,7 @@
 	- If AI is knocked down, control is lost, no additional attempts provided.
 	- AI doesn't have to be in your squad, nearby infantry can help too (200m)
 	- There is still a little chance for an AI medic to patch you even after that
+	- if there is no AI nearby, one can be spawned near the rebel car (costs 1 HR and 100 currency)
 - **Enemy bases**:
 	- Spawn distance markers (hidden when markers are hidden)
 	- Spawned vehicles and ammo boxes don't disappear if you captured the base and left (even if marker undergoes despawn)
@@ -97,11 +100,15 @@
 	- Enemy Air QRF disembark range increased from 200-400 to 500-800 to increase survivability against MANPADs and binoculars.
 - **Challeges**: Optional challenges can be found in AI and Rebel balance section
 	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons (It's chance based at 1% + 0.25% per war level per marker each minute IF there is an inactive enemy base in 2km radius.)
-	- SWAT teams dispatched when police officers are down (33% base chance)
 	- Civilians guide the police if they see an armed rebel.
 	- Enemy outposts and ports are protected by antitank mines to mitigate vehicle rush
-	- Starting option: start with handguns or without weapons (hand grenades remain)
-	- Only Randoms: loot weapons and handguns are sold instead of arsenal storage. Unlock new weapons by gathering Intel.
+	- Starting gear option: start with handguns or without weapons (hand grenades remain), or with completely empty arsenal.
+	- Only Randoms: loot weapons and handguns are sold instead of storaged in the arsenal. Unlock new weapons by gathering Intel.
+- **Towns expansion (WIP)**:
+	- Completely new civilian interaction system, with quests and special NPCs
+	- Urban warfare: with SWAT teams (optional challenge) and gangsters, towns are now a formidable obstacle to conquer
+	- Military Administration removes undercover
+	- Military Administration lootbox is now less prone to farm
 - **Balance**:
 	- New HR gain multiplier parameter (works for recruitment of surrendered enemies and resque type missions) - to trade off early attacks losses
 	- Flexible rebel garrisons squads: now with proper command chain (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
@@ -118,6 +125,7 @@
 	- Deutsche Mark (DM) as currency on Weferlingen
 	- Known issue: Trader will still offer all the futuristic weapons and items
 - **Mods support**:
+	- **[Point Campfire] (https://steamcommunity.com/sharedfiles/filedetails/?id=3747933298)** - popular Point Campfire extension is supported thru a compatibility patch.
 	- **[GX-Drones](https://steamcommunity.com/sharedfiles/filedetails/?id=3460981677)** - a variety of deployable and 40mm UGL launched drones. If new game is started with the mod installed, some drones are added to the arsenal automatically. Otherwise some are available at the trader under "GX-Drones"
 	- **[X26 Tasers](https://steamcommunity.com/sharedfiles/filedetails/?id=2515852876)** - if installed, available to every faction at the new game start. Otherwise can be found at the trader under "X26 Tasers".
 	- **[Expanded Anti Air](https://steamcommunity.com/sharedfiles/filedetails/?id=3399739919)** - a variety of AA and radar trucks. SAM truck is available at the trader.

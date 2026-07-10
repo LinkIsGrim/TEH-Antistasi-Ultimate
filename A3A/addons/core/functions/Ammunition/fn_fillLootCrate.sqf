@@ -33,7 +33,7 @@ clearWeaponCargoGlobal _crate;
 clearItemCargoGlobal _crate;
 clearBackpackCargoGlobal _crate;
 //Double max types if the crate is an ammo truck
-if (typeOf _crate in FactionGet(all,"vehiclesAmmoTrucks") || _crate isKindOf "ReammoBox_F" ) then {
+if (_crate isKindOf "ReammoBox_F" ) then {
     Verbose("Big Weapon Crate: Doubling Types");
 	_crateWepTypeMax = _crateWepTypeMax * 2;
 	_crateItemTypeMax = _crateItemTypeMax * 2;
@@ -42,9 +42,13 @@ if (typeOf _crate in FactionGet(all,"vehiclesAmmoTrucks") || _crate isKindOf "Re
 	_crateAttachmentTypeMax = _crateAttachmentTypeMax * 2;
 	_crateDeviceTypeMax = _crateDeviceTypeMax * 2;
 };
+
+if (typeOf _crate in FactionGet(all,"vehiclesAmmoTrucks")) then {
 	_crateBackpackTypeMax = 0;
 	_crateHelmetTypeMax = 0;
 	_crateVestTypeMax = 0;
+};
+
 	
 private _quantityScalingFactor = if (minWeaps < 0) then {1} else {
 	private _playerCount = if(!isNil "spoofedPlayerCount") then {spoofedPlayerCount} else {A3A_activePlayerCount};
@@ -232,9 +236,8 @@ if (_crateItemTypeMax != 0) then {
 
 //Ammo Loot
 if (_crateAmmoTypeMax != 0) then {
+		_available = (lootMagazine - _unlocks - A3U_forbiddenItems);
 	for "_i" from 0 to floor random _crateAmmoTypeMax do {
-		_available = (lootMagazine - _unlocks - itemCargo _crate);
-		_available = _available - A3U_forbiddenItems;
 		_loot = selectRandom _available;
 		if (isNil "_loot") then {
             Debug("No Ammo Left in Loot List");
@@ -248,9 +251,8 @@ if (_crateAmmoTypeMax != 0) then {
 };
 //Explosives Loot
 if (_crateExplosiveTypeMax != 0) then {
+	_available = (lootExplosive - _unlocks - A3U_forbiddenItems);
 	for "_i" from 0 to floor random _crateExplosiveTypeMax do {
-		_available = (lootExplosive - _unlocks - itemCargo _crate);
-		_available = _available - A3U_forbiddenItems;
 		_loot = selectRandom _available;
 		if (isNil "_loot") then {
             Debug("No Explosives Left in Loot List");
@@ -264,9 +266,8 @@ if (_crateExplosiveTypeMax != 0) then {
 };
 //Attachments Loot
 if (_crateAttachmentTypeMax != 0) then {
+	_available = (lootAttachment - _unlocks - A3U_forbiddenItems);
 	for "_i" from 0 to (_crateAttachmentTypeMax call _fnc_pickNumberOfTypes) do {
-		_available = (lootAttachment - _unlocks - itemCargo _crate);
-		_available = _available - A3U_forbiddenItems;
 		_loot = selectRandom _available;
 		if (isNil "_loot") then {
             Debug("No Attachment Left in Loot List");
@@ -280,8 +281,8 @@ if (_crateAttachmentTypeMax != 0) then {
 };
 //Backpacks Loot
 if (_crateBackpackTypeMax != 0) then {
+	_available = (lootBackpack - _unlocks - A3U_forbiddenItems);
 	for "_i" from 0 to floor random _crateBackpackTypeMax do {
-		_available = (lootBackpack - _unlocks - itemCargo _crate - A3U_forbiddenItems);
 		_loot = selectRandom _available;
 		if (isNil "_loot") then {
             Debug("No Backpacks Left in Loot List");
@@ -295,8 +296,8 @@ if (_crateBackpackTypeMax != 0) then {
 };
 //Helmets Loot
 if (_crateHelmetTypeMax != 0) then {
+	_available = (lootHelmet - _unlocks - A3U_forbiddenItems);
 	for "_i" from 0 to floor random _crateHelmetTypeMax do {
-		_available = (lootHelmet - _unlocks - itemCargo _crate - A3U_forbiddenItems);
 		_loot = selectRandom _available;
 		if (isNil "_loot") then {
             Debug("No Helmets Left in Loot List");
@@ -310,8 +311,8 @@ if (_crateHelmetTypeMax != 0) then {
 };
 //Vests Loot
 if (_crateVestTypeMax != 0) then {
+	_available = (lootVest - _unlocks - A3U_forbiddenItems);
 	for "_i" from 0 to floor random _crateVestTypeMax do {
-		_available = (lootVest - _unlocks - itemCargo _crate - A3U_forbiddenItems);
 		_loot = selectRandom _available;
 		if (isNil "_loot") then {
             Debug("No Vests Left in Loot List");
@@ -325,8 +326,8 @@ if (_crateVestTypeMax != 0) then {
 };
 //Device Loot
 if (_crateDeviceTypeMax != 0) then {
+	_available = (lootDevice - _unlocks - A3U_forbiddenItems);
 	for "_i" from 0 to floor random _crateDeviceTypeMax do {
-		_available = (lootDevice - _unlocks - itemCargo _crate - A3U_forbiddenItems);
 		_loot = selectRandom _available;
 		if (isNil "_loot") then {
             Debug("No Device Bags Left in Loot List");
