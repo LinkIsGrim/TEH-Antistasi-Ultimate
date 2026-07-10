@@ -26,7 +26,7 @@ while {true} do {
     waitUntil {!isNil "A3A_activePlayerCount"};
 
     if (isEventInProgress || {A3A_activePlayerCount == 0}) then { 
-        sleep 120; 
+        sleep randomEventsCheckTimeout; 
         continue;
     };
 
@@ -43,5 +43,5 @@ while {true} do {
         _chance = _chance + (random [1,2,4]);
     };
 
-    sleep (60 + random 120);
+    sleep (60 + random randomEventsCheckTimeout);
 };

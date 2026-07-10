@@ -260,6 +260,15 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 1;
     };
+    class randomEventsCheckTimeout: ScenarioParams
+    {
+        attr[] = {"server"};
+        title = "Random events cooldown";
+        tooltip = "Maximum amount of time between checks for next random event to occur. Note that it's random amount between 0 and selected setting + 1 minute minimal cooldown between events";
+        values[] = {60,120,180,240,300,420,600};
+        texts[] = {"1 min","2 min","3 min","4 min","5 min","420 seconds","10 min"};
+        default = 420;
+    };
     class createAmbientSounds: ScenarioParams
     {
         title = $STR_A3AU_ambient_sounds;
@@ -646,9 +655,9 @@ class Params
     {
         title = $STR_params_civ_per_town;
         tooltip = $STR_params_civ_per_town_desc;
-        values[] = {0,2,5,10,15};
-        texts[] = {"0","2","5","10","15"};
-        default = 2;
+        values[] = {0,2,6,10,15,30};
+        texts[] = {"0","2","6","10","15","30"};
+        default = 6;
     };
     class civTraffic: AIParams
     {
@@ -3136,10 +3145,26 @@ class Params
         };
         default = 0;
     };
+    class TEH_SaferPlacement : ExperimentalParams
+    {
+        title = "Safe(r) vehicle placement";
+        tooltip = "When taking vehicle from the garage the safe placement is used instead of spawning it on the cursor";
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+	};
+    class TEH_WarTierZero : ExperimentalParams
+    {
+        title = "War Tier Zero (testing)";
+        tooltip = "";
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+	};
     class TEH_POWshortcuts : ExperimentalParams
     {
         title = "POW shortcuts for enemy units";
-        tooltip = "Adds Stabilize action for wounded unconscious enemy, and Stop! for panic runner (25m distance, 15 seconds duration)";
+        tooltip = "Adds 'Capture Prisoner' action for wounded unconscious enemy, and Arrest! for panic runners";
         values[] = {0,1};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 0;
