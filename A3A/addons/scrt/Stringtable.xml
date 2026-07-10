@@ -1632,14 +1632,13 @@
                 <French>&lt;t size='0.6'&gt;%1 reçoit &lt;t size='0.6' color='#00FF00'&gt;%2%3&lt;/t&gt; pour avoir lutté pour %4 !&lt;/t&gt;</French>
                 <Turkish>&lt;t size='0.6'&gt;%1, %4 uğruna savaştığı için &lt;t size='0.6' color='#00FF00'&gt;%2%3&lt;/t&gt; kazandı!&lt;/t&gt;</Turkish>
             </Key>
-
-            <Key ID="STR_comms_mp_bribe">
-                <Original>&lt;t size='0.6'&gt;%1 spends &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt; on bribing the civilian.&lt;/t&gt;</Original>
-                <Russian>&lt;t size='0.6'&gt;%1 тратит &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt; на подкуп гражданского.&lt;/t&gt;</Russian>
-                <Chinesesimp>&lt;t size='0.6'&gt;%1 花费 &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt; 贿赂平民。&lt;/t&gt;</Chinesesimp>
-                <Korean>&lt;t size='0.6'&gt;%1이(가) 민간인을 매수하는 데 &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt;을(를) 사용했습니다.&lt;/t&gt;</Korean>
-                <French>&lt;t size='0.6'&gt;%1 dépense &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt; pour soudoyer le civil.&lt;/t&gt;</French>
-                <Turkish>&lt;t size='0.6'&gt;%1 sivile rüşvet vermek için &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt; harcıyor.&lt;/t&gt;</Turkish>
+            <Key ID="STR_comms_mp_givemoney">
+                <Original>&lt;t size='0.6'&gt;%1 gives &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt; to the civilian.&lt;/t&gt;</Original>
+                <Russian>&lt;t size='0.6'&gt;%1 передаёт гражданскому &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt;.&lt;/t&gt;</Russian>
+                <Chinesesimp>&lt;t size='0.6'&gt;%1 给平民 &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt;。&lt;/t&gt;</Chinesesimp>
+                <Korean>&lt;t size='0.6'&gt;%1이(가) 민간인에게 &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt;을(를) 건넸습니다.&lt;/t&gt;</Korean>
+                <French>&lt;t size='0.6'&gt;%1 donne &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt; au civil.&lt;/t&gt;</French>
+                <Turkish>&lt;t size='0.6'&gt;%1 sivile &lt;t size='0.6' color='#FF0000'&gt;%2%3&lt;/t&gt; veriyor.&lt;/t&gt;</Turkish>
             </Key>
             <Key ID="STR_comms_mp_hmg_airdrop">
                 <Original>&lt;t size='0.6'&gt;Rebel aircraft drops the &lt;t size='0.6' color='#804000'&gt;HMG&lt;/t&gt; near your position.&lt;/t&gt;</Original>

@@ -19,158 +19,14 @@
 */
 
 #include "..\..\script_component.hpp"
+#include "dialogUtils.sqf"
 FIX_LINE_NUMBERS()
 
 params [["_unit", objNull]];
 
 if (isNull _unit) exitWith {false};
 
-private _sayToCaller = {
-    params ["_speaker", "_listener", "_text"];
-    [_speaker, _text] remoteExec ["globalChat", _listener];
-};
 
-private _getUnitTown = {
-    params ["_unit"];
-
-    _unit getVariable ["TEH_Town", ""]
-};
-
-private _getTownVar = {
-    params ["_town", "_key", "_default"];
-
-    private _townStates = missionNamespace getVariable ["TEH_CivDialogTownStates", createHashMap];
-    private _townState = _townStates getOrDefault [_town, createHashMap];
-    _townState getOrDefault [_key, _default]
-};
-
-private _setTownVar = {
-    params ["_town", "_key", "_value"];
-
-    private _townStates = missionNamespace getVariable ["TEH_CivDialogTownStates", createHashMap];
-    private _townState = _townStates getOrDefault [_town, createHashMap];
-
-    _townState set [_key, _value];
-    _townStates set [_town, _townState];
-    missionNamespace setVariable ["TEH_CivDialogTownStates", _townStates, true];
-};
-
-private _findTownCivs = {
-    params ["_town"];
-
-    allUnits select {
-        alive _x
-        && {side group _x isEqualTo civilian}
-        && {isNull objectParent _x}
-        && {(_x getVariable ["TEH_Town", ""]) isEqualTo _town}
-    }
-};
-
-private _ensureCacheState = {
-    params ["_target", "_town", "_getTownVar", "_setTownVar", "_findTownCivs"];
-
-    if (_town isEqualTo "") exitWith {false};
-    [_town, "Town", _town] call _setTownVar;
-
-    if ([_town, "CacheCompleted", false] call _getTownVar) exitWith {true};
-    if ([_town, "CacheStarted", false] call _getTownVar) exitWith {true};
-
-    private _civs = [_town] call _findTownCivs;
-    if ((count _civs) < 2) exitWith {false};
-
-    private _joe = selectRandom _civs;
-    private _bob = selectRandom (_civs - [_joe]);
-
-    [_town, "CacheStarted", true] call _setTownVar;
-    [_town, "CacheLead", _joe] call _setTownVar;
-    [_town, "CacheContact", _bob] call _setTownVar;
-
-    _joe setVariable ["TEH_CacheRole", "Joe", true];
-    _bob setVariable ["TEH_CacheRole", "Bob", true];
-    _bob setVariable ["TEH_CacheContactUnlocked", false, true];
-    _bob setVariable ["TEH_CacheBobFound", false, true];
-
-    true
-};
-
-private _describeContact = {
-    params ["_unit"];
-
-    private _getItemName = {
-        params ["_class", "_fallback"];
-        if (_class isEqualTo "") exitWith {_fallback};
-
-        private _name = getText (configFile >> "CfgWeapons" >> _class >> "displayName");
-        if (_name isEqualTo "") then {_class} else {_name};
-    };
-
-    private _uniformName = [uniform _unit, "ordinary civilian clothes"] call _getItemName;
-    private _vestName = [vest _unit, ""] call _getItemName;
-    private _headgearName = [headgear _unit, ""] call _getItemName;
-
-    private _parts = [format ["wears %1", _uniformName]];
-    if (_vestName isNotEqualTo "") then {_parts pushBack format ["with %1", _vestName]};
-    if (_headgearName isNotEqualTo "") then {_parts pushBack format ["and %1 on his head", _headgearName]};
-
-    _parts joinString ", "
-};
-
-private _unlockRandomWeapon = {
-    params ["_speaker", "_listener", "_sayToCaller"];
-
-    private _allWeapons = missionNamespace getVariable ["allWeapons", []];
-    private _unlockedWeapons = missionNamespace getVariable ["unlockedWeapons", []];
-    private _notYetUnlocked = _allWeapons - _unlockedWeapons;
-
-    if (_notYetUnlocked isEqualTo []) exitWith {
-        [_speaker, _listener, "The cache was real, but it only confirmed weapons we already know how to source."] call _sayToCaller;
-        false
-    };
-
-    private _newWeapon = selectRandom _notYetUnlocked;
-    private _magazines = compatibleMagazines _newWeapon;
-    private _guestLimit = missionNamespace getVariable ["A3A_guestItemLimit", 100];
-    private _minWeaps = missionNamespace getVariable ["minWeaps", 25];
-    private _quantityBounds = if (_minWeaps > 0) then {
-        [_minWeaps / 10, _minWeaps / 4, _minWeaps]
-    } else {
-        [_guestLimit / 10, _guestLimit / 4, 50]
-    };
-    private _quantity = (ceil (random _quantityBounds)) max 1;
-
-    private _crateType = "Box_NATO_Wps_F";
-    private _cratePos = (getPosATL _speaker) findEmptyPosition [1, 12, _crateType];
-    if (_cratePos isEqualTo []) then {
-        _cratePos = _speaker modelToWorld [0, 2, 0];
-        _cratePos set [2, 0];
-    };
-
-    private _crate = createVehicle [_crateType, _cratePos, [], 0, "NONE"];
-    _crate setDir (random 360);
-    clearWeaponCargoGlobal _crate;
-    clearMagazineCargoGlobal _crate;
-    clearItemCargoGlobal _crate;
-    clearBackpackCargoGlobal _crate;
-
-    _crate addWeaponCargoGlobal [_newWeapon, _quantity];
-
-    if (_magazines isNotEqualTo []) then {
-        private _magazine = selectRandom _magazines;
-        private _magazineCount = _quantity * 6;
-        _crate addMagazineCargoGlobal [_magazine, _magazineCount];
-    };
-
-    private _weaponName = getText (configFile >> "CfgWeapons" >> _newWeapon >> "displayName");
-    if (_weaponName isEqualTo "") then {_weaponName = _newWeapon};
-
-    private _text = format ["Bob's cache lead was solid. The rebels recovered %1 x %2 and compatible ammunition.", _quantity, _weaponName];
-    [_text, true] remoteExec ["A3A_fnc_showIntel", [civilian, teamPlayer]];
-
-    true
-};
-
-private _actionArgs = [_sayToCaller, _getUnitTown, _getTownVar, _setTownVar, _findTownCivs, _ensureCacheState, _describeContact, _unlockRandomWeapon];
-private _commonCondition = "alive _target && {alive _this} && {isNull objectParent _this} && {_target getVariable ['TEH_DialogStarted', false]}";
 
 _unit addAction [
     "Hello",
@@ -363,136 +219,152 @@ _unit addAction [
 ];
 
 _unit addAction [
-    "Ask about supplies",
+    "Where do I get some firearms?",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        _arguments params ["_sayToCaller", "_getUnitTown", "_getTownVar", "_setTownVar", "_findTownCivs", "_ensureCacheState", "_describeContact"];
+        _arguments params ["_sayToCaller", "_getUnitTown", "_getTownVar", "_setTownVar", "_findTownCivs", "_describeContact"];
 
         [_caller, _caller, selectRandom [
-            "Anyone around here know where supplies go missing?",
-            "People say every town has a man who knows where things are buried.",
-            "If someone had spare rifles, who would know?"
+            "Where do I get some firearms?",
+            "If someone needed a gun around here, where would he start?",
+            "I need something better than harsh language. Any idea where to find firearms?"
         ]] call _sayToCaller;
 
         _target lookAt _caller;
         sleep 1;
 
-        private _town = [_target] call _getUnitTown;
-        if !([_target, _town, _getTownVar, _setTownVar, _findTownCivs] call _ensureCacheState) exitWith {
-            [_target, _caller, "Maybe there is someone, but not enough people are around to ask. Try when the streets are busier."] call _sayToCaller;
-            false
-        };
-
+        // Non-loyal civilians either refuse or call for help.
         if !(_target getVariable ["TEH_RebelLoyalty", false]) exitWith {
-            [_target, _caller, "All our supply are belong to us."] call _sayToCaller;
-            if (random 100 > 33) then {
-                [_target, _caller, selectRandom [
-                    "The soldiers protect us from people asking questions like that.",
-                    "No. I am not getting dragged into rebel business.",
-                    "Talk to the checkpoint if you care so much."
-                ]] call _sayToCaller;
-            } else {
+            if (random 100 < 33) then {
                 [_target, _caller, selectRandom [
                     "Guards! Guards!",
                     "Malden Police, arrest this man!",
                     "Stop right there criminal scum!"
                 ]] call _sayToCaller;
+
                 _caller setCaptive false;
+            } else {
+                [_target, _caller, selectRandom [
+                    "I know nothing. I am a law-abiding citizen, unlike some people asking stupid questions.",
+                    "Firearms? No. I obey the law. You should try it sometime.",
+                    "Go away, provocateur. I have nothing to say to you.",
+                    "I do not know anything about guns, rebels, or whatever trap this is.",
+                    "Ask the soldiers. They have guns. I have common sense."
+                ]] call _sayToCaller;
             };
+
             false
         };
 
-        if ([_town, "CacheCompleted", false] call _getTownVar) exitWith {
-            [_target, _caller, selectRandom [
-                "Supplies come and go. Today, mostly go.",
-                "Everyone hides what little they have.",
-                "If there was something useful, someone already moved it."
-            ]] call _sayToCaller;
-            false
-        };
-
+        private _town = [_target] call _getUnitTown;
         private _joe = [_town, "CacheLead", objNull] call _getTownVar;
         private _bob = [_town, "CacheContact", objNull] call _getTownVar;
 
-        if (_target isEqualTo _joe && {alive _bob}) exitWith {
-            private _description = [_bob] call _describeContact;
-            _bob setVariable ["TEH_CacheContactUnlocked", true, true];
+        // Loyal Joe points the player to Bob and turns Bob into a valid rebel contact.
 
-            [_target, _caller, format [
-                "I do not touch caches, but Bob knows where the useful things sleep. He usually %1.",
-                _description
-            ]] call _sayToCaller;
+        if (_target isEqualTo _joe && {!isNull _bob} && {alive _bob}) exitWith {
+            private _dist = _bob distance2D getMarkerPos _town;
+            private _distDesc = if (_dist < 100) then {
+                                    "He usually hangs around the town center. Try the streets, shops, places where people pretend nothing is happening."
+                                } else {
+                                    if (_dist < 200) then {
+                                        "He is probably somewhere near the edge of town. Look around the outskirts."
+                                    } else {
+                                        "Knowing him, he probably wandered too far again. Try outside town, fields, sheds, roads. He is bad at staying hidden and worse at staying put."
+                                    };
+                                };
+            private _description = [_bob] call _describeContact;
+
+            if (_joe getVariable ["TEH_CacheUsed",false]) then {
+                [_target, _caller, format [
+                    "I've told you already. Find Bob and ask about the crate. %1 He usually %2.",
+                    _distDesc, _description
+                ]] call _sayToCaller;
+            } else {
+                _bob setVariable ["TEH_RebelLoyalty", true, true];
+                _bob setVariable ["TEH_CacheContactUnlocked", true, true];
+                _joe setVariable ["TEH_CacheUsed",true,true];
+
+                [_target, _caller, format [
+                    "Hmm. Looks like you might actually use one. Find Bob and ask him about the crate. %1 He usually %2.",
+                    _distDesc, _description
+                ]] call _sayToCaller;
+            };
 
             true
         };
 
+        // Loyal Bob stops here. The next action is the password.
+        if (_target isEqualTo _bob) exitWith {
+            [_target, _caller, "Quiet, you fool. Did Joe send you? What's the password?"] call _sayToCaller;
+            true
+        };
+
+        // Pickle Rick stops here.
+        if (_target getVariable ["TEH_CivRole","none"] isEqualTo "Rick") exitWith {
+            private _rickFirearmsLines = [
+                "Yo, yo, keep your voice down. I might have something, if you have money.",
+                "Firearms? Big word. Expensive word. You got cash?",
+                "Maybe I know a guy. Maybe the guy is me. Maybe you should show me some money.",
+                "Keep it quiet. I can get you a pistol. Nothing fancy, but it makes holes.",
+                "I do not sell guns. That would be illegal. I accept donations and give lifestyle advice.",
+                "Lower your voice. I have something small, ugly, and overpriced. Perfect for you."
+            ];
+            [_target, _caller, selectRandom _rickFirearmsLines] call _sayToCaller;
+            true
+        };
+
+        // Ordinary loyal civilians use pre-rolled arms info.
+        private _role = _target getVariable ["TEH_CivRole", ""];
+        if (_role isEqualTo "") exitWith {
+            private _armsInfo = _target getVariable ["TEH_ArmsInfo", "none"];
+
+            switch (_armsInfo) do {
+                case "bandits": {
+                    [_target, _caller, selectRandom [
+                        "There is a gang of gopniks in town. I do not think the police will cry if a sawed-off shotgun or two goes missing.",
+                        "Some street wolves around here carry weapons. Dirty ones, but weapons. I doubt anyone important will miss them.",
+                        "There are bandits in town. If they lose a shotgun, I suspect the law will survive somehow."
+                    ]] call _sayToCaller;
+                };
+
+                case "rick": {
+                    [_target, _caller, selectRandom [
+                        "There is a resistance contact in town. His name is Rick. Pickle Rick. He always wears green. He can sell you a pistol.",
+                        "Find Rick. People call him Pickle Rick. Green clothes, green hat, green everything. He might sell you a piece.",
+                        "There is a man called Rick. Always dressed in green. Says it means nothing. He can get you a pistol."
+                    ]] call _sayToCaller;
+                };
+
+                case "bob": {
+                    [_target, _caller, selectRandom [
+                        "I heard someone from our side lifted a crate of rifles from the army, but that is all I know. Ask around.",
+                        "There was a rumor about a stolen military crate. Rifles, maybe. I am only selling you the rumor I bought.",
+                        "Someone said our people got their hands on a box of rifles. No names, no details. Ask the locals."
+                    ]] call _sayToCaller;
+                };
+
+                case "none";
+                default {
+                    [_target, _caller, selectRandom [
+                        "I wish I knew. I heard the resistance is looking for fighters, but they expect you to bring your own gear.",
+                        "If I knew where guns were, I would not be standing here empty-handed.",
+                        "I would like to know that myself. People say Petros needs fighters, but fighters need equipment first."
+                    ]] call _sayToCaller;
+                };
+            };
+
+            true
+        };
+
+        // Loyal, but has some other role that does not handle firearms.
         [_target, _caller, selectRandom [
-            "Supplies? Everyone asks. Nobody answers.",
-            "I heard crates moved through town, but I do not know who handled them.",
-            "There are people who know. I am not one of them."
+            "Not my business. And if it was, I would still say that.",
+            "I hear things, but not that kind of thing.",
+            "Wrong person. Ask someone with fewer reasons to stay quiet."
         ]] call _sayToCaller;
 
         false
-    },
-    _actionArgs,
-    1.5,
-    true,
-    true,
-    "",
-    _commonCondition,
-    3,
-    false,
-    "",
-    ""
-];
-
-_unit addAction [
-    "Ask about cache",
-    {
-        params ["_target", "_caller", "_actionId", "_arguments"];
-        _arguments params ["_sayToCaller", "_getUnitTown", "_getTownVar", "_setTownVar", "_findTownCivs", "_ensureCacheState", "_describeContact", "_unlockRandomWeapon"];
-
-        [_caller, _caller, selectRandom [
-            "I heard you know where the cache is.",
-            "I am here about the buried goods."
-        ]] call _sayToCaller;
-
-        _target lookAt _caller;
-        sleep 1;
-
-        private _town = [_target] call _getUnitTown;
-        if !([_target, _town, _getTownVar, _setTownVar, _findTownCivs] call _ensureCacheState) exitWith {
-            [_target, _caller, "I do not know what you are talking about."] call _sayToCaller;
-            false
-        };
-
-        if ([_town, "CacheCompleted", false] call _getTownVar) exitWith {
-            [_target, _caller, "Already done. That cache is no longer my problem."] call _sayToCaller;
-            false
-        };
-
-        private _bob = [_town, "CacheContact", objNull] call _getTownVar;
-        private _unlocked = _target getVariable ["TEH_CacheContactUnlocked", false];
-
-        if (!(_target isEqualTo _bob) || {!_unlocked}) exitWith {
-            [_target, _caller, selectRandom [
-                "Wrong person, wrong question.",
-                "Names first. Then maybe caches.",
-                "I do not know you, and I do not know any cache."
-            ]] call _sayToCaller;
-            false
-        };
-
-        [_target, _caller, "Fine. Bob kept his end. I will mark what can still be recovered."] call _sayToCaller;
-
-        private _success = [_target, _caller, _sayToCaller] call _unlockRandomWeapon;
-
-        [_town, "CacheCompleted", true] call _setTownVar;
-        [_town, "CacheBobFound", true] call _setTownVar;
-        _target setVariable ["TEH_CacheBobFound", true, true];
-        _target setVariable ["TEH_CacheContactUnlocked", false, true];
-
-        _success
     },
     _actionArgs,
     1.5,
@@ -524,7 +396,7 @@ _unit addAction [
         _target setVariable ["TEH_RebelLoyalty", true, true];
 
 		private _expenceText = format [
-			localize "STR_comms_mp_bribe",
+			localize "STR_comms_mp_givemoney",
 			name _caller,
 			_price, 
 			A3A_faction_civ get "currencySymbol"

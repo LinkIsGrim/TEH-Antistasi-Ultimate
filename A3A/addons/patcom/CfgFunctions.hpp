@@ -27,6 +27,10 @@ class CfgFunctions {
             class dialogCivFinished {};
             class unitAmbient {};
             class unitAmbientPlay {};
+			class setupGopnik {};
+            class setupBob {};
+            class setupRick {};
+            class setupMechanic {};
         };
 
         class Patcom {
