@@ -331,8 +331,13 @@ private _fnc_addClassEquip = {
 
 private _fnc_addUniform = {
     params ["_unit", "_overrideClass"];
-
-    if (isNil "_overrideClass") then { _unit forceAddUniform (selectRandom (A3A_faction_reb get 'uniforms')) };
+    private _uniform = 'U_C_Poor_1';
+    if (isNil "_overrideClass") then {
+        if (!isNil {A3A_faction_reb get 'uniforms'}) then {
+            _uniform = selectRandom (A3A_faction_reb get 'uniforms');
+        };
+        _unit forceAddUniform _uniform;
+    };
 };
 
 if (!isNil "_customLoadout") then {

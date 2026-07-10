@@ -211,7 +211,7 @@ while {_reason == ""} do
             };
 
             //handgun is fine
-            if ( _aiming || _visiblePrimary || (secondaryWeapon player != "")  || (vest player != "") || _armoredHeadgear || (!_allowedUniform) || (hmd player != "") ) exitWith
+            if ( player getVariable["compromised",-1] > 0 || _aiming || _visiblePrimary || (secondaryWeapon player != "")  || (vest player != "") || _armoredHeadgear || (!_allowedUniform) || (hmd player != "") ) exitWith
             {
                 if ({((side _x == Invaders) or (side _x == Occupants)) and (_x knowsAbout _veh > 2) and (_x distance _veh < 75) and _x call A3A_fnc_canFight} count allUnits > 0) then
                 {

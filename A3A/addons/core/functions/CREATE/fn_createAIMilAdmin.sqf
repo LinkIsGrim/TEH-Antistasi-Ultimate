@@ -252,7 +252,18 @@ if (!isNil "_ammoBox") then {
 	_ammoBoxInv = weaponCargo _ammoBox;
 };
 
-waitUntil {sleep 1; spawner getVariable _marker == 2 or {!alive _milAdministration or {!alive _collaborant}}};
+waitUntil {
+	sleep 1; 
+	private _teamplayer = units teamPlayer select { isPlayer _x };
+	{
+		if ((getPosATL _x) distance2D (getMarkerPos _marker) < 15) then
+		{
+			[_x,false] remoteExec ["setCaptive",0,_x];
+			_x setCaptive false;
+		};
+	} forEach _teamplayer;
+	spawner getVariable _marker == 2 or {!alive _milAdministration or {!alive _collaborant}};
+};
 
 switch (true) do {
 	case (!alive _collaborant): {

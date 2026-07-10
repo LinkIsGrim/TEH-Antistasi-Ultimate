@@ -24,9 +24,6 @@ if ((allPlayers inAreaArray [_nearestPos, 200, 200, 0, false]) isNotEqualTo []) 
     _loc = [_policeCities, _incidentPos] call BIS_fnc_nearestPosition;
 };
 
-diag_log "Chosen city for SWAT spawn:";
-diag_log _loc;
-
 // Create SWAT group on same side as dead cop
 private _grp = createGroup _side;
 private _veh = 0;
@@ -91,6 +88,10 @@ if (TEH_spawnSwat == 2) then {
 	} forEach (units _grp);
 };
 
+{
+	_x setVariable ["TEH_Swat",true,true];
+} forEach (units _grp);
+
 _veh setVariable ["originalSide", _side];
 
 // Initial group behaviour while mounted
@@ -105,6 +106,8 @@ _grp setFormation "COLUMN";
 // Turn on emergency lights (if supported)
 _veh animateSource ["lights_em_hide", 1];
 [_veh,'CustomSoundController1',1,0.2] remoteExec ['BIS_fnc_setCustomSoundController', 0, ['CustomSoundController1', netID this] joinString ':'];
+
+["TaskSucceeded", ["", format [localize "STR_notifiers_vehicle_spotted","SWAT"]]] spawn BIS_fnc_showNotification;
 
 // Waypoint: drive to crime scene
 private _wp = _grp addWaypoint [_incidentPos, 0];

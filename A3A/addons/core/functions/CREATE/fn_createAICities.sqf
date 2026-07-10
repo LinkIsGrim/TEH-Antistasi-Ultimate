@@ -97,8 +97,17 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 				_unit addEventHandler ["Killed", {
 					params ["_unit", "_killer", "_instigator", "_useEffects"];
 
-					// 50% chance to call Gendarmerie, 70% chance to call faction police
-					if (random 100 < 30 + 10 * TEH_spawnSwat) exitWith {};
+					// 40% chance to call Gendarmerie, 60% chance to call faction police
+					if (random 100 > 20 + 20 * TEH_spawnSwat) exitWith {};
+
+					private _swatCount = count (
+						(_unit nearEntities ["CAManBase", 500]) select {
+							alive _x
+							&& { _x getVariable ["TEH_Swat", false] }
+						}
+					);
+
+					if (_swatCount > 8) exitWith {};
 
 					[_unit,_instigator] spawn A3A_fnc_spawnSwat;
 				}];
