@@ -98,7 +98,8 @@ Info("initACEUnconsciousHandler started");
 	if (_unit getVariable ["surrendered", false]) exitWith {};		// don't surrender twice
 
 	// surrender if we don't have a primary weapon
-	if (primaryWeapon _unit == "") exitWith { [_unit] spawn A3A_fnc_surrenderAction };
+	if (primaryWeapon _unit == "" || _unit getVariable ["ace_captives_isHandcuffed", false]) exitWith { [_unit] spawn A3A_fnc_surrenderAction };
+
 
 	// find closest fighting unit within 50m
 	private _nearestUnit = objNull;

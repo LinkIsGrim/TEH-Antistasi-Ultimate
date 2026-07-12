@@ -161,8 +161,14 @@ if (random 100 < 66) then {
     private _mechanic = _groupX createUnit ["C_Man_UtilityWorker_01_F", _spawnPosition, [], 3, "NONE"];
     _civilians pushBack _mechanic;
 
+    private _carPos = [getPosATL _mechanic, 2, 6, 3, 0, -1, 0] call A3A_fnc_getSafePos;
+    private _carType =  selectRandomWeighted civVehiclesWeighted;
+    _mechanicsCar = createVehicle [_carType, _carPos, [], 0, "NONE"];
+    _mechanicsCar setDir random 360;
+    _mechanicsCar setVectorUp surfaceNormal getPosATL _mechanicsCar;
+
     //TODO: mechanics scene object collection
-    _mechanicsCar = [_mechanic] spawn A3A_fnc_setupMechanic;
+    [_mechanic, _mechanicsCar] spawn A3A_fnc_setupMechanic;
 };
 
 //Normal civs

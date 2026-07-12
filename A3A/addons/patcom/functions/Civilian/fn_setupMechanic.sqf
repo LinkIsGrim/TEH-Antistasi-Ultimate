@@ -1,7 +1,7 @@
 //Returns mechanics car to be cleared after the town is despawned
 #include "dialogUtils.sqf"
 
-params ["_mechanic"];
+params ["_mechanic","_mechanicsCar"];
 
 removeAllWeapons _mechanic;
 removeAllItems _mechanic;
@@ -91,15 +91,6 @@ _mechanic addAction [
     "",
     ""
 ];
-
-//car
-private _carPos = [getPosATL _mechanic, 2, 6, 3, 0, -1, 0] call A3A_fnc_getSafePos;
-
-private _carType =  selectRandomWeighted civVehiclesWeighted;
-private _mechanicsCar = createVehicle [_carType, _carPos, [], 0, "NONE"];
-
-_mechanicsCar setDir random 360;
-_mechanicsCar setVectorUp surfaceNormal getPosATL _mechanicsCar;
 
 // Put mechanic into the car, then kick him out so he ends up naturally near it.
 _mechanic disableAI "PATH";

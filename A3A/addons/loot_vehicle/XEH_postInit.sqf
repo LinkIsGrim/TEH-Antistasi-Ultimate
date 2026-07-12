@@ -44,6 +44,127 @@ private _unloadToBox = [
 
 ["CAManBase", 0, ["ACE_MainActions"], _unloadToBox, true] call ace_interact_menu_fnc_addActionToClass;
 
+private _selectAILoadout = [
+    "TEH_SelectAILoadout",
+    "Select AI loadout",
+    "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\uniform_ca.paa",
+    {
+        // Root action has no direct effect. Children are generated dynamically.
+    },
+    {
+        params ["_target", "_player"];
+
+        alive _target
+        && {!isPlayer _target}
+        && {!isNull boxX}
+        && {_target distance boxX < 50}
+    },
+    {
+        params ["_target", "_player", "_params"];
+
+        private _children = [];
+        private _prefix = "AI ";
+        private _prefixLower = toLower _prefix;
+        private _prefixLength = count _prefix;
+
+        private _loadoutData = profileNamespace getVariable ["bis_fnc_saveInventory_data", []];
+
+        for "_i" from 0 to ((count _loadoutData) - 2) step 2 do {
+            private _templateName = _loadoutData select _i;
+            private _loadoutBlob = _loadoutData select (_i + 1);
+
+            if !(_templateName isEqualType "") then {
+                continue;
+            };
+
+            if !(_loadoutBlob isEqualType []) then {
+                continue;
+            };
+
+            if !((toLower _templateName) find _prefixLower == 0) then {
+                continue;
+            };
+
+            private _displayName = _templateName select [_prefixLength];
+            if (_displayName isEqualTo "") then {
+                _displayName = _templateName;
+            };
+
+            private _childAction = [
+                format ["TEH_SelectAILoadout_%1", _i],
+                _displayName,
+                "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\uniform_ca.paa",
+                {
+                    params ["_target", "_player", "_params"];
+                    _params params ["_templateName", "_loadoutBlob"];
+
+                    if (isNull _target || {!alive _target} || {!(side _target == teamPlayer)}) exitWith {
+                        ["Loadout", "Invalid target"] call A3A_fnc_customHint;
+                    };
+
+                    if (isPlayer _target) exitWith {
+                        ["Loadout", "Cannot apply AI loadout to a player"] call A3A_fnc_customHint;
+                    };
+
+                    if (isNull boxX || {_target distance boxX >= 50}) exitWith {
+                        ["Loadout", "Bring the unit closer to the arsenal box"] call A3A_fnc_customHint;
+                    };
+
+                    /*
+                        Expected new JNA-compatible signature:
+                        [_templateOrBlob, _targetUnit, _caller] call JN_fnc_arsenal_loadInventory;
+
+                        _templateOrBlob:
+                            STRING - old behavior, resolve from profileNamespace, apply to player by default
+                            ARRAY  - new behavior, already resolved loadout blob
+
+                        _targetUnit:
+                            unit receiving the loadout
+
+                        _caller:
+                            player who requested the action, for hints / arsenal accounting context
+                    */
+                    [_templateName, _target, _player, _loadoutBlob] call JN_fnc_arsenal_loadInventory;
+                },
+                {
+                    params ["_target", "_player"];
+
+                    alive _target
+                    && {!isPlayer _target}
+                    && {!isNull boxX}
+                    && {_target distance boxX < 50}
+                },
+                {},
+                [_templateName, _loadoutBlob]
+            ] call ace_interact_menu_fnc_createAction;
+
+            _children pushBack [_childAction, [], _target];
+        };
+
+        if (_children isEqualTo []) then {
+            private _noLoadoutsAction = [
+                "TEH_SelectAILoadout_None",
+                "No AI loadouts found",
+                "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\uniform_ca.paa",
+                {
+                    ["Loadout", "Save a loadout with the 'AI ' prefix first"] call A3A_fnc_customHint;
+                },
+                {true},
+                {},
+                []
+            ] call ace_interact_menu_fnc_createAction;
+
+            _children pushBack [_noLoadoutsAction, [], _target];
+        };
+
+        _children
+    }
+] call ace_interact_menu_fnc_createAction;
+
+//"SoldierGB" green side men
+["SoldierGB", 0, ["ACE_MainActions"], _selectAILoadout, true] call ace_interact_menu_fnc_addActionToClass;
+
+
 private _transferBetweenAction = [
 	"LootVehicleTransferAction", "Unload Cargo", "a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa",
 	{

@@ -63,15 +63,35 @@ _isItemBino = {
 	getNumber(configFile >> "CfgWeapons" >> _this >> "type") == 4096;
 };
 
-//name that needed to be loaded
-_saveName = _this;
-_saveData = profileNamespace getvariable ["bis_fnc_saveInventory_data",[]];
-_inventory = [];
-{
-	if(_x isEqualType "STRING" && {_x == _saveName})exitWith{
-		_inventory = _saveData select (_foreachindex + 1);
-	};
-} forEach _saveData;
+// name that needed to be loaded
+private _saveName = _this;
+private _unit = player;
+private _caller = player;
+private _inventory = [];
+
+// New supported forms:
+// ["TemplateName"] call JN_fnc_arsenal_loadInventory;
+// ["TemplateName", _unit] call JN_fnc_arsenal_loadInventory;
+// ["TemplateName", _unit, _caller] call JN_fnc_arsenal_loadInventory;
+// ["TemplateName", _unit, _caller, _inventoryBlob] call JN_fnc_arsenal_loadInventory;
+if (_this isEqualType []) then {
+    _saveName = _this param [0, "", [""]];
+    _unit = _this param [1, player, [objNull]];
+    _caller = _this param [2, player, [objNull]];
+    _inventory = _this param [3, [], [[]]];
+};
+
+// If inventory blob was not passed in, resolve it locally by template name.
+// This preserves old behavior.
+if (_inventory isEqualTo []) then {
+    private _saveData = profileNamespace getVariable ["bis_fnc_saveInventory_data", []];
+
+    {
+        if (_x isEqualType "" && {_x == _saveName}) exitWith {
+            _inventory = _saveData select (_forEachIndex + 1);
+        };
+    } forEach _saveData;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// REMOVE
@@ -95,26 +115,26 @@ _inventory = [];
 		[_wasEquipped,IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET,_ammo,_ammoCount] call _addToArray;
 		//no need to remove because uniform, vest and backpack get replaced.
 	};
-}foreach magazinesAmmoFull player;
+}foreach magazinesAmmoFull _unit;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// assinged items
-_assignedItems_old = assignedItems player + [headgear player] + [goggles player];
+_assignedItems_old = assignedItems _unit + [headgear _unit] + [goggles _unit];
 {
 	_item = _x;
 	_amount = 1;
 	_index = _item call jn_fnc_arsenal_itemType;
 
 	if (_item call _isItemBino) then {
-		player removeWeaponGlobal _item;
+		_unit removeWeaponGlobal _item;
 	} else {
-		player unlinkItem _item;
+		_unit unlinkItem _item;
 	};
 
 	[_wasEquipped,_index,_item,_amount]call _addToArray;
 } forEach _assignedItems_old - [""];
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  weapon attachments
-_attachments = primaryWeaponItems player + secondaryWeaponItems player + handgunItems player;
+_attachments = primaryWeaponItems _unit + secondaryWeaponItems _unit + handgunItems _unit;
 {
 	_item = _x;
 	_amount = 1;
@@ -123,40 +143,40 @@ _attachments = primaryWeaponItems player + secondaryWeaponItems player + handgun
 } forEach _attachments;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	weapons
-_weapons = [primaryWeapon player, secondaryWeapon player, handgunWeapon player];
+_weapons = [primaryWeapon _unit, secondaryWeapon _unit, handgunWeapon _unit];
 {
 	_item = _x;
 	_amount = 1;
 	_index = _foreachindex;
-	player removeWeaponGlobal _item;
+	_unit removeWeaponGlobal _item;
 	[_wasEquipped,_index,_item,_amount]call _addToArray;
 } forEach _weapons;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	uniform backpack vest (inc itmes)
-_uniform_old = uniform player;
-_vest_old = vest player;
-_backpack_old = backpack player;
+_uniform_old = uniform _unit;
+_vest_old = vest _unit;
+_backpack_old = backpack _unit;
 
 //remove items from containers
 {
 	_array = (_x call jn_fnc_arsenal_cargoToArray);
 	//remove because they where already added
 	_wasEquipped = [_wasEquipped, _array] call _addArrays;
-} forEach [uniformContainer player, vestContainer player, backpackContainer player];
+} forEach [uniformContainer _unit, vestContainer _unit, backpackContainer _unit];
 
 //remove containers
-removeuniform player;
+removeuniform _unit;
 [_wasEquipped,IDC_RSCDISPLAYARSENAL_TAB_UNIFORM,_uniform_old,1]call _addToArray;
-removevest player;
+removevest _unit;
 [_wasEquipped,IDC_RSCDISPLAYARSENAL_TAB_VEST,_vest_old,1]call _addToArray;
-removebackpack player;
+removebackpack _unit;
 [_wasEquipped,IDC_RSCDISPLAYARSENAL_TAB_BACKPACK,_backpack_old,1]call _addToArray;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  ADD
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-_isMember = player call A3A_fnc_isMember;
+_isMember = _unit call A3A_fnc_isMember;
 _availableItems = [jna_dataList, _wasEquipped] call _addArrays;
 _itemCounts =+ _availableItems;
 // reduce available items by guest limits for non-members
@@ -217,16 +237,16 @@ _assignedItems = ((_inventory select 9) + [_inventory select 3] + [_inventory se
 		call {
 			if ([_itemCounts select _index, _item] call jn_fnc_arsenal_itemCount == -1) exitWith {
 				if (_isBino) then {
-					player addWeapon _item;
+					_unit addWeapon _item;
 				} else {
-					player linkItem _item;
+					_unit linkItem _item;
 				};
 			};
 			if ([_availableItems select _index, _item] call jn_fnc_arsenal_itemCount > 0) then {
 				if (_isBino) then {
-					player addWeapon _item;
+					_unit addWeapon _item;
 				} else {
-					player linkItem _item;
+					_unit linkItem _item;
 				};
 				[_toEquip,_index,_item,_amount]call _addToArray;
 				[_availableItems,_index,_item,_amount]call _removeFromArray;
@@ -239,8 +259,8 @@ _assignedItems = ((_inventory select 9) + [_inventory select 3] + [_inventory se
 } forEach _assignedItems - [""];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// weapons and attachments
-removebackpack player;
-player addBackpack "B_Carryall_oli"; //add ammo to gun, can only be done by first adding a mag.
+removebackpack _unit;
+_unit addBackpack "B_Carryall_oli"; //add ammo to gun, can only be done by first adding a mag.
 _weapons = [_inventory select 6,_inventory select 7,_inventory select 8];
 {
 	private ["_item"];
@@ -269,8 +289,8 @@ _weapons = [_inventory select 6,_inventory select 7,_inventory select 8];
 				[_toEquip,_ammoToLoad#0,_ammoToLoad#1,_ammoToLoad#2] call _addToArray;
 				[_availableItems,_ammoToLoad#0,_ammoToLoad#1,_ammoToLoad#2] call _removeFromArray;
 				
-				//give player loaded mag
-				player addMagazine [_itemMag, _ammoToLoad#2];
+				//give _unit loaded mag
+				_unit addMagazine [_itemMag, _ammoToLoad#2];
 			} else {
 				_arrayMissing = [_arrayMissing,[_itemMag,_amountMag]] call jn_fnc_arsenal_addToArray;
 			};
@@ -279,11 +299,11 @@ _weapons = [_inventory select 6,_inventory select 7,_inventory select 8];
 		//adding the gun
 		call {
 			if ((_index != -1) AND ([_itemCounts select _index, _item] call jn_fnc_arsenal_itemCount == -1)) exitWith {
-				player addWeapon _item;
+				_unit addWeapon _item;
 			};
 
 			if ((_index != -1) AND {[_availableItems select _index, _item] call jn_fnc_arsenal_itemCount > 0}) then {
-				player addWeapon _item;
+				_unit addWeapon _item;
 				[_toEquip,_index,_item,_amount] call _addToArray;
 				[_availableItems,_index,_item,_amount] call _removeFromArray;
 			} else {
@@ -302,17 +322,17 @@ _weapons = [_inventory select 6,_inventory select 7,_inventory select 8];
 				call {
 					if ((_indexAcc != -1) AND ([_itemCounts select _indexAcc, _itemAcc] call jn_fnc_arsenal_itemCount == -1)) exitWith {
 						switch _index do{
-							case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON:{player addPrimaryWeaponItem _itemAcc;};
-							case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON:{player addSecondaryWeaponItem _itemAcc;};
-							case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN:{player addHandgunItem _itemAcc;};
+							case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON:{_unit addPrimaryWeaponItem _itemAcc;};
+							case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON:{_unit addSecondaryWeaponItem _itemAcc;};
+							case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN:{_unit addHandgunItem _itemAcc;};
 						};
 					};
 
 					if ((_indexAcc != -1) AND {[_availableItems select _indexAcc, _itemAcc] call jn_fnc_arsenal_itemCount > 0}) then {
 						switch _index do{
-							case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON:{player addPrimaryWeaponItem _itemAcc;};
-							case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON:{player addSecondaryWeaponItem _itemAcc;};
-							case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN:{player addHandgunItem _itemAcc;};
+							case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON:{_unit addPrimaryWeaponItem _itemAcc;};
+							case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON:{_unit addSecondaryWeaponItem _itemAcc;};
+							case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN:{_unit addHandgunItem _itemAcc;};
 						};
 						[_toEquip,_indexAcc,_itemAcc,_amountAcc] call _addToArray;
 						[_availableItems,_indexAcc,_itemAcc,_amountAcc] call _removeFromArray;
@@ -324,7 +344,7 @@ _weapons = [_inventory select 6,_inventory select 7,_inventory select 8];
 		}foreach _itemAttachmets;
 	};
 } forEach _weapons;
-removebackpack player;
+removebackpack _unit;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  vest, uniform and backpack
 _uniform = _inventory select 0 select 0;
@@ -337,11 +357,11 @@ _backpackItems = _inventory select 2 select 1;
 
 //add containers
 _containers = [_uniform,_vest,_backpack];
-private _removeContainerFuncs = [{removeUniform player;},{removeVest player;},{removeBackpackGlobal player;}];
+private _removeContainerFuncs = [{removeUniform _unit;},{removeVest _unit;},{removeBackpackGlobal _unit;}];
 private _addContainerFuncs = [
-                              {player forceAddUniform (_this select 0);},
-                              {player addVest (_this select 0);},
-                              {player addBackpack (_this select 0);}
+                              {_unit forceAddUniform (_this select 0);},
+                              {_unit addVest (_this select 0);},
+                              {_unit addBackpack (_this select 0);}
 														 ];
 {
 	_item = _x;
@@ -382,9 +402,9 @@ private _addContainerFuncs = [
 _addItemToContainer = {
 	params ["_containerIndex", "_item"];
 	switch (_containerIndex) do {
-		case 0: { player addItemToUniform _item };
-		case 1: { player addItemToVest _item };
-		default { player addItemToBackpack _item };
+		case 0: { _unit addItemToUniform _item };
+		case 1: { _unit addItemToVest _item };
+		default { _unit addItemToBackpack _item };
 	};
 };
 
@@ -436,9 +456,9 @@ _addItemToContainer = {
 		};
 	} forEach _items;
 } forEach [
-	[{uniformContainer player},_uniformItems],
-	[{vestContainer player},_vestItems],
-	[{backpackContainer player},_backpackItems]
+	[{uniformContainer _unit},_uniformItems],
+	[{vestContainer _unit},_vestItems],
+	[{backpackContainer _unit},_backpackItems]
 ];
 
 
@@ -515,7 +535,3 @@ if!(_reportTotal isEqualTo "")then{
 	]
 ]
 */
-
-
-
-
