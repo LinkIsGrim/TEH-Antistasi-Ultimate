@@ -4,7 +4,7 @@
     <i>An Arma 3 persistent multiplayer scenario about gorilla warfare tactics.</i>
     <br><br>
 	<b>Important notes:</b>
-	<br>1) ACE3 is a strict dependency currently. Several new functionalities in this mod use ACE actions.
+	<br>1) ACE3 is a strict dependency currently. Several new functionalities in this mod use ACE actions or expect ACE items.
 	<br>2) This mod is oriented toward small cooperative servers (1-10 players maybe), some features may be abused in a malicious way, or reduce difficulty too much for bigger crowd.
 	<br>3) I mostly balance gameplay around CUP and NIArms mods. Compatibility of other supported mods (RHS, Tier1, etc) is the same as in original ASU.
 	</p>
@@ -27,12 +27,15 @@
 	- Detailed tooltips, improved sorting
 	- Bullets and magazines are now calculated separately (e.g. you can reuse your 75 Rnd 7.62x39 drums if you have a stockpile of respective ammo from other salvaged AK mags). On reload empty mag is saved in the player inventory.
 	- Trader sells primary ammo in bulk, without overcharging for magazines (ammo is given based on currently loaded magazine in your rifle. Explosive, submunition, grenades can't be ordered).
-	- New shortcut: Quick Resupply (restocks medicine and reloads existing mags). Also available at the friendly bases at flag.
-	- New shortcut: Equip last loadout (last loaded or saved loadout)
 	- Convert Mag service allows to convert magazines within same model pool (or throw out unwanted empty mags, while saving ammo)
 	- Repack primary ammo self action (ACE) - streamlines repacking of primary magazines with a suitable ammo from other sources. Requires a Toolkit or a Defusal Kit to work with the belts.
 	- Unrestricted vehicle loading (ignores both weight and volume)
 	- Unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
+- **Equipping streamlined**:
+	- respawn equipment now doesn't leave armor to a chance - if you have stocks, you'll get helmet and vest
+	- New action: Quick Resupply (restocks medicine and reloads existing mags), available on Arsenal and friendly flags
+	- New action: Equip last loadout (last loaded or saved loadout), available on arsenal
+	- New ACE action: you can apply your loadout to friendly AI near the Arsenal. Loadout name should start with "AI<space>" e.g. "AI tanky Petros"
 - **Starter Kits**:
 	- Vehicles from the garage now come with a starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
 	- On player (re)spawn Quick Equip is executed automatically. Equips random eligible weapon and its default ammo, ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
