@@ -7,7 +7,8 @@ Debug("Spawning AAF Road Patrol");
 private _players = allPlayers - entities "HeadlessClient_F";
 private _bases = (seaports + airportsX + outposts + milbases) select {
 	call {
-		if (_players inAreaArray [markerPos _x, 2000, 2000] isEqualTo []) exitWith {false};
+		if (_players inAreaArray [markerPos _x, 3000, 3000] isEqualTo []) exitWith {false};
+		if (_players inAreaArray [markerPos _x, 300, 300] isNotEqualTo []) exitWith {false};
 		private _side = sidesX getVariable [_x, sideUnknown];
 		if (_side == teamPlayer) exitWith {false};
 		if (_x in seaports and Faction(_side) get "vehiclesGunBoats" isEqualTo []) exitWith {false};
@@ -45,25 +46,25 @@ switch (true) do {
 		};
 	};
 
-	case (_base in airportsX && {!(_faction getOrDefault ["attributeLowAir", false])}): {
-		if (_sideX isEqualTo Invaders || {random 10 < tierWar + aggressionOccupants/10}) then {
-			_typeCar = selectRandom (_faction get "vehiclesHelisLight");
-			if(count (_faction get "vehiclesAirPatrol") > 0) then 
-			{
-				_typeCar = selectRandom (_faction get "vehiclesAirPatrol");
-			};
-			_typePatrol = "AIR";
-		} else {
-			_typeCar = selectRandom ((_faction get "vehiclesMilitiaLightArmed") + (_faction get "vehiclesMilitiaCars"));	
-		};
-	};
-
 	default {
 		if (_sideX isEqualTo Invaders || {random 10 < tierWar + aggressionOccupants/10}) then {
 			_typeCar = selectRandom ((_faction get "vehiclesLightArmed") + (_faction get "vehiclesLightUnarmed"));
 		} else {
 			_typeCar = selectRandom ((_faction get "vehiclesPolice") + (_faction get "vehiclesMilitiaLightArmed") + (_faction get "vehiclesMilitiaCars") + (_faction get "vehiclesBasic"));
 		};
+	};
+};
+
+if (random 100 < 50) then {
+	if (_sideX isEqualTo Invaders || {random 10 < tierWar + aggressionOccupants/10}) then {
+		_typeCar = selectRandom (_faction get "vehiclesHelisLight");
+		if(count (_faction get "vehiclesAirPatrol") > 0) then 
+		{
+			_typeCar = selectRandom (_faction get "vehiclesAirPatrol");
+		};
+		_typePatrol = "AIR";
+	} else {
+		_typeCar = selectRandom ((_faction get "vehiclesMilitiaLightArmed") + (_faction get "vehiclesMilitiaCars"));	
 	};
 };
 
@@ -160,7 +161,24 @@ while {alive _veh} do {
 	_veh setFuel 1;
 
 	private _timeout = time + (_veh distance2d _posDestination) / 6 + 300;			// stuck detection
-	waitUntil {sleep 60; _veh distance _posDestination < _distanceX or {time > _timeout or {{[_x] call A3A_fnc_canFight} count _soldiers == 0 or {!canMove _veh}}}};
+	waitUntil {sleep 30;
+		if (_typePatrol == "AIR") then {
+			{
+				if (random 100 < 50) then {
+					cursorObject reveal [vehicle _x,4];
+					cursorObject doTarget (vehicle _x);
+				};
+			} forEach (allPlayers inAreaArray [
+				getPosATL _veh,
+				500,
+				500,
+				0,
+				false
+			]);
+		};
+	};
+	
+	 _veh distance _posDestination < _distanceX or {time > _timeout or {{[_x] call A3A_fnc_canFight} count _soldiers == 0 or {!canMove _veh}}}};
 	if !(_veh distance _posDestination < _distanceX) exitWith {};
 
 	switch (_typePatrol) do {
