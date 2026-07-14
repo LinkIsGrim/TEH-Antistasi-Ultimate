@@ -161,12 +161,12 @@ while {alive _veh} do {
 	_veh setFuel 1;
 
 	private _timeout = time + (_veh distance2d _posDestination) / 6 + 300;			// stuck detection
-	waitUntil {sleep 30;
-		if (_typePatrol == "AIR") then {
+	waitUntil {
+			sleep 30;
 			{
-				if (random 100 < 50) then {
-					cursorObject reveal [vehicle _x,4];
-					cursorObject doTarget (vehicle _x);
+				if (_typePatrol == "AIR" && random 100 < 50) then {
+						cursorObject reveal [vehicle _x,4];
+						cursorObject doTarget (vehicle _x);
 				};
 			} forEach (allPlayers inAreaArray [
 				getPosATL _veh,
@@ -175,10 +175,9 @@ while {alive _veh} do {
 				0,
 				false
 			]);
-		};
+			_veh distance _posDestination < _distanceX or {time > _timeout or {{[_x] call A3A_fnc_canFight} count _soldiers == 0 or {!canMove _veh}}};
 	};
 	
-	 _veh distance _posDestination < _distanceX or {time > _timeout or {{[_x] call A3A_fnc_canFight} count _soldiers == 0 or {!canMove _veh}}}};
 	if !(_veh distance _posDestination < _distanceX) exitWith {};
 
 	switch (_typePatrol) do {

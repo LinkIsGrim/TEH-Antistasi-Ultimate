@@ -73,7 +73,7 @@ if (_vehicle isKindOf "Air" || _vehType in FactionGet(all, "vehiclesDropPod")) t
         if (_vtol && _isAirdrop) then {
             [_vehicle, _cargoGroup, _posDestination, _markerOrigin, _resPool] spawn SCRT_fnc_common_paradropVehicle;
         } else {
-            _landPos = [_posDestination, 500, 800, minObjectDistance, 0, 0.12, 0, [], [[0,0,0],[0,0,0]]] call BIS_fnc_findSafePos;
+            _landPos = [_posDestination, 500, 800, _minObjectDistance, 0, 0.12, 0, [], [[0,0,0],[0,0,0]]] call BIS_fnc_findSafePos;
             private _posOrigin = getMarkerPos _markerOrigin;
             _posOrigin set [2, 50];
 

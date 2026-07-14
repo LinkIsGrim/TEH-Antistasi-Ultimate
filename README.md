@@ -16,7 +16,7 @@
 ## TEH Changes
 
 - **Changes to the trader**
-	- All Vanilla/CUP/NIArms primary weapon variants available for buying.
+	- All Vanilla/CUP/RHS/NIArms primary weapon variants available for buying.
 	- Fixed prices (epoch + features + caliber), and compatibility fixes for items.
 	- Item details overhaul with more information from the config.
 	- Reworked item hashing (the original algorithm caused frequent collisions).
@@ -35,7 +35,7 @@
 	- respawn equipment now doesn't leave armor to a chance - if you have stocks, you'll get helmet and vest
 	- New action: Quick Resupply (restocks medicine and reloads existing mags), available on Arsenal and friendly flags
 	- New action: Equip last loadout (last loaded or saved loadout), available on arsenal
-	- New ACE action: you can apply your loadout to friendly AI near the Arsenal. Loadout name should start with "AI<space>" e.g. "AI tanky Petros"
+	- New ACE action: you can apply your loadout to friendly AI near the Arsenal. Loadout name should start with "AI<space>" e.g. "AI tanky AA Petros"
 - **Starter Kits**:
 	- Vehicles from the garage now come with a starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
 	- On player (re)spawn Quick Equip is executed automatically. Equips random eligible weapon and its default ammo, ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
@@ -50,6 +50,7 @@
 	- Health pool resets to 51% damage on hit if vehicle is not destroyed, while keeping components broken.
 	- Vehicle can be completely destroyed completely only with a high damaging shell or explosion (i.e. covering 49% of a health pool in one shot).
 	- Only works on vehicles taken from the garage.
+	- [experimental parameter] Vehicle ammo can only be collected in the Arsenal by garaging or selling vehicles. Ammo truck doesn't count as ammo source and can't be used for a field rearm
 - **Second Chance**: when "Allow players to take control of AI units while unconscious" parameter is set to "Yes", on being shot down you automatically take control of nearby AI unit to save yourself (once per knockdown)
 	- Skipped if the wound is fatal
 	- Known issue: Original body is invulnerable  while controlling an AI (but still bleeds out and can drown, AI control ends shortly before death)
@@ -65,6 +66,7 @@
 	- Spawned vehicles variety (armed vehicles spawn damaged)
 	- Enemies do not get AI disabled during a pre-despawn state to avoid frozen enemies
 	- Enemies do not automatically surrender when the location is seized. Instead they'll rush back to the flag.
+	- Enemy patrols can be helicopter regardless of the base type.
 - **Fast travel**:
 	- Allows free location selection within a 500m radius of friendly markers (still, only works if the CLOSEST marker is friendly)
 	- Vehicles will stick to the roads, infantry can teleport precisely to the cursor.
@@ -72,7 +74,7 @@
 	- Teleportation range zones shown on the map.
 	- Rally point cost is reduced to 25 per charge.
 	- Partial squad fast travel (statics and vehicles without driver stay behind)
-	- [Experimental] fast travel to rebel vehicles (doesn't work for stolen vehicles though)
+	- Fast travel to rebel vehicles (doesn't work for stolen vehicles though)
 - **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod
 	- Uses ACE action on the vehicles to gather loot in 5-5000m radius (depends on enemy proximity, distance to nearest enemy minus 50m)
 	- Allows several players to loot the same location, and into the same vehicle to save time.
