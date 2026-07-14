@@ -23,10 +23,12 @@ FIX_LINE_NUMBERS()
 
 params ["_flagX","_caller","_actionID","_argument"];
 
-if (_caller isNotEqualTo player) exitWith {
+private _actor = _caller; //switch back to _actor if that won't do.
+
+//if (_caller isNotEqualTo _actor) exitWith {
     // These can only get called if someone updates the functionality and forgets to update this.
-    ServerError("Flag action mrkWIN must be locally called");
-};
+  //  ServerError("Flag action mrkWIN must be locally called");
+//};
 
 private _markerX = [airportsX + resourcesX + factories + outposts + seaports + milbases, getPosATL _flagX] call BIS_fnc_nearestPosition;
 
@@ -40,8 +42,8 @@ private _outpostGridSquare = mapGridPosition _markerPos;
 
 if (sidesX getVariable [_markerX,sideUnknown] == teamPlayer) exitWith {};
 
-if !(player call A3A_fnc_canFight) exitWith { ServerError("Action somehow used by dead or unconscious player?") };
-if (captive player) exitWith {[localize "STR_A3A_Base_mrkWin_header", localize "STR_A3A_Base_mrkWin_noundercover"] call SCRT_fnc_misc_deniedHint;};
+if !(_actor call A3A_fnc_canFight) exitWith { ServerError("Action somehow used by dead or unconscious _actor?") };
+if (captive _actor) exitWith {[localize "STR_A3A_Base_mrkWin_header", localize "STR_A3A_Base_mrkWin_noundercover"] call SCRT_fnc_misc_deniedHint;};
 if ((_markerX in airportsX) and {tierWar < 3}) exitWith {[localize "STR_A3A_Base_mrkWin_header", localize "STR_A3A_Base_mrkWin_noairpwl3"] call SCRT_fnc_misc_deniedHint;};
 if ((_markerX in milbases) and {tierWar < 3}) exitWith {[localize "STR_A3A_Base_mrkWin_header", localize "STR_A3A_Base_mrkWin_nomilwl3"] call SCRT_fnc_misc_deniedHint;};
 
@@ -58,11 +60,11 @@ if(_flagCaptureETA > serverTime) exitWith
 _flagX setVariable ["A3A_flagCaptureETA", serverTime + 10, true];
 
 
-ServerInfo_3("Outpost at %1 (%2): Flag capture initiated by %3", _outpostGridSquare, _markerX, str player);
+ServerInfo_3("Outpost at %1 (%2): Flag capture initiated by %3", _outpostGridSquare, _markerX, str _actor);
 
 private _friendliesInArea = [];
 private _counts = [_markerX, A3A_diameterExtendedCaptureArea, {
-    player reveal (_this select 0);
+    _actor reveal (_this select 0);
 }, _friendliesInArea] call A3A_fnc_zoneCountUnits;
 
 private _rebelValue = _counts get teamPlayer;
@@ -76,31 +78,31 @@ if (_enemyValue > 2*_rebelValue) exitWith
 
 
 A3A_isPlayerCapturingFlag = true;
-player playMove "MountSide";
+_actor playMove "MountSide";
 
 private _cancellationToken = [false];
-private _cancelActionID = player addAction [localize "STR_A3A_Base_mrkWin_abort",
+private _cancelActionID = _actor addAction [localize "STR_A3A_Base_mrkWin_abort",
 {
     params ["_target","_caller","_actionID","_cancellationToken"];
     _cancellationToken set [0, true];
     A3A_isPlayerCapturingFlag = nil;
-    player switchMove "";
-    player removeAction _actionID;
+    _actor switchMove "";
+    _actor removeAction _actionID;
     [localize "STR_A3A_Base_mrkWin_header", localize "STR_A3A_Base_mrkWin_abort_2"] call A3A_fnc_customHint;
 
 }, _cancellationToken];
 // returnflag Icon should be 1.5 tiems bigger than takeflag icon. 2 * 1.5 = 3
-player setUserActionText [_cancelActionID, localize "STR_A3A_Base_mrkWin_abort","<img size='3' image='\A3\ui_f\data\igui\cfg\actions\returnflag_ca.paa'/>"];
+_actor setUserActionText [_cancelActionID, localize "STR_A3A_Base_mrkWin_abort","<img size='3' image='\A3\ui_f\data\igui\cfg\actions\returnflag_ca.paa'/>"];
 
 // Capturing
 sleep 8;
 
 if (_cancellationToken #0) exitWith {
-    ServerInfo_3("Outpost at %1 (%2): Flag capture aborted by %3", _outpostGridSquare, _markerX, str player);
+    ServerInfo_3("Outpost at %1 (%2): Flag capture aborted by %3", _outpostGridSquare, _markerX, str _actor);
 };
 A3A_isPlayerCapturingFlag = nil;
-player removeAction _cancelActionID;
-player playMove "";
+_actor removeAction _cancelActionID;
+_actor playMove "";
 
 if (_friendliesInArea isEqualTo []) then {
     private _capRadius = ((markerSize _markerX select 0) + (markerSize _markerX select 1)) / 2;
@@ -117,5 +119,5 @@ _friendliesInArea apply {
     };
 };
 
-ServerInfo_3("Outpost at %1 (%2): Flag capture completed by %3", _outpostGridSquare, _markerX, str player);
+ServerInfo_3("Outpost at %1 (%2): Flag capture completed by %3", _outpostGridSquare, _markerX, str _actor);
 [teamPlayer,_markerX] remoteExec ["A3A_fnc_markerChange",2];

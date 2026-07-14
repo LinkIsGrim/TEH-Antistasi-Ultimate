@@ -12,7 +12,7 @@ switch _typeX do
     case "take":
     {
         removeAllActions _flag;
-        _actionX = _flag addAction [format["<img image='\A3\ui_f\data\igui\cfg\actions\takeflag_ca.paa' size='1.6' shadow=2 /> <t>%1</t>", (localize "STR_antistasi_actions_take_flag")], A3A_fnc_mrkWIN,nil,6,true,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull])",4];
+        _actionX = _flag addAction [format["<img image='\A3\ui_f\data\igui\cfg\actions\takeflag_ca.paa' size='1.6' shadow=2 /> <t>%1</t>", (localize "STR_antistasi_actions_take_flag")], A3A_fnc_mrkWIN,nil,6,true,true,"","((isPlayer _this) and (_this == _this getVariable ['owner',objNull])) or (_this isKindOf 'SoldierGB')",4];
         _flag setUserActionText [_actionX,(localize "STR_antistasi_actions_take_flag"),"<t size='2'><img image='\A3\ui_f\data\igui\cfg\actions\takeflag_ca.paa'/></t>"];
     };
     case "unit":
