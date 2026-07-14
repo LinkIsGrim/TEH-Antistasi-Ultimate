@@ -43,6 +43,8 @@ class CfgFunctions {
 			class arsenal_requestOpen {};
 			class arsenal_requestClose {};
 			class arsenal_tehBulletPileMigration {};
+			class arsenal_turretLoad{};
+			class arsenal_turretUnload{};
 			class vehicleArsenal {};
 		};
 	};

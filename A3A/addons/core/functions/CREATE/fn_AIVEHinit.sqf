@@ -48,6 +48,9 @@ if (_side == teamPlayer) then {
 // Sync the vehicle textures if necessary
 _veh call A3A_fnc_vehicleTextureSync;
 
+// Disable ace rearm by using ammo truck
+[_veh] call ace_rearm_fnc_disable;
+
 private _typeX = typeOf _veh;
 if (_veh isKindOf "Car" or{ _veh isKindOf "Tank"}) then {
 	// isn't this section basically supposed to be all ground vehicles?

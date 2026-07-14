@@ -3161,6 +3161,22 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 0;
 	};
+    class TEH_VehicleAmmo : ExperimentalParams
+    {
+        title = "Vehicle ammo system";
+        tooltip = "Use vehicle ammo tracking similar to the infantry weapons in the arsenal. This option disables ammo truck source.";
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+	};
+    class TEH_VehicleFlags : ExperimentalParams
+    {
+        title = "Vehicle flags (requires Zeus Enhanced)";
+        tooltip = "Adds an action when the vehicle is taken from the garage to allow attaching flags to it (requires Zeus Enhanced)";
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+	};
     class TEH_POWshortcuts : ExperimentalParams
     {
         title = "POW shortcuts for enemy units";

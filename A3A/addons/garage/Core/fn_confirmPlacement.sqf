@@ -338,6 +338,24 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
             } forEach HR_GRG_CP_pylons;
         };
 
+        if (TEH_VehicleAmmo) then {
+            [_veh] call JN_fnc_arsenal_turretLoad;
+        };
+        
+        if (TEH_VehicleFlags) then {
+            _veh addAction [
+                "Change flag",
+                {
+                    params ["_target", "_caller"];
+
+                    private _logic = "Logic" createVehicleLocal [0, 0, 0];
+                    _logic attachTo [_target, [0, 0, 0]];
+
+                    [_logic] call zen_modules_fnc_moduleAttachFlag;
+                }
+            ];
+        };
+
         [_veh,_pos] spawn {
             params ["_veh", "_pos"];
 
@@ -359,9 +377,9 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
         };
         ([_veh] + HR_GRG_CP_callBackArgs) call HR_GRG_CP_callbackPlace;
 		
+        //Loading starter kit
 		_primarymag = (primaryWeaponMagazine player) select 0;
 		
-
 		if (_primarymag != "") then {
 			_ammo = getText (configfile >> "CfgMagazines" >> _primarymag >> "ammo");
 			_bullets = 600;

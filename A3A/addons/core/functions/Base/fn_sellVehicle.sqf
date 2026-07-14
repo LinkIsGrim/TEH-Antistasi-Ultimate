@@ -154,8 +154,13 @@ if (_veh getVariable ["A3A_sellVehicle_inProgress",false]) then {
 	[0,_costs] remoteExec ["A3A_fnc_resourcesFIA",2];
 
 	if (_veh in staticsToSave) then {staticsToSave = staticsToSave - [_veh]; publicVariable "staticsToSave"};
-
-	[_veh,true] call A3A_fnc_empty;
+    
+    //save ammo to the arsenal
+    if (TEH_VehicleAmmo) then {
+        [_veh] call JN_fnc_arsenal_turretUnload;
+    };
+    
+    [_veh,true] call A3A_fnc_empty;
 
 	if (_veh isKindOf "StaticWeapon") then {deleteVehicle _veh};
 
