@@ -100,7 +100,7 @@ _mechanic moveInDriver _mechanicsCar;
 moveOut _mechanic;
 
 _mechanic setDir ([_mechanic, _mechanicsCar] call BIS_fnc_dirTo);
-_mechanic doWatch _carPos;
+_mechanic doWatch (getPosATL _mechanicsCar);
 doStop _mechanic;
 
 // Semi-broken, but not a burning wreck.

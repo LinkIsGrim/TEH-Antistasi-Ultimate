@@ -205,7 +205,9 @@ for "_i" from 1 to _numCiv do {
 
     // TEH Vars
     _civUnit setVariable ["TEH_Town", _markerX, true];
+    _civUnit setVariable ["TEH_noIntel",_sideX == teamPlayer];
     private _loyal = random 100 > ((server getVariable _markerX) # 2);
+    
     _civUnit setVariable ["TEH_RebelLoyalty", _loyal, true];
     _civUnit setVariable ["TEH_ArmsInfo", selectRandomWeighted ["none",0.2,"rick",0.4,"bob",0.15,"bandits",0.25]];
 

@@ -151,6 +151,14 @@ _unit addAction [
             false
         };
 
+        if (_target getVariable ["TEH_noIntel",true]) then {
+            [_target, _caller, selectRandom [
+                "Enemy soldiers? Not anymore. The rebels pushed them out, and nobody here misses them.",
+                "We have not seen their patrols in a while. These streets belong to the resistance now.",
+                "If you are looking for occupiers, you are late. They stopped walking around here after the town changed hands."
+            ]] call _sayToCaller;
+        };
+
         if !(_target getVariable ["TEH_RebelLoyalty", false]) exitWith {
             _target playActionNow "gesturePoint";
             _target setVariable ["TEH_CivSoldierIntelDone", true, true];
