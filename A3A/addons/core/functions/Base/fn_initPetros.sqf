@@ -13,12 +13,13 @@ petros allowDamage false;
 private _vest = A3A_faction_reb getOrDefault ["petrosVest", ""];
 if (_vest isEqualTo "") then {
     _vest = selectRandomWeighted (A3A_rebelGear get "ArmoredVests");
-    
-    if (_vest isEqualTo "") then {
+    if (isNil "_vest") then {
         _vest = selectRandomWeighted (A3A_rebelGear get "CivilianVests");
     };
 };
-petros addVest _vest;
+if (!(isNil "_vest")) then {
+    petros addVest _vest;
+};
 
 // Headgear
 removeHeadgear petros;

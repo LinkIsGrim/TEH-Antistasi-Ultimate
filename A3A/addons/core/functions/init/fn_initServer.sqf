@@ -164,6 +164,10 @@ else
 			};
 		};
     } foreach _equipmentList;
+
+    if (TEH_civStart == 1) then {
+        A3A_faction_reb set ['uniforms',['U_C_Poor_1']];
+    }; //otherwise some factions with extra uniforms will spawn dudes in military gear.
 	
 	//initialize and populate new bullet storage
 	[] call JN_fnc_arsenal_tehBulletPileMigration;
