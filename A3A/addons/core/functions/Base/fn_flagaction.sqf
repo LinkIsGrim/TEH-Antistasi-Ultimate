@@ -392,14 +392,14 @@ switch _typeX do
 
     };
 
-    case "stabilize":
+    case "zip":
     {
         if (_flag getVariable ["TEH_hasStabilizeAction", false]) exitWith {};
 
         _flag setVariable ["TEH_hasStabilizeAction", true];
 
         _flag addAction [
-            "<t color='#007700'>Capture prisoner</t>",
+            "<t color='#ff7700'>Take prisoner</t>",
             {
                 params ["_target", "_caller"];
 
@@ -409,7 +409,7 @@ switch _typeX do
                 private _callerHasZipTie = _zipTieClass in (items _caller);
 
                 if (!_targetHasZipTie && !_callerHasZipTie) exitWith {
-                    ["Capture prisoner", "Cable tie not found"] call A3A_fnc_customHint;
+                    ["Take prisoner", "Cable tie not found"] call A3A_fnc_customHint;
                 };
 
                 [
@@ -423,7 +423,7 @@ switch _typeX do
                         private _callerHasZipTie = _zipTieClass in (items _caller);
 
                         if (!_targetHasZipTie && {!_callerHasZipTie}) exitWith {
-                            ["Capture prisoner", "Cable tie not found"] call A3A_fnc_customHint;
+                            ["Take prisoner", "Cable tie not found"] call A3A_fnc_customHint;
                         };
 
                         if (_targetHasZipTie) then {
@@ -454,7 +454,52 @@ switch _typeX do
             true,
             true,
             "",
-            "alive _target && (_target getVariable ['originalSide', sideUnknown] != teamPlayer) && (_target getVariable ['incapacitated', false])",
+            "alive _target && (_target getVariable ['incapacitated', false])",
+            2
+        ];
+    };
+
+    case "stabilize":
+    {
+        if (_flag getVariable ["TEH_hasStabilizeAction", false]) exitWith {};
+
+        _flag setVariable ["TEH_hasStabilizeAction", true];
+
+        _flag addAction [
+            "<t color='#007700'>Heal</t>",
+            {
+                params ["_target", "_caller"];
+
+                [
+                    30,
+                    [_target, _caller],
+                    {
+                        params ["_args", "_elapsedTime", "_totalTime", "_errorCode"];
+                        _args params ["_target", "_caller"];
+
+                        [_target, _caller] call ace_medical_fnc_fullHeal;
+                    },
+                    {},
+                    "Stabilizing comrade",
+                    {
+                        params ["_args", "_elapsedTime", "_totalTime"];
+                        _args params ["_target", "_caller", "_zipTieClass"];
+
+                        alive _target
+                        && {alive _caller}
+                        && {_caller distance _target < 3}
+                        && {[_target] call ace_medical_fnc_isInjured}
+                    },
+                    [],
+                    true
+                ] call ace_common_fnc_progressBar;
+            },
+            nil,
+            1.5,
+            true,
+            true,
+            "",
+            "alive _target && (_target getVariable ['incapacitated', false])",
             2
         ];
     };

@@ -20,7 +20,7 @@ FIX_LINE_NUMBERS()
 
 params ["_side", "_target", "_caller", "_precision", "_reveal"];        // might not be a unit, so we can't just use caller
 
-waitUntil { isNil "A3A_supportCallInProgress" };
+waitUntil { sleep 1; isNil "A3A_supportCallInProgress" };
 A3A_supportCallInProgress = true;
 
 Info_3("Requested support against %1 from %2 by side %3", _target, _caller, _side);

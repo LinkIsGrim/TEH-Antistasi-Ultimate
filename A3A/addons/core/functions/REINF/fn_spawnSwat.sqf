@@ -88,10 +88,7 @@ if (TEH_spawnSwat == 2) then {
 	} forEach (units _grp);
 };
 
-{
-	_x setVariable ["TEH_Swat",true,true];
-} forEach (units _grp);
-
+_veh setVariable ["TEH_Swat",true,true];
 _veh setVariable ["originalSide", _side];
 
 // Initial group behaviour while mounted
@@ -177,12 +174,17 @@ _wp setWaypointFormation "COLUMN";
 	private _tickLimit = diag_tickTime + 900;   // 15 min max
 	private _allDead = false;
 
+	private _post = 5 + random 10;
 	waitUntil {
 		sleep 20;
+
 		_allDead = { alive _x } count units _grp == 0;
+		if ( isNull _instigator || !alive _instigator ) then {
+			_post = _post - 1; //a bit of a cooldown to see if player comes back
+		};
 
 		_allDead
-		|| { isNull _instigator || !alive _instigator }
+		|| _post <= 0 
 		|| { diag_tickTime > _tickLimit }
 	};
 

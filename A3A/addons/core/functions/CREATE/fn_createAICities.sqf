@@ -100,16 +100,17 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 					// 40% chance to call Gendarmerie, 60% chance to call faction police
 					if (random 100 > 20 + 20 * TEH_spawnSwat) exitWith {};
 
-					private _swatCount = count (
-						(_unit nearEntities ["CAManBase", 500]) select {
-							alive _x
-							&& { _x getVariable ["TEH_Swat", false] }
-						}
-					);
-
-					if (_swatCount > 8) exitWith {};
-
-					[_unit,_instigator] spawn A3A_fnc_spawnSwat;
+					
+					private _swatCount = count ((_unit nearEntities ["Car", 1000]) select {_x getVariable ["TEH_Swat", false]});
+					private _swatWeight = ([0,40,30] select TEH_spawnSwat) * _swatCount + tierWar * 5; //weight of van is 40, weight of police car is 30)
+					if (random 100 > _swatWeight) then {
+						[_unit,_instigator] spawn A3A_fnc_spawnSwat;
+					} else {
+						private _side = _unit getVariable ["originalSide",sideUnknown];
+						private _revealed = [getPosATL _unit, _side] call A3A_fnc_calculateSupportCallReveal;
+    					private _sup = [_side, _instigator, getPosATL _unit, 4, _revealed] remoteExec ["A3A_fnc_requestSupport", 2];
+					};
+					[_side, 10, 30] remoteExec ["A3A_fnc_addAggression", 2]; //snowball a bit
 				}];
 			};
 		};
