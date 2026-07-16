@@ -271,7 +271,7 @@ while {true} do {
 		};
 	};
 
-	if (tierWar > 3 && !isTraderQuestCompleted && !isTraderQuestAssigned) then {
+	if (tierWar >= TEH_TraderWarTierReq && !isTraderQuestCompleted && !isTraderQuestAssigned) then {
 		Info_1("Arms Dealer roll: %1", _traderTaskChance);
 		if (random 100 < _traderTaskChance) then {
 			Info("Assigning Arms Dealer Task...");

@@ -164,6 +164,19 @@ private _selectAILoadout = [
 //"SoldierGB" green side men
 ["SoldierGB", 0, ["ACE_MainActions"], _selectAILoadout, true] call ace_interact_menu_fnc_addActionToClass;
 
+private _attachFlag = [
+	"LootVehicleTransferAction", "Change flag", "\A3\ui_f\data\igui\cfg\actions\takeflag_ca.paa",
+	{
+		params ["_target", "_player"];
+		private _logic = "Logic" createVehicleLocal [0, 0, 0];
+		_logic attachTo [_target, [0, 0, 0]];
+
+		[_logic] call zen_modules_fnc_moduleAttachFlag;
+	},
+	{ TEH_VehicleFlags },
+	{
+	}
+] call ace_interact_menu_fnc_createAction;
 
 private _transferBetweenAction = [
 	"LootVehicleTransferAction", "Unload Cargo", "a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa",
@@ -251,6 +264,8 @@ private _actionVehicle = [
 	{}] call ace_interact_menu_fnc_createAction;
 
 {
+	[_x, 0, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
+	[_x, 1, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 0, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 1, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 0, ["ACE_MainActions"], _storeLootSellVehicle, true] call ace_interact_menu_fnc_addActionToClass;

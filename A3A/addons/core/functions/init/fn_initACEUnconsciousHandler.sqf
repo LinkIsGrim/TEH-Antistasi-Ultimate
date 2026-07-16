@@ -15,13 +15,18 @@ Info("initACEUnconsciousHandler started");
 	if !(local _unit) exitWith {};				// handler runs everywhere, only process where unit is local
 	private _realSide = side group _unit;		// setUnconscious in ACE often breaks this otherwise
 	private _groupLeader = leader (group _unit);
+	private _act = objNull;
 	if (_knockout) exitWith
 	{
 		_unit setVariable ["incapacitated", true, true];	// for canFight tests
 		if (TEH_POWshortcuts) then {
 			//TODO: WIP
 			_unit setCaptive true;
-			[_unit,"stabilize"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_unit]; //shortcut for capturing bleeding enemies
+			if (_realSide == teamPlayer) then {
+				_action = [_unit,"stabilize"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_unit]; //shortcut for capturing bleeding enemies
+			} else {
+				_action = [_unit,"zip"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_unit]; //shortcut for capturing bleeding enemies
+			};
 		};
 
         // Pass group lead if unit is the leader
@@ -69,13 +74,13 @@ Info("initACEUnconsciousHandler started");
 					private _newUnit = [group _unit, _typeRifle, getPosATL _veh, [], 0, "NONE"] call A3A_fnc_createUnit;
 
 					if (!isNull _newUnit) then {
-						[-1, -100] remoteExec ["A3A_fnc_resourcesFIA", 2];
+						_nul = [-1, 0] remoteExec ["A3A_fnc_resourcesFIA",2];
+						[-100] call A3A_fnc_resourcesPlayer;
+						[localize "STR_A3A_reinf_reinfPlayer_header", localize "STR_A3A_reinf_reinfPlayer_success"] call A3A_fnc_customHint;
 
 						[_newUnit] spawn A3A_fnc_FIAinit;
 						//player setCaptive false;
 						[[_newUnit], true] spawn A3A_fnc_controlunit;
-
-						sleep 10;
 					};
 				};
 			};

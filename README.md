@@ -31,6 +31,7 @@
 	- Repack primary ammo self action (ACE) - streamlines repacking of primary magazines with a suitable ammo from other sources. Requires a Toolkit or a Defusal Kit to work with the belts.
 	- Unrestricted vehicle loading (ignores both weight and volume)
 	- Unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
+	- [experimental] "Vehicle ammo system" parameter - vehicles no longer can be rearmed by ammo truck, magazines are stored in the arsenal and reloaded when garaged.
 - **Equipping streamlined**:
 	- respawn equipment now doesn't leave armor to a chance - if you have stocks, you'll get helmet and vest
 	- New action: Quick Resupply (restocks medicine and reloads existing mags), available on Arsenal and friendly flags
@@ -137,6 +138,7 @@
 	- **[76N6 Clam Shell Radar](https://steamcommunity.com/sharedfiles/filedetails/?id=3131324729)** - automated rotating radar with high viewpoint which helps to spot things above the trees. Both variants available at the trader.
 	- **[TRG 7.62x39 mm Variant](https://steamcommunity.com/sharedfiles/filedetails/?id=2549598652)** - rechambered TRG40, TRG41 and TRG41 GL
 	- **[Sig MCX Spear](https://steamcommunity.com/sharedfiles/filedetails/?id=3261100509)** - 6.8x51mm assault rifle (aka XM7)
+	- **[Zeus Enhanced](https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631)** - ACE action on the cars allows adding flags (experimental param, doesn't work on all vehicles)
 - **Misc changes**
 	- **Poor Man's Radar**: When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost AA guns).
 	- **Ammobox** generation revamped: Ensures better consistency with fixed amounts.

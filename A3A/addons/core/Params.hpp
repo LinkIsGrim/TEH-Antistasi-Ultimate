@@ -667,6 +667,14 @@ class Params
         texts[] = {$STR_params_civ_traffic_none,$STR_params_civ_traffic_low,$STR_params_civ_traffic_medium,$STR_params_civ_traffic_high};
         default = 2;
     };
+    class TEH_civTrafficActive: AIParams
+    {
+        title = "Amount of moving traffic";
+        tooltip = "It sets maximum amount of moving traffic in percentage of all civilian vehicles. Actual traffic is not guaranteed, terms and conditions apply.";
+        values[] = {0,10,20,30,40};
+        texts[] = {$STR_params_civ_traffic_none,"10%","20%","30%","40%"};
+        default = 20;
+    };
     class allowCivDialog: AIParams
     {
         title = $STR_params_allowCivDialog;
@@ -2234,6 +2242,14 @@ class Params
         values[] = {};
         texts[] = {};
         default = 0;
+    };
+    class TEH_TraderWarTierReq : BMParams
+    {
+        title = "Required War Level for the trader quest";
+        tooltip = "Trader quest will not be created before selected war level is reached. It's not guaranteed that the quest will appear on selected level because of the random checks.";
+        values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        texts[] = {"War Level 1","War Level 2","War Level 3","War Level 4","War Level 5","War Level 6","War Level 7","War Level 8","War Level 9","War Level 10",};
+        default = 4;
     };
     class disableTrader: BMParams
     {

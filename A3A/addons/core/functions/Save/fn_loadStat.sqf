@@ -414,7 +414,7 @@ if (_varName in specialVarLoads) then {
                         case (_veh isKindOf "Ship"): {
                             staticsToSave pushBack _veh;
                         };
-		
+
 						if (_veh isKindOf "CargoPlatform_01_base_F") then {
 							_veh animateSource ["Panel_1_hide_source", 1];
 							_veh animateSource ["Panel_2_hide_source", 1];

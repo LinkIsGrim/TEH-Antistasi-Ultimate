@@ -341,20 +341,6 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
         if (TEH_VehicleAmmo) then {
             [_veh] call JN_fnc_arsenal_turretLoad;
         };
-        
-        if (TEH_VehicleFlags) then {
-            _veh addAction [
-                "Change flag",
-                {
-                    params ["_target", "_caller"];
-
-                    private _logic = "Logic" createVehicleLocal [0, 0, 0];
-                    _logic attachTo [_target, [0, 0, 0]];
-
-                    [_logic] call zen_modules_fnc_moduleAttachFlag;
-                }
-            ];
-        };
 
         [_veh,_pos] spawn {
             params ["_veh", "_pos"];
