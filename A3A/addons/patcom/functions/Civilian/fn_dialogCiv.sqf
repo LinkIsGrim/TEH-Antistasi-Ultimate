@@ -151,7 +151,7 @@ _unit addAction [
             false
         };
 
-        if (_target getVariable ["TEH_noIntel",true]) then {
+        if (_target getVariable ["TEH_noIntel",true]) exitWith {
             [_target, _caller, selectRandom [
                 "Enemy soldiers? Not anymore. The rebels pushed them out, and nobody here misses them.",
                 "We have not seen their patrols in a while. These streets belong to the resistance now.",
