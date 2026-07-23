@@ -189,11 +189,19 @@ switch (_mode) do
     case ("startGame"):
     {
         private _saveData = createHashMap;
+        
+        // Params tab: Array of [name, value]
+        private _paramsData = ["getParams"] call A3A_fnc_setupParamsTab;
+        _saveData set ["params", _paramsData];
+
         private _confirmText = "";
         if (cbChecked _newGameCtrl and !cbChecked _copyGameCtrl) then {
-            diag_log "TEH New game start";
-            diag_log TEH_randomStartLoc;
-            if (cbChecked _randomHQ) then {
+
+            //params do not exist at this stage as variables so we gotta tap the source
+            private _wtzInd = _paramsData findIf { _x # 0 isEqualTo "TEH_WarTierZero"};
+            private _wtz = ((_paramsData select _wtzInd) # 1) == 1;
+            
+            if ((cbChecked _randomHQ) || _wtz) then {
                 diag_log "TEH random HQ start";
                 private _mainMarkers = markersX - controlsX - ["Synd_HQ"];
 
@@ -290,10 +298,6 @@ switch (_mode) do
             [(localize "STR_params_afk_disabled"), getText (A3A_SETUP_CONFIGFILE/"A3A"/"Templates"/_factions#4/"name")] select (_rivEnabled)
         ];
         _confirmText = _confirmText + endl + format [localize "STR_antistasi_dialogs_setup_confirm_factions", _factionNames#0, _factionNames#1, _factionNames#2, _factionNames#3, _factionNames#4];
-
-        // Params tab: Array of [name, value]
-        private _paramsData = ["getParams"] call A3A_fnc_setupParamsTab;
-        _saveData set ["params", _paramsData];
 
         // Set data & function for confirmation, then open confirmation box
         _display setVariable ["confirmData", [_confirmText, A3A_fnc_setupLoadgameTab, "startGameConfirm"]];

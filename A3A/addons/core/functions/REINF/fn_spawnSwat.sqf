@@ -88,8 +88,31 @@ if (TEH_spawnSwat == 2) then {
 	} forEach (units _grp);
 };
 
+{
+	_x setVariable ["TEH_ArtilleryDisabled",true,false];
+} forEach units _grp;
+
 _veh setVariable ["TEH_Swat",true,true];
 _veh setVariable ["originalSide", _side];
+
+//Hardcore bonus
+if !(_instigator getVariable["TEH_Rebel",true]) then {
+	private _newWeapon = (selectRandom (((A3A_faction_occ get "loadouts") get "SF_Rifleman") # 0)) # 0; 
+	private _magazines = _newWeapon # 4 # 0;
+    private _quantity = 1;
+
+    clearWeaponCargoGlobal _veh;
+    clearMagazineCargoGlobal _veh;
+    clearItemCargoGlobal _veh;
+    clearBackpackCargoGlobal _veh;
+
+    _veh addWeaponCargoGlobal [_newWeapon # 0, _quantity];
+    _veh addItemCargoGlobal [_newWeapon # 1, _quantity];
+    _veh addItemCargoGlobal [_newWeapon # 2, _quantity];
+    _veh addItemCargoGlobal [_newWeapon # 3, _quantity];
+
+    _veh addMagazineCargoGlobal [_magazines, 3 + random 3];
+};
 
 // Initial group behaviour while mounted
 _grp setCombatMode "YELLOW";      // will shoot if threatened

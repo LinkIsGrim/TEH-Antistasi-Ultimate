@@ -252,6 +252,10 @@ if (!isNil "_ammoBox") then {
 	_ammoBoxInv = weaponCargo _ammoBox;
 };
 
+{
+	_x setVariable ["TEH_ArtilleryDisabled",true,false];
+} forEach _soldiers;
+
 waitUntil {
 	sleep 1; 
 	private _teamplayer = units teamPlayer select { isPlayer _x };

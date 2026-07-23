@@ -47,12 +47,29 @@ _unit addAction [
         _target lookAt _caller;
         _target playActionNow (selectRandom ["GestureHi","GestureHiB","GestureHiC"]);
         sleep 1;
+        private _playerHeadgear = headgear _caller;
+        private _targetHeadgear = headgear _target;
+        
+        //Шапочное знакомство
+        if (TEH_WarTierZero && !(_caller getVariable ["TEH_Rebel", false]) && {!(_target getVariable ["TEH_RebelLoyalty", false])} && _playerHeadgear != "" && {_playerHeadgear isEqualTo _targetHeadgear}) then {
+            _target setVariable ["TEH_RebelLoyalty", true, true];
 
-        [_target, _caller, selectRandom [
-            "Make it quick.",
-            "All right, what do you want?",
-            "Careful. People listen around here."
-        ]] call _sayToCaller;
+            [_target, _caller, selectRandom [
+                "Nice hat. You are either local, desperate, or both. Ask your question.",
+                "Same hat? Fine. You probably suffer enough already.",
+                "I trust people with good taste in headwear. Briefly.",
+                "That hat makes you look like someone from around here. What do you need?",
+                "Anyone wearing that in public has clearly made choices. I respect that.",
+                "We have the same hat. That is not proof of character, but it is more than most people bring.",
+                "Same hat, same occupation, same bad week. Fine. Talk."
+            ]] call _sayToCaller;
+        } else {
+            [_target, _caller, selectRandom [
+                "Make it quick.",
+                "All right, what do you want?",
+                "Careful. People listen around here."
+            ]] call _sayToCaller;
+        };
 
         _target setVariable ["TEH_DialogStarted", true, true];
 
@@ -386,13 +403,15 @@ _unit addAction [
     ""
 ];
 
+private _currency = A3A_faction_civ get "currencySymbol";
+
 _unit addAction [
-    "Bribe",
+    format ["Bribe (150%1)",_currency],
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
         _arguments params ["_sayToCaller"];
 
-        private _price = missionNamespace getVariable ["TEH_CivBribePrice", 250];
+        private _price = missionNamespace getVariable ["TEH_CivBribePrice", 150];
 
         private _money = _caller getVariable ["moneyX", 0];
         if (_money < _price) exitWith {
@@ -426,6 +445,74 @@ _unit addAction [
     true,
     "",
     _commonCondition,
+    3,
+    false,
+    "",
+    ""
+];
+
+_unit addAction [
+    "Do you need help? (First Aid Kit)",
+    {
+        params ["_target", "_caller", "_actionId", "_arguments"];
+        _arguments params ["_sayToCaller"];
+
+        private _aceMedicalKit = [
+            "ACE_fieldDressing",
+            "ACE_packingBandage",
+            "ACE_morphine",
+            "ACE_tourniquet"
+        ];
+
+        private _callerItems = items _caller;
+
+        private _hasVanillaKit = "FirstAidKit" in _callerItems;
+        private _hasAceKit = (_aceMedicalKit findIf { !(_x in _callerItems) }) == -1;
+
+        [_caller, _caller, "Do you need help? I have some medical supplies."] call _sayToCaller;
+
+        _target lookAt _caller;
+        sleep 1;
+
+        if (!_hasVanillaKit && {!_hasAceKit}) exitWith {
+            [_target, _caller, selectRandom [
+                "If you really want to help, bring me a first aid kit. Or bandages, morphine, a tourniquet, something useful.",
+                "Help? Yes. Bring a first aid kit, or the pieces of one. People here bleed like everyone else.",
+                "I could use medical supplies. A first aid kit would do. Field dressing, packing bandage, morphine and a tourniquet would also work."
+            ]] call _sayToCaller;
+
+            false
+        };
+
+        if (_hasVanillaKit) then {
+            _caller removeItem "FirstAidKit";
+        } else {
+            {
+                _caller removeItem _x;
+            } forEach _aceMedicalKit;
+        };
+
+        _target setVariable ["TEH_RebelLoyalty", true, true];
+
+
+
+        sleep 1;
+        _target playActionNow "gestureNod";
+        [_target, _caller, selectRandom [
+            "You brought medicine? That is worth more than brave speeches. Maybe the rebels are not all fools.",
+            "For us? Thank you. I will remember this. Quietly.",
+            "Medical supplies... yes, that helps. Maybe I have judged your people too harshly.",
+            "Good. People need this more than slogans. Ask your questions."
+        ]] call _sayToCaller;
+
+        true
+    },
+    _actionArgs,
+    1.5,
+    true,
+    true,
+    "",
+    _commonCondition + " && {!(_target getVariable ['TEH_RebelLoyalty', false])}",
     3,
     false,
     "",

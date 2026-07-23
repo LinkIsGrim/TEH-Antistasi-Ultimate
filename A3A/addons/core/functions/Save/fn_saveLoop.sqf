@@ -31,7 +31,7 @@ private _namespace = [profileNamespace, missionProfileNamespace] select _saveToN
 	{
 		if (isNil {_playerData get _x}) then { continue };				// old game data will have missing entries
 		[_uid, _x, _playerData get _x] call A3A_fnc_savePlayerStat;
-	} forEach ["moneyX", "loadoutPlayer", "scorePlayer", "rankPlayer", "personalGarage", "pluginsData"];
+	} forEach ["moneyX", "loadoutPlayer", "scorePlayer", "rankPlayer", "personalGarage", "pluginsData", "TEH_Rebel"];
 } forEach A3A_playerSaveData;
 
 ["savedPlayers", keys A3A_playerSaveData] call A3A_fnc_setStatVariable;
@@ -217,7 +217,7 @@ staticsToSave select {
 
 // Bring out your dead. Ignore vehicles not near friendly markers.
 _arrayEst = _arrayEst select {
-	(alive _x) && { [_x] call A3A_fnc_isWithinNearestFriendlyMarker };
+	(alive _x) && { [_x] call A3A_fnc_isWithinNearestFriendlyMarker && _x getVariable ["ownerSide",sideUnknown] == teamPlayer };
 };
 
 // Push buildings to save; ignore dead or outside friendly markers.

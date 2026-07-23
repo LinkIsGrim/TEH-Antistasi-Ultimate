@@ -1,6 +1,14 @@
 #define AMOUNT 250
 
 private ["_resourcesPlayer","_pointsXJ","_target"];
+
+if (TEH_WarTierZero && !(player getVariable ["TEH_Rebel",false])) exitWith {
+	[
+		"Donation failed",
+		"You throw a wad of cash into the air. It does not reach the resistance though."
+	] call A3A_fnc_customHint
+};
+
 _resourcesPlayer = player getVariable "moneyX";
 
 private _amount = AMOUNT;

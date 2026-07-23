@@ -17,7 +17,8 @@ _bob addAction [
         private _town = [_target] call _getUnitTown;
 
         [_target, _caller, "Pronunciation flaws but close enough. If Joe thinks you're good I can share this with you."] call _sayToCaller;
-
+        
+        _target playAction "PutDown";
         private _success = [_target, _caller, _sayToCaller] call _unlockRandomWeapon;
 
         [_town, "CacheCompleted", true] call _setTownVar;

@@ -56,7 +56,7 @@ if (_markerX != "Synd_HQ" && {!(_markerX in milAdministrationsX)}) then {  ///ma
 	};
 };
 
-private _size = [_markerX] call A3A_fnc_sizeMarker;
+private _size = 333;//[_markerX] call A3A_fnc_sizeMarker;
 private _staticsX = staticsToSave select {_x distance2D _positionX < _size};
 
 _positionX = [_markerX] call A3A_fnc_findAiSpawnPosition;

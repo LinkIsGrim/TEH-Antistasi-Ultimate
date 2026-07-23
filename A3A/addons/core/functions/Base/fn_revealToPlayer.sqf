@@ -4,15 +4,17 @@ private _emptyCycle = 0;
 private _emptyMarkers = [];
 
 while { true } do {
+	private _civReveal = (TEH_WarTierZero && !(player getVariable["TEH_Rebel",false]));
 	private _reconUAV = (missionNamespace getVariable["UAVreconTimer",0] > time);
 	private _activeVehicles = [];
     
-	if ([player] call A3A_fnc_hasRadio) then {
+	if ([player] call A3A_fnc_hasRadio || _civReveal) then {
 		private _rebelBases = (airportsX + outposts + seaports + factories + resourcesX + milbases) select { sidesX getVariable _x == teamPlayer };
 		_rebelBases pushBack "Synd_HQ";
+		private _rebelWatch = watchpostsFIA;
 		{
 			
-			if ((side _x == Invaders) || (side _x == Occupants)) then {
+			if (!_civReveal && ((side _x == Invaders) || (side _x == Occupants))) then {
 				private _lead = leader _x;
 				private _pos = getPosATL _lead;
 				private _veh = vehicle _lead;
@@ -55,9 +57,25 @@ while { true } do {
 					_hide = true;
 				};
 				
-				if ((_statics || _infantry) && !_hide && !_reconUAV) then {
-					_loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
-					_hide = (_pos distance2D getMarkerPos _loc > 1500);
+				if ((_statics || _infantry) && {!_hide} && {!_reconUAV}) then {
+					private _nearBase =
+						TEH_squadMarkersBase > 0
+						&& {!(_rebelBases isEqualTo [])}
+						&& {
+							private _loc = [_rebelBases, _pos] call BIS_fnc_nearestPosition;
+							_pos distance2D (getMarkerPos _loc) <= TEH_squadMarkersBase
+						};
+
+					private _nearWatch =
+						!_nearBase
+						&& {TEH_squadMarkersWP > 0}
+						&& {!(_rebelWatch isEqualTo [])}
+						&& {
+							private _loc = [_rebelWatch, _pos] call BIS_fnc_nearestPosition;
+							_pos distance2D (getMarkerPos _loc) <= TEH_squadMarkersWP
+						};
+
+					_hide = !(_nearBase || _nearWatch);
 				};
 
 				// -1 - not tracked, 0 - expired, 1 - active
@@ -96,6 +114,37 @@ while { true } do {
 					} else {
 						_mrk setMarkerAlphaLocal 0.66;
 					};
+				};
+			};
+			if (_civReveal and side _x == Civilian) then {
+				private _lead = leader _x;
+				private _mrkName = format ["reveal-%1", _x];
+				private _status = _markerMap getOrDefault [_mrkName, -1];
+
+				private _show =
+					alive _lead
+					&& {side _lead isEqualTo civilian}
+					&& {vehicle _lead isEqualTo _lead}
+					&& {_lead distance2D player <= 1000};
+
+				if (!_show) then {
+					_mrkName setMarkerAlphaLocal 0;
+				} else {
+					private _pos = getPosATL _lead;
+					private _mrk = _mrkName;
+
+					if (_status isEqualTo -1) then {
+						_mrk = createMarkerLocal [_mrkName, _pos];
+						_mrk setMarkerTypeLocal "n_inf";
+						_mrk setMarkerColorLocal "ColorCivilian";
+						_mrk setMarkerSizeLocal [0.75, 0.75];
+						_mrk setMarkerTextLocal "";
+					} else {
+						_mrk setMarkerPosLocal _pos;
+					};
+
+					_mrk setMarkerAlphaLocal 0.66;
+					_markerMap set [_mrkName, 1];
 				};
 			};
 		} forEach allGroups;

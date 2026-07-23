@@ -159,6 +159,15 @@ class Params
             };
         };
     };
+    class TEH_WarTierZero : ScenarioParams
+    {
+        title = "[TEH] Start with 'War Tier Zero' prologue";
+        tooltip = "War Tier Zero is an extended early game mode where you start as an ordinary citizen and you fight your way into the resistance before you can participate in Antistasi campaign. Warning: this is an unforgiving hardcore mode with one life per attempt.";
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+        lockInGame = 1;
+	};
     class areRivalsEnabled: ScenarioParams
     {
         title = $STR_params_areRivalsEnabled;
@@ -263,7 +272,7 @@ class Params
     class randomEventsCheckTimeout: ScenarioParams
     {
         attr[] = {"server"};
-        title = "Random events cooldown";
+        title = "[TEH] Random events cooldown";
         tooltip = "Maximum amount of time between checks for next random event to occur. Note that it's random amount between 0 and selected setting + 1 minute minimal cooldown between events";
         values[] = {60,120,180,240,300,420,600};
         texts[] = {"1 min","2 min","3 min","4 min","5 min","420 seconds","10 min"};
@@ -669,7 +678,7 @@ class Params
     };
     class TEH_civTrafficActive: AIParams
     {
-        title = "Amount of moving traffic";
+        title = "[TEH] Amount of moving traffic";
         tooltip = "It sets maximum amount of moving traffic in percentage of all civilian vehicles. Actual traffic is not guaranteed, terms and conditions apply.";
         values[] = {0,10,20,30,40};
         texts[] = {$STR_params_civ_traffic_none,"10%","20%","30%","40%"};
@@ -759,7 +768,7 @@ class Params
     };
 	class TEH_playerSquadLimit: AIParams
     {
-        title = "Limit AI recruiting to the player squad";
+        title = "[TEH] Limit AI recruiting to the player squad";
         values[] = {1,3,7,11,15,19};
         texts[] = {"1", "3", "7", "11", "15", "19"};
         default = 7;
@@ -1019,7 +1028,7 @@ class Params
     };
 	class TEH_HRMul: RebelBalanceParams
     {
-        title = "HR gain multiplier";
+        title = "[TEH] HR gain multiplier";
         values[] = {1,2,3,4,5};
         texts[] = {"x1","x2","x3","x4","x5"};
         default = 1;
@@ -1507,7 +1516,7 @@ class Params
 	
 	class TEH_distanceMissionTier: RebelBalanceParams
     {
-        title = "Mission Distance increase per War Level";
+        title = "[TEH] Mission Distance increase per War Level";
         values[] = {0,500,1000,2000};
         texts[] = {"Not applied","500","1000","2000"};
         default = 1000;
@@ -1671,7 +1680,7 @@ class Params
 	class TEH_counterSeverity: AIBalanceParams
     {
         attr[] = {"server"};
-        title = "Counter-attack size";
+        title = "[TEH] Counter-attack size";
 		tooltip = "Defence resource multiplier to define the how deep in debt can side go for a counter-attack";
         values[] = {3,6,12,24,100};
         texts[] =  {"50%","Default","200%","400%","Everyone"};
@@ -1853,7 +1862,7 @@ class Params
     class AIBalanceParams : AIParams
     {
         type = "Challenges";
-        title = "OPTIONAL CHALLENGES";
+        title = "[TEH] OPTIONAL CHALLENGES";
         values[] = {""};
         texts[] = {""};
         default = "";
@@ -1876,7 +1885,7 @@ class Params
 	class TEH_sendCombatRecons: TehChallengesParams
     {
         attr[] = {"server"};
-        title = "Enemies send combat recon squads to the nearby rebel bases";
+        title = "[TEH] Enemies send combat recon squads to the nearby rebel bases";
         values[] = {1,0};
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
         default = 1;
@@ -1885,7 +1894,7 @@ class Params
 	class TEH_outpostMines: TehChallengesParams
     {
         attr[] = {"server"};
-        title = "Enemy outposts are protected by AT mines";
+        title = "[TEH] Enemy outposts are protected by AT mines";
 		tooltip = "Enemy port and outposts will randomly spawn antitank mines around the flag on each marker activation.";
         values[] = {0,15,25,50};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, "15 mines", "25 mines", "50 mines"};
@@ -1895,7 +1904,7 @@ class Params
 	class TEH_onlyRandom: TehChallengesParams
     {
         attr[] = {"server"};
-        title = "Arsenal can only hold unlocked primary weapons and handguns";
+        title = "[TEH] Arsenal can only hold unlocked primary weapons and handguns";
 		tooltip = "Weapons can be unlocked only by finding weapon cache Intel. Looted weapons are instantly sold upon reaching the arsenal (500 per primary, 150 per handgun). Other item types are stored as usual.";
         values[] = {1,0};
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
@@ -1905,7 +1914,7 @@ class Params
 	class TEH_civStart: TehChallengesParams
     {
         attr[] = {"server"};
-        title = "Limit starting equipment";
+        title = "[TEH] Limit starting equipment";
         values[] = {0,2,3,1};
         texts[] = {"No limits", "Only handguns", "No starting weapons","Empty arsenal!"};
         class difficulty
@@ -1928,7 +1937,7 @@ class Params
 	class TEH_spawnSwat: TehChallengesParams
     {
         attr[] = {"server"};
-        title = "Spawn SWAT teams to help police";
+        title = "[TEH] Spawn SWAT teams to help police";
 		tooltip = "Killing a policeman can trigger a SWAT operation - enemies will send a Gendarmerie van full of angry cops";
         values[] = {0,1,2};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, "Send Gendarmerie", "Send faction police"};
@@ -1937,7 +1946,7 @@ class Params
 	class TEH_snitchingCivilians: TehChallengesParams
     {
         attr[] = {"server"};
-        title = "Civilians call the police";
+        title = "[TEH] Civilians call the police";
 		tooltip = "If civilian recognizes an armed rebel, they will inform the police on the last known location";
         values[] = {1,0};
         texts[] = {$STR_antistasi_dialogs_generic_button_yes_text, $STR_antistasi_dialogs_generic_button_no_text};
@@ -1946,7 +1955,7 @@ class Params
 
     class TEH_hrSalaries: TehChallengesParams
     {
-        title = "Reservists salaries";
+        title = "[TEH] Reservists salaries";
         tooltip = "HR resources earn stand-by salaries depending on Rebel training level";
         values[] = {0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text,"20%", "40%", "60%", "80%", "100%", "120%", "140%", "160%", "180%", "200%"};
@@ -2135,6 +2144,22 @@ class Params
         };
         default = 1;
     };
+    class TEH_squadMarkersBase: MiscBalanceParams
+    {
+        title = "[TEH] Show enemy infantry squad markers near Rebel bases";
+        tooltip = "Enemy infantry squads are revealed when player has a radio and the squad is within this range from nearest rebel bases or HQ";
+        values[] = {0,500,750,1000,1250,1500};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text,"500m","750m","1000m","1250m","1500m"};
+        default = 1000;
+    };
+    class TEH_squadMarkersWP: MiscBalanceParams
+    {
+        title = "[TEH] Show enemy infantry squad markers near Rebel watchposts";
+        tooltip = "Enemy infantry squads are revealed when player has a radio and the squad is within this range from the rebel watchposts";
+        values[] = {0,500,750,1000,1250,1500};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text,"500m","750m","1000m","1250m","1500m"};
+        default = 1000;
+    };
     class hideEnemyMarkers: MiscBalanceParams
     {
         title = $STR_A3AU_hide_enemy_markers;
@@ -2245,7 +2270,7 @@ class Params
     };
     class TEH_TraderWarTierReq : BMParams
     {
-        title = "Required War Level for the trader quest";
+        title = "[TEH] Required War Level for the trader quest";
         tooltip = "Trader quest will not be created before selected war level is reached. It's not guaranteed that the quest will appear on selected level because of the random checks.";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"War Level 1","War Level 2","War Level 3","War Level 4","War Level 5","War Level 6","War Level 7","War Level 8","War Level 9","War Level 10",};
@@ -2461,6 +2486,14 @@ class Params
         values[] = {0,50,100,250,300};
         texts[] = {"0","50","100","250","300"};
         default = 100;
+    };
+    class TEH_saveStaticsAnywhere: BuilderParams
+    {
+        title = "[TEH] Save statics anywhere";
+        tooltip = "If disabled, the statics outside base marker range are not saved";
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text,$STR_antistasi_dialogs_generic_button_yes_text};
+        default = 1;
     };
     
 
@@ -3163,23 +3196,15 @@ class Params
     };
     class TEH_SaferPlacement : ExperimentalParams
     {
-        title = "Safe(r) vehicle placement";
+        title = "[TEH] Safe(r) vehicle placement";
         tooltip = "When taking vehicle from the garage the safe placement is used instead of spawning it on the cursor";
-        values[] = {0,1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
-	};
-    class TEH_WarTierZero : ExperimentalParams
-    {
-        title = "War Tier Zero (testing)";
-        tooltip = "";
         values[] = {0,1};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 0;
 	};
     class TEH_VehicleAmmo : ExperimentalParams
     {
-        title = "Vehicle ammo system";
+        title = "[TEH] Vehicle ammo system";
         tooltip = "Use vehicle ammo tracking similar to the infantry weapons in the arsenal. This option disables ammo truck source.";
         values[] = {0,1};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
@@ -3187,7 +3212,7 @@ class Params
 	};
     class TEH_VehicleFlags : ExperimentalParams
     {
-        title = "Vehicle flags (requires Zeus Enhanced)";
+        title = "[TEH] Vehicle flags (requires Zeus Enhanced)";
         tooltip = "Adds an action when the vehicle is taken from the garage to allow attaching flags to it (requires Zeus Enhanced)";
         values[] = {0,1};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
@@ -3195,12 +3220,41 @@ class Params
 	};
     class TEH_POWshortcuts : ExperimentalParams
     {
-        title = "POW shortcuts for enemy units";
+        title = "[TEH] POW shortcuts for enemy units";
         tooltip = "Adds 'Capture Prisoner' action for wounded unconscious enemy, and Arrest! for panic runners";
         values[] = {0,1};
         texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
         default = 0;
 	};
+    class TEH_useModFastTravel : ExperimentalParams
+    {
+        title = "[TEH] Use legacy Fast Travel";
+        tooltip = "If you use Extenders that override Fast Travel behavior or want to switch to AU style fast travel, set this to yes";
+        values[] = {0,1};
+        texts[] = {$STR_antistasi_dialogs_generic_button_no_text, $STR_antistasi_dialogs_generic_button_yes_text};
+        default = 0;
+	};
+    class TEH_patcomKnowledge : ExperimentalParams
+    {
+        title = "[TEH] Required target knowledge for artillery response";
+        tooltip = "Artillery response (e.g. mortars on airfield or milbase) require certain amount of target knowledge to authorize artillery mission";
+        values[] = {3,2,1,0};
+        texts[] = {"Direct visual contact (Easy)","Radio confirmation (Norm)","Any contact (Hard)","Aimbot (Classic)"};
+        class difficulty
+        {
+            class solo
+            {
+                easy = 3;
+                medium = 2;
+                hard = 1;
+            };
+            class small : solo {};
+            class medium : solo {};
+            class large : solo {};
+        };
+        default = 2;
+        lockInGame = 0;
+    };
     class A3U_disablePATCOMMortars : ExperimentalParams
     {
         title = $STR_params_disablePATCOMMortars;

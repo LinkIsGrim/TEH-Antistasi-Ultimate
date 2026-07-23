@@ -72,7 +72,7 @@ _rick addAction [
         ]] call _sayToCaller;
 
         sleep 1;
-
+        _target playAction "PutDown";
         [_target, _caller, "In the box. Hide it properly, or don't blame me when everyone starts screaming."] call _sayToCaller;
 
         true
@@ -102,6 +102,45 @@ _rick addAction [
             [_target, _caller, "You are already in. Try not to make me regret it."] call _sayToCaller;
             true
         };
+
+         private _oldHandle = missionNamespace getVariable ["TEH_PickleRickMarkerHandle", scriptNull];
+
+        if (!isNull _oldHandle) then {
+            terminate _oldHandle;
+        };
+
+        deleteMarkerLocal "TEH_PickleRickMarker";
+
+        private _handle = [_target] spawn {
+            params ["_rick"];
+
+            private _markerName = "TEH_PickleRickMarker";
+
+            deleteMarkerLocal _markerName;
+
+            private _marker = createMarkerLocal [_markerName, getPosATL _rick];
+            _marker setMarkerTypeLocal "n_inf";
+            _marker setMarkerColorLocal "ColorIndependent";
+            _marker setMarkerTextLocal "Pickle Rick";
+            _marker setMarkerSizeLocal [0.75, 0.75];
+            _mrk setMarkerAlphaLocal 1;
+
+            waitUntil {
+                sleep 15;
+
+                if (!isNull _rick && {alive _rick}) then {
+                    _marker setMarkerPosLocal getPosATL _rick;
+                    false
+                } else {
+                    true
+                };
+            };
+
+            deleteMarkerLocal _markerName;
+            missionNamespace setVariable ["TEH_PickleRickMarkerHandle", scriptNull];
+        };
+
+        missionNamespace setVariable ["TEH_PickleRickMarkerHandle", _handle];
 
         private _primary = primaryWeapon _caller;
         private _vest = vest _caller;
@@ -151,11 +190,10 @@ _rick addAction [
 
         _caller setVariable ["TEH_Rebel", true, true];
 
-        [_target, _caller, "Alright. Real weapon, armor, and a name that is not completely worthless. Welcome to the resistance."] call _sayToCaller;
+        respawnTeamPlayer setMarkerAlphaLocal 1;
+        petros setCaptive false;
 
-        sleep 1.5;
-
-        [_target, _caller, "Steal smart, shoot straighter than you talk, and do not bring police to our door. Petros will hear about you."] call _sayToCaller;
+        [_target, _caller, "Alright. Real weapon, armor, and a name that is not completely worthless. Welcome to the resistance. You can use our services, and HQ is revealed to you"] call _sayToCaller;
 
         true
     },

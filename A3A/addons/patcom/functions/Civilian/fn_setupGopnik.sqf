@@ -1,25 +1,7 @@
 params ["_unit"];
 
-private _uniforms = [
-    "U_C_E_LooterJacket_01_F",
-    "U_I_L_Uniform_01_tshirt_black_F",
-    "U_I_L_Uniform_01_tshirt_skull_F",
-    "U_I_L_Uniform_01_tshirt_sport_F",
-    "U_I_C_Soldier_Bandit_2_F",
-    "U_I_C_Soldier_Bandit_3_F"
-] select { isClass (configFile >> "CfgWeapons" >> _x) };
-
-if (_uniforms isEqualTo []) then {
-    _uniforms = ["U_C_Poloshirt_blue"];
-};
-
-private _headgear = [
-    "H_Cap_blk",
-    "H_Cap_grn",
-    "H_Bandanna_camo",
-    "H_Bandanna_gry",
-    "H_Hat_grey"
-] select { isClass (configFile >> "CfgWeapons" >> _x) };
+private _loadouts = (A3A_customUnitTypes getVariable ["loadouts_civ_militia_Man", []]) select 0;
+_unit setUnitLoadout selectRandom _loadouts;
 
 private _weaponPresets = [
     // weapon, magazine, magazine count
@@ -41,24 +23,10 @@ _unit setVariable ["spawner", false, true];
 _unit setVariable ["TEH_GopnikActivated", false, true];
 _unit setVariable ["TEH_GopnikWeaponPreset", selectRandom _weaponPresets, true];
 
-removeAllWeapons _unit;
-removeAllItems _unit;
-removeAllAssignedItems _unit;
-removeUniform _unit;
-removeVest _unit;
-removeBackpack _unit;
-removeHeadgear _unit;
-removeGoggles _unit;
-
-_unit forceAddUniform (selectRandom _uniforms);
-
-if !(_headgear isEqualTo []) then {
-    _unit addHeadgear (selectRandom _headgear);
-};
+private _loadouts = (A3A_customUnitTypes getVariable ["loadouts_civ_militia_Man", []]) select 0;
+_unit setUnitLoadout selectRandom _loadouts;
 
 [_unit,selectRandom ["RussianHead_1","RussianHead_2","RussianHead_3","RussianHead_4","RussianHead_5"],selectRandom ["male01rus","male02rus","male03rus"]] call BIS_fnc_setIdentity;
-
-_unit linkItem "ItemWatch";
 
 _unit setCaptive true;
 _unit setBehaviour "SAFE";

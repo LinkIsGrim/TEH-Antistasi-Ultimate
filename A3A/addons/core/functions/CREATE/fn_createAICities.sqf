@@ -77,7 +77,7 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 		// Early-game police nerf: no primaries on city cops before war tier 2 if player starts with handguns or no weapons
 		if ((_params # 2) isEqualTo (_faction get "groupPolice")) then {
 			private _handgun = handgunWeapon _unit;
-			if (tierWar == 1 && TEH_civStart > 0 && _handgun != "") then {
+			if (tierWar == 1) then {
 				private _primary = primaryWeapon _unit;
 				if (_primary != "") then {
 					_unit removeWeaponGlobal _primary;
@@ -100,7 +100,6 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 					// 40% chance to call Gendarmerie, 60% chance to call faction police
 					if (random 100 > 20 + 20 * TEH_spawnSwat) exitWith {};
 
-					
 					private _swatCount = count ((_unit nearEntities ["Car", 1000]) select {_x getVariable ["TEH_Swat", false]});
 					private _swatWeight = ([0,40,30] select TEH_spawnSwat) * _swatCount + tierWar * 5; //weight of van is 40, weight of police car is 30)
 					if (random 100 > _swatWeight) then {
@@ -113,6 +112,9 @@ while {(spawner getVariable _markerX != 2) and (_countX < _num)} do {
 					[_side, 10, 30] remoteExec ["A3A_fnc_addAggression", 2]; //snowball a bit
 				}];
 			};
+
+			//Can't call mortars
+			_unit setVariable ["TEH_ArtilleryDisabled",true,false];
 		};
 	} forEach units _groupX;
 
@@ -138,5 +140,6 @@ waitUntil {sleep 1;(spawner getVariable _markerX == 2)};
 {if (alive _x) then {deleteVehicle _x}} forEach _soldiers;
 {deleteVehicle _x} forEach _dogs;
 { deleteGroup _x } forEach _groups;
+{deleteVehicle _x} forEach (units teamPlayer select { !alive _x && !(_x getVariable ["TEH_Rebel",false])});
 
 ["locationSpawned", [_markerX, "City", false]] call EFUNC(Events,triggerEvent);

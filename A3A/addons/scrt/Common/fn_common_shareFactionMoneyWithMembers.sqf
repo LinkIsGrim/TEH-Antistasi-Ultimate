@@ -1,6 +1,14 @@
 #include "..\defines.inc"
 FIX_LINE_NUMBERS()
 
+if (TEH_WarTierZero && !(commanderX getVariable ["TEH_Rebel",false])) exitWith {
+	[
+		"Sharing failed",
+		"You have shared faction money (in your wallet) between all the members (you)."
+	] call A3A_fnc_customHint
+};
+
+
 params [["_amount", 0]];
 
 private _resourcesFIA = server getVariable ["resourcesFIA", 0];

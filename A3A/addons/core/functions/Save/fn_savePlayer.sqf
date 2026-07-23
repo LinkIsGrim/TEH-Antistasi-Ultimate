@@ -61,10 +61,18 @@ if (_shouldStripLoadout) then { _loadout = _loadout call A3A_fnc_stripGearFromLo
 _playerHM set ["loadoutPlayer", _loadout];
 
 private _scorePlayer = _playerUnit getVariable ["score", 0];
-private _rankPlayer = _playerUnit getVariable ["rankX", "PRIVATE"];		// rank _unit fails on corpses
 _playerHM set ["scorePlayer", _scorePlayer];
+
+private _rankPlayer = _playerUnit getVariable ["rankX", "PRIVATE"];		// rank _unit fails on corpses
 _playerHM set ["rankPlayer", _rankPlayer];
+
+private _rebelPlayer = _playerUnit getVariable ["TEH_Rebel",false];
+
+Info_1("State of TEH_REBEL is %1",_rebelPlayer);
+_playerHM set ["TEH_Rebel", _rebelPlayer];
+
 _playerHM set ["personalGarage", []];
+
 
 private _totalMoney = _playerUnit getVariable ["moneyX", 0];
 if (_shouldStripLoadout) then { _totalMoney = round (_totalMoney * 0.85) };

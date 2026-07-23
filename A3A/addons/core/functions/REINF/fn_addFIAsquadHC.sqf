@@ -3,8 +3,14 @@ FIX_LINE_NUMBERS()
 params ["_typeGroup", ["_withBackpck", ""]];
 
 if (player != theBoss) exitWith {[localize "STR_A3A_reinf_addFIASquadHC_header", localize "STR_generic_commander_only"] call SCRT_fnc_misc_deniedHint;};
-if (markerAlpha respawnTeamPlayer == 0) exitWith {[localize "STR_A3A_reinf_addFIASquadHC_header", localize "STR_A3A_reinf_addFIASquadHC_error_moveHq"] call SCRT_fnc_misc_deniedHint;};
 if (!([player] call A3A_fnc_hasRadio)) exitWith {[localize "STR_A3A_reinf_addFIASquadHC_header", localize "STR_A3A_reinf_addFIASquadHC_error_radio"] call SCRT_fnc_misc_deniedHint;};
+if (TEH_WarTierZero && !(player getVariable ["TEH_Rebel",false])) exitWith {
+	[
+		"Reinforcements unavailable",
+		"You consider calling reinforcements, but the radio is still set to a police frequency, and this may not be your best idea."
+	] call A3A_fnc_customHint
+};
+if (markerAlpha respawnTeamPlayer == 0) exitWith {[localize "STR_A3A_reinf_addFIASquadHC_header", localize "STR_A3A_reinf_addFIASquadHC_error_moveHq"] call SCRT_fnc_misc_deniedHint;};
 if ([getPosATL petros] call A3A_fnc_enemyNearCheck) exitWith {[localize "STR_A3A_reinf_addFIASquadHC_header", localize "STR_A3A_reinf_addFIASquadHC_error_enemynear"] call SCRT_fnc_misc_deniedHint;};
 
 if (count hcAllGroups player >= ([6,10] select (player call A3A_fnc_isMember))) exitWith {

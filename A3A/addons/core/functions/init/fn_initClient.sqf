@@ -127,7 +127,7 @@ if (RRTurretMagazines) then {
 
 // Placeholders, should get replaced globally by the server
 player setVariable ["score",0];
-player setVariable ["moneyX",0];
+player setVariable ["moneyX",300];
 player setVariable ["rankX",rank player];
 
 player setVariable ["owner",player,true];
@@ -165,20 +165,6 @@ private _colorInvaders = Invaders call BIS_fnc_sideColor;
 {
 	_x set [3, 0.33]
 } forEach [_colourTeamPlayer, _colorInvaders];
-
-private _introShot = scriptNull;
-if (_enableIntroAnimation) then { _introShot = [
-	(position petros), // Target position
-	format ["%1, %2 %3", worldName, (localize (rank player)), name player], // SITREP text
-	50, //  altitude
-	50, //  radius
-	90, //  degrees viewing angle
-	0, // clockwise movement
-	[
-		["\a3\ui_f\data\map\markers\Nato\o_inf.paa", _colourTeamPlayer, markerPos "insertMrk", 1, 1, 0, "Insertion Point", 0],
-		["\a3\ui_f\data\map\markers\Nato\o_inf.paa", _colorInvaders, markerPos "towerBaseMrk", 1, 1, 0, "Radio Towers", 0]
-	]
-] spawn BIS_fnc_establishingShot };
 
 if (playerMarkersEnabled) then {
     [] spawn A3A_fnc_playerMarkers;
@@ -486,11 +472,6 @@ if !(isPlayer leader group player) then {
     [group player, player] remoteExec ["selectLeader", groupOwner group player];
 };
 
-
-waitUntil { scriptDone _introshot };
-
-if (_enableIntroAnimation) then { cutText ["","BLACK IN", 3] };
-
 [] remoteExecCall ["A3A_fnc_assignBossIfNone", 2];
 
 if (isServer || (!isNil "theBoss" && {player isEqualTo theBoss}) || (call BIS_fnc_admin) > 0) then {  // Local Host || Commander || Dedicated Admin
@@ -603,7 +584,6 @@ mapX addAction [
 ];
 mapX addAction [localize "STR_antistasi_actions_ai_load_info", { [] remoteExec ["A3A_fnc_AILoadInfo",2];},nil,0,false,true,"","((_this == theBoss) || (serverCommandAvailable ""#logout""))"];
 mapX addAction ["Launch UAV (consume AR-2 Darter)", { [] remoteExec ["A3A_fnc_launchUAV",2];}];
-mapX addAction [localize "STR_antistasi_actions_move_this_asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)", 4];
 
 {
     _x addAction [localize "STR_antistasi_actions_move_this_asset", A3A_fnc_carryItem, 
