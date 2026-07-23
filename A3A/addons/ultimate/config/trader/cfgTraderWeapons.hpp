@@ -36,6 +36,7 @@
             prefix = "contact";
         };
         ////
+
         ////CDLC
         class weapons_sogpf : weapons_base
         {
@@ -74,6 +75,26 @@
             prefix = "ef";
         };
         ////
+		
+		////TEH SUPPORT
+		class weapons_X26 : weapons_base
+        {
+            prefix = "x26stock";
+        };
+		class weapons_gx_drones : weapons_base
+        {
+            prefix = "gxstock";
+        };
+		class weapons_TRG : weapons_base
+        {
+            prefix = "trgstock";
+        };
+		class weapons_MCX : weapons_base
+        {
+            prefix = "mcxstock";
+        };
+		////
+		
         class weapons_kkiv2035 : weapons_base
         {
             prefix = "kkiv2035";
@@ -222,19 +243,8 @@
         {
             prefix = "mpp_stock";
         };
-		class weapons_X26 : weapons_base
+        class weapons_mss : weapons_base
         {
-            prefix = "x26stock";
+            prefix = "mss";
         };
-		class weapons_gx_drones : weapons_base
-        {
-            prefix = "gxstock";
-        };
-		class weapons_TRG : weapons_base
-        {
-            prefix = "trgstock";
-        };
-		class weapons_MCX : weapons_base
-        {
-            prefix = "mcxstock";
-        };
+

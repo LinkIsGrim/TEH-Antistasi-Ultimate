@@ -120,6 +120,40 @@
         vehicles = "vehicles_spex";
     };
     ////
+	
+	//// TEH SUPPORT
+	class addons_gx : addons_base
+	{
+        addons[] = {"GX_DRONES"};
+        weapons = "weapons_gx_drones";
+	};
+	class addons_x26 : addons_base
+	{
+		addons[] = {"Crow_X26"};
+		weapons = "weapons_X26";
+	};
+	class addons_eaa : addons_base
+	{
+        addons[] = {"EAA"};
+        vehicles = "vehicles_eaa";
+    };
+	class addons_76n6 : addons_base
+	{
+        addons[] = {"JK_RUS_Static_F_76n6"};
+        vehicles = "vehicles_76n6";
+    };
+	class addons_trg : addons_base
+	{
+		addons[] = {"TRG3Conversion"};
+		weapons = "weapons_TRG";
+	};
+	class addons_MCX : addons_base
+	{
+		addons[] = {"KAR_XM7"};
+		weapons = "weapons_MCX";
+	};
+	////
+	
     class addons_kkiv2035 : addons_base
     {
         addons[] = {"Kio_Kkiv_2035"};
@@ -397,41 +431,16 @@
         addons[] = {"MPP_PISTOLS"};
         weapons = "weapons_mpp";
     };
-	class addons_ScifiTP : addons_base
+    class addons_mss : addons_base
+    {
+        addons[] = {"MSS_Core"};
+        weapons = "weapons_mss";
+    };
+    class addons_ScifiTP : addons_base
     {
         addons[] = {"PHEN_TurretPack"};
         vehicles = "vehicles_scifitp";
     };
-	class addons_gx : addons_base
-	{
-        addons[] = {"GX_DRONES"};
-        weapons = "weapons_gx_drones";
-	};
-	class addons_x26 : addons_base
-	{
-		addons[] = {"Crow_X26"};
-		weapons = "weapons_X26";
-	};
-	class addons_eaa : addons_base
-	{
-        addons[] = {"EAA"};
-        vehicles = "vehicles_eaa";
-    };
-	class addons_76n6 : addons_base
-	{
-        addons[] = {"JK_RUS_Static_F_76n6"};
-        vehicles = "vehicles_76n6";
-    };
-	class addons_trg : addons_base
-	{
-		addons[] = {"TRG3Conversion"};
-		weapons = "weapons_TRG";
-	};
-	class addons_MCX : addons_base
-	{
-		addons[] = {"KAR_XM7"};
-		weapons = "weapons_MCX";
-	};
     class addons_QAV : addons_base
     {
         addons[] = {"QAV_Core"};

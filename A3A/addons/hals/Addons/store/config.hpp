@@ -135,6 +135,7 @@ class cfgHALsStore
 		#include "config\trg.hpp"
 		#include "config\mcx.hpp"
 		#include "config\mpp.hpp"
+		#include "config\mss.hpp"
 	};
 
 	class stores 
@@ -508,8 +509,20 @@ class cfgHALsStore
 				"muzzlesRhs", 
 				"underbarrelRhs", 
 				"pointersRhs", 
-				"navigationRhs", 
+				"navigationRhs",
 				"miscRhs"
+			};
+		};
+
+		class mss
+		{
+			displayName = $STR_ARMS_DEALER_STORE;
+			categories[] = {
+				"sniperRiflesMss",
+				"opticsMss",
+				"muzzlesMss",
+				"bipodsMss",
+				"magazinesMss"
 			};
 		};
 
