@@ -217,7 +217,7 @@ staticsToSave select {
 
 // Bring out your dead. Ignore vehicles not near friendly markers.
 _arrayEst = _arrayEst select {
-	(alive _x) && { [_x] call A3A_fnc_isWithinNearestFriendlyMarker && _x getVariable ["ownerSide",sideUnknown] == teamPlayer };
+	(alive _x) && { [_x] call A3A_fnc_isWithinNearestFriendlyMarker };
 };
 
 // Push buildings to save; ignore dead or outside friendly markers.

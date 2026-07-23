@@ -60,7 +60,6 @@ garrison setVariable [format ["%1_requested", _markerX], [], true];
 
 if (_winner == teamPlayer) then
 {
-
 	// Old garrison rushes to the flag
 	private _from = distanceSPWN max 500;
 	{
