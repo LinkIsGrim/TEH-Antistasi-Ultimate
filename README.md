@@ -15,6 +15,8 @@
 
 ## TEH Changes
 
+- **New game mode(WIP)**
+	- "War Tier Zero" is an all-new hardcore prologue to the Antistasi campaign. Survive as ordinary citizen with no support and fight your way into resistance ranks. [Quest Guide](WAR_TIER_ZERO.md)
 - **Changes to the trader**
 	- All Vanilla/CUP/RHS/NIArms primary weapon variants available for buying.
 	- Fixed prices (epoch + features + caliber), and compatibility fixes for items.
@@ -76,6 +78,7 @@
 	- Rally point cost is reduced to 25 per charge.
 	- Partial squad fast travel (statics and vehicles without driver stay behind)
 	- Fast travel to rebel vehicles (doesn't work for stolen vehicles though)
+	- Legacy fast travel parameter (can be used to switch back to AUC version or to the Extender modification)
 - **Vehicle-based looting**: a complete overhaul of Loot to Vehicle for ACE and Antistasi Extended mod
 	- Uses ACE action on the vehicles to gather loot in 5-5000m radius (depends on enemy proximity, distance to nearest enemy minus 50m)
 	- Allows several players to loot the same location, and into the same vehicle to save time.
@@ -98,7 +101,7 @@
 	- Update interval is 15 seconds.
 	- Hides squads sharing the same vehicle.
 	- Hides SpecOps squads.
-	- Hides infantry and statics more than 1.5km away from rebel bases.
+	- Hides infantry and statics outside observed range (adjusted by two related parameters - you can select a distance from rebel bases and distance from rebel watchposts)
 	- Map stand at the HQ has a "Launch UAV" action, which consumes AR-2 drone back pack but removes 1.5km limitation, showing all normal squads on the map
 - **Anti-anti-air**:
 	- Enemies will attempt to destroy long range AA (e.g. radar + SAM site) if vehicle is sniped from 2 or more kilometers away.
@@ -144,6 +147,7 @@
 	- **Ammobox** generation revamped: Ensures better consistency with fixed amounts.
 	- **CAS support** tuned down to avoid being called on infantry units.
 	- **UGL snipers** tuned down - more dispersion and AI using it in 150-300m range
+	- **Base mortars** behavior adjusted. No more blind pinpointing.
 	- **Dynamic Mission Distance** - new parameter which scales possible mission distance from HQ by the War Level.
 	- **Boxer truck capacity** - is increased significantly, for comfortable shopping.
 
