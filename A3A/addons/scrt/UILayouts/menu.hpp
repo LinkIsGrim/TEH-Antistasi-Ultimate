@@ -344,7 +344,7 @@ class radioComm: SimpleMenuBigger
 			x = 0.257187 * safezoneW + safezoneX;
 			y = 0.29 * safezoneH + safezoneY;
 			tooltip = $STR_antistasi_dialogs_fast_travel_tooltip;
-			action = "closeDialog 0; [] spawn A3A_fnc_fastTravelRadio;";
+			action = "closeDialog 0; if (TEH_useModFastTravel) then { [] spawn A3A_fnc_fastTravelRadio; } else { [] spawn A3A_fnc_TEHTravelRadio; };";
 		};
 
 		class l2Button: SimpleButton

@@ -334,6 +334,7 @@ class CfgFunctions
             class clearForest {};
             class createDialog_shouldLoadPersonalSave {};
             class fastTravelRadio {};
+			class TEHTravelRadio {};
             class mineDialog {};
             class persistentSave {};
             class skiptime {};
