@@ -556,6 +556,7 @@ switch _typeX do
                 private _ignoreIntel = true;
 
                 [_box, _loots, _player, _ignoreIntel] spawn loot_vehicle_fnc_transferToVehicle;
+                _player setCaptive false;
             },
             nil,
             1.5,

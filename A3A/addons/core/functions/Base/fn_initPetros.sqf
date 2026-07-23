@@ -7,6 +7,7 @@ scriptName "fn_initPetros";
 petros setSkill 1;
 petros setVariable ["respawning",false];
 petros allowDamage false;
+petros setCaptive true;
 
 // Apparel
 // Vest

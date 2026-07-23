@@ -64,7 +64,7 @@ Info("initACEUnconsciousHandler started");
 					alive _x
 					&& {_x isKindOf "Car"}
 					&& {crew _x isEqualTo []}
-					&& {(_x getVariable ["ownerSide", sideUnknown]) isEqualTo teamPlayer}
+					&& {(_x getVariable ["originalSide", sideUnknown]) isEqualTo teamPlayer}
 				};
 
 				if (count _vehicles > 0) then {

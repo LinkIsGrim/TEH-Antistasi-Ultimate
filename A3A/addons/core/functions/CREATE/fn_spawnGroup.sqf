@@ -33,8 +33,10 @@ for "_i" from 0 to (_countX - 1) do {
 
 {_x allowDamage true} forEach units _groupX;
 
-private _hidden = (_typesX in (Faction(_sideX) get "groupSpecOpsRandom"));
-if (_hidden) then {
-	_groupX setVariable ["hiddenGroup", true, true];
+if (_sideX in [Invaders,Occupants]) then {
+	private _hidden = (_typesX in (Faction(_sideX) get "groupSpecOpsRandom"));
+	if (_hidden) then {
+		_groupX setVariable ["hiddenGroup", true, true];
+	};
 };
 _groupX

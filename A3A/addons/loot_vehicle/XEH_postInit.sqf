@@ -34,6 +34,7 @@ private _unloadToBox = [
 		private _loots = _holders + _containerList;
 		private _ignoreIntel = true;
 		[_box,_loots,_player, _ignoreIntel] spawn loot_vehicle_fnc_transferToVehicle;
+		_player setCaptive false;
 	},
 	{
 		params ["_target", "_player"];
@@ -246,6 +247,7 @@ private _actionVehicle = [
 		};
 		
 		systemChat format["LootVehicle: Sending troops to gather loot in %1 m area",_dist];
+		_player setCaptive false;
 		
 		//first dropped weapons, as they are erased with the body otherwise
 		private _holders =  nearestObjects[_target,["WeaponHolderSimulated"],_dist, false];
