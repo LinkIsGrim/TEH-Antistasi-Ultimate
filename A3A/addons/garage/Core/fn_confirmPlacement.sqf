@@ -27,9 +27,6 @@
 */
 #include "defines.inc"
 #include "\a3\ui_f\hpp\definedikcodes.inc"
-#include "\A3\Ui_f\hpp\defineResinclDesign.inc"
-#include "..\..\jeroen_arsenal\JNA\tehBulletPile.inc"
-
 params [
     ["_class", "", [""]]
     , ["_callBackPlace", {}]
@@ -271,52 +268,20 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
 
         if (_key isNotEqualTo DIK_SPACE) exitWith {
             // Tell callback that the vehicle wasn't placed
-            ([objNull] + HR_GRG_CP_callBackArgs) call HR_GRG_CP_callBackPlace;
-        };
-
-        if (TEH_SaferPlacement) then {
-            private _center = +_pos;
-            _center set [2, 1];
-
-            {
-                _pos = _center findEmptyPosition _x;
-                if !(_pos isEqualTo []) exitWith {};
-            } forEach [
-                [0, 10, _class],
-                [10, 25, _class],
-                [25, 50, _class]
-            ];
-
-            if (_pos isEqualTo []) then {
-                _pos = _center;
-            };
-
-            // findEmptyPosition ignores moving objects, so avoid spawning into live vehicles.
-            private _nearVehicles = nearestObjects [_pos, ["Car", "Tank", "Air", "Ship"], 8];
-
-            if !(_nearVehicles isEqualTo []) then {
-                private _fallback = _center findEmptyPosition [8, 75, _class];
-
-                if !(_fallback isEqualTo []) then {
-                    _pos = _fallback;
-                };
-            };
+            ([objNull] + HR_GRG_CP_callBackArgs) call HR_GRG_CP_callbackPlace;
         };
 
         //create vehicle
-        private _veh = _class createVehicle _pos;
+        private _veh = _class createVehicle [0,0,10000];
         [_veh] call HR_GRG_fnc_prepPylons;
         [_veh, _state] call HR_GRG_fnc_setState;
-        
-        _veh enableSimulation false;
-        _veh allowDamage false;
 
         _veh setDir _dir;
-        _veh setPosATL _pos;
-        _veh setVectorUp (surfaceNormal _pos);
-        _veh setVelocity [0,0,0];
+        _veh setPos _pos;
+        _veh setVectorUp surfaceNormal position _veh;
 
-
+        _veh enableSimulation false;
+        _veh allowDamage false;
         [_veh, HR_GRG_curTexture, HR_GRG_curAnims] call BIS_fnc_initVehicle;
 
         //create and load cargo
@@ -337,114 +302,13 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
                 _veh setPylonLoadout [_pylonIndex, _mag, _forced, _turret]
             } forEach HR_GRG_CP_pylons;
         };
-
-        if (TEH_VehicleAmmo) then {
-            [_veh] call JN_fnc_arsenal_turretLoad;
-        };
-
-        [_veh,_pos] spawn {
-            params ["_veh", "_pos"];
-
+        _veh spawn {
             sleep 0.5;
-
-            if (isNull _veh) exitWith {};
-            _veh setPosATL _pos;
-            _veh setVelocity [0,0,0];
-            _veh setVectorUp (surfaceNormal getPosATL _veh);
-
-            _veh enableSimulationGlobal true;
-
-            sleep 0.25;
-
-            if !(isNull _veh) then {
-                _veh allowDamage true;
-            };
-            { _x allowDamage true; } forEach (attachedObjects _veh);
+            _this allowDamage true;
+            _this enableSimulation true; 
+            { _x allowDamage true; } forEach (attachedObjects _this);
         };
         ([_veh] + HR_GRG_CP_callBackArgs) call HR_GRG_CP_callbackPlace;
-		
-        //Loading starter kit
-		_primarymag = (primaryWeaponMagazine player) select 0;
-		
-		if (_primarymag != "") then {
-			_ammo = getText (configfile >> "CfgMagazines" >> _primarymag >> "ammo");
-			_bullets = 600;
-			_ammocount = getNumber (configfile >> "CfgMagazines" >> _primarymag >> "count");
-			_magcount = floor (_bullets / _ammocount);
-			_bullets = _magcount * _ammocount;
-			_magAvailable = [jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _primarymag] call jn_fnc_arsenal_itemCount;
-			_bulAvailable = [jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammo] call jn_fnc_arsenal_itemCount;
-			if ((_magAvailable < 0 || _magAvailable >= _magcount) && (_bulAvailable < 0 || _bulAvailable >= _bullets)) then {
-				[IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _primarymag, _magcount] call JN_fnc_arsenal_removeItem;
-				[IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammo, _bullets] call JN_fnc_arsenal_removeItem;
-				_veh addMagazineCargoGlobal [_primarymag, _magcount];
-			};
-		};
-		
-        if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
-            _veh addItemCargoGlobal ["Toolkit", 1];
-            _veh addItemCargoGlobal ["MiniGrenade", 10];
-            _veh addItemCargoGlobal ["SmokeShell", 10];
-        };
-		
-		if (A3A_hasACEMedical) then {
-            if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
-                _veh addItemCargoGlobal ["ACE_fieldDressing",32];
-
-                _veh addItemCargoGlobal ["ACE_morphine",10];
-                _veh addItemCargoGlobal ["ACE_epinephrine",10];
-                _veh addItemCargoGlobal ["ACE_adenosine",5];
-
-                _veh addItemCargoGlobal ["ACE_plasmaIV_500",5];
-                _veh addItemCargoGlobal ["ACE_salineIV_500",5];
-                _veh addItemCargoGlobal ["ACE_bloodIV_500",5];
-
-                _veh addItemCargoGlobal ["ACE_tourniquet",5];
-                _veh addItemCargoGlobal ["ACE_splint",5];
-            };
-		} else {
-            if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
-                _veh addItemCargoGlobal ["Medikit", 1];
-                _veh addItemCargoGlobal ["FirstAidKit",12];
-            };
-		};
-		
-		_veh setPlateNumber (name player);
-		
-		if ((_veh isKindOf "Tank") || (_veh isKindOf "Wheeled_APC_F")) then {
-
-			_veh addEventHandler ["HandleDamage", {
-				params ["_veh", "_selection", "_damage", "_source", "_projectile", "_hitIndex"];
-
-				if (_damage isEqualTo 0) exitWith { 0 };
-				_dmg = damage _veh;
-				if (_dmg < 0.51) exitWith { _damage };
-				if (_dmg >= 1) then {
-					if ((random 1) < 0.5) exitWith { _damage };
-				};
-
-				waitUntil { _veh getVariable["canDamage",true]; }; 
-
-				private _hpData = getAllHitPointsDamage _veh; 
-				private _hpNames = _hpData select 1;
-				private _hpValues = []+(_hpData select 2); 
-
-				_veh setVariable ["canDamage", false]; 
-				_veh setDamage 0.51; 
-
-				{ 
-					private _val = _x; 
-					_veh setHit [_hpNames select _forEachIndex, _val]; 
-				} forEach _hpValues; 
-				
-				_veh setVariable["canDamage", true]; 
-
-				//continue damage le component.
-				_damage;
-			}];
-
-			systemChat "Tankiness is over 9000";
-		};
     };
 
     //block key press if valid key

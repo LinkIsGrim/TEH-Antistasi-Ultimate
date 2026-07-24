@@ -53,9 +53,7 @@ if ([getPosATL _player] call A3A_fnc_enemyNearCheck) exitWith {
     ["STR_HR_GRG_Feedback_addVehicle_enemiesEngaging"] remoteExec ["HR_GRG_fnc_Hint", _client];
     false;
 };
-if (TEH_VehicleAmmo) then {
-    [_vehicle] call JN_fnc_arsenal_turretUnload;
-};
+
 
 //Utility refund
 private _utilityRefund = {
