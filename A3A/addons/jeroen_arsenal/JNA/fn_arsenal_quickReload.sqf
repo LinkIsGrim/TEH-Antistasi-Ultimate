@@ -120,3 +120,92 @@ private _allmags = +magazineCargo player;
     [IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET,_x,(_neededAmmo - _loaded)] call JN_fnc_arsenal_removeItem;
 
 } forEach _needed;
+
+private _veh = (nearestObjects [player, ["Car", "Wheeled_APC_F", "Tank"], 50, true] select {alive _x}) param [0, objNull];
+
+if (isNull _veh) exitWith {};
+
+ [_veh] remoteExec ['JN_fnc_arsenal_turretLoad', 2];
+
+//Loading starter kit
+_primarymag = (primaryWeaponMagazine player) select 0;
+
+if (_primarymag != "") then {
+    _ammo = getText (configfile >> "CfgMagazines" >> _primarymag >> "ammo");
+    _bullets = 600;
+    _ammocount = getNumber (configfile >> "CfgMagazines" >> _primarymag >> "count");
+    _magcount = floor (_bullets / _ammocount);
+    _bullets = _magcount * _ammocount;
+    _magAvailable = [jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _primarymag] call jn_fnc_arsenal_itemCount;
+    _bulAvailable = [jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammo] call jn_fnc_arsenal_itemCount;
+    if ((_magAvailable < 0 || _magAvailable >= _magcount) && (_bulAvailable < 0 || _bulAvailable >= _bullets)) then {
+        [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _primarymag, _magcount] call JN_fnc_arsenal_removeItem;
+        [IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _ammo, _bullets] call JN_fnc_arsenal_removeItem;
+        _veh addMagazineCargoGlobal [_primarymag, _magcount];
+    };
+};
+
+if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
+    _veh addItemCargoGlobal ["Toolkit", 1];
+    _veh addItemCargoGlobal ["MiniGrenade", 10];
+    _veh addItemCargoGlobal ["SmokeShell", 10];
+};
+
+if (A3A_hasACEMedical) then {
+    if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
+        _veh addItemCargoGlobal ["ACE_fieldDressing",32];
+
+        _veh addItemCargoGlobal ["ACE_morphine",10];
+        _veh addItemCargoGlobal ["ACE_epinephrine",10];
+        _veh addItemCargoGlobal ["ACE_adenosine",5];
+
+        _veh addItemCargoGlobal ["ACE_plasmaIV_500",5];
+        _veh addItemCargoGlobal ["ACE_salineIV_500",5];
+        _veh addItemCargoGlobal ["ACE_bloodIV_500",5];
+
+        _veh addItemCargoGlobal ["ACE_tourniquet",5];
+        _veh addItemCargoGlobal ["ACE_splint",5];
+    };
+} else {
+    if (TEH_civStart isNotEqualTo 1 || tierWar > 1) then {
+        _veh addItemCargoGlobal ["Medikit", 1];
+        _veh addItemCargoGlobal ["FirstAidKit",12];
+    };
+};
+
+_veh setPlateNumber (name player);
+
+if ((_veh isKindOf "Tank") || (_veh isKindOf "Wheeled_APC_F")) then {
+
+    _veh addEventHandler ["HandleDamage", {
+        params ["_veh", "_selection", "_damage", "_source", "_projectile", "_hitIndex"];
+
+        if (_damage isEqualTo 0) exitWith { 0 };
+        _dmg = damage _veh;
+        if (_dmg < 0.51) exitWith { _damage };
+        if (_dmg >= 1) then {
+            if ((random 1) < 0.5) exitWith { _damage };
+        };
+
+        waitUntil { _veh getVariable["canDamage",true]; }; 
+
+        private _hpData = getAllHitPointsDamage _veh; 
+        private _hpNames = _hpData select 1;
+        private _hpValues = []+(_hpData select 2); 
+
+        _veh setVariable ["canDamage", false]; 
+        _veh setDamage 0.51; 
+
+        { 
+            private _val = _x; 
+            _veh setHit [_hpNames select _forEachIndex, _val]; 
+        } forEach _hpValues; 
+        
+        _veh setVariable["canDamage", true]; 
+
+        //continue damage le component.
+        _damage;
+    }];
+
+    systemChat "Tankiness is over 9000";
+};

@@ -156,9 +156,7 @@ if (_veh getVariable ["A3A_sellVehicle_inProgress",false]) then {
 	if (_veh in staticsToSave) then {staticsToSave = staticsToSave - [_veh]; publicVariable "staticsToSave"};
     
     //save ammo to the arsenal
-    if (TEH_VehicleAmmo) then {
-        [_veh] call JN_fnc_arsenal_turretUnload;
-    };
+    [_veh] call JN_fnc_arsenal_turretUnload;
     
     [_veh,true] call A3A_fnc_empty;
 

@@ -1,5 +1,5 @@
 /*
-    Author: TEH Antistasi Ultimate
+    Author: TEH Megamin
 
     Description:
         Moves all ammunition from every vehicle turret magazine into the
@@ -17,9 +17,9 @@ params [
     ["_veh", objNull, [objNull]]
 ];
 
-if (isNull _veh) exitWith {
-    createHashMap
-};
+if !(TEH_VehicleAmmo) exitWith {};
+
+if (isNull _veh) exitWith {};
 
 private _magazines = magazinesAllTurrets _veh;
 private _ammoToStore = createHashMap;
@@ -49,9 +49,9 @@ private _ammoToStore = createHashMap;
 } forEach _magazines;
 
 {
-    [27, _x, _y] call jn_fnc_arsenal_addItem;
+    [IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET, _x, _y] call jn_fnc_arsenal_addItem;
 } forEach _ammoToStore;
 
 _veh setVehicleAmmo 0;
 
-_ammoToStore
+diag_log format["Unloaded ammo - %1", _ammoToStore];

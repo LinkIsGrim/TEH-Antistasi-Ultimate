@@ -18,9 +18,9 @@ params [
     ["_veh", objNull, [objNull]]
 ];
 
-if (isNull _veh) exitWith {
-    false
-};
+if !(TEH_VehicleAmmo) exitWith { false };
+
+if (isNull _veh) exitWith { false };
 
 private _magazines = magazinesAllTurrets _veh;
 
@@ -42,7 +42,7 @@ private _magazines = magazinesAllTurrets _veh;
     ];
 
     _ammoToLoad call jn_fnc_arsenal_removeItem;
-    _removedItems pushBack _ammoToLoad;
+    diag_log format["Loading magazine - %1", _ammoToLoad];
 } forEach _magazines;
 
 true

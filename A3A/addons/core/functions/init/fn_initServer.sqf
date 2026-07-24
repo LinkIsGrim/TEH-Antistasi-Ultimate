@@ -106,6 +106,18 @@ switch (gameMode) do {
     case (3): { "CSAT_carrier" setMarkerAlpha 0 };
 };
 
+if (TEH_VehicleAmmo) then {
+    [] spawn {
+        while {true} do {
+            sleep 1;
+            if (missionNamespace getVariable ["HR_GRG_hasAmmoSource", false]) then {
+                HR_GRG_hasAmmoSource = false;
+                publicVariable "HR_GRG_hasAmmoSource";
+            };
+        };
+    };
+};
+
 setTimeMultiplier settingsTimeMultiplier;
 Info_1("Time multiplier: %1", timeMultiplier);
 

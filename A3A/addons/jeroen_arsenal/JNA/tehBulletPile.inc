@@ -1,3 +1,4 @@
+#define IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL 26
 #define IDC_RSCDISPLAYARSENAL_TAB_CARGOBULLET 27
 #define AMMO_TRANSLATION_TABLE \
     private ammotypes = createHashMapFromArray [["CUP_B_545x39_Ball", "B_545x39_Ball_F"],\
