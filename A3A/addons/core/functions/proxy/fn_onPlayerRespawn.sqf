@@ -3,6 +3,10 @@ FIX_LINE_NUMBERS()
 if (isDedicated) exitWith {};
 params ["_newUnit","_oldUnit"];
 
+if (TEH_ballsofsteel) exitWith {
+	["hardcoreLoss",false,true] remoteExec ["BIS_fnc_endMission"];
+};
+
 if (isNull _oldUnit) exitWith {};
 
 private _civilRespawn = (TEH_warTierZero && !(_oldUnit getVariable ["TEH_Rebel",false]));
