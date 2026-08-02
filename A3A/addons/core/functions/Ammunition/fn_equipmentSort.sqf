@@ -148,7 +148,7 @@ if ("specialVN" in A3A_factionEquipFlags) then {
 	];
 };
 
-if !(cosmeticsEnabled) then {
+if (cosmeticsEnabled isEqualTo false) then {
 	allCosmeticGlasses = [];
 	allCosmeticHeadgear = [];
 }; // It's annoying in some modsets (like halo or clone wars) to have a ton of modern cosmetic gear.

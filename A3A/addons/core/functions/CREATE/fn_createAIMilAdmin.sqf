@@ -13,6 +13,9 @@ if (_milAdministrationIndex isEqualTo -1) exitWith {
 
 private _milAdministration = A3A_milAdministrations select _milAdministrationIndex;
 
+if (_marker in townSkirmishes) exitWith {
+	Info("Aborting mil admin spawn; is in town skirmish");
+};
 if (_milAdministration isEqualTo objNull) exitWith {
 	Error_1("For some reason mil administration %1 object is null, aborting.", _marker);
 };
@@ -270,14 +273,20 @@ waitUntil {
 };
 
 switch (true) do {
-	case (!alive _collaborant): {
-		Info_1("Military Administration %1 was captured - collaborant has been killed.", _marker);
-		[_milAdministration, "CAPTURE"] call SCRT_fnc_location_removeMilAdmin;
-	};
-	case (!alive _milAdministration): {
-		Info_1("Military Administration %1 was destroyed.", _marker);
-		[_milAdministration, "DESTROY"] call SCRT_fnc_location_removeMilAdmin;
-	};
+    case (!alive _collaborant): {
+        Info_1("Military Administration %1 was captured - collaborant has been killed.", _marker);
+        [_milAdministration, "CAPTURE"] call SCRT_fnc_location_removeMilAdmin;
+        sleep 1;
+        [_marker] call A3A_fnc_mrkUpdate;
+    };
+    case (!alive _milAdministration): {
+        Info_1("Military Administration %1 was destroyed.", _marker);
+        [_milAdministration, "DESTROY"] call SCRT_fnc_location_removeMilAdmin;
+        destroyedSites pushBackUnique _marker;
+        publicVariable "destroyedSites";
+        sleep 1;
+        [_marker] call A3A_fnc_mrkUpdate;
+    };
 };
 
 waitUntil {sleep 1; (spawner getVariable _marker == 2)};

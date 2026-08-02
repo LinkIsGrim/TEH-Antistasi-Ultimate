@@ -52,7 +52,7 @@ _veh call A3A_fnc_vehicleTextureSync;
 [_veh] call ace_rearm_fnc_disable;
 
 private _typeX = typeOf _veh;
-if (_veh isKindOf "Car" or{ _veh isKindOf "Tank"}) then {
+if (_veh isKindOf "Car" or {_veh isKindOf "Tank"}) then {
 	// isn't this section basically supposed to be all ground vehicles?
 	if (_side isEqualTo teamPlayer) exitWith {};				// arguable
 	if (_side isEqualTo civilian && {enableVehicleAutoLockCiv}) exitWith { [_veh, true] call A3U_fnc_setLock};
