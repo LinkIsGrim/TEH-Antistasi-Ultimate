@@ -17,6 +17,10 @@
 	{} // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_fnc_addSetting;
 
+//----------------------
+// Infantry loot actions
+//----------------------
+
 private _unloadToBox = [
 	"LootVehicleTransferAction", "Pack to the box", "a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa",
 	{
@@ -165,6 +169,10 @@ private _selectAILoadout = [
 //"SoldierGB" green side men
 ["SoldierGB", 0, ["ACE_MainActions"], _selectAILoadout, true] call ace_interact_menu_fnc_addActionToClass;
 
+//------------------------
+// Vehicle utility actions
+//------------------------
+
 private _attachFlag = [
 	"LootVehicleTransferAction", "Change flag", "\A3\ui_f\data\igui\cfg\actions\takeflag_ca.paa",
 	{
@@ -178,6 +186,30 @@ private _attachFlag = [
 	{
 	}
 ] call ace_interact_menu_fnc_createAction;
+
+private _quickResupplyAction = [
+    "TEH_QuickResupply",
+    "Quick resupply",
+    "\A3\Ui_f\data\IGUI\Cfg\Actions\reload_ca.paa",
+    {
+        [] call JN_fnc_arsenal_quickReload;
+    },
+    {
+        params ["_target", "_player"];
+
+        alive _target
+        && {vehicle _player isEqualTo _player}
+        && {[_player, _target, []] call ace_common_fnc_canInteractWith}
+    },
+    {},
+    [],
+    [0, 0, 0],
+    5
+] call ace_interact_menu_fnc_createAction;
+
+//---------------------
+// Vehicle loot actions
+//---------------------
 
 private _transferBetweenAction = [
 	"LootVehicleTransferAction", "Unload Cargo", "a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa",
@@ -266,8 +298,16 @@ private _actionVehicle = [
 	{}] call ace_interact_menu_fnc_createAction;
 
 {
-	[_x, 0, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
-	[_x, 1, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
+	if (TEH_VehicleFlags) then {
+		[_x, 0, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
+		[_x, 1, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
+	};
+	
+	if (getNumber (configFile >> "CfgVehicles" >> _x >> 'ace_rearm_defaultSupply') > 0) then {
+		[_x, 0, ["ACE_MainActions"], _quickResupplyAction, true] call ace_interact_menu_fnc_addActionToClass;
+		[_x, 1, ["ACE_MainActions"], _quickResupplyAction, true] call ace_interact_menu_fnc_addActionToClass;
+	};
+
 	[_x, 0, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 1, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 0, ["ACE_MainActions"], _storeLootSellVehicle, true] call ace_interact_menu_fnc_addActionToClass;

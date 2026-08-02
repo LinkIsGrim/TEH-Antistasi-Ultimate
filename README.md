@@ -14,7 +14,6 @@
 </div>
 
 ## TEH Changes
-
 - **New game mode(WIP)**
 	- "War Tier Zero" is an all-new hardcore prologue to the Antistasi campaign. Survive as ordinary citizen with no support and fight your way into resistance ranks. [Quest Guide](WAR_TIER_ZERO.md)
 - **Changes to the trader**
@@ -36,13 +35,13 @@
 	- [experimental] "Vehicle ammo system" parameter - vehicles no longer can be rearmed by ammo truck, magazines are stored in the arsenal and reloaded when garaged.
 - **Equipping streamlined**:
 	- respawn equipment now doesn't leave armor to a chance - if you have stocks, you'll get helmet and vest
-	- New action: Quick Resupply (restocks medicine and reloads existing mags), available on Arsenal and friendly flags
+	- New action: Quick Resupply, available on Arsenal, rebel Ammo Trucks and friendly flags.
+		- Restocks medicine and reloads existing mags in the player inventory
+		- Nearest vehicle is getting a starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
+		- NB! Doesn't work on War Level 1, when starting with Empty Arsenal challenge!
+	- On player (re)spawn Quick Equip is executed automatically. Equips random eligible weapon and its default ammo, ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
 	- New action: Equip last loadout (last loaded or saved loadout), available on arsenal
 	- New ACE action: you can apply your loadout to friendly AI near the Arsenal. Loadout name should start with "AI<space>" e.g. "AI tanky AA Petros"
-- **Starter Kits**:
-	- Vehicles from the garage now come with a starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
-	- On player (re)spawn Quick Equip is executed automatically. Equips random eligible weapon and its default ammo, ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
-	- NB! Doesn't work on War Level 1, when starting with Empty Arsenal challenge!
 - **Undercover Rework**:
 	- All the undercover checks are knowledge based (enemies have to know about your presense).
 	- Offroading doesn't mark your car as reported.
@@ -128,13 +127,9 @@
 	- When deployed, use "Align Platforms" action on the scaffold to snap nearby towers to the scaffold
 	- You can continue building on top of the platforms (toggle Alt and Shift in the Building planner), e.g. sandbags walls. If they appear angled, use "Align Platforms" again.
 	- Known issue: builder can destroy static weapons. Build the defenses first, and then bring weapons upstairs.
-- **Global Mobilization**:
-	- Epoch restricted CUP & Vanilla weapons list to appear in the loot
-	- German names for the NPC
-	- Deutsche Mark (DM) as currency on Weferlingen
-	- Known issue: Trader will still offer all the futuristic weapons and items
 - **Mods support**:
-	- **[Point Campfire] (https://steamcommunity.com/sharedfiles/filedetails/?id=3747933298)** - popular Point Campfire extension is supported thru a compatibility patch.
+	- **[Cold War Loot Limiter](https://steamcommunity.com/sharedfiles/filedetails/?id=3775193695)** - overrides loot boxes pool (Vanilla/CUP/RHS/3CB) to only contain Cold War and older items.
+	- **[Point Campfire](https://steamcommunity.com/sharedfiles/filedetails/?id=3747933298)** - popular Point Campfire extension is supported thru a compatibility patch.
 	- **[GX-Drones](https://steamcommunity.com/sharedfiles/filedetails/?id=3460981677)** - a variety of deployable and 40mm UGL launched drones. If new game is started with the mod installed, some drones are added to the arsenal automatically. Otherwise some are available at the trader under "GX-Drones"
 	- **[X26 Tasers](https://steamcommunity.com/sharedfiles/filedetails/?id=2515852876)** - if installed, available to every faction at the new game start. Otherwise can be found at the trader under "X26 Tasers".
 	- **[Expanded Anti Air](https://steamcommunity.com/sharedfiles/filedetails/?id=3399739919)** - a variety of AA and radar trucks. SAM truck is available at the trader.
