@@ -10,7 +10,11 @@ if ("specialGM" in A3A_factionEquipFlags) exitWith {
 	private _cfgName = configName _configClass;
 	if (_cfgName in ["gm_itemAttachment_suppressor_base"]) exitWith {false};
 	if (_itemMod == "gm") exitWith {true};
-	if (_cfgName in A3U_whitelistGMitems ) exitWith {true};
+	if (_cfgName in ["DemoCharge_Remote_Mag", "ItemGPS", "ACE_ATragMX","ACE_Kestrel4500","ACE_DAGR",
+		"ACE_microDAGR","MineDetector","ACE_M26_Clacker","ACE_Clacker", "CUP_srifle_G22_wdl", "CUP_muzzle_snds_AWM",
+		"CUP_optic_LeupoldMk4_10x40_LRT_Woodland_pip", "CUP_5Rnd_762x67_G22", "CUP_bipod_Harris_1A2_L_BLK",
+		"CUP_srifle_Mosin_Nagant", "CUP_optic_PEM", "CUP_5Rnd_762x54_Mosin_M", "CUP_srifle_LeeEnfield", "CUP_10x_303_M",
+		"CUP_srifle_Remington700", "CUP_6Rnd_762x51_R700", "CUP_NVG_PVS7", "CUP_NVG_1PN138"] ) exitWith {true};
 	false;
 };
 
