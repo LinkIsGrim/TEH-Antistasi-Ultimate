@@ -451,7 +451,7 @@ _fastTravelButton ctrlAddEventHandler ["ButtonClick", {
     private _display = ctrlParent _control;
     private _markerName = _display getVariable ["A3U_mrkMenu_markerOrig", ""];
     if (_markerName == "") exitWith {};
-    [_markerName] spawn A3A_fnc_fastTravelRadio;
+    [_markerName] spawn A3A_fnc_TEHTravelRadio;
 }];
 
 private _fastTravelAllowed = _isPlayerControlled && {!_isDestroyed && !_isMilitaryAdministration};
