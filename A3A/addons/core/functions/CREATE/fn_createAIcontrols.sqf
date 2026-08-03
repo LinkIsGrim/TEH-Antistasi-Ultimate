@@ -300,9 +300,13 @@ _conquered = false;
 _winner = Occupants;
 if (spawner getVariable _markerX != 2) then
 {
-    _conquered = true;
     _allUnits = allUnits select {(side _x != civilian) and (side _x != _sideX) and (alive _x) and (!captive _x)};
+    if (count _allUnits == 0) exitWith {};
+    
     _closest = [_allUnits,_positionX] call BIS_fnc_nearestPosition;
+    if ((_closest distance2D _positionX) > 500) exitWith {};
+
+    _conquered = true;
     _winner = side _closest;
     _loser = Occupants;
     Debug_3("Control %1 captured by %2. Is Roadblock: %3", _markerX, _winner, _isControl);
