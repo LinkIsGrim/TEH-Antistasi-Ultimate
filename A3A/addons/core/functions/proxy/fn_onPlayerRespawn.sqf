@@ -3,7 +3,7 @@ FIX_LINE_NUMBERS()
 if (isDedicated) exitWith {};
 params ["_newUnit","_oldUnit"];
 
-if (TEH_ballsofsteel) exitWith {
+if (missionNamespace getVariable ["TEH_ballsOfSteel",0] == 1) exitWith {
 	["hardcoreLoss",false,true] remoteExec ["BIS_fnc_endMission"];
 };
 
