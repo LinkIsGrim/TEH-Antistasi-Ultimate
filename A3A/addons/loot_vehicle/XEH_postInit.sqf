@@ -174,7 +174,7 @@ private _selectAILoadout = [
 //------------------------
 
 private _attachFlag = [
-	"LootVehicleTransferAction", "Change flag", "\A3\ui_f\data\igui\cfg\actions\takeflag_ca.paa",
+	"TEH_attachFlag", "Change flag", "\A3\ui_f\data\igui\cfg\actions\takeflag_ca.paa",
 	{
 		params ["_target", "_player"];
 		private _logic = "Logic" createVehicleLocal [0, 0, 0];
@@ -182,29 +182,71 @@ private _attachFlag = [
 
 		[_logic] call zen_modules_fnc_moduleAttachFlag;
 	},
-	{ TEH_VehicleFlags },
 	{
-	}
+		params ["_target", "_player"];
+
+        alive _target
+	},
+	{}
 ] call ace_interact_menu_fnc_createAction;
 
 private _quickResupplyAction = [
     "TEH_QuickResupply",
     "Quick resupply",
     "\A3\Ui_f\data\IGUI\Cfg\Actions\reload_ca.paa",
+    {},
     {
-        [] call JN_fnc_arsenal_quickReload;
+        params ["_target", "_player"];
+
+        alive _target && (_target getVariable ["originalSide", sideUnknown] == teamPlayer)
+        && {getNumber (configOf _target >> "ace_rearm_defaultSupply") > 0}
     },
     {
         params ["_target", "_player"];
 
-        alive _target
-        && {vehicle _player isEqualTo _player}
-        && {[_player, _target, []] call ace_common_fnc_canInteractWith}
-    },
-    {},
-    [],
-    [0, 0, 0],
-    5
+        private _statement = {
+            params ["_target", "_player", "_resupplyTarget"];
+
+            [_resupplyTarget] call JN_fnc_arsenal_quickReload;
+        };
+
+        private _vehicles = (
+            nearestObjects [
+                _target,
+                ["LandVehicle", "Air", "Ship"],
+                LootVehicleDistance
+            ]
+        ) select { alive _x };
+
+        // Player is always first.
+        private _resupplyTargets = [_player];
+		// Ammo truck is always last.
+		_vehicles = _vehicles - [_target];
+		_vehicles pushBack _target;
+
+        _resupplyTargets append _vehicles;
+
+        [
+            _resupplyTargets,
+            _statement,
+            _target
+        ] call ace_interact_menu_fnc_createVehiclesActions;
+    }
+] call ace_interact_menu_fnc_createAction;
+
+private _storeLootSellVehicle = [
+	"LootVehicleSellAction", "Sell Vehicle", "",
+	{
+		params ["_target", "_player"];
+		if ([getPosATL _player] call A3A_fnc_enemyNearCheck) exitWith {
+			["Sell Vehicle", "Can't sell this vehicle when there are enemies nearby"] call SCRT_fnc_misc_deniedHint;};
+		[_player,_target] spawn A3A_fnc_sellVehicle;
+	},
+	{
+		params ["_target", "_player"];
+		count crew _target == 0;
+	},
+	{}
 ] call ace_interact_menu_fnc_createAction;
 
 //---------------------
@@ -245,20 +287,6 @@ private _transferBetweenAction = [
 		[_vehicles, _statement, _target] call ace_interact_menu_fnc_createVehiclesActions;
 	}
 ] call ace_interact_menu_fnc_createAction;
-
-private _storeLootSellVehicle = [
-	"LootVehicleSellAction", "Sell Vehicle", "",
-	{
-		params ["_target", "_player"];
-		if ([getPosATL _player] call A3A_fnc_enemyNearCheck) exitWith {
-			["Sell Vehicle", "Can't sell this vehicle when there are enemies nearby"] call SCRT_fnc_misc_deniedHint;};
-		[_player,_target] spawn A3A_fnc_sellVehicle;
-	},
-	{
-		params ["_target", "_player"];
-		count crew _target == 0;
-	},
-	{}] call ace_interact_menu_fnc_createAction;
 
 private _actionVehicle = [
 	"LootVehicleGatherAllLoot", "Gather all loot", "a3\ui_f\data\IGUI\Cfg\Actions\loadVehicle_ca.paa",
@@ -303,11 +331,8 @@ private _actionVehicle = [
 		[_x, 1, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
 	};
 	
-	if (getNumber (configFile >> "CfgVehicles" >> _x >> 'ace_rearm_defaultSupply') > 0) then {
-		[_x, 0, ["ACE_MainActions"], _quickResupplyAction, true] call ace_interact_menu_fnc_addActionToClass;
-		[_x, 1, ["ACE_MainActions"], _quickResupplyAction, true] call ace_interact_menu_fnc_addActionToClass;
-	};
-
+	[_x, 0, ["ACE_MainActions"], _quickResupplyAction, true] call ace_interact_menu_fnc_addActionToClass;
+	[_x, 1, ["ACE_MainActions"], _quickResupplyAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 0, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 1, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 0, ["ACE_MainActions"], _storeLootSellVehicle, true] call ace_interact_menu_fnc_addActionToClass;

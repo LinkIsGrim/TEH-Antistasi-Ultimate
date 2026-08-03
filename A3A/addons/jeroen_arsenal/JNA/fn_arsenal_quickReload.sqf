@@ -2,6 +2,7 @@
    adds missing ACE medicine (doesn't replace existing)
    reloads magazines in the inventory (by technically replacing with new mags) */
 #include "tehBulletPile.inc"
+params ["_veh"];
 
 cache = {
     params ["_map","_key","_value"];
@@ -121,11 +122,16 @@ private _allmags = +magazineCargo player;
 
 } forEach _needed;
 
-private _veh = (nearestObjects [player, ["Car", "Wheeled_APC_F", "Tank"], 50, true] select {alive _x}) param [0, objNull];
+if (isNil "_veh") then {
+    _veh = [vehicle player, objNull] select (vehicle player == player);
+};
 
-if (isNull _veh) exitWith {};
+if (isNull _veh || _veh == player) exitWith {};
 
- [_veh] remoteExec ['JN_fnc_arsenal_turretLoad', 2];
+[_veh] call A3A_fnc_empty;
+waitUntil {sleep 0.1; count itemCargo _veh == 0 };
+
+[_veh] remoteExec ['JN_fnc_arsenal_turretLoad', 2];
 
 //Loading starter kit
 _primarymag = (primaryWeaponMagazine player) select 0;

@@ -126,18 +126,19 @@ if(hasInterface)then{
     ];
 
     //add quick equip button
-     _object addAction [
+    _object addAction [
         (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\IGUI\Cfg\Actions\reload_ca.paa"] + format["<t size='1'> %1</t>", "Quick resupply"]),
         { 
-            [] call JN_fnc_arsenal_quickReload;
+            [vehicle player] call JN_fnc_arsenal_quickReload;
         },
         [],
-        6,
+        15,
         true,
         false,
         "",
-        "alive _target && {_target distance _this < 5} && {vehicle player == player}"
+        "true"
     ];
+
      _object addAction [
         (format ["<img image='%1' size='1.6' shadow=2/>", "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\uniform_ca.paa"] + format["<t size='1'> %1</t>", "Equip last loadout"]),
         { 
