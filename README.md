@@ -16,6 +16,8 @@
 ## TEH Changes
 - **New game mode(WIP)**
 	- "War Tier Zero" is an all-new hardcore prologue to the Antistasi campaign. Survive as ordinary citizen with no support and fight your way into resistance ranks. [Quest Guide](WAR_TIER_ZERO.md)
+- **TEH Parameters**
+	- If you're switching from Antistasi Ultimate, you can quickly find all the new parameters by searching for "TEH" prefix.
 - **Changes to the trader**
 	- All Vanilla/CUP/RHS/NIArms primary weapon variants available for buying.
 	- Fixed prices (epoch + features + caliber), and compatibility fixes for items.
@@ -32,12 +34,12 @@
 	- Repack primary ammo self action (ACE) - streamlines repacking of primary magazines with a suitable ammo from other sources. Requires a Toolkit or a Defusal Kit to work with the belts.
 	- Unrestricted vehicle loading (ignores both weight and volume)
 	- Unrestricted unit load (ignores weight). You can now pack a full backpack without external shenanigans.
-	- [experimental] "Vehicle ammo system" parameter - vehicles no longer can be rearmed by ammo truck, magazines are stored in the arsenal and reloaded when garaged.
+	- [experimental] "Vehicle ammo system" parameter - vehicles no longer can be infinitely rearmed by an ammo truck, magazines are stored in the arsenal and reloaded when garaged. Instead, rearm is handled by Quick Resupply, see next section.
 - **Equipping streamlined**:
 	- respawn equipment now doesn't leave armor to a chance - if you have stocks, you'll get helmet and vest
-	- New action: Quick Resupply, available on Arsenal, rebel Ammo Trucks and friendly flags.
+	- New action: Quick Resupply, available on Arsenal and friendly flags (normal action), also rebel Ammo Trucks (ACE).
 		- Restocks medicine and reloads existing mags in the player inventory
-		- Nearest vehicle is getting a starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
+		- When used from the vehicle, it also provides a vehicle starter kit, including medicine, and up to 600 bullets of primary ammo (requires loaded mag).
 		- NB! Doesn't work on War Level 1, when starting with Empty Arsenal challenge!
 	- On player (re)spawn Quick Equip is executed automatically. Equips random eligible weapon and its default ammo, ACE medicine and equips Armor and Helmet (if availble) when player using random loadout (i.e. respective rebel loadout is not specified by commander).
 	- New action: Equip last loadout (last loaded or saved loadout), available on arsenal
@@ -55,7 +57,7 @@
 	- [experimental parameter] Vehicle ammo can only be collected in the Arsenal by garaging or selling vehicles. Ammo truck doesn't count as ammo source and can't be used for a field rearm
 - **Second Chance**: when "Allow players to take control of AI units while unconscious" parameter is set to "Yes", on being shot down you automatically take control of nearby AI unit to save yourself (once per knockdown)
 	- Skipped if the wound is fatal
-	- Known issue: Original body is invulnerable  while controlling an AI (but still bleeds out and can drown, AI control ends shortly before death)
+	- Known issue: Original body is invulnerable while controlling an AI (but still bleeds out and can drown, AI control ends shortly before death)
 	- Known issue: Return to original body may break if additional out-of-body experience is involved (e.g. Zeus).
 	- Timeout is postponed until owner is no longer incapacitated.
 	- If AI is knocked down, control is lost, no additional attempts provided.
@@ -106,7 +108,7 @@
 	- Enemies will attempt to destroy long range AA (e.g. radar + SAM site) if vehicle is sniped from 2 or more kilometers away.
 	- Support corridors (aka Carrier markers) are moved dynamically to allow less predictable attack vectors
 	- Enemy Air QRF disembark range increased from 200-400 to 500-800 to increase survivability against MANPADs and binoculars.
-- **Challeges**: Optional challenges can be found in AI and Rebel balance section
+- **Challeges**: Evergrowing list of Optional challenges can be found in AI and Rebel balance section
 	- Enemies will send small infantry squads to rebel markers in order to recapture nearby rebel locations or weaken their garrisons (It's chance based at 1% + 0.25% per war level per marker each minute IF there is an inactive enemy base in 2km radius.)
 	- Civilians guide the police if they see an armed rebel.
 	- Enemy outposts and ports are protected by antitank mines to mitigate vehicle rush
