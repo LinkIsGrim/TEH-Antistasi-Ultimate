@@ -98,7 +98,7 @@ if (_units findIf {
 
 positionTel = [];
 
-[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_click"] call A3A_fnc_customHint;
+if (_quickMarker == "") then {[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_click"] call A3A_fnc_customHint;};
 if (!visibleMap) then {openMap true};
 showCommandingMenu "";
 
@@ -160,6 +160,12 @@ if (_positionTel isEqualTo []) exitWith {
 private _nearvic = [_vics, _positionTel] call BIS_Fnc_nearestPosition;
 
 private _base = [_markersX, _positionTel] call BIS_Fnc_nearestPosition;
+
+private _traderExists = !(isNil "traderMarker");
+if (_traderExists && {_base == traderMarker && {isTraderQuestAssigned || !isTraderQuestCompleted}}) exitWith {
+	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_trader_locked"] call SCRT_fnc_misc_deniedHint;
+};
+
 private _rebelMarkers = if (!isNil "traderMarker") then {["Synd_HQ", traderMarker]} else {["Synd_HQ"]};
 private _isValidTargetLocation = (_base in (_rebelMarkers + airportsX + milbases));
 
@@ -309,6 +315,7 @@ if (_baseDist <= 500 || _vicDist <= 100) then {
 	
 	sleep 5;
 	{_x allowDamage true} forEach _ftUnits;
+	['off'] call SCRT_fnc_ui_toggleMenuBlur;
 } else {
 	[localize "STR_A3A_Dialogs_fast_travel_header", localize "STR_A3A_Dialogs_fast_travel_missclick"] call SCRT_fnc_misc_deniedHint;
 };

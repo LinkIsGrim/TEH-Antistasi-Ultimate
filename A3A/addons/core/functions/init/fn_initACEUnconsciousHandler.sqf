@@ -19,6 +19,7 @@ Info("initACEUnconsciousHandler started");
 	if (_knockout) exitWith
 	{
 		_unit setVariable ["incapacitated", true, true];	// for canFight tests
+
 		if (TEH_POWshortcuts) then {
 			//TODO: WIP
 			_unit setCaptive true;
@@ -105,7 +106,6 @@ Info("initACEUnconsciousHandler started");
 	// surrender if we don't have a primary weapon
 	if (primaryWeapon _unit == "" || _unit getVariable ["ace_captives_isHandcuffed", false]) exitWith { [_unit] spawn A3A_fnc_surrenderAction };
 
-
 	// find closest fighting unit within 50m
 	private _nearestUnit = objNull;
 	private _minDist = 999;
@@ -121,4 +121,3 @@ Info("initACEUnconsciousHandler started");
 
 }] call CBA_fnc_addEventHandler;
 
-Info("initACEUnconsciousHandler completed");
