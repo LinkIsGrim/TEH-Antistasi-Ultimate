@@ -33,6 +33,16 @@ private _ifvWeight =       [ 0,  0,  2,  4,  6,  8, 12, 16, 25, 30] select _leve
 private _tankWeight =      [ 0,  0,  0, 15, 20, 25, 30, 35, 40, 50] select _level;
 private _ltankWeight =     [ 0, 0, 15, 25, 30, 35, 30, 25, 20, 15] select _level;
 
+//Tank diet. Reduces tank weight.
+private _reducedTankWeight = (_tankWeight + _ltankWeight) * (1 - TEH_TankDiet / 100);
+
+_tankWeight = _tankWeight * TEH_TankDiet / 100;
+_ltankWeight = _ltankWeight * TEH_TankDiet / 100;
+
+_apcWeight = _apcWeight + _reducedTankWeight * 0.4;
+_lapcWeight = _lapcWeight + _reducedTankWeight * 0.4;
+_ifvWeight = _ifvWeight + _reducedTankWeight * 0.2;
+
 // Assumption is that at least one of APC or battle bus exists
 if (_faction get "vehiclesTanks" isEqualTo []) then { _tankWeight = _tankWeight + _ltankWeight };
 if (_faction get "vehiclesLightTanks" isEqualTo []) then { _ltankWeight = _ltankWeight + _ifvWeight };

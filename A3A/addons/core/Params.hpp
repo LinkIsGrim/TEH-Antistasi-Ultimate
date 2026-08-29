@@ -1712,6 +1712,43 @@ class Params
         default = 10;
     };
 	
+    class TEH_TankDiet: AIBalanceParams
+    {
+        attr[] = {"server"};
+        title = "[TEH] Tank spawn reduction";
+		tooltip = "Reduces the default weighting of tanks and light tanks in ground vehicle selections. Removed weight is redistributed to APCs, IFVs, and lighter military vehicles.";
+        values[] = {100,50,25,10,0};
+        texts[] = {"Vanilla", "50% reduction", "75% reduction", "90% reduction", "No tanks"};
+        class difficulty
+        {
+            class solo
+            {
+                easy = 10;
+                medium = 25;
+                hard = 50;
+            };
+            class small
+            {
+                easy = 10;
+                medium = 25;
+                hard = 50;
+            };
+            class medium
+            {
+                easy = 50;
+                medium = 50;
+                hard = 100;
+            };
+            class large
+            {
+                easy = 50;
+                medium = 100;
+                hard = 100;
+            };
+        };
+        default = 100;
+    };
+
 	class TEH_counterSeverity: AIBalanceParams
     {
         attr[] = {"server"};

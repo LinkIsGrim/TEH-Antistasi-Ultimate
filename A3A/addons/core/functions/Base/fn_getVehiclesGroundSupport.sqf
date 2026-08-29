@@ -27,6 +27,15 @@ private _milApcWeight =     [ 0,  5, 15, 25,  0,  0,  0,  0,  0,  0] select _lev
 private _tankWeight =       [ 0,  0,  0, 15, 20, 25, 30, 35, 40, 50] select _level;
 private _ltankWeight =      [ 0, 10, 15, 25, 30, 35, 30, 25, 20, 15] select _level;
 
+//Tank diet
+private _reducedTankWeight = (_tankWeight + _ltankWeight) * (1 - TEH_TankDiet / 100);
+
+_tankWeight = _tankWeight * TEH_TankDiet / 100;
+_ltankWeight = _ltankWeight * TEH_TankDiet / 100;
+
+_milApcWeight = _milApcWeight + _reducedTankWeight * 0.7;
+_milCarWeight = _milCarWeight + _reducedTankWeight * 0.3;
+
 // filter out weak AA that shouldn't be tier-scaled (eg. Avenger, zu23)
 private _vehAA = (_faction get "vehiclesAA") select { A3A_vehicleResourceCosts get _x >= 100 };
 if (_vehAA isEqualTo []) then { _tankWeight = _tankWeight + _aaWeight };
