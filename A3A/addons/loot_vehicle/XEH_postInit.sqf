@@ -266,7 +266,7 @@ private _transferBetweenAction = [
 			systemChat "LootVehicle: Error: couldn't find any nearby vehicle";
 		} else {
 			systemChat "LootVehicle: Using nearest vehicle";
-			[_nearestVehicle,[_target],_player, false] call loot_vehicle_fnc_transferToVehicle;
+			[_nearestVehicle,[_target],_player, false] spawn loot_vehicle_fnc_transferToVehicle;
 		};
 	},
 	{
@@ -328,18 +328,15 @@ private _actionVehicle = [
 {
 	if (TEH_VehicleFlags) then {
 		[_x, 0, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
-		[_x, 1, ["ACE_MainActions"], _attachFlag, true] call ace_interact_menu_fnc_addActionToClass;
 	};
 	
 	[_x, 0, ["ACE_MainActions"], _quickResupplyAction, true] call ace_interact_menu_fnc_addActionToClass;
-	[_x, 1, ["ACE_MainActions"], _quickResupplyAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 0, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
-	[_x, 1, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 0, ["ACE_MainActions"], _storeLootSellVehicle, true] call ace_interact_menu_fnc_addActionToClass;
-	[_x, 1, ["ACE_MainActions"], _storeLootSellVehicle, true] call ace_interact_menu_fnc_addActionToClass;
 	[_x, 0, ["ACE_MainActions"], _actionVehicle, true] call ace_interact_menu_fnc_addActionToClass;
-	[_x, 1, ["ACE_MainActions"], _actionVehicle, true] call ace_interact_menu_fnc_addActionToClass;
+
 } forEach ["landVehicle","air","ship"];
 
 ["ReammoBox_F", 0, ["ACE_MainActions"], _actionVehicle, true] call ace_interact_menu_fnc_addActionToClass;
-["ReammoBox_F", 1, ["ACE_MainActions"], _actionVehicle, true] call ace_interact_menu_fnc_addActionToClass;
+["B_CargoNet_01_ammo_F", 0, ["ACE_MainActions"], _transferBetweenAction, true] call ace_interact_menu_fnc_addActionToClass;
+

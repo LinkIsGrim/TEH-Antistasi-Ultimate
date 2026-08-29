@@ -232,7 +232,24 @@ private _ammoBox = if (garrison getVariable [_marker + "_lootCD", 0] == 0) then 
 
 	// Otherwise when destroyed, ammoboxes sink 100m underground and are never cleared up
 	_ammoBox addEventHandler ["Killed", { [_this#0] spawn { sleep 10; deleteVehicle (_this#0) } }];
-	_ammoBox setVariable ["ace_cargo_noLoad", true, true];
+
+	//Loading options
+	[_ammoBox, -1] call ace_cargo_fnc_setSize; //disable ACE load
+	_ammoBox setVariable ["TEH_unloadMultiplier",10]; //Unload with a penalty
+	_ammoBox addAction [
+		"How to unload",
+		{
+			[
+				"Unloading ammo crate",
+				format [
+					"To unload this ammo crate, bring your vehicle within %1 m and use ACE > Interactions > Unload Cargo.",
+					LootVehicleDistance
+				]
+			] call A3A_fnc_customHint;
+		},
+		nil,
+		-10
+	];
 	
 	private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 	private _crateContents = selectRandom [
