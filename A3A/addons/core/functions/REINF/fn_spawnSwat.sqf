@@ -63,20 +63,32 @@ if (TEH_spawnSwat == 1) then {
 if (TEH_spawnSwat == 2) then {
 	private _faction = [A3A_faction_occ, A3A_faction_inv] select (_side == Invaders);
 	private _partyVan = selectRandom (_faction get "vehiclesPolice");
-    private _spawnPos = (getMarkerPos _loc) findEmptyPosition [5, 40, _partyVan];
+	private _spawnPos = (getMarkerPos _loc) findEmptyPosition [5, 40, _partyVan];
 	if (_spawnPos isEqualTo []) exitWith {};
 	_veh = createVehicle [_partyVan, _spawnPos, [], 0, "NONE"];
 
 	private _typeCargoGroup = [_partyVan, _side] call A3A_fnc_cargoSeats;
-	_grp = [_spawnPos, _side, _typeCargoGroup, true,false] call A3A_fnc_spawnGroup;
+	_grp = [_spawnPos, _side, _typeCargoGroup, true, false] call A3A_fnc_spawnGroup;
+
+	private _swatHelmets = _faction getOrDefault [
+		"TEH_swatHelmets",
+		["H_PASGT_basic_blue_F"]
+	];
+
+	private _swatVests = _faction getOrDefault [
+		"TEH_swatVests",
+		["V_TacVest_gen_F"]
+	];
 
 	{
 		private _unitToChange = _x;
+
 		removeHeadgear _unitToChange;
-		_unitToChange addHeadgear "H_PASGT_basic_blue_F";
+		_unitToChange addHeadgear selectRandom _swatHelmets;
+
 		private _vestItems = vestItems _unitToChange;
 		removeVest _unitToChange;
-		_unitToChange addVest "V_TacVest_gen_F";
+		_unitToChange addVest selectRandom _swatVests;
 
 		{
 			_x params ["_item", "_count"];

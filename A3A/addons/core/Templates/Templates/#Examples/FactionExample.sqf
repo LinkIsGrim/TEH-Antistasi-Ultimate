@@ -1072,3 +1072,12 @@ private _unitTypes = [
 ["other", [["Traitor", _traitorTemplate, [], ["other"]]], _militiaLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
 //The following lines are determining the loadout for the AI used in the "Invader Punishment" mission
 ["other", [["Unarmed", _UnarmedTemplate, [], ["other"]]], _militaryLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
+
+// [TEH] Optional SWAT equipment overrides.
+// If a key is not defined, TEH falls back to the default vanilla equipment.
+
+// SWAT helmets. One entry is selected randomly for each unit.
+["TEH_swatHelmets", ["H_PASGT_basic_blue_F"]] call _fnc_saveToTemplate;
+
+// SWAT vests. Existing vest contents are preserved when the vest is replaced.
+["TEH_swatVests", ["V_TacVest_gen_F"]] call _fnc_saveToTemplate;

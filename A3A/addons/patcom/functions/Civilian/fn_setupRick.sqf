@@ -9,9 +9,9 @@ removeBackpack _rick;
 removeHeadgear _rick;
 removeGoggles _rick;
 
-_rick forceAddUniform "U_C_Man_casual_3_F";
-_rick addBackpack "B_CivilianBackpack_01_Sport_Green_F";
-_rick addHeadgear "H_Bandanna_surfer_grn";
+_rick forceAddUniform selectRandom (A3A_faction_civ getOrDefault ["TEH_rickUniforms", ["U_C_Man_casual_3_F"]]);
+_rick addBackpack selectRandom (A3A_faction_civ getOrDefault ["TEH_rickBackpacks", ["B_CivilianBackpack_01_Sport_Green_F"]]);
+_rick addHeadgear selectRandom (A3A_faction_civ getOrDefault ["TEH_rickHeadgears", ["H_Bandanna_surfer_grn"]]);
 
 private _currency = A3A_faction_civ get "currencySymbol";
 
@@ -23,8 +23,13 @@ _rick addAction [
 
         // Pity gun settings. Local to this action on purpose.
         private _price = 300;
-        private _weapon = "hgun_Pistol_01_F";
-        private _magazine = "10Rnd_9x21_Mag";
+        private _loadout = selectRandom (A3A_faction_civ getOrDefault [
+            "TEH_civilianHandgunLoadouts",
+            [["hgun_Pistol_01_F", "", "", "", ["10Rnd_9x21_Mag"], [], ""]]
+        ]);
+
+        private _weapon = _loadout select 0;
+        private _magazine = (_loadout select 4) select 0;
         private _magazineCount = 3;
         private _boxClass = "Box_Syndicate_Ammo_F";
 

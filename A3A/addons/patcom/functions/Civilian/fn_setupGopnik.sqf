@@ -3,28 +3,9 @@ params ["_unit"];
 private _loadouts = (A3A_customUnitTypes getVariable ["loadouts_civ_militia_Man", []]) select 0;
 _unit setUnitLoadout selectRandom _loadouts;
 
-private _weaponPresets = [
-    // weapon, magazine, magazine count
-    ["hgun_Pistol_01_F", "10Rnd_9x21_Mag", 4],
-    ["hgun_P07_F", "16Rnd_9x21_Mag", 3],
-    ["sgun_HunterShotgun_01_sawedoff_F", "2Rnd_12Gauge_Pellets", 5],
-    ["sgun_HunterShotgun_01_F", "2Rnd_12Gauge_Pellets", 5]
-] select {
-    isClass (configFile >> "CfgWeapons" >> (_x # 0))
-    && {isClass (configFile >> "CfgMagazines" >> (_x # 1))}
-};
-
-if (_weaponPresets isEqualTo []) then {
-    _weaponPresets = [["hgun_P07_F", "16Rnd_9x21_Mag", 3]];
-};
-
 _unit setVariable ["TEH_IsGopnik", true, true];
 _unit setVariable ["spawner", false, true];
 _unit setVariable ["TEH_GopnikActivated", false, true];
-_unit setVariable ["TEH_GopnikWeaponPreset", selectRandom _weaponPresets, true];
-
-private _loadouts = (A3A_customUnitTypes getVariable ["loadouts_civ_militia_Man", []]) select 0;
-_unit setUnitLoadout selectRandom _loadouts;
 
 [_unit,selectRandom ["RussianHead_1","RussianHead_2","RussianHead_3","RussianHead_4","RussianHead_5"],selectRandom ["male01rus","male02rus","male03rus"]] call BIS_fnc_setIdentity;
 
@@ -56,7 +37,7 @@ _unit addAction [
             "(Cautious Russian) Спокойно, командир. Мы тут просто стоим.",
             "(Cautious Russian) Без резких движений, понял?",
             "(Cautious Russian) Давай разойдёмся красиво.",
-            "(Cautious Russian) Тихо-тихо, Рэмбо местный.",
+            "(Cautious Russian) Тихо-тихо, герой местный.",
             "(Cautious Russian) Не начинай, и мы не начнём.",
             "(Cautious Russian) Держи дистанцию, военный.",
             "(Cautious Russian) У нас тут свои дела, у тебя свои."
@@ -103,18 +84,49 @@ _unit addEventHandler ["FiredNear", {
 
         if (!alive _unit) exitWith {};
 
-        private _preset = _unit getVariable ["TEH_GopnikWeaponPreset", []];
-        if (_preset isEqualTo []) exitWith {};
+        private _isPrimary = random 1 < 0.5;
+        private _loadout = if (_isPrimary) then {
+            selectRandom (A3A_faction_civ getOrDefault [
+                "TEH_civilianPrimaryLoadouts",
+                [
+                    ["sgun_HunterShotgun_01_sawedoff_F", "", "", "", ["2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets"], [], ""],
+                    ["sgun_HunterShotgun_01_F", "", "", "", ["2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets"], [], ""]
+                ]
+            ])
+        } else {
+            selectRandom (A3A_faction_civ getOrDefault [
+                "TEH_civilianHandgunLoadouts",
+                [
+                    ["hgun_Pistol_01_F", "", "", "", ["10Rnd_9x21_Mag", "10Rnd_9x21_Mag", "10Rnd_9x21_Mag", "10Rnd_9x21_Mag"], [], ""],
+                    ["hgun_P07_F", "", "", "", ["16Rnd_9x21_Mag", "16Rnd_9x21_Mag", "16Rnd_9x21_Mag"], [], ""]
+                ]
+            ])
+        };
 
-        _preset params ["_weapon", "_mag", "_magCount"];
+        _loadout params ["_weapon", "_muzzle", "_pointer", "_optic", "_magazines", "_secondaryAmmo", "_bipod"];
 
         _unit setCaptive false;
 
-        for "_j" from 1 to _magCount do {
-            _unit addMagazine _mag;
-        };
+        {
+            _unit addMagazine _x;
+        } forEach _magazines;
 
         _unit addWeapon _weapon;
+
+        if (_isPrimary) then {
+            {
+                if (_x != "") then {
+                    _unit addPrimaryWeaponItem _x;
+                };
+            } forEach [_muzzle, _pointer, _optic, _bipod];
+        } else {
+            {
+                if (_x != "") then {
+                    _unit addHandgunItem _x;
+                };
+            } forEach [_muzzle, _pointer, _optic];
+        };
+
         _unit selectWeapon _weapon;
         _unit allowFleeing 0.1;
 

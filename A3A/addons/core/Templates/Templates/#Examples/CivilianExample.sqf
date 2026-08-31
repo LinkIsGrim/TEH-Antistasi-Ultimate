@@ -144,3 +144,32 @@ private _unitTypes = [
 ];
 
 [_prefix, _unitTypes, _loadoutData] call _fnc_generateAndSaveUnitsToTemplate;
+
+// [TEH] Optional civilian equipment overrides.
+// If a key is not defined, TEH falls back to the default vanilla equipment.
+
+// Rick's green civilian clothing. One entry is selected randomly from each list.
+["TEH_rickUniforms", ["U_C_Man_casual_3_F"]] call _fnc_saveToTemplate;
+["TEH_rickHeadgears", ["H_Bandanna_surfer_grn"]] call _fnc_saveToTemplate;
+["TEH_rickBackpacks", ["B_CivilianBackpack_01_Sport_Green_F"]] call _fnc_saveToTemplate;
+
+// Town's mechanic clothing. One entry is selected randomly from each list.
+["TEH_mechanicUniforms", ["U_C_Mechanic_01_F"]] call _fnc_saveToTemplate;
+["TEH_mechanicHeadgears", ["H_Cap_red"]] call _fnc_saveToTemplate;
+
+// Civilian long guns used by gopniks.
+// Gopniks have a 50% chance to receive a weapon from this pool.
+// Weapon loadout format: [weapon, muzzle, pointer, optic, magazines, secondary ammo, bipod]
+private _TEH_civilianPrimaryLoadouts = [
+    ["sgun_HunterShotgun_01_F", "", "", "", ["2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets"], [], ""],
+    ["sgun_HunterShotgun_01_sawedoff_F", "", "", "", ["2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets"], [], ""]
+];
+["TEH_civilianPrimaryLoadouts", _TEH_civilianPrimaryLoadouts] call _fnc_saveToTemplate;
+
+// Civilian handguns used by gopniks and sold by Rick.
+// Gopniks have a 50% chance to receive a weapon from this pool.
+private _TEH_civilianHandgunLoadouts = [
+    ["hgun_Pistol_01_F", "", "", "", ["10Rnd_9x21_Mag", "10Rnd_9x21_Mag", "10Rnd_9x21_Mag"], [], ""],
+    ["hgun_P07_F", "", "", "", ["16Rnd_9x21_Mag", "16Rnd_9x21_Mag", "16Rnd_9x21_Mag"], [], ""]
+];
+["TEH_civilianHandgunLoadouts", _TEH_civilianHandgunLoadouts] call _fnc_saveToTemplate;
