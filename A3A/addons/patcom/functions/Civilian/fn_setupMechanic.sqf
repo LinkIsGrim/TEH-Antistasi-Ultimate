@@ -13,7 +13,12 @@ removeHeadgear _mechanic;
 removeGoggles _mechanic;
 
 _mechanic forceAddUniform selectRandom (A3A_faction_civ getOrDefault ["TEH_mechanicUniforms", ["U_C_Mechanic_01_F"]]);
-_mechanic addHeadgear selectRandom (A3A_faction_civ getOrDefault ["TEH_mechanicHeadgears", ["H_Cap_red"]]);
+
+private _mechanicHeadgears = A3A_faction_civ getOrDefault ["TEH_mechanicHeadgears", ["H_Cap_red"]];
+
+if (_mechanicHeadgears isNotEqualTo []) then {
+	_mechanic addHeadgear selectRandom _mechanicHeadgears;
+};
 
 private _currency = A3A_faction_civ get "currencySymbol";
 

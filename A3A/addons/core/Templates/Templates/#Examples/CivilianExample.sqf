@@ -153,12 +153,18 @@ private _unitTypes = [
 ["TEH_rickHeadgears", ["H_Bandanna_surfer_grn"]] call _fnc_saveToTemplate;
 ["TEH_rickBackpacks", ["B_CivilianBackpack_01_Sport_Green_F"]] call _fnc_saveToTemplate;
 
-// Town's mechanic clothing. One entry is selected randomly from each list.
+// Town mechanic's clothing. One entry is selected randomly from each list.
 ["TEH_mechanicUniforms", ["U_C_Mechanic_01_F"]] call _fnc_saveToTemplate;
 ["TEH_mechanicHeadgears", ["H_Cap_red"]] call _fnc_saveToTemplate;
 
-// Civilian long guns used by gopniks.
-// Gopniks have a 50% chance to receive a weapon from this pool.
+// Bandits settings
+["TEH_banditUniforms", ["U_C_E_LooterJacket_01_F"]] call _fnc_saveToTemplate;
+["TEH_banditHeadgears", ["H_Cap_blk"]] call _fnc_saveToTemplate;
+["TEH_banditHeads", ["RussianHead_1", "RussianHead_2", "RussianHead_3", "RussianHead_4", "RussianHead_5"]] call _fnc_saveToTemplate;
+["TEH_banditVoices", ["male01rus", "male02rus", "male03rus"]] call _fnc_saveToTemplate;
+
+// Civilian long guns used by bandits.
+// Bandits have a 50% chance to receive a weapon from this pool.
 // Weapon loadout format: [weapon, muzzle, pointer, optic, magazines, secondary ammo, bipod]
 private _TEH_civilianPrimaryLoadouts = [
     ["sgun_HunterShotgun_01_F", "", "", "", ["2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets"], [], ""],
@@ -166,8 +172,8 @@ private _TEH_civilianPrimaryLoadouts = [
 ];
 ["TEH_civilianPrimaryLoadouts", _TEH_civilianPrimaryLoadouts] call _fnc_saveToTemplate;
 
-// Civilian handguns used by gopniks and sold by Rick.
-// Gopniks have a 50% chance to receive a weapon from this pool.
+// Civilian handguns used by bandits and sold by Rick.
+// Bandits have a 50% chance to receive a weapon from this pool.
 private _TEH_civilianHandgunLoadouts = [
     ["hgun_Pistol_01_F", "", "", "", ["10Rnd_9x21_Mag", "10Rnd_9x21_Mag", "10Rnd_9x21_Mag"], [], ""],
     ["hgun_P07_F", "", "", "", ["16Rnd_9x21_Mag", "16Rnd_9x21_Mag", "16Rnd_9x21_Mag"], [], ""]

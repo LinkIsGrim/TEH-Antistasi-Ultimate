@@ -200,3 +200,23 @@ private _unitTypes = [
 ];
 
 [_prefix, _unitTypes, _loadoutData] call _fnc_generateAndSaveUnitsToTemplate;
+
+["TEH_rickUniforms", ["CUP_U_C_Woodlander_02"]] call _fnc_saveToTemplate;
+["TEH_rickHeadgears", ["H_Cap_grn"]] call _fnc_saveToTemplate;
+["TEH_rickBackpacks", ["B_CivilianBackpack_01_Sport_Green_F"]] call _fnc_saveToTemplate;
+
+["TEH_mechanicUniforms", ["CUP_U_C_Mechanic_01", "CUP_U_C_Mechanic_02", "CUP_U_C_Mechanic_03"]] call _fnc_saveToTemplate;
+["TEH_mechanicHeadgears", ["H_Cap_red"]] call _fnc_saveToTemplate;
+
+private _TEH_civilianPrimaryLoadouts = [
+    ["sgun_HunterShotgun_01_F", "", "", "", ["2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets"], [], ""],
+    ["sgun_HunterShotgun_01_sawedoff_F", "", "", "", ["2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets", "2Rnd_12Gauge_Pellets"], [], ""],
+    ["CUP_sgun_CZ584", "", "", "", ["CUP_1Rnd_12Gauge_Pellets_No00_Buck", "CUP_1Rnd_12Gauge_Pellets_No00_Buck", "CUP_1Rnd_12Gauge_Pellets_No00_Buck"], [], ""]
+];
+["TEH_civilianPrimaryLoadouts", _TEH_civilianPrimaryLoadouts] call _fnc_saveToTemplate;
+private _TEH_civilianHandgunLoadouts = [
+    ["CUP_hgun_Makarov", "", "", "", ["CUP_8Rnd_9x18_Makarov_M", "CUP_8Rnd_9x18_Makarov_M", "CUP_8Rnd_9x18_Makarov_M"], [], ""],
+    ["CUP_hgun_TT", "", "", "", ["CUP_8Rnd_762x25_TT", "CUP_8Rnd_762x25_TT", "CUP_8Rnd_762x25_TT"], [], ""],
+    ["CUP_hgun_SA61", "", "", "", ["CUP_20Rnd_B_765x17_Ball_M", "CUP_10Rnd_B_765x17_Ball_M", "CUP_10Rnd_B_765x17_Ball_M"], [], ""]
+];
+["TEH_civilianHandgunLoadouts", _TEH_civilianHandgunLoadouts] call _fnc_saveToTemplate;

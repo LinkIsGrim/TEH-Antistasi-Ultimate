@@ -84,7 +84,9 @@ if (TEH_spawnSwat == 2) then {
 		private _unitToChange = _x;
 
 		removeHeadgear _unitToChange;
-		_unitToChange addHeadgear selectRandom _swatHelmets;
+		if (_swatHelmets isNotEqualTo []) then {
+			_unitToChange addHeadgear selectRandom _swatHelmets;
+		};
 
 		private _vestItems = vestItems _unitToChange;
 		removeVest _unitToChange;

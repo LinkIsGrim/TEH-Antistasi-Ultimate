@@ -117,13 +117,18 @@
 - **Towns expansion (WIP)**:
 	- Completely new civilian interaction system, with quests and special NPCs
 	- Urban warfare: with SWAT teams (optional challenge) and gangsters, towns are now a formidable obstacle to conquer
+	- NPC appearance can be setup thru the faction templates. Check CivilianExample.sqf and FactionExample.sqf for TEH entries.
 	- Military Administration removes undercover
-	- Military Administration lootbox is now less prone to farm
+	- Military Administration lootbox is now less prone to farm (immovable, respawn cd). Can be unloaded to the nearby vehicle (ACE).
 - **Balance**:
 	- New HR gain multiplier parameter (works for recruitment of surrendered enemies and resque type missions) - to trade off early attacks losses
 	- Flexible rebel garrisons squads: now with proper command chain (each Squad Leader makes own squad, or additional SLs are promoted if squad is too large)
 	- [Experimental] new support types for rebel faction
 	- [Experimental] Friendly AIs are allowed to pilot aircrafts
+	- **CAS support** tuned down to avoid being called on infantry units.
+	- **UGL snipers** tuned down - more dispersion and AI using it in 150-300m range
+	- **Base mortars** behavior adjusted. No more blind pinpointing.
+	- **Tanks spawn rate** can be adjusted thru a parameter (reduces a chance for tank to be selected as a transport. Tank supports and encounters left unaffected).
 - **Tower Defense**
 	- New construction options: Scaffolds and Cargo Platforms (bottom of the list at the builder boxes)
 	- When deployed, use "Align Platforms" action on the scaffold to snap nearby towers to the scaffold
@@ -142,9 +147,6 @@
 - **Misc changes**
 	- **Poor Man's Radar**: When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost AA guns).
 	- **Ammobox** generation revamped: Ensures better consistency with fixed amounts.
-	- **CAS support** tuned down to avoid being called on infantry units.
-	- **UGL snipers** tuned down - more dispersion and AI using it in 150-300m range
-	- **Base mortars** behavior adjusted. No more blind pinpointing.
 	- **Dynamic Mission Distance** - new parameter which scales possible mission distance from HQ by the War Level.
 	- **Boxer truck capacity** - is increased significantly, for comfortable shopping.
 

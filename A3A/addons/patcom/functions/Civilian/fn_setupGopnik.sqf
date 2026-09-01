@@ -7,7 +7,29 @@ _unit setVariable ["TEH_IsGopnik", true, true];
 _unit setVariable ["spawner", false, true];
 _unit setVariable ["TEH_GopnikActivated", false, true];
 
-[_unit,selectRandom ["RussianHead_1","RussianHead_2","RussianHead_3","RussianHead_4","RussianHead_5"],selectRandom ["male01rus","male02rus","male03rus"]] call BIS_fnc_setIdentity;
+if ("TEH_banditUniforms" in A3A_faction_civ) then {
+	private _banditUniforms = A3A_faction_civ get "TEH_banditUniforms";
+
+	if (_banditUniforms isNotEqualTo []) then {
+		removeUniform _unit;
+		_unit forceAddUniform selectRandom _banditUniforms;
+	};
+};
+
+if ("TEH_banditHeadgears" in A3A_faction_civ) then {
+	private _banditHeadgears = A3A_faction_civ get "TEH_banditHeadgears";
+
+	removeHeadgear _unit;
+
+	if (_banditHeadgears isNotEqualTo []) then {
+		_unit addHeadgear selectRandom _banditHeadgears;
+	};
+};
+
+private _banditHead = selectRandom (A3A_faction_civ getOrDefault ["TEH_banditHeads", ["RussianHead_1", "RussianHead_2", "RussianHead_3", "RussianHead_4", "RussianHead_5"]]);
+private _banditVoice = selectRandom (A3A_faction_civ getOrDefault ["TEH_banditVoices", ["male01rus", "male02rus", "male03rus"]]);
+
+[_unit, _banditHead, _banditVoice] call BIS_fnc_setIdentity;
 
 _unit setCaptive true;
 _unit setBehaviour "SAFE";

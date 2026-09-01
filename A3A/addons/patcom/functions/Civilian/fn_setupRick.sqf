@@ -11,7 +11,12 @@ removeGoggles _rick;
 
 _rick forceAddUniform selectRandom (A3A_faction_civ getOrDefault ["TEH_rickUniforms", ["U_C_Man_casual_3_F"]]);
 _rick addBackpack selectRandom (A3A_faction_civ getOrDefault ["TEH_rickBackpacks", ["B_CivilianBackpack_01_Sport_Green_F"]]);
-_rick addHeadgear selectRandom (A3A_faction_civ getOrDefault ["TEH_rickHeadgears", ["H_Bandanna_surfer_grn"]]);
+
+private _rickHeadgears = A3A_faction_civ getOrDefault ["TEH_rickHeadgears", ["H_Bandanna_surfer_grn"]];
+
+if (_rickHeadgears isNotEqualTo []) then {
+	_rick addHeadgear selectRandom _rickHeadgears;
+};
 
 private _currency = A3A_faction_civ get "currencySymbol";
 
