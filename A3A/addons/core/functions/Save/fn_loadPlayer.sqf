@@ -100,20 +100,18 @@ private _colorInvaders = Invaders call BIS_fnc_sideColor;
 } forEach [_colourTeamPlayer, _colorInvaders];
 
 private _enableIntroAnimation = profileNamespace getVariable ["A3U_setting_enableIntroAnimation", true];
-private _introShot = scriptNull;
-if (_enableIntroAnimation) then { _introShot = [
-	(position _unit), // Target position
-	_opening, // SITREP text
-	50, //  altitude
-	50, //  radius
-	90, //  degrees viewing angle
-	0, // clockwise movement
-	[
-		["\a3\ui_f\data\map\markers\Nato\o_inf.paa", _colourTeamPlayer, markerPos "insertMrk", 1, 1, 0, "Insertion Point", 0],
-		["\a3\ui_f\data\map\markers\Nato\o_inf.paa", _colorInvaders, markerPos "towerBaseMrk", 1, 1, 0, "Radio Towers", 0]
-	]
-] spawn BIS_fnc_establishingShot };
 
-waitUntil { scriptDone _introshot };
-
-if (_enableIntroAnimation) then { cutText ["","BLACK IN", 3] };
+if (_enableIntroAnimation) then {
+    [
+        position _unit,
+        _opening,
+        50,
+        50,
+        90,
+        0,
+        [
+            ["\a3\ui_f\data\map\markers\Nato\o_inf.paa", _colourTeamPlayer, markerPos "insertMrk", 1, 1, 0, "Insertion Point", 0],
+            ["\a3\ui_f\data\map\markers\Nato\o_inf.paa", _colorInvaders, markerPos "towerBaseMrk", 1, 1, 0, "Radio Towers", 0]
+        ]
+    ] remoteExec ["BIS_fnc_establishingShot", _unit];
+};
