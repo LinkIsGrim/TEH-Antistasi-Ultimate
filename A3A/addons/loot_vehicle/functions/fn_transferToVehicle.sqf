@@ -48,17 +48,24 @@ private _processNext = {
 		_candidate setVariable ["LV_isLooted", true, true];
 
 		// Count weight / determine looting time.
-		private _penalty = _candidate getVariable ["TEH_unloadMultiplier", 1];
 		private _deleteEmpty = false;
-		_timer = if (_candidate isKindOf "ReammoBox_F" && {_penalty == 1}) then {
+		_timer = if (_candidate isKindOf "ReammoBox_F" && !(_candidate isKindOf "B_CargoNet_01_ammo_F")) then {
 			1
 		} else {
 			private _weight = loadAbs _candidate;
-			if (_weight == 0 && {!(_candidate isKindOf "Car")}) then {
+
+			if (_weight == 0 && {!(_candidate isKindOf "Car") && !(_candidate isKindOf "B_CargoNet_01_ammo_F")}) then {
 				_deleteEmpty = true;
 				0
 			} else {
-				ceil ((_weight * LootVehicleSpeed * _penalty) / 100)
+				private _rawTime = ceil ((_weight * LootVehicleSpeed) / 100);
+
+				if (_rawTime <= 60) then {
+					_rawTime
+				} else {
+					private _delta = _rawTime - 60;
+					ceil (60 + 120 * _delta / (_delta + 120))
+				};
 			};
 		};
 
