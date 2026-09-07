@@ -208,7 +208,7 @@ baseRivalsDecay = switch (rivalsDifficulty) do {
 publicVariable "A3A_buildingsToSave";
 publicVariable "baseRivalsDecay";
 
-// -1 is all Land, +1 is all Air 
+// -1 is all Land, +1 is all Air
 TEH_QRFBalance = 0;
 
 ///////////////////////////////////////////

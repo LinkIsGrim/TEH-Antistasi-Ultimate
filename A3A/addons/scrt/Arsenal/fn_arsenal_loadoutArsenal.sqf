@@ -10,6 +10,7 @@
     	overwrites all functions in the arsenal with JNA ones.
 */
 #include "..\defines.inc"
+#include "..\..\jeroen_arsenal\JNA\tehBulletPile.inc"
 FIX_LINE_NUMBERS()
 
 #include "\A3\ui_f\hpp\defineDIKCodes.inc"
@@ -22,7 +23,7 @@ FIX_LINE_NUMBERS()
 #define GETDLC\
 	{\
 		private _dlc = "";\
-		private _addons = configsourceaddonlist _this;\
+		private _addons = configSourceAddonList _this;\
 		if (count _addons > 0) then {\
 			private _mods = configsourcemodlist (configfile >> "CfgPatches" >> _addons select 0);\
 			if (count _mods > 0) then {\
@@ -179,11 +180,7 @@ _arrayContains = {
 private _minItemsMember = {
 	params ["_index", "_item"];					// Arsenal tab index, item classname
 	if (_index in [IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG, IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG2]) then { _index = IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG };
-	private _min = jna_minItemMember select _index;
-	if (_index in [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG, IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL]) then {
-		_min = _min * getNumber (configfile >> "CfgMagazines" >> _item >> "count");
-	};
-	_min;
+	jna_minItemMember select _index;
 };
 
 private _arrayAdd = {
@@ -2156,8 +2153,9 @@ switch _mode do {
 						if(_canAdd)then{
 							_container addMagazineAmmoCargo [_magazine,1,_count];
 						}else{
-							_indexItem = _magazine call jn_fnc_arsenal_itemType;
-							[_indexItem, _magazine, _count] call jn_fnc_arsenal_addItem;
+							[IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _magazine, 1] call jn_fnc_arsenal_addItem;
+							_ammoUnload = [_magazine,_count] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoUnload call jn_fnc_arsenal_addItem;
 						};
 					}forEach _magazines;
 
@@ -2313,7 +2311,10 @@ switch _mode do {
 						_amount = _x select 1;
 						_indexItem = _magazine call jn_fnc_arsenal_itemType;
 
-						[_indexItem, _magazine, _amount] call jn_fnc_arsenal_addItem;
+						if (_indexItem < 0) then { continue };
+						_ammoUnload = [_magazine,_amount] call JN_fnc_arsenal_magUnloadBullets;
+						_ammoUnload call jn_fnc_arsenal_addItem;
+						[_indexItem, _magazine, 1] call jn_fnc_arsenal_addItem;
 					}forEach(_oldMagazines - _newMagazines);
 
 					_newAttachments = switch _index do {
@@ -2470,42 +2471,63 @@ switch _mode do {
 				_oldAmmoCount = 0;
 				{ if ((_x#0 == _oldMag) && (_x#2)) exitWith { _oldAmmoCount = _x#1 }; } forEach (magazinesAmmoFull player);
 				_newMag = _item;
-				_cfgAmmoCount = getNumber (configFile >> "CfgMagazines" >> _newMag >> "count");
+				_cfgAmmoCount = 1;  //getNumber (configFile >> "CfgMagazines" >> _newMag >> "count");
 				_newAmmoCount = [_amount, _cfgAmmoCount] select ((_amount == -1) || (_amount > _cfgAmmoCount));
 
 				switch true do {
 					case (ctrlenabled _ctrlListPrimaryWeapon): {
 						if (_oldMag != _newMag) then {
+							//take old mag
 							player removePrimaryWeaponItem _oldMag;
-							[_index, _oldMag, _oldAmmoCount] call jn_fnc_arsenal_addItem;
+							[_index, _oldMag, 1] call jn_fnc_arsenal_addItem;
+							//take old ammo
+							_ammoReturn = [_oldMag,_oldAmmoCount] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoReturn call jn_fnc_arsenal_addItem;
 							if (_newMag != "") then {
-								player addPrimaryWeaponItem _newMag;
-								[_index, _newMag, _newAmmoCount] call jn_fnc_arsenal_removeItem;
+								//give new ammo
+								_loadAmmo = [_newMag] call JN_fnc_arsenal_magLoadBullets;
+								_cap = getNumber (configfile >> "CfgMagazines" >> _newMag >> "count");
+								if (_loadAmmo#2 >= _cap) then {
+									_loadAmmo call jn_fnc_arsenal_removeItem;
+									//give new mag
+									player addPrimaryWeaponItem _newMag;
+									[_index, _newMag, 1] call jn_fnc_arsenal_removeItem;
+								} else {
+									['showMessage',[_display, "Not enough ammo for a full mag"]] call jn_fnc_arsenal;
+								}
 							};
 						};
 					};
 					case (ctrlEnabled _ctrlListSecondaryWeapon): {
 						if (_oldMag != _newMag) then {
 							player removeSecondaryWeaponItem _oldMag;
-							[_index, _oldMag, _oldAmmoCount] call jn_fnc_arsenal_addItem;
+							[_index, _oldMag, 1] call jn_fnc_arsenal_addItem;
+							_ammoReturn = [_oldMag,_oldAmmoCount] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoReturn call jn_fnc_arsenal_addItem;
 							if (_newMag != "") then {
 								player addSecondaryWeaponItem _newMag;
-								[_index, _newMag, _newAmmoCount] call jn_fnc_arsenal_removeItem;
+								[_index, _newMag, 1] call jn_fnc_arsenal_removeItem;
+								//give new ammo
+								_loadAmmo = [_newMag] call JN_fnc_arsenal_magLoadBullets;
+								_loadAmmo call jn_fnc_arsenal_removeItem;
 							};
 						};
 					};
 					case (ctrlEnabled _ctrlListHandgun): {
 						if (_oldMag != _newMag) then {
 							player removeHandgunItem _oldMag;
-							[_index, _oldMag, _oldAmmoCount] call jn_fnc_arsenal_addItem;
+							[_index, _oldMag, 1] call jn_fnc_arsenal_addItem;
+							_ammoReturn = [_oldMag,_oldAmmoCount] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoReturn call jn_fnc_arsenal_addItem;
 							if (_newMag != "") then {
 								player addHandgunItem _newMag;
-								[_index, _newMag, _newAmmoCount] call jn_fnc_arsenal_removeItem;
+								[_index, _newMag, 1] call jn_fnc_arsenal_removeItem;
+								//give new ammo
+								_loadAmmo = [_newMag] call JN_fnc_arsenal_magLoadBullets;
+								_loadAmmo call jn_fnc_arsenal_removeItem;
 							};
 						};
 					};
-				};
-			};
 			case IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG2: {
 				// this all assumes a "standard" weapon with one primary muzzle, one and only one alternate muzzle (GL), and that the alternate muzzle only has one round (i.e. a normal rifle with single shot underbarrel grenade launcher)
 				// will probably break with anything weird like a masterkey / underbarrel shotgun or something else I can't think of rn
@@ -2651,26 +2673,25 @@ switch _mode do {
 
 			if (_add > 0) then {//add
 				_min = [_index, _item] call _minItemsMember;
-				if(_amount <= _min && {_amount != -1}) exitWith{
-					['showMessage',[_display, (localize "STR_antistasi_dialogs_hq_button_rebel_set_loadout_unlocked_items")]] call SCRT_fnc_arsenal_loadoutArsenal;
+				if((_amount <= _min) AND (_amount != -1) AND !(player call A3A_fnc_isMember)) exitWith{
+					['showMessage',[_display, localize "STR_JNA_ACT_ONLY_MEMBERS"]] call jn_fnc_arsenal;
 				};
-				if(_index in [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG,IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL])then{//magazines are handeld by bullet count
-					//check if full mag can be optaind
-					_count = getNumber (configfile >> "CfgMagazines" >> _item >> "count");
-					if(_amount != -1)then{
-						if(_amount<_count)then{_count = _amount};
-					};
-
+				if(_index in [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG,IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL])then{
+					_canAdd = false;
 					_container = switch _selected do{
-						case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: { uniformContainer player };
-						case IDC_RSCDISPLAYARSENAL_TAB_VEST: { vestContainer player };
-						case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: { backpackContainer player };
-						default { objNull };
+						case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {_canAdd = (player canAddItemToUniform [_item, 1, true]); uniformContainer player};
+						case IDC_RSCDISPLAYARSENAL_TAB_VEST: {_canAdd = (player canAddItemToVest [_item, 1, true]); vestContainer player;};
+						case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {_canAdd = (player canAddItemToBackpack [_item, 1, true]); backpackContainer player;};
 					};
-
-					if ([_container, _item] call SCRT_fnc_misc_canAddItemToContainer) then{
-						_container addMagazineAmmoCargo [_item,1,_count];
+					if(_canAdd)then{
+						//check how many bullets available for a mag
+						private _bullets = [_item] call JN_fnc_arsenal_magLoadBullets;
+						//remove bullets from the pile
+						_bullets call JN_fnc_arsenal_removeItem;
+						//load the mag and give it to the player
+						_container addMagazineAmmoCargo [_item,1,_bullets # 2];
 					};
+					
 				}else{
 					switch _selected do{
 						case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {player additemtouniform _item;};
@@ -2696,7 +2717,8 @@ switch _mode do {
 					_removed = false;
 					{
 						if((_x select 0) isEqualTo _item && !_removed)then{
-							_count = _x select 1;//this mag is removed
+							_ammoReturn = [_x#0,_x#1] call JN_fnc_arsenal_magUnloadBullets;
+							_ammoReturn call JN_fnc_arsenal_addItem;
 							_removed = true;
 						}else{
 							_container addMagazineAmmoCargo [(_x select 0),1,(_x select 1)];

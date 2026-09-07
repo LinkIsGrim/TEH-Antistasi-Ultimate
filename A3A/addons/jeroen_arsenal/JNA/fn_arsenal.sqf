@@ -1991,7 +1991,6 @@ switch _mode do {
 						if(_canAdd)then{
 							_container addMagazineAmmoCargo [_magazine,1,_count];
 						}else{
-							
 							[IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _magazine, 1] call jn_fnc_arsenal_addItem;
 							_ammoUnload = [_magazine,_count] call JN_fnc_arsenal_magUnloadBullets;
 							_ammoUnload call jn_fnc_arsenal_addItem;
@@ -2152,7 +2151,7 @@ switch _mode do {
 						if (_indexItem < 0) then { continue };
 						_ammoUnload = [_magazine,_amount] call JN_fnc_arsenal_magUnloadBullets;
 						_ammoUnload call jn_fnc_arsenal_addItem;
-						[_indexItem, _magazine, 1] call jn_fnc_arsenal_addItem;//TODO
+						[_indexItem, _magazine, 1] call jn_fnc_arsenal_addItem;
 					}forEach(_oldMagazines - _newMagazines);
 
 					_newAttachments = switch _index do {
