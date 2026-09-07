@@ -29,7 +29,7 @@ if ("TEH_banditHeadgears" in A3A_faction_civ) then {
 private _banditHead = selectRandom (A3A_faction_civ getOrDefault ["TEH_banditHeads", ["RussianHead_1", "RussianHead_2", "RussianHead_3", "RussianHead_4", "RussianHead_5"]]);
 private _banditVoice = selectRandom (A3A_faction_civ getOrDefault ["TEH_banditVoices", ["male01rus", "male02rus", "male03rus"]]);
 
-[_unit, _banditHead, _banditVoice] call BIS_fnc_setIdentity;
+[_unit, createHashMapFromArray [["face", _banditHead],["speaker", _banditVoice]]] call A3A_fnc_setIdentity;
 
 _unit setCaptive true;
 _unit setBehaviour "SAFE";

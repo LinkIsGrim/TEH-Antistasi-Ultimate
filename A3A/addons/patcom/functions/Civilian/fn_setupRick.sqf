@@ -36,7 +36,7 @@ _rick addAction [
         private _weapon = _loadout select 0;
         private _magazine = (_loadout select 4) select 0;
         private _magazineCount = 3;
-        private _boxClass = "Box_Syndicate_Ammo_F";
+        private _boxClass = "VirtualReammoBox_small_F";
 
         private _money = _caller getVariable ["moneyX", 0];
         if (_money < _price) exitWith {
