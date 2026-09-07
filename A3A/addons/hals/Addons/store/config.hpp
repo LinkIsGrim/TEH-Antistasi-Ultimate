@@ -134,6 +134,7 @@ class cfgHALsStore
 		#include "config\x26.hpp"
 		#include "config\trg.hpp"
 		#include "config\mcx.hpp"
+		#include "config\xm250.hpp"
 		#include "config\mpp.hpp"
 		#include "config\qdi.hpp"
 		#include "config\mss.hpp"
@@ -1098,6 +1099,14 @@ class cfgHALsStore
 			displayName = "Sig MCX Spear";
 			categories[] = {
 				"riflesMCX"
+			};
+		};
+
+		class xm250stock
+		{
+			displayName = "Sig XM250";
+			categories[] = {
+				"riflesXM250"
 			};
 		};
 		

@@ -152,6 +152,11 @@
 		addons[] = {"KAR_XM7"};
 		weapons = "weapons_MCX";
 	};
+    class addons_XM250 : addons_base
+	{
+		addons[] = {"KAR_XM250"};
+		weapons = "weapons_XM250";
+	};
 	////
 	
     class addons_kkiv2035 : addons_base

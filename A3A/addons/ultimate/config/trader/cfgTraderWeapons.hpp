@@ -93,6 +93,10 @@
         {
             prefix = "mcxstock";
         };
+        class weapons_XM250 : weapons_base
+        {
+            prefix = "xm250stock";
+        };
 		////
 		
         class weapons_kkiv2035 : weapons_base
