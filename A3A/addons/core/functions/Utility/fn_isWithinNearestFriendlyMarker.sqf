@@ -39,7 +39,7 @@ if (TEH_saveStaticsAnywhere) exitWith {
     params ["_veh"];
     private _garrisons = citiesX + outposts + airportsX + resourcesX + factories + seaports + milbases + ["Synd_HQ"];
     private _markerx = [_garrisons, getPosATL _veh ] call BIS_fnc_nearestPosition;
-	(sidesX getVariable _markerx) == teamPlayer;
+	(sidesX getVariable _markerx) == teamPlayer && _veh getVariable ["ownerSide",sideUnknown] == teamPlayer;
 };
 
 if !assert(params[

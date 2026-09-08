@@ -135,15 +135,19 @@
 	- You can continue building on top of the platforms (toggle Alt and Shift in the Building planner), e.g. sandbags walls. If they appear angled, use "Align Platforms" again.
 	- Known issue: builder can destroy static weapons. Build the defenses first, and then bring weapons upstairs.
 - **Mods support**:
-	- **[Cold War Loot Limiter](https://steamcommunity.com/sharedfiles/filedetails/?id=3775193695)** - overrides loot boxes pool (Vanilla/CUP/RHS/3CB) to only contain Cold War and older items.
-	- **[Point Campfire](https://steamcommunity.com/sharedfiles/filedetails/?id=3747933298)** - popular Point Campfire extension is supported thru a compatibility patch.
+	- **[TEH Cold War Loot Limiter](https://steamcommunity.com/sharedfiles/filedetails/?id=3775193695)** - overrides loot boxes pool (Vanilla/CUP/RHS/3CB) to only contain Cold War and older items.
+	- **[TEH Extra Item Info](https://steamcommunity.com/sharedfiles/filedetails/?id=3797776535)** - shows more item stats in the inventory.
 	- **[GX-Drones](https://steamcommunity.com/sharedfiles/filedetails/?id=3460981677)** - a variety of deployable and 40mm UGL launched drones. If new game is started with the mod installed, some drones are added to the arsenal automatically. Otherwise some are available at the trader under "GX-Drones"
 	- **[X26 Tasers](https://steamcommunity.com/sharedfiles/filedetails/?id=2515852876)** - if installed, available to every faction at the new game start. Otherwise can be found at the trader under "X26 Tasers".
 	- **[Expanded Anti Air](https://steamcommunity.com/sharedfiles/filedetails/?id=3399739919)** - a variety of AA and radar trucks. SAM truck is available at the trader.
 	- **[76N6 Clam Shell Radar](https://steamcommunity.com/sharedfiles/filedetails/?id=3131324729)** - automated rotating radar with high viewpoint which helps to spot things above the trees. Both variants available at the trader.
 	- **[TRG 7.62x39 mm Variant](https://steamcommunity.com/sharedfiles/filedetails/?id=2549598652)** - rechambered TRG40, TRG41 and TRG41 GL
 	- **[Sig MCX Spear](https://steamcommunity.com/sharedfiles/filedetails/?id=3261100509)** - 6.8x51mm assault rifle (aka XM7)
+	- **[XM250](https://steamcommunity.com/sharedfiles/filedetails/?id=3280277338)** - 6.8x51mm machinegun
 	- **[Zeus Enhanced](https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631)** - ACE action on the cars allows adding flags (experimental param, doesn't work on all vehicles)
+- **Compatibility patches**:
+	- **[Point Campfire](https://steamcommunity.com/sharedfiles/filedetails/?id=3783217256)** - another mod for smaller teams (QoL and economics).
+	- **[CL's Antistasi QoL Tweaks](https://steamcommunity.com/sharedfiles/filedetails/?id=3796510003)** - a tweak pack (somewhat reduced). Check out its Siege Planner!
 - **Misc changes**
 	- **Poor Man's Radar**: When binocular items is equipped use "Reveal target" action to share target info to nearby allies (e.g. outpost AA guns).
 	- **Ammobox** generation revamped: Ensures better consistency with fixed amounts.

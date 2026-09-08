@@ -1,6 +1,8 @@
 /*
     By Socrates, based on Jeroen Notenbomer arsenal code, modified by jwoodruff40 to add loaded mag editing
 
+	Adjusted to TEH Antistasi Ultimate
+
 	overwrites default arsenal script, original arsenal needs to be running first in order to initilize the display.
 
     fuctions:
@@ -208,6 +210,57 @@ private _getUsableMagazines = {
 	} forEach (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL);
 	//return
 	_magazines;
+};
+
+private _filterAndSortArsenalItems = {
+	params ["_usableItems", "_index", "_isMagazines"];
+
+	private _itemList = if (_isMagazines) then {
+		jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL
+	} else {
+		jna_dataList select _index
+	};
+
+	private _result = [];
+	private _dataMap = createHashMap;
+	private _displayNames = [];
+
+	{
+		private _itemAvailable = _x select 0;
+		private _amountAvailable = _x select 1;
+
+		if (_isMagazines && !([_usableItems, _itemAvailable] call _arrayContains)) then {
+			continue;
+		};
+
+		// Create a sorting key
+		// CUPS Xmm -> X mm fix
+		private _displayName = (getText(configfile >> "CfgMagazines" >> _itemAvailable >> "displayName")) regexReplace ["([0-9])mm","$1 mm"];
+
+		_displayName = _displayName + _itemAvailable;
+
+		// Sort unlocked magazines at the top of the list
+		if (_isMagazines && {_amountAvailable < 0}) then {
+			_displayName = "!" + _displayName;
+		};
+		
+		if (_isMagazines && (_itemAvailable in primaryWeaponMagazine player)) then {
+			_displayName = "!" + _displayName;
+		};
+
+		_dataMap set [_displayName, [_itemAvailable, _amountAvailable]];
+		_displayNames pushBack _displayName;
+
+	} forEach _itemList;
+
+	_displayNames sort true;
+
+	for "_i" from 0 to (count _displayNames - 1) do {
+		private _key = _displayNames select _i;
+		_result set [count _result, _dataMap get _key];
+	};
+
+	_result
 };
 
 _mode = [_this,0,"Open",[displaynull,""]] call bis_fnc_param;
@@ -1048,7 +1101,7 @@ switch _mode do {
 				} foreach (weapons player - ["Throw","Put"]);
 				_usableMagazines =_usableMagazines arrayIntersect _usableMagazines;
 
-				[_usableMagazines] call _getUsableMagazines;
+				[_usableMagazines, _index, true] call _filterAndSortArsenalItems;
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG: {
 				_ctrlListPrimaryWeapon = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON);
@@ -1061,7 +1114,7 @@ switch _mode do {
 					case (ctrlenabled _ctrlListHandgun): {handgunWeapon player};
 				};
 
-				[compatibleMagazines [_weapon, "this"]] call _getUsableMagazines;
+				[compatibleMagazines [_weapon, "this"], _index, true] call _filterAndSortArsenalItems;
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG2: {
 				_ctrlListPrimaryWeapon = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON);
@@ -1073,7 +1126,7 @@ switch _mode do {
 				private _config = configFile >> "CfgWeapons" >> _weapon;
 				private _glmuzzle = getArray (_config >> "muzzles") select 1;		// guaranteed by category
 				_glmuzzle = configName (_config >> _glmuzzle);                      // bad-case fix. compatibleMagazines is case-sensitive as of 2.12
-				[compatibleMagazines [_weapon, _glmuzzle]] call _getUsableMagazines;
+				[compatibleMagazines [_weapon, _glmuzzle], _index, true] call _filterAndSortArsenalItems;
 			};
 			default { (jna_datalist select _index) };
 		};
@@ -1243,7 +1296,8 @@ switch _mode do {
 						_amount = 0;
 						{
 							_itemX = if(_idc == IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC)then{_x}else{_x select 0};
-							_amountX = if(_idc == IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC)then{1}else{_x select 1};
+							//_amountX = if(_idc == IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC)then{1}else{_x select 1};
+							_amountX = 1;
 							if(_itemX == _item)then{
 								_amount = _amount + _amountX;
 							}
@@ -2146,9 +2200,9 @@ switch _mode do {
 						_count = _x select 1;
 
 						_canAdd = switch _index do{
-							case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM:{player canAddItemToUniform _magazine;};
-							case IDC_RSCDISPLAYARSENAL_TAB_VEST:{player canAddItemToVest _magazine;};
-							case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK:{player canAddItemToBackpack _magazine;};
+							case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM:{(player canAddItemToUniform [_magazine, 1, true]);};
+							case IDC_RSCDISPLAYARSENAL_TAB_VEST:{(player canAddItemToVest [_magazine, 1, true]);};
+							case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK:{(player canAddItemToBackpack [_magazine, 1, true]);};
 						};
 						if(_canAdd)then{
 							_container addMagazineAmmoCargo [_magazine,1,_count];
@@ -2208,7 +2262,7 @@ switch _mode do {
 						if (count _magazines > 0) then {
 							_mag = (_magazines select 0);
 							if([jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _mag] call jn_fnc_arsenal_itemCount > 0)then{
-								if((player canAddItemToUniform _mag)||(player canAddItemToVest _mag)||(player canAddItemToBackpack _mag))then{
+								if(((player canAddItemToUniform [_mag, 1, true]))||((player canAddItemToVest [_mag, 1, true]))||((player canAddItemToBackpack [_mag, 1, true])))then{
 									player addmagazine _mag;
 									[IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL, _mag]call jn_fnc_arsenal_removeItem;
 								}else{
@@ -2471,8 +2525,6 @@ switch _mode do {
 				_oldAmmoCount = 0;
 				{ if ((_x#0 == _oldMag) && (_x#2)) exitWith { _oldAmmoCount = _x#1 }; } forEach (magazinesAmmoFull player);
 				_newMag = _item;
-				_cfgAmmoCount = 1;  //getNumber (configFile >> "CfgMagazines" >> _newMag >> "count");
-				_newAmmoCount = [_amount, _cfgAmmoCount] select ((_amount == -1) || (_amount > _cfgAmmoCount));
 
 				switch true do {
 					case (ctrlenabled _ctrlListPrimaryWeapon): {
@@ -2528,6 +2580,8 @@ switch _mode do {
 							};
 						};
 					};
+				};
+			};
 			case IDC_RSCDISPLAYARSENAL_TAB_LOADEDMAG2: {
 				// this all assumes a "standard" weapon with one primary muzzle, one and only one alternate muzzle (GL), and that the alternate muzzle only has one round (i.e. a normal rifle with single shot underbarrel grenade launcher)
 				// will probably break with anything weird like a masterkey / underbarrel shotgun or something else I can't think of rn
@@ -2709,7 +2763,7 @@ switch _mode do {
 					};
 
 					//save mags in list and remove them
-					_mags = magazinesAmmoCargo _container;
+					private _mags = magazinesAmmoCargo _container;
 					if (_mags findIf {(_x select 0) isEqualTo _item} == -1) exitWith {};
 					clearMagazineCargoGlobal _container;
 
